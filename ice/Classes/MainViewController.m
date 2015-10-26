@@ -9,7 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "MainViewController.h"
-#import "slideMenuViewController.h"
+#import "SlideMenuViewController.h"
 
 #define SLIDE_TIMING .25
 
