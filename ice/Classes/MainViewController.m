@@ -167,7 +167,7 @@
     [self.view addGestureRecognizer:tapRecognizer];
 }
 
-- (void)setupSlideMenuGestures:(UIView *)MenuView
+- (void)setupSlideMenuGestures:(UIView *)menuView
 {
     UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self
                                                                                     action:@selector(movelMenu:)];
@@ -175,7 +175,7 @@
     [panRecognizer setMaximumNumberOfTouches:1];
     [panRecognizer setDelegate:self];
 
-    [MenuView addGestureRecognizer:panRecognizer];
+    [menuView addGestureRecognizer:panRecognizer];
 }
 
 - (void)movelMenu:(UIGestureRecognizer *)sender
