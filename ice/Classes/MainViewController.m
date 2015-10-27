@@ -202,20 +202,19 @@
     }
 
     if (sender.state == UIGestureRecognizerStateChanged) {
-        /*
-        if (sender.view.frame.origin.x >= 0) {
-            sender.view.frame = CGRectMake(0, sender.view.frame.origin.y,
-                                           sender.view.frame.size.width, sender.view.frame.size.height);
-        }
-         */
-
         self.showMenu = sender.view.center.x > 0;
 
         [sender view].center = CGPointMake([sender view].center.x + translatedPoint.x, [sender view].center.y);
         [(UIPanGestureRecognizer *)sender setTranslation:CGPointZero inView:self.view];
 
         self.preVelocity = velocity;
+
+        if (sender.view.frame.origin.x >= 0) {
+            sender.view.frame = CGRectMake(0, sender.view.frame.origin.y,
+                                           sender.view.frame.size.width, sender.view.frame.size.height);
+        }
     }
+
 }
 
 - (void)screenEdgeSwiped:(UIGestureRecognizer *)sender
