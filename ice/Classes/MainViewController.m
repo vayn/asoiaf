@@ -11,7 +11,9 @@
 #import "MainViewController.h"
 #import "SlideMenuViewController.h"
 
-#define SLIDE_TIMING .25
+#define SLIDE_TIMING 0.25
+#define OVERLAY_ALPHA_BEGAN 0.0
+#define OVERLAY_ALPHA_END 0.7
 
 @interface MainViewController () <UIGestureRecognizerDelegate>
 
@@ -22,6 +24,7 @@
 @property (nonatomic, assign) CGPoint preVelocity;
 
 @property (nonatomic, strong) UIView *overlayView;
+@property (nonatomic, assign) CGFloat overlayAlphaSpeed;
 
 @end
 
@@ -55,7 +58,7 @@
 
     self.overlayView = [[UIView alloc] initWithFrame:self.navigationController.view.frame];
     self.overlayView.backgroundColor = [UIColor blackColor];
-    self.overlayView.alpha = 0.2;
+    self.overlayView.alpha = OVERLAY_ALPHA_BEGAN;
 
     [self setupGestures];
 }
@@ -106,7 +109,7 @@
     [UIView animateWithDuration:SLIDE_TIMING delay:0 options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
                          childView.frame = CGRectOffset(childView.frame, -childView.frame.size.width, 0);
-                         self.overlayView.alpha = 0.2;
+                         self.overlayView.alpha = OVERLAY_ALPHA_BEGAN;
                      }
                      completion:^(BOOL finished) {
                          if (finished) {
@@ -123,7 +126,7 @@
                      animations:^{
                          childView.frame = CGRectMake(0, 0,
                                                       childView.frame.size.width, childView.frame.size.height);
-                         self.overlayView.alpha = 0.7;
+                         self.overlayView.alpha = OVERLAY_ALPHA_END;
                      } completion:^(BOOL finished) {
                          if (finished) {
                              self.navigationItem.leftBarButtonItem.tag = 0;
@@ -145,6 +148,9 @@
 
         self.slideMenuViewController.view.frame = CGRectOffset(self.slideMenuViewController.view.frame,
                                                                -self.slideMenuViewController.view.frame.size.width, 0);
+
+        CGFloat slideMenuWidth = self.slideMenuViewController.view.frame.size.width;
+        self.overlayAlphaSpeed = fabs(OVERLAY_ALPHA_BEGAN - OVERLAY_ALPHA_END) / slideMenuWidth;
 
         [self setupSlideMenuGestures:self.slideMenuViewController.view];
     }
@@ -219,6 +225,11 @@
 
         [sender view].center = CGPointMake([sender view].center.x + translatedPoint.x, [sender view].center.y);
         [(UIPanGestureRecognizer *)sender setTranslation:CGPointZero inView:self.view];
+
+        self.overlayView.alpha += self.overlayAlphaSpeed * translatedPoint.x;
+        if (self.overlayView.alpha > OVERLAY_ALPHA_END) {
+            self.overlayView.alpha = OVERLAY_ALPHA_END;
+        }
 
         self.preVelocity = velocity;
 
