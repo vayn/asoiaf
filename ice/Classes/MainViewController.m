@@ -21,6 +21,8 @@
 @property (nonatomic, assign) BOOL showMenu;
 @property (nonatomic, assign) CGPoint preVelocity;
 
+@property (nonatomic, strong) UIView *overlayView;
+
 @end
 
 @implementation MainViewController
@@ -51,6 +53,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
+    self.overlayView = [[UIView alloc] initWithFrame:self.navigationController.view.frame];
+    self.overlayView.backgroundColor = [UIColor blackColor];
+    self.overlayView.alpha = 0.2;
+
     [self setupGestures];
 }
 
@@ -61,6 +67,8 @@
     if (self.slideMenuViewController != nil) {
         [self.slideMenuViewController.view removeFromSuperview];
         self.slideMenuViewController = nil;
+
+        [self.overlayView removeFromSuperview];
 
         self.navigationItem.leftBarButtonItem.tag = 1;
         self.showingSlideMenu = NO;
@@ -98,6 +106,7 @@
     [UIView animateWithDuration:SLIDE_TIMING delay:0 options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
                          childView.frame = CGRectOffset(childView.frame, -childView.frame.size.width, 0);
+                         self.overlayView.alpha = 0.2;
                      }
                      completion:^(BOOL finished) {
                          if (finished) {
@@ -114,6 +123,7 @@
                      animations:^{
                          childView.frame = CGRectMake(0, 0,
                                                       childView.frame.size.width, childView.frame.size.height);
+                         self.overlayView.alpha = 0.7;
                      } completion:^(BOOL finished) {
                          if (finished) {
                              self.navigationItem.leftBarButtonItem.tag = 0;
@@ -142,6 +152,9 @@
     self.showingSlideMenu = YES;
 
     UIView *view = self.slideMenuViewController.view;
+
+    [self.view addSubview:self.overlayView];
+    [self.view bringSubviewToFront:view];
 
     view.layer.shadowColor = [UIColor blackColor].CGColor;
     view.layer.shadowOpacity = 0.8;
