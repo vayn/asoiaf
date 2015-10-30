@@ -18,8 +18,9 @@
 @interface MainViewController () <UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) SlideMenuViewController *slideMenuViewController;
-@property (nonatomic, assign) BOOL showingSlideMenu;
+@property (weak, nonatomic) IBOutlet UIView *centerView;
 
+@property (nonatomic, assign) BOOL showingSlideMenu;
 @property (nonatomic, assign) BOOL showMenu;
 @property (nonatomic, assign) CGPoint preVelocity;
 
@@ -45,11 +46,6 @@
     }
 
     return self;
-}
-
-- (void)loadView
-{
-    self.view = [[UIScrollView alloc] init];
 }
 
 - (void)viewDidLoad {
@@ -141,7 +137,7 @@
     if (self.slideMenuViewController == nil) {
         self.slideMenuViewController = [[SlideMenuViewController alloc] initWithNibName:@"SlideMenuViewController" bundle:nil];
 
-        [self.view addSubview:self.slideMenuViewController.view];
+        [self.centerView addSubview:self.slideMenuViewController.view];
 
         [self addChildViewController:self.slideMenuViewController];
         [self.slideMenuViewController didMoveToParentViewController:self];
@@ -159,8 +155,8 @@
 
     UIView *view = self.slideMenuViewController.view;
 
-    [self.view addSubview:self.overlayView];
-    [self.view bringSubviewToFront:view];
+    [self.centerView addSubview:self.overlayView];
+    [self.centerView bringSubviewToFront:view];
 
     view.layer.shadowColor = [UIColor blackColor].CGColor;
     view.layer.shadowOpacity = 0.8;
@@ -178,12 +174,12 @@
                                                            initWithTarget:self
                                                            action:@selector(screenEdgeSwiped:)];
     edgePanRecognizer.edges = UIRectEdgeLeft;
-    [self.view addGestureRecognizer:edgePanRecognizer];
+    [self.centerView addGestureRecognizer:edgePanRecognizer];
 
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                     action:@selector(mainViewTapped:)];
     tapRecognizer.cancelsTouchesInView = NO;
-    [self.view addGestureRecognizer:tapRecognizer];
+    [self.centerView addGestureRecognizer:tapRecognizer];
 }
 
 - (void)setupSlideMenuGestures:(UIView *)menuView
@@ -201,8 +197,8 @@
 {
     [[[(UITapGestureRecognizer *)sender view] layer] removeAllAnimations];
 
-    CGPoint translatedPoint = [(UIPanGestureRecognizer *)sender translationInView:self.view];
-    CGPoint velocity = [(UIPanGestureRecognizer *)sender velocityInView:self.view];
+    CGPoint translatedPoint = [(UIPanGestureRecognizer *)sender translationInView:self.centerView];
+    CGPoint velocity = [(UIPanGestureRecognizer *)sender velocityInView:self.centerView];
 
     if (sender.state == UIGestureRecognizerStateEnded) {
         if (velocity.x > 0) {
@@ -224,7 +220,7 @@
         self.showMenu = sender.view.center.x > 0;
 
         [sender view].center = CGPointMake([sender view].center.x + translatedPoint.x, [sender view].center.y);
-        [(UIPanGestureRecognizer *)sender setTranslation:CGPointZero inView:self.view];
+        [(UIPanGestureRecognizer *)sender setTranslation:CGPointZero inView:self.centerView];
 
         self.overlayView.alpha += self.overlayAlphaSpeed * translatedPoint.x;
         if (self.overlayView.alpha > OVERLAY_ALPHA_END) {
@@ -252,9 +248,9 @@
 
 - (void)mainViewTapped:(UIGestureRecognizer *)sender
 {
-    CGPoint location = [sender locationInView:self.view];
+    CGPoint location = [sender locationInView:self.centerView];
     if (self.showingSlideMenu) {
-        if (CGRectContainsPoint(self.view.frame, location) &&
+        if (CGRectContainsPoint(self.centerView.frame, location) &&
             !CGRectContainsPoint(self.slideMenuViewController.view.frame, location)) {
             [self moveMenuToOriginalPosition];
         }
