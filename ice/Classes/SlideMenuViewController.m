@@ -7,24 +7,31 @@
 //
 
 #import "SlideMenuViewController.h"
+#import "DataStore.h"
 
 @interface SlideMenuViewController () <UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UITableView *myTableView;
-@property (strong, nonatomic) NSArray *categories;
+@property (nonatomic, weak) IBOutlet UITableView *myTableView;
+@property (nonatomic, strong) NSArray *category;
 
 @end
 
 @implementation SlideMenuViewController
 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        self.category = [[DataStore sharedStore] category];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
-    NSArray *categories = @[@"One", @"Two", @"Three"];
-    self.categories = categories;
-
-    [self.myTableView reloadData];
+    [self.myTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"myTableViewCell"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,17 +48,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.categories count];
+    return [self.category count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellMainNibID = @"cellMain";
-    UITableViewCell *cellMain = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                                       reuseIdentifier:cellMainNibID];
-    cellMain.textLabel.text = self.categories[indexPath.row];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"myTableViewCell" forIndexPath:indexPath];
 
-    return cellMain;
+    NSString *category = self.category[indexPath.row];
+    cell.textLabel.text = category;
+
+    return cell;
 }
 
 @end

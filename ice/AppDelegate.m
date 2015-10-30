@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
+#import "DataStore.h"
 
 @interface AppDelegate ()
 
@@ -23,6 +24,10 @@
     mainViewController.title = @"冰与火之歌";
 
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [DataStore sharedStore];
+    });
 
     self.window.rootViewController = navController;
     self.window.backgroundColor = [UIColor whiteColor];
