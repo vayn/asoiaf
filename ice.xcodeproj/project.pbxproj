@@ -18,6 +18,7 @@
 		F32E94E01BDCCD04008F9AA5 /* SlideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F32E94DE1BDCCD04008F9AA5 /* SlideMenuViewController.m */; };
 		F32E94E11BDCCD04008F9AA5 /* SlideMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F32E94DF1BDCCD04008F9AA5 /* SlideMenuViewController.xib */; };
 		F39241C81BE396FA000292AE /* DataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = F39241C71BE396FA000292AE /* DataStore.m */; };
+		F3E1F1891BE4A04100E14B25 /* WikipediaHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E1F1881BE4A04100E14B25 /* WikipediaHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,8 @@
 		F32E94DF1BDCCD04008F9AA5 /* SlideMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SlideMenuViewController.xib; path = ice/Classes/SlideMenuViewController.xib; sourceTree = "<group>"; };
 		F39241C61BE396FA000292AE /* DataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataStore.h; path = ice/Classes/DataStore.h; sourceTree = "<group>"; };
 		F39241C71BE396FA000292AE /* DataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataStore.m; path = ice/Classes/DataStore.m; sourceTree = "<group>"; };
+		F3E1F1871BE4A04100E14B25 /* WikipediaHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WikipediaHelper.h; sourceTree = "<group>"; };
+		F3E1F1881BE4A04100E14B25 /* WikipediaHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WikipediaHelper.m; sourceTree = "<group>"; };
 		FB851E1C8F53A888D3C01047 /* Pods-ice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ice.release.xcconfig"; path = "Pods/Target Support Files/Pods-ice/Pods-ice.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,6 +95,7 @@
 		F30BB15F1BDCC27C00F4FAD2 /* ice */ = {
 			isa = PBXGroup;
 			children = (
+				F3E1F1851BE4A04100E14B25 /* Libs */,
 				F30BB1781BDCC38A00F4FAD2 /* Views */,
 				F30BB1791BDCC39B00F4FAD2 /* Classes */,
 				F39241C91BE39705000292AE /* Data */,
@@ -144,6 +148,24 @@
 			);
 			name = Data;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		F3E1F1851BE4A04100E14B25 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				F3E1F1861BE4A04100E14B25 /* WikiApiObjectiveC */,
+			);
+			name = Libs;
+			path = Ice/Libs;
+			sourceTree = SOURCE_ROOT;
+		};
+		F3E1F1861BE4A04100E14B25 /* WikiApiObjectiveC */ = {
+			isa = PBXGroup;
+			children = (
+				F3E1F1871BE4A04100E14B25 /* WikipediaHelper.h */,
+				F3E1F1881BE4A04100E14B25 /* WikipediaHelper.m */,
+			);
+			path = WikiApiObjectiveC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,6 +294,7 @@
 				F30BB1651BDCC27C00F4FAD2 /* AppDelegate.m in Sources */,
 				F30BB1761BDCC38400F4FAD2 /* MainViewController.m in Sources */,
 				F32E94E01BDCCD04008F9AA5 /* SlideMenuViewController.m in Sources */,
+				F3E1F1891BE4A04100E14B25 /* WikipediaHelper.m in Sources */,
 				F30BB1621BDCC27C00F4FAD2 /* main.m in Sources */,
 				F39241C81BE396FA000292AE /* DataStore.m in Sources */,
 			);
