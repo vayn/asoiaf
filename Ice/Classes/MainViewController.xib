@@ -8,7 +8,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController">
             <connections>
                 <outlet property="centerView" destination="B3C-bj-hjq" id="3FI-cY-JOA"/>
-                <outlet property="galleryView" destination="WcL-Rt-6GY" id="mk6-nN-MS1"/>
                 <outlet property="loadingActivity" destination="aXs-bU-h5W" id="I80-Z6-7eu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="EMD-2p-MLH"/>
             </connections>

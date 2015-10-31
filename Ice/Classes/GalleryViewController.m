@@ -23,13 +23,23 @@
                         [UIImage imageNamed:@"h3.jpg"],
                         [UIImage imageNamed:@"h4.jpg"]
                         ];
+
+    NSArray *titles = @[@"权力的游戏",
+                        @"列王的纷争",
+                        @"冰雨的风暴",
+                        @"群鸦的盛宴"
+                        ];
+
     CGFloat width = self.view.bounds.size.width;
     SDCycleScrollView *galleryView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, width, 180)
                                                                      imagesGroup:images];
 
-    galleryView.infiniteLoop = YES;
-    galleryView.delegate = self;
     galleryView.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;
+    galleryView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
+    galleryView.delegate = self;
+    galleryView.infiniteLoop = YES;
+    galleryView.titlesGroup = titles;
+    galleryView.dotColor = [UIColor yellowColor];
 
     self.view = galleryView;
 }
