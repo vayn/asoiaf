@@ -19,6 +19,7 @@
 
 @property (nonatomic, strong) SlideMenuViewController *slideMenuViewController;
 @property (weak, nonatomic) IBOutlet UIView *centerView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingActivity;
 
 @property (nonatomic, assign) BOOL showingSlideMenu;
 @property (nonatomic, assign) BOOL showMenu;
@@ -56,6 +57,10 @@
     self.overlayView.backgroundColor = [UIColor blackColor];
     self.overlayView.alpha = OVERLAY_ALPHA_BEGAN;
 
+    [self.loadingActivity startAnimating];
+    self.loadingActivity.hidden = NO;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideLoadingActivity) name:@"dataFetched" object:nil];
+
     [self setupGestures];
 }
 
@@ -74,6 +79,10 @@
     }
 }
 
+- (void)hideLoadingActivity
+{
+    self.loadingActivity.hidden = YES;
+}
 
 #pragma mark - Button Actions
 

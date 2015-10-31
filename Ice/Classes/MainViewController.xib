@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController">
             <connections>
                 <outlet property="centerView" destination="B3C-bj-hjq" id="3FI-cY-JOA"/>
+                <outlet property="loadingActivity" destination="aXs-bU-h5W" id="I80-Z6-7eu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="EMD-2p-MLH"/>
             </connections>
         </placeholder>
@@ -18,6 +19,12 @@
             <subviews>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B3C-bj-hjq" userLabel="Center View">
                     <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="aXs-bU-h5W">
+                            <rect key="frame" x="177" y="219" width="20" height="20"/>
+                            <animations/>
+                        </activityIndicatorView>
+                    </subviews>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>

@@ -96,16 +96,11 @@
 			isa = PBXGroup;
 			children = (
 				F3E1F1851BE4A04100E14B25 /* Libs */,
+				F39241C91BE39705000292AE /* Data */,
 				F30BB1781BDCC38A00F4FAD2 /* Views */,
 				F30BB1791BDCC39B00F4FAD2 /* Classes */,
-				F39241C91BE39705000292AE /* Data */,
-				F30BB1631BDCC27C00F4FAD2 /* AppDelegate.h */,
-				F30BB1641BDCC27C00F4FAD2 /* AppDelegate.m */,
-				F30BB1661BDCC27C00F4FAD2 /* ice-Prefix.pch */,
-				F30BB1681BDCC27C00F4FAD2 /* Assets.xcassets */,
-				F30BB16A1BDCC27C00F4FAD2 /* LaunchScreen.storyboard */,
-				F30BB16D1BDCC27C00F4FAD2 /* Info.plist */,
 				F30BB1601BDCC27C00F4FAD2 /* Supporting Files */,
+				F30BB1681BDCC27C00F4FAD2 /* Assets.xcassets */,
 			);
 			path = ice;
 			sourceTree = "<group>";
@@ -113,6 +108,11 @@
 		F30BB1601BDCC27C00F4FAD2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F30BB1631BDCC27C00F4FAD2 /* AppDelegate.h */,
+				F30BB1641BDCC27C00F4FAD2 /* AppDelegate.m */,
+				F30BB16A1BDCC27C00F4FAD2 /* LaunchScreen.storyboard */,
+				F30BB1661BDCC27C00F4FAD2 /* ice-Prefix.pch */,
+				F30BB16D1BDCC27C00F4FAD2 /* Info.plist */,
 				F30BB1611BDCC27C00F4FAD2 /* main.m */,
 			);
 			name = "Supporting Files";
