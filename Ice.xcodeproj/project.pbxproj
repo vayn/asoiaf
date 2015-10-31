@@ -19,6 +19,7 @@
 		F32E94E11BDCCD04008F9AA5 /* SlideMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F32E94DF1BDCCD04008F9AA5 /* SlideMenuViewController.xib */; };
 		F39241C81BE396FA000292AE /* DataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = F39241C71BE396FA000292AE /* DataStore.m */; };
 		F3E1F1891BE4A04100E14B25 /* WikipediaHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E1F1881BE4A04100E14B25 /* WikipediaHelper.m */; };
+		F3EE87431BE4FA19000ED4D6 /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EE87411BE4FA19000ED4D6 /* GalleryViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,8 @@
 		F39241C71BE396FA000292AE /* DataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataStore.m; path = ice/Classes/DataStore.m; sourceTree = "<group>"; };
 		F3E1F1871BE4A04100E14B25 /* WikipediaHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WikipediaHelper.h; sourceTree = "<group>"; };
 		F3E1F1881BE4A04100E14B25 /* WikipediaHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WikipediaHelper.m; sourceTree = "<group>"; };
+		F3EE87401BE4FA19000ED4D6 /* GalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GalleryViewController.h; path = Ice/Classes/GalleryViewController.h; sourceTree = "<group>"; };
+		F3EE87411BE4FA19000ED4D6 /* GalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GalleryViewController.m; path = Ice/Classes/GalleryViewController.m; sourceTree = "<group>"; };
 		FB851E1C8F53A888D3C01047 /* Pods-ice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ice.release.xcconfig"; path = "Pods/Target Support Files/Pods-ice/Pods-ice.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,6 +136,8 @@
 			children = (
 				F30BB1731BDCC38400F4FAD2 /* MainViewController.h */,
 				F30BB1741BDCC38400F4FAD2 /* MainViewController.m */,
+				F3EE87401BE4FA19000ED4D6 /* GalleryViewController.h */,
+				F3EE87411BE4FA19000ED4D6 /* GalleryViewController.m */,
 				F32E94DD1BDCCD04008F9AA5 /* SlideMenuViewController.h */,
 				F32E94DE1BDCCD04008F9AA5 /* SlideMenuViewController.m */,
 			);
@@ -296,6 +301,7 @@
 				F32E94E01BDCCD04008F9AA5 /* SlideMenuViewController.m in Sources */,
 				F3E1F1891BE4A04100E14B25 /* WikipediaHelper.m in Sources */,
 				F30BB1621BDCC27C00F4FAD2 /* main.m in Sources */,
+				F3EE87431BE4FA19000ED4D6 /* GalleryViewController.m in Sources */,
 				F39241C81BE396FA000292AE /* DataStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,6 +10,7 @@
 
 #import "MainViewController.h"
 #import "SlideMenuViewController.h"
+#import "GalleryViewController.h"
 
 #define SLIDE_TIMING 0.25
 #define OVERLAY_ALPHA_BEGAN 0.0
@@ -17,10 +18,12 @@
 
 @interface MainViewController () <UIGestureRecognizerDelegate>
 
-@property (nonatomic, strong) SlideMenuViewController *slideMenuViewController;
 @property (weak, nonatomic) IBOutlet UIView *centerView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingActivity;
 
+@property (nonatomic, strong) GalleryViewController *galleryViewController;
+
+@property (nonatomic, strong) SlideMenuViewController *slideMenuViewController;
 @property (nonatomic, assign) BOOL showingSlideMenu;
 @property (nonatomic, assign) BOOL showMenu;
 @property (nonatomic, assign) CGPoint preVelocity;
@@ -53,35 +56,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
-    self.overlayView = [[UIView alloc] initWithFrame:self.navigationController.view.frame];
-    self.overlayView.backgroundColor = [UIColor blackColor];
-    self.overlayView.alpha = OVERLAY_ALPHA_BEGAN;
-
-    [self.loadingActivity startAnimating];
-    self.loadingActivity.hidden = NO;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideLoadingActivity) name:@"dataFetched" object:nil];
-
+    [self setupGalleryView];
+    [self setupOverlayView];
+    [self setupLoadingActivity];
     [self setupGestures];
-}
-
-#pragma mark - Setup View
-
-- (void)resetMainView
-{
-    if (self.slideMenuViewController != nil) {
-        [self.slideMenuViewController.view removeFromSuperview];
-        self.slideMenuViewController = nil;
-
-        [self.overlayView removeFromSuperview];
-
-        self.navigationItem.leftBarButtonItem.tag = 1;
-        self.showingSlideMenu = NO;
-    }
-}
-
-- (void)hideLoadingActivity
-{
-    self.loadingActivity.hidden = YES;
 }
 
 #pragma mark - Button Actions
@@ -141,6 +119,19 @@
 
 #pragma mark - Setup View
 
+- (void)resetMainView
+{
+    if (self.slideMenuViewController != nil) {
+        [self.slideMenuViewController.view removeFromSuperview];
+        self.slideMenuViewController = nil;
+
+        [self.overlayView removeFromSuperview];
+
+        self.navigationItem.leftBarButtonItem.tag = 1;
+        self.showingSlideMenu = NO;
+    }
+}
+
 - (UIView *)getSlideMenuView
 {
     if (self.slideMenuViewController == nil) {
@@ -172,6 +163,35 @@
     view.layer.shadowOffset = CGSizeMake(.2, .2);
 
     return view;
+}
+
+- (void)setupGalleryView
+{
+    self.galleryViewController = [[GalleryViewController alloc] init];
+    [self.centerView addSubview:self.galleryViewController.view];
+    [self didMoveToParentViewController:self.galleryViewController];
+}
+
+- (void)setupOverlayView
+{
+    self.overlayView = [[UIView alloc] initWithFrame:self.navigationController.view.frame];
+    self.overlayView.backgroundColor = [UIColor blackColor];
+    self.overlayView.alpha = OVERLAY_ALPHA_BEGAN;
+}
+
+- (void)setupLoadingActivity
+{
+    self.loadingActivity.hidden = YES;
+
+    /*
+    [self.loadingActivity startAnimating];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideLoadingActivity) name:@"dataFetched" object:nil];
+     */
+}
+
+- (void)hideLoadingActivity
+{
+    self.loadingActivity.hidden = YES;
 }
 
 #pragma mark - Swipe Gesture Setup/Actions

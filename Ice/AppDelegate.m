@@ -25,9 +25,11 @@
 
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
 
+    /*
     dispatch_async(dispatch_get_main_queue(), ^{
         [DataStore sharedStore];
     });
+     */
 
     self.window.rootViewController = navController;
     self.window.backgroundColor = [UIColor whiteColor];
