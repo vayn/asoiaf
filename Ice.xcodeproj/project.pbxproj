@@ -173,8 +173,8 @@
 		F39241C91BE39705000292AE /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				F35D51931BE6679A006E3821 /* DataManager.m */,
 				F35D51941BE6679A006E3821 /* DataManager.h */,
+				F35D51931BE6679A006E3821 /* DataManager.m */,
 			);
 			name = Managers;
 			path = ..;
