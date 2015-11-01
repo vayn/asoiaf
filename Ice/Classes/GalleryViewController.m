@@ -39,7 +39,6 @@
     galleryView.delegate = self;
     galleryView.infiniteLoop = YES;
     galleryView.titlesGroup = titles;
-    galleryView.dotColor = [UIColor yellowColor];
 
     self.view = galleryView;
 }
