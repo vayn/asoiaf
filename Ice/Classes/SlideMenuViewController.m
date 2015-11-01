@@ -7,7 +7,6 @@
 //
 
 #import "SlideMenuViewController.h"
-#import "DataStore.h"
 
 @interface SlideMenuViewController () <UITableViewDelegate, UITableViewDataSource>
 

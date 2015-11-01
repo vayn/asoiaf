@@ -7,10 +7,14 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
+#import "NSArray+Random.h"
 
 #import "MainViewController.h"
 #import "SlideMenuViewController.h"
 #import "GalleryViewController.h"
+
+#import "DataManager.h"
+#import "FeaturedQuoteModel.h"
 
 #define SLIDE_TIMING 0.25
 #define OVERLAY_ALPHA_BEGAN 0.0
@@ -20,6 +24,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *centerView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingActivity;
+@property (weak, nonatomic) IBOutlet UILabel *featuredQuoteLabel;
 
 @property (nonatomic, strong) GalleryViewController *galleryViewController;
 
@@ -59,6 +64,14 @@
     [self setupGalleryView];
     [self setupOverlayView];
     [self setupLoadingActivity];
+    [self setupFeaturedQuoteLabel];
+
+    [[DataManager sharedManager] getFeaturedQuotes:^(NSArray *featuredQuotes) {
+        FeaturedQuoteModel *featureQuote = [featuredQuotes randomObject];
+        self.featuredQuoteLabel.text = featureQuote.quote;
+        [self.featuredQuoteLabel sizeToFit];
+    }];
+
     [self setupGestures];
 }
 
@@ -177,6 +190,10 @@
     self.overlayView = [[UIView alloc] initWithFrame:self.navigationController.view.frame];
     self.overlayView.backgroundColor = [UIColor blackColor];
     self.overlayView.alpha = OVERLAY_ALPHA_BEGAN;
+}
+
+- (void)setupFeaturedQuoteLabel
+{
 }
 
 - (void)setupLoadingActivity
