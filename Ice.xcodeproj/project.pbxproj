@@ -19,7 +19,7 @@
 		F32E94E11BDCCD04008F9AA5 /* SlideMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F32E94DF1BDCCD04008F9AA5 /* SlideMenuViewController.xib */; };
 		F33527011BE64F36004716C2 /* NSArray+Random.m in Sources */ = {isa = PBXBuildFile; fileRef = F33527001BE64F36004716C2 /* NSArray+Random.m */; };
 		F33527061BE650FC004716C2 /* FeaturedQuoteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F33527051BE650FC004716C2 /* FeaturedQuoteModel.m */; };
-		F39241C81BE396FA000292AE /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F39241C71BE396FA000292AE /* DataManager.m */; };
+		F35D51951BE6679A006E3821 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F35D51931BE6679A006E3821 /* DataManager.m */; };
 		F3E1F1891BE4A04100E14B25 /* WikipediaHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E1F1881BE4A04100E14B25 /* WikipediaHelper.m */; };
 		F3EE87431BE4FA19000ED4D6 /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EE87411BE4FA19000ED4D6 /* GalleryViewController.m */; };
 /* End PBXBuildFile section */
@@ -45,8 +45,8 @@
 		F33527001BE64F36004716C2 /* NSArray+Random.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+Random.m"; path = "Utilities/NSArray+Random.m"; sourceTree = "<group>"; };
 		F33527041BE650FB004716C2 /* FeaturedQuoteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeaturedQuoteModel.h; path = Ice/Models/FeaturedQuoteModel.h; sourceTree = SOURCE_ROOT; };
 		F33527051BE650FC004716C2 /* FeaturedQuoteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeaturedQuoteModel.m; path = Ice/Models/FeaturedQuoteModel.m; sourceTree = SOURCE_ROOT; };
-		F39241C61BE396FA000292AE /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataManager.h; path = ice/Classes/DataManager.h; sourceTree = "<group>"; };
-		F39241C71BE396FA000292AE /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataManager.m; path = ice/Classes/DataManager.m; sourceTree = "<group>"; };
+		F35D51931BE6679A006E3821 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataManager.m; path = Ice/Managers/DataManager.m; sourceTree = "<group>"; };
+		F35D51941BE6679A006E3821 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataManager.h; path = Ice/Managers/DataManager.h; sourceTree = "<group>"; };
 		F3E1F1871BE4A04100E14B25 /* WikipediaHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WikipediaHelper.h; sourceTree = "<group>"; };
 		F3E1F1881BE4A04100E14B25 /* WikipediaHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WikipediaHelper.m; sourceTree = "<group>"; };
 		F3EE87401BE4FA19000ED4D6 /* GalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GalleryViewController.h; path = Ice/Classes/GalleryViewController.h; sourceTree = "<group>"; };
@@ -173,8 +173,8 @@
 		F39241C91BE39705000292AE /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				F39241C61BE396FA000292AE /* DataManager.h */,
-				F39241C71BE396FA000292AE /* DataManager.m */,
+				F35D51931BE6679A006E3821 /* DataManager.m */,
+				F35D51941BE6679A006E3821 /* DataManager.h */,
 			);
 			name = Managers;
 			path = ..;
@@ -323,13 +323,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F30BB1651BDCC27C00F4FAD2 /* AppDelegate.m in Sources */,
+				F35D51951BE6679A006E3821 /* DataManager.m in Sources */,
 				F30BB1761BDCC38400F4FAD2 /* MainViewController.m in Sources */,
 				F32E94E01BDCCD04008F9AA5 /* SlideMenuViewController.m in Sources */,
 				F3E1F1891BE4A04100E14B25 /* WikipediaHelper.m in Sources */,
 				F30BB1621BDCC27C00F4FAD2 /* main.m in Sources */,
 				F33527061BE650FC004716C2 /* FeaturedQuoteModel.m in Sources */,
 				F3EE87431BE4FA19000ED4D6 /* GalleryViewController.m in Sources */,
-				F39241C81BE396FA000292AE /* DataManager.m in Sources */,
 				F33527011BE64F36004716C2 /* NSArray+Random.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
