@@ -7,9 +7,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController">
             <connections>
+                <outlet property="authorLabel" destination="eOT-NK-rFX" id="vcA-0H-KsT"/>
                 <outlet property="centerView" destination="B3C-bj-hjq" id="3FI-cY-JOA"/>
-                <outlet property="featuredQuoteLabel" destination="hq2-df-mJr" id="Gn4-jd-2bb"/>
-                <outlet property="loadingActivity" destination="aXs-bU-h5W" id="I80-Z6-7eu"/>
+                <outlet property="featuredQuoteActivity" destination="gMr-qb-fMj" id="kTc-xj-ygM"/>
+                <outlet property="quoteLabel" destination="hq2-df-mJr" id="fYL-Ov-vX8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="EMD-2p-MLH"/>
             </connections>
         </placeholder>
@@ -21,37 +22,53 @@
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B3C-bj-hjq" userLabel="Center View" customClass="UIScrollView">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
-                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="aXs-bU-h5W">
-                            <rect key="frame" x="177" y="511" width="20" height="20"/>
-                            <animations/>
-                        </activityIndicatorView>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WcL-Rt-6GY" userLabel="Gallery View">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
                             <animations/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" layoutMarginsFollowReadableWidth="YES" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hq2-df-mJr" userLabel="Featured Quote">
-                            <rect key="frame" x="55" y="219" width="265" height="80"/>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u5D-N6-RDk" userLabel="Featured Quote View">
+                            <rect key="frame" x="8" y="188" width="359" height="91"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="“" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Wy-yy-d0V" userLabel="Left Quotation Label">
+                                    <rect key="frame" x="0.0" y="0.0" width="27" height="42"/>
+                                    <animations/>
+                                    <fontDescription key="fontDescription" name="Baskerville-SemiBold" family="Baskerville" pointSize="36"/>
+                                    <color key="textColor" red="0.56470588235294117" green="0.56470588235294117" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" layoutMarginsFollowReadableWidth="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="hq2-df-mJr" userLabel="Quote Label">
+                                    <rect key="frame" x="25" y="16" width="320" height="26"/>
+                                    <animations/>
+                                    <string key="text">总主教大人曾对我说，因为我们有罪，所以我们受苦。假如这是真的，艾德大人，请告诉我……为何在你们这些王公贵族的权力游戏里面，永远是无辜的人受苦最多？	</string>
+                                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <color key="shadowColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="”" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwu-Vz-zuO" userLabel="Rigth Quotation Label">
+                                    <rect key="frame" x="339" y="43" width="21" height="42"/>
+                                    <animations/>
+                                    <fontDescription key="fontDescription" name="Baskerville-SemiBold" family="Baskerville" pointSize="36"/>
+                                    <color key="textColor" red="0.56470588235294117" green="0.56470588235294117" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="gMr-qb-fMj" userLabel="Featured Quote Activity">
+                                    <rect key="frame" x="169" y="36" width="20" height="20"/>
+                                    <animations/>
+                                </activityIndicatorView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" layoutMarginsFollowReadableWidth="YES" text="—— 瓦里斯" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eOT-NK-rFX" userLabel="Author Label">
+                                    <rect key="frame" x="211" y="54" width="120" height="24"/>
+                                    <animations/>
+                                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="10"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <color key="shadowColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </label>
+                            </subviews>
                             <animations/>
-                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <nil key="highlightedColor"/>
-                            <color key="shadowColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="“" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Wy-yy-d0V" userLabel="Left Quote">
-                            <rect key="frame" x="28" y="205" width="21" height="42"/>
-                            <animations/>
-                            <fontDescription key="fontDescription" name="Baskerville-SemiBold" family="Baskerville" pointSize="36"/>
-                            <color key="textColor" red="0.56470588235294117" green="0.56470588235294117" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="”" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwu-Vz-zuO" userLabel="Rigth Quote">
-                            <rect key="frame" x="308" y="238" width="21" height="42"/>
-                            <animations/>
-                            <fontDescription key="fontDescription" name="Baskerville-SemiBold" family="Baskerville" pointSize="36"/>
-                            <color key="textColor" red="0.56470588235294117" green="0.56470588235294117" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                     </subviews>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -61,7 +78,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <nil key="simulatedTopBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-            <point key="canvasLocation" x="550.5" y="377.5"/>
+            <point key="canvasLocation" x="550.5" y="380.5"/>
         </view>
     </objects>
 </document>

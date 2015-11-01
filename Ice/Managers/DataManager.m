@@ -68,21 +68,11 @@
               // Parse featured quote into key-value pairs
               NSString *regex = @"(?<=quote\\|)(.*?)(?=\\|)(?:\\|\\[\\[)(.*?)(?=\\]\\])";
 
-              /*
-              NSArray *featuredQuotes = [wikitext arrayOfDictionariesByMatchingRegex:regex
-                                                                             options:RKLNoOptions
-                                                                               range:NSMakeRange(0, [wikitext length])
-                                                                               error:nil
-                                                                 withKeysAndCaptures:@"quote", 1, @"name", 2, nil];
-              NSLog(@"%@", featuredQuotes[0][@"quote"]);
-               */
-
               NSMutableArray *featuredQuotes = [[NSMutableArray alloc] init];
 
               [wikitext enumerateStringsMatchedByRegex:regex usingBlock:^(NSInteger captureCount,
                                                                           NSString *const __unsafe_unretained *capturedStrings,
                                                                           const NSRange *capturedRanges, volatile BOOL *const stop) {
-                  //NSLog(@"%@: %@", capturedStrings[2], capturedStrings[1]);
                   FeaturedQuoteModel *featuredQuote = [[FeaturedQuoteModel alloc] initWithQuote:capturedStrings[1]
                                                                                          author:capturedStrings[2]];
                   [featuredQuotes addObject:featuredQuote];
@@ -91,7 +81,7 @@
               completion(featuredQuotes);
 
               dispatch_async(dispatch_get_main_queue(), ^{
-                  [[NSNotificationCenter defaultCenter] postNotificationName:@"featuredQuoteFetched" object:nil];
+                  [[NSNotificationCenter defaultCenter] postNotificationName:@"getFeaturedQuotes" object:nil];
               });
           }
           failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {

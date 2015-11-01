@@ -22,9 +22,10 @@
 
 @interface MainViewController () <UIGestureRecognizerDelegate>
 
-@property (weak, nonatomic) IBOutlet UIView *centerView;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingActivity;
-@property (weak, nonatomic) IBOutlet UILabel *featuredQuoteLabel;
+@property (weak, nonatomic) IBOutlet UIScrollView *centerView;
+@property (weak, nonatomic) IBOutlet UILabel *quoteLabel;
+@property (weak, nonatomic) IBOutlet UILabel *authorLabel;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *featuredQuoteActivity;
 
 @property (nonatomic, strong) GalleryViewController *galleryViewController;
 
@@ -63,14 +64,7 @@
 
     [self setupGalleryView];
     [self setupOverlayView];
-    [self setupLoadingActivity];
     [self setupFeaturedQuoteLabel];
-
-    [[DataManager sharedManager] getFeaturedQuotes:^(NSArray *featuredQuotes) {
-        FeaturedQuoteModel *featureQuote = [featuredQuotes randomObject];
-        self.featuredQuoteLabel.text = featureQuote.quote;
-        [self.featuredQuoteLabel sizeToFit];
-    }];
 
     [self setupGestures];
 }
@@ -194,21 +188,37 @@
 
 - (void)setupFeaturedQuoteLabel
 {
-}
+    [self.featuredQuoteActivity startAnimating];
+    [self.quoteLabel setHidden:YES];
+    [self.authorLabel setHidden:YES];
 
-- (void)setupLoadingActivity
-{
-    self.loadingActivity.hidden = YES;
+    [[DataManager sharedManager] getFeaturedQuotes:^(NSArray *featuredQuotes) {
+        FeaturedQuoteModel *featuredQuote = [featuredQuotes randomObject];
+        self.quoteLabel.text = featuredQuote.quote;
+        self.authorLabel.text = [NSString stringWithFormat:@"——%@", featuredQuote.author];
+    }];
 
-    /*
-    [self.loadingActivity startAnimating];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideLoadingActivity) name:@"dataFetched" object:nil];
-     */
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"getFeaturedQuotes"
+                                                      object:nil
+                                                       queue:nil
+                                                  usingBlock:^(NSNotification * _Nonnull note) {
+                                                      [self.featuredQuoteActivity stopAnimating];
+                                                      [self.featuredQuoteActivity setHidden:YES];
+
+                                                      CATransition *animation = [CATransition animation];
+                                                      animation.type = kCATransitionFade;
+                                                      animation.duration = 0.4;
+                                                      
+                                                      [self.quoteLabel.layer addAnimation:animation forKey:nil];
+                                                      [self.authorLabel.layer addAnimation:animation forKey:nil];
+
+                                                      [self.quoteLabel setHidden:NO];
+                                                      [self.authorLabel setHidden:NO];
+                                                  }];
 }
 
 - (void)hideLoadingActivity
 {
-    self.loadingActivity.hidden = YES;
 }
 
 #pragma mark - Swipe Gesture Setup/Actions
