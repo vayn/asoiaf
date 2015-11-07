@@ -11,7 +11,7 @@
 
 #import "MainViewController.h"
 #import "SlideMenuViewController.h"
-#import "GalleryViewController.h"
+#import "CarrouselViewController.h"
 #import "PortalCollectionViewController.h"
 
 #import "DataManager.h"
@@ -29,7 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *featuredQuoteActivity;
 @property (weak, nonatomic) IBOutlet UIView *portalCollectionView;
 
-@property (nonatomic, strong) GalleryViewController *galleryViewController;
+@property (nonatomic, strong) CarrouselViewController *carrouselViewController;
 @property (nonatomic, strong) PortalCollectionViewController *portalCollectionViewController;
 
 @property (nonatomic, strong) SlideMenuViewController *slideMenuViewController;
@@ -185,11 +185,11 @@
 
 - (void)setupGalleryView
 {
-    self.galleryViewController = [[GalleryViewController alloc] init];
+    self.carrouselViewController = [[CarrouselViewController alloc] init];
 
-    [self.centerView addSubview:self.galleryViewController.view];
-    [self addChildViewController:self.galleryViewController];
-    [self didMoveToParentViewController:self.galleryViewController];
+    [self.centerView addSubview:self.carrouselViewController.view];
+    [self addChildViewController:self.carrouselViewController];
+    [self didMoveToParentViewController:self.carrouselViewController];
 }
 
 - (void)setupPortalCollectionView

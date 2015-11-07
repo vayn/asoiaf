@@ -6,14 +6,14 @@
 //  Copyright © 2015年 HeZhi Corp. All rights reserved.
 //
 
-#import "GalleryViewController.h"
+#import "CarrouselViewController.h"
 #import "SDCycleScrollView.h"
 
-@interface GalleryViewController () <SDCycleScrollViewDelegate>
+@interface CarrouselViewController () <SDCycleScrollViewDelegate>
 
 @end
 
-@implementation GalleryViewController
+@implementation CarrouselViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
