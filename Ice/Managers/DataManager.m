@@ -140,15 +140,37 @@
     [_manager GET:URL
        parameters:nil
           success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+              NSURL *sourceURL;
               NSDictionary *page = responseObject[@"query"][@"pages"][[pageId stringValue]];
-
               NSDictionary *thumbnail = [page objectForKey:@"thumbnail"];
+
               if (thumbnail != nil) {
                   NSString *thumbnailSource = thumbnail[@"source"];
-                  NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:thumbnailSource] options:0 error:nil];
-                  
-                  completionBlock(imageData);
+                  sourceURL = [NSURL URLWithString:thumbnailSource];
+              } else {
+                  switch ([pageId integerValue]) {
+                      case 5483: { // 文化
+                          sourceURL = [NSURL URLWithString:@"http://cdn.huijiwiki.com/asoiaf/thumb.php?f=Faith_by_thegryph.jpg&width=120"];
+                          break;
+                      }
+
+                      case 2780: { // 理论推测
+                          sourceURL = [NSURL URLWithString:@"http://cdn.huijiwiki.com/asoiaf/thumb.php?f=Morgaine_le_Fee_Rhaego_TargaryenIIII.jpg&width=118"];
+                          break;
+                      }
+
+                      case 306: { // 人物
+                          sourceURL = [NSURL URLWithString:@"http://cdn.huijiwiki.com/asoiaf/thumb.php?f=John_Picacio_Daenerys_Targaryen.jpg&width=100"];
+                          break;
+                      }
+
+                      default:
+                          break;
+                  }
               }
+
+              NSData *imageData = [NSData dataWithContentsOfURL:sourceURL options:0 error:nil];
+              completionBlock(imageData);
           } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
               NSLog(@"Error: %@", error);
           }];
