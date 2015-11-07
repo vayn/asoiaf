@@ -83,7 +83,6 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
     
     // Configure the cell
     cell.titleLabel.text = portal.title;
-    //cell.portalImageView.image = [UIImage imageNamed:@"collect_test_100x70"];
 
     [[DataManager sharedManager] getPageThumbnailWithPageId:portal.pageId completionBlock:^(id responseObject) {
         NSData *imageData = (NSData *)responseObject;
