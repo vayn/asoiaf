@@ -23,7 +23,9 @@
 
 @interface MainViewController () <UIGestureRecognizerDelegate>
 
-@property (weak, nonatomic) IBOutlet UIScrollView *centerView;
+@property (weak, nonatomic) IBOutlet UIView *containerView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
 @property (weak, nonatomic) IBOutlet UILabel *quoteLabel;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *featuredQuoteActivity;
@@ -61,12 +63,19 @@
     return self;
 }
 
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    [self.scrollView layoutIfNeeded];
+    self.scrollView.contentSize = self.containerView.bounds.size;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
     [self setupOverlayView];
-    [self setupGalleryView];
+    [self setupCarrouselView];
     [self setupFeaturedQuoteLabel];
     [self setupPortalCollectionView];
 
@@ -136,6 +145,9 @@
         [self.slideMenuViewController.view removeFromSuperview];
         self.slideMenuViewController = nil;
 
+        // Restore scrolling
+        self.scrollView.scrollEnabled = YES;
+
         [self.overlayView removeFromSuperview];
 
         self.navigationItem.leftBarButtonItem.tag = 1;
@@ -148,7 +160,10 @@
     if (self.slideMenuViewController == nil) {
         self.slideMenuViewController = [[SlideMenuViewController alloc] initWithNibName:@"SlideMenuViewController" bundle:nil];
 
-        [self.centerView addSubview:self.slideMenuViewController.view];
+        [self.scrollView addSubview:self.slideMenuViewController.view];
+
+        // Stop scrolling when slide menu slides out
+        self.scrollView.scrollEnabled = NO;
 
         [self addChildViewController:self.slideMenuViewController];
         [self.slideMenuViewController didMoveToParentViewController:self];
@@ -166,8 +181,8 @@
 
     UIView *view = self.slideMenuViewController.view;
 
-    [self.centerView addSubview:self.overlayView];
-    [self.centerView bringSubviewToFront:view];
+    [self.containerView addSubview:self.overlayView];
+    [self.containerView bringSubviewToFront:view];
 
     view.layer.shadowColor = [UIColor blackColor].CGColor;
     view.layer.shadowOpacity = 0.8;
@@ -183,11 +198,11 @@
     self.overlayView.alpha = OVERLAY_ALPHA_BEGAN;
 }
 
-- (void)setupGalleryView
+- (void)setupCarrouselView
 {
     self.carrouselViewController = [[CarrouselViewController alloc] init];
 
-    [self.centerView addSubview:self.carrouselViewController.view];
+    [self.containerView addSubview:self.carrouselViewController.view];
     [self addChildViewController:self.carrouselViewController];
     [self didMoveToParentViewController:self.carrouselViewController];
 }
@@ -198,7 +213,7 @@
     self.portalCollectionViewController.view.frame = self.portalCollectionView.frame;
     self.portalCollectionViewController.collectionView.backgroundColor = [UIColor whiteColor];
 
-    [self.centerView addSubview:self.portalCollectionViewController.view];
+    [self.containerView addSubview:self.portalCollectionViewController.view];
     [self addChildViewController:self.portalCollectionViewController];
     [self didMoveToParentViewController:self.parentViewController];
 }
@@ -247,12 +262,12 @@
                                                            initWithTarget:self
                                                            action:@selector(screenEdgeSwiped:)];
     edgePanRecognizer.edges = UIRectEdgeLeft;
-    [self.centerView addGestureRecognizer:edgePanRecognizer];
+    [self.containerView addGestureRecognizer:edgePanRecognizer];
 
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                     action:@selector(mainViewTapped:)];
     tapRecognizer.cancelsTouchesInView = NO;
-    [self.centerView addGestureRecognizer:tapRecognizer];
+    [self.containerView addGestureRecognizer:tapRecognizer];
 }
 
 - (void)setupSlideMenuGestures:(UIView *)menuView
@@ -270,15 +285,17 @@
 {
     [[[(UITapGestureRecognizer *)sender view] layer] removeAllAnimations];
 
-    CGPoint translatedPoint = [(UIPanGestureRecognizer *)sender translationInView:self.centerView];
-    CGPoint velocity = [(UIPanGestureRecognizer *)sender velocityInView:self.centerView];
+    CGPoint translatedPoint = [(UIPanGestureRecognizer *)sender translationInView:self.containerView];
+    CGPoint velocity = [(UIPanGestureRecognizer *)sender velocityInView:self.containerView];
 
     if (sender.state == UIGestureRecognizerStateEnded) {
+        /*
         if (velocity.x > 0) {
             NSLog(@"gesture went right");
         } else {
             NSLog(@"gesture went left");
         }
+         */
 
         if (!self.showMenu) {
             [self moveMenuToOriginalPosition];
@@ -293,7 +310,7 @@
         self.showMenu = sender.view.center.x > 0;
 
         [sender view].center = CGPointMake([sender view].center.x + translatedPoint.x, [sender view].center.y);
-        [(UIPanGestureRecognizer *)sender setTranslation:CGPointZero inView:self.centerView];
+        [(UIPanGestureRecognizer *)sender setTranslation:CGPointZero inView:self.containerView];
 
         self.overlayView.alpha += self.overlayAlphaSpeed * translatedPoint.x;
         if (self.overlayView.alpha > OVERLAY_ALPHA_END) {
@@ -321,9 +338,9 @@
 
 - (void)mainViewTapped:(UIGestureRecognizer *)sender
 {
-    CGPoint location = [sender locationInView:self.centerView];
+    CGPoint location = [sender locationInView:self.containerView];
     if (self.showingSlideMenu) {
-        if (CGRectContainsPoint(self.centerView.frame, location) &&
+        if (CGRectContainsPoint(self.containerView.frame, location) &&
             !CGRectContainsPoint(self.slideMenuViewController.view.frame, location)) {
             [self moveMenuToOriginalPosition];
         }
