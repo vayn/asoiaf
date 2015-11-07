@@ -104,6 +104,12 @@
 
               for (id portalObject in portalObjects) {
                   NSNumber *pageId = portalObject[@"pageid"];
+
+                  // Hack: 306 和 5480 都是「人物」，只要 306
+                  if ([pageId isEqualToNumber:@(5480)]) {
+                      continue;
+                  }
+
                   NSString *title = portalObject[@"title"];
 
                   if ([title rangeOfString:@":"].location != NSNotFound) {
