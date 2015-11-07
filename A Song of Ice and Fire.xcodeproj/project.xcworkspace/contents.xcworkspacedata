@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:ice.xcodeproj">
+      location = "self:A Song of Ice and Fire.xcodeproj">
    </FileRef>
 </Workspace>

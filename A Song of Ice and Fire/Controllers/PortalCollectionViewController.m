@@ -100,9 +100,13 @@ static NSString * const reuseIdentifier = @"PortalCell";
 {
     UICollectionReusableView *reusableView = nil;
 
+    /*
     if (kind == UICollectionElementKindSectionHeader) {
         <#statements#>
     }
+     */
+
+    return reusableView;
 }
 
 #pragma mark <UICollectionViewDelegateFlowLayout>
