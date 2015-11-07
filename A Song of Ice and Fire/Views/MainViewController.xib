@@ -47,7 +47,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" layoutMarginsFollowReadableWidth="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="hq2-df-mJr" userLabel="Quote Label">
-                                            <rect key="frame" x="25" y="16" width="320" height="26"/>
+                                            <rect key="frame" x="25" y="13" width="320" height="40"/>
                                             <animations/>
                                             <string key="text">总主教大人曾对我说，因为我们有罪，所以我们受苦。假如这是真的，艾德大人，请告诉我……为何在你们这些王公贵族的权力游戏里面，永远是无辜的人受苦最多？	</string>
                                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
@@ -76,7 +76,7 @@
                                         </label>
                                     </subviews>
                                     <animations/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="91" id="3oI-hS-WOf"/>
                                     </constraints>
@@ -88,7 +88,7 @@
                                 </view>
                             </subviews>
                             <animations/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="u5D-N6-RDk" firstAttribute="trailing" secondItem="tFZ-KN-enT" secondAttribute="trailingMargin" id="E4G-b1-dpI"/>
                                 <constraint firstItem="u5D-N6-RDk" firstAttribute="top" secondItem="tFZ-KN-enT" secondAttribute="top" constant="202" id="VYH-vf-ctn"/>
