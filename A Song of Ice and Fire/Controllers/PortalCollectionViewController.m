@@ -10,6 +10,7 @@
 
 #import "PortalCollectionViewController.h"
 #import "PortalCell.h"
+#import "PortalCollectionHeaderView.h"
 #import "DataManager.h"
 #import "PortalModel.h"
 
@@ -21,12 +22,14 @@
 
 @implementation PortalCollectionViewController
 
-static NSString * const reuseIdentifier = @"PortalCell";
+static NSString * const reuseCell = @"PortalCell";
+static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 
 - (instancetype)init
 {
     UICollectionViewFlowLayout* flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    [flowLayout setHeaderReferenceSize:CGSizeMake(320, 50)];
 
     self = [super initWithCollectionViewLayout:flowLayout];
     if (self) {
@@ -43,12 +46,17 @@ static NSString * const reuseIdentifier = @"PortalCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
+    self.collectionView.scrollEnabled = NO;
+
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
 
-    UINib *nib = [UINib nibWithNibName:@"PortalCell" bundle:nil];
-    [self.collectionView registerNib:nib forCellWithReuseIdentifier:reuseIdentifier];
+    UINib *cellNib = [UINib nibWithNibName:@"PortalCell" bundle:nil];
+    [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:reuseCell];
+
+    UINib *headerNib = [UINib nibWithNibName:@"PortalCollectionHeaderView" bundle:nil];
+    [self.collectionView registerNib:headerNib forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reuseHeader];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,7 +76,7 @@ static NSString * const reuseIdentifier = @"PortalCell";
 }
 
 - (PortalCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    PortalCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    PortalCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseCell forIndexPath:indexPath];
     PortalModel *portal = self.portals[indexPath.row];
 
     [cell.loadingIndicator startAnimating];
@@ -100,11 +108,14 @@ static NSString * const reuseIdentifier = @"PortalCell";
 {
     UICollectionReusableView *reusableView = nil;
 
-    /*
     if (kind == UICollectionElementKindSectionHeader) {
-        <#statements#>
+        PortalCollectionHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+                                                                                    withReuseIdentifier:reuseHeader
+                                                                                           forIndexPath:indexPath];
+        headerView.headerTitle.text = @"精选栏目";
+
+        reusableView = headerView;
     }
-     */
 
     return reusableView;
 }
@@ -115,6 +126,16 @@ static NSString * const reuseIdentifier = @"PortalCell";
 {
     CGSize retVal = CGSizeMake(100, 85);
     return retVal;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    return CGSizeMake(0, 42);
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(0, 10, 5, 10);
 }
 
 #pragma mark <UICollectionViewDelegate>

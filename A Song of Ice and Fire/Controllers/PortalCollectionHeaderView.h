@@ -10,4 +10,6 @@
 
 @interface PortalCollectionHeaderView : UICollectionReusableView
 
+@property (weak, nonatomic) IBOutlet UILabel *headerTitle;
+
 @end
