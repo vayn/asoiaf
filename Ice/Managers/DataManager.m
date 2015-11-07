@@ -104,8 +104,14 @@
               NSMutableArray *portals = [@[] mutableCopy];
 
               for (id portalObject in portalObjects) {
-                  PortalModel *portalModel = [[PortalModel alloc] initWithTitle:portalObject[@"title"]
-                                                                         pageId:(NSInteger)portalObject[@"pageid"]];
+                  NSString *title = portalObject[@"title"];
+                  NSInteger pageId = (NSInteger)portalObject[@"pageid"];
+
+                  if ([title hasPrefix:@"Portal:"]) {
+                      title = [title substringFromIndex:7];
+                  }
+
+                  PortalModel *portalModel = [[PortalModel alloc] initWithTitle:title pageId:pageId];
                   [portals addObject:portalModel];
               }
 
