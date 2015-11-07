@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "collect_test.png",
+      "filename" : "bg_cork.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "bg_cork@2x.png",
       "scale" : "2x"
     },
     {

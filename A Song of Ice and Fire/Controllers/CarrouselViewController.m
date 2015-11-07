@@ -11,6 +11,8 @@
 
 @interface CarrouselViewController () <SDCycleScrollViewDelegate>
 
+@property (nonatomic, strong) NSArray *titles;
+
 @end
 
 @implementation CarrouselViewController
@@ -21,14 +23,16 @@
     NSArray *images = @[[UIImage imageNamed:@"h1.jpg"],
                         [UIImage imageNamed:@"h2.jpg"],
                         [UIImage imageNamed:@"h3.jpg"],
-                        [UIImage imageNamed:@"h4.jpg"]
+                        [UIImage imageNamed:@"h4.jpg"],
+                        [UIImage imageNamed:@"h5.jpg"]
                         ];
 
-    NSArray *titles = @[@"权力的游戏",
-                        @"列王的纷争",
-                        @"冰雨的风暴",
-                        @"群鸦的盛宴"
-                        ];
+    _titles = @[@"权力的游戏",
+                @"列王的纷争",
+                @"冰雨的风暴",
+                @"群鸦的盛宴",
+                @"魔龙的狂舞"
+                ];
 
     CGFloat width = self.view.bounds.size.width;
     SDCycleScrollView *galleryView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, width, 180)
@@ -38,7 +42,7 @@
     galleryView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
     galleryView.delegate = self;
     galleryView.infiniteLoop = YES;
-    galleryView.titlesGroup = titles;
+    galleryView.titlesGroup = self.titles;
 
     self.view = galleryView;
 }
@@ -47,7 +51,15 @@
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
-    NSLog(@"---点击了第%ld张图片", index);
+    NSString *title = self.titles[index];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:title
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {}];
+
+    [alertController addAction:defaultAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 @end
