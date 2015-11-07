@@ -1,6 +1,6 @@
 //
 //  AppDelegate.m
-//  ice
+//  A Song of Ice and Fire
 //
 //  Created by Vicent Tsai on 15/10/25.
 //  Copyright © 2015年 HeZhi Corp. All rights reserved.
@@ -20,7 +20,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     MainViewController *mainViewController = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
-    mainViewController.title = @"冰与火之歌";
+    mainViewController.title = @"冰与火之歌中文百科";
 
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
 
