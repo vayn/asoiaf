@@ -1,14 +1,14 @@
 //
-//  PortalCollectionReusableView.m
-//  ice
+//  PortalCollectionHeaderView.m
+//  A Song of Ice and Fire
 //
 //  Created by Vicent Tsai on 15/11/8.
 //  Copyright © 2015年 HeZhi Corp. All rights reserved.
 //
 
-#import "PortalCollectionReusableView.h"
+#import "PortalCollectionHeaderView.h"
 
-@implementation PortalCollectionReusableView
+@implementation PortalCollectionHeaderView
 
 - (void)awakeFromNib {
     // Initialization code

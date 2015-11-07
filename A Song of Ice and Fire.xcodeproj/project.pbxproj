@@ -13,7 +13,6 @@
 		F334D0011BEE73FC0074734D /* CarrouselViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F334CFDF1BEE73FC0074734D /* CarrouselViewController.m */; };
 		F334D0021BEE73FC0074734D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F334CFE11BEE73FC0074734D /* MainViewController.m */; };
 		F334D0031BEE73FC0074734D /* PortalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F334CFE31BEE73FC0074734D /* PortalCell.m */; };
-		F334D0041BEE73FC0074734D /* PortalCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F334CFE51BEE73FC0074734D /* PortalCollectionReusableView.m */; };
 		F334D0051BEE73FC0074734D /* PortalCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F334CFE71BEE73FC0074734D /* PortalCollectionViewController.m */; };
 		F334D0061BEE73FC0074734D /* SlideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F334CFE91BEE73FC0074734D /* SlideMenuViewController.m */; };
 		F334D0071BEE73FC0074734D /* FeaturedQuoteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F334CFEC1BEE73FC0074734D /* FeaturedQuoteModel.m */; };
@@ -21,12 +20,13 @@
 		F334D0091BEE73FC0074734D /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F334CFF11BEE73FC0074734D /* DataManager.m */; };
 		F334D00A1BEE73FC0074734D /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F334CFF31BEE73FC0074734D /* MainViewController.xib */; };
 		F334D00B1BEE73FC0074734D /* PortalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F334CFF41BEE73FC0074734D /* PortalCell.xib */; };
-		F334D00C1BEE73FC0074734D /* PortalCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F334CFF51BEE73FC0074734D /* PortalCollectionReusableView.xib */; };
 		F334D00D1BEE73FC0074734D /* SlideMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F334CFF61BEE73FC0074734D /* SlideMenuViewController.xib */; };
 		F334D00E1BEE73FC0074734D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F334CFF71BEE73FC0074734D /* Assets.xcassets */; };
 		F334D00F1BEE73FC0074734D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F334CFF81BEE73FC0074734D /* AppDelegate.m */; };
 		F334D0101BEE73FC0074734D /* NSArray+Random.m in Sources */ = {isa = PBXBuildFile; fileRef = F334CFFC1BEE73FC0074734D /* NSArray+Random.m */; };
 		F334D0111BEE73FC0074734D /* WikipediaHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F334CFFF1BEE73FC0074734D /* WikipediaHelper.m */; };
+		F37B448F1BEE8AB400764D92 /* PortalCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F37B448D1BEE8AB400764D92 /* PortalCollectionHeaderView.m */; };
+		F37B44921BEE8AFD00764D92 /* PortalCollectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F37B44911BEE8AFD00764D92 /* PortalCollectionHeaderView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,8 +43,6 @@
 		F334CFE11BEE73FC0074734D /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		F334CFE21BEE73FC0074734D /* PortalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalCell.h; sourceTree = "<group>"; };
 		F334CFE31BEE73FC0074734D /* PortalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalCell.m; sourceTree = "<group>"; };
-		F334CFE41BEE73FC0074734D /* PortalCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalCollectionReusableView.h; sourceTree = "<group>"; };
-		F334CFE51BEE73FC0074734D /* PortalCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalCollectionReusableView.m; sourceTree = "<group>"; };
 		F334CFE61BEE73FC0074734D /* PortalCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalCollectionViewController.h; sourceTree = "<group>"; };
 		F334CFE71BEE73FC0074734D /* PortalCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalCollectionViewController.m; sourceTree = "<group>"; };
 		F334CFE81BEE73FC0074734D /* SlideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideMenuViewController.h; sourceTree = "<group>"; };
@@ -57,7 +55,6 @@
 		F334CFF11BEE73FC0074734D /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		F334CFF31BEE73FC0074734D /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		F334CFF41BEE73FC0074734D /* PortalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PortalCell.xib; sourceTree = "<group>"; };
-		F334CFF51BEE73FC0074734D /* PortalCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PortalCollectionReusableView.xib; sourceTree = "<group>"; };
 		F334CFF61BEE73FC0074734D /* SlideMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlideMenuViewController.xib; sourceTree = "<group>"; };
 		F334CFF71BEE73FC0074734D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F334CFF81BEE73FC0074734D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -66,6 +63,9 @@
 		F334CFFE1BEE73FC0074734D /* WikipediaHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WikipediaHelper.h; sourceTree = "<group>"; };
 		F334CFFF1BEE73FC0074734D /* WikipediaHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WikipediaHelper.m; sourceTree = "<group>"; };
 		F334D0001BEE73FC0074734D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F37B448C1BEE8AB400764D92 /* PortalCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalCollectionHeaderView.h; sourceTree = "<group>"; };
+		F37B448D1BEE8AB400764D92 /* PortalCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalCollectionHeaderView.m; sourceTree = "<group>"; };
+		F37B44911BEE8AFD00764D92 /* PortalCollectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PortalCollectionHeaderView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,9 +176,8 @@
 			isa = PBXGroup;
 			children = (
 				F334CFF31BEE73FC0074734D /* MainViewController.xib */,
-				F334CFF41BEE73FC0074734D /* PortalCell.xib */,
-				F334CFF51BEE73FC0074734D /* PortalCollectionReusableView.xib */,
 				F334CFF61BEE73FC0074734D /* SlideMenuViewController.xib */,
+				F37B44861BEE88BF00764D92 /* PortalCollection */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -233,8 +232,8 @@
 			children = (
 				F334CFE21BEE73FC0074734D /* PortalCell.h */,
 				F334CFE31BEE73FC0074734D /* PortalCell.m */,
-				F334CFE41BEE73FC0074734D /* PortalCollectionReusableView.h */,
-				F334CFE51BEE73FC0074734D /* PortalCollectionReusableView.m */,
+				F37B448C1BEE8AB400764D92 /* PortalCollectionHeaderView.h */,
+				F37B448D1BEE8AB400764D92 /* PortalCollectionHeaderView.m */,
 				F334CFE61BEE73FC0074734D /* PortalCollectionViewController.h */,
 				F334CFE71BEE73FC0074734D /* PortalCollectionViewController.m */,
 			);
@@ -248,6 +247,15 @@
 				F334CFE91BEE73FC0074734D /* SlideMenuViewController.m */,
 			);
 			name = SlideMenuController;
+			sourceTree = "<group>";
+		};
+		F37B44861BEE88BF00764D92 /* PortalCollection */ = {
+			isa = PBXGroup;
+			children = (
+				F37B44911BEE8AFD00764D92 /* PortalCollectionHeaderView.xib */,
+				F334CFF41BEE73FC0074734D /* PortalCell.xib */,
+			);
+			name = PortalCollection;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -312,8 +320,8 @@
 			files = (
 				F334CFD61BEE73420074734D /* LaunchScreen.storyboard in Resources */,
 				F334D00A1BEE73FC0074734D /* MainViewController.xib in Resources */,
-				F334D00C1BEE73FC0074734D /* PortalCollectionReusableView.xib in Resources */,
 				F334D00D1BEE73FC0074734D /* SlideMenuViewController.xib in Resources */,
+				F37B44921BEE8AFD00764D92 /* PortalCollectionHeaderView.xib in Resources */,
 				F334D00E1BEE73FC0074734D /* Assets.xcassets in Resources */,
 				F334D00B1BEE73FC0074734D /* PortalCell.xib in Resources */,
 			);
@@ -380,13 +388,13 @@
 				F334D0101BEE73FC0074734D /* NSArray+Random.m in Sources */,
 				F334D0031BEE73FC0074734D /* PortalCell.m in Sources */,
 				F334D0081BEE73FC0074734D /* PortalModel.m in Sources */,
-				F334D0041BEE73FC0074734D /* PortalCollectionReusableView.m in Sources */,
 				F334D0021BEE73FC0074734D /* MainViewController.m in Sources */,
 				F334D0111BEE73FC0074734D /* WikipediaHelper.m in Sources */,
 				F334D0061BEE73FC0074734D /* SlideMenuViewController.m in Sources */,
 				F334D0051BEE73FC0074734D /* PortalCollectionViewController.m in Sources */,
 				F334D0071BEE73FC0074734D /* FeaturedQuoteModel.m in Sources */,
 				F334D0011BEE73FC0074734D /* CarrouselViewController.m in Sources */,
+				F37B448F1BEE8AB400764D92 /* PortalCollectionHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
