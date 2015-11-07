@@ -10,10 +10,10 @@
 
 @interface PortalModel : NSObject
 
-@property (nonatomic, assign) NSInteger pageId;
+@property (nonatomic, strong) NSNumber *pageId;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) UIImage *backgroundImage;
 
-- (instancetype)initWithTitle:(NSString *)title pageId:(NSInteger)pageId;
+- (instancetype)initWithTitle:(NSString *)title pageId:(NSNumber *)pageId;
 
 @end

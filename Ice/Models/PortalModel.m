@@ -10,7 +10,7 @@
 
 @implementation PortalModel
 
-- (instancetype)initWithTitle:(NSString *)title pageId:(NSInteger)pageId
+- (instancetype)initWithTitle:(NSString *)title pageId:(NSNumber *)pageId
 {
     self = [super init];
     if (self) {
