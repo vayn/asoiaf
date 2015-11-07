@@ -82,7 +82,7 @@ static NSString * const reuseIdentifier = @"PortalCell";
         UIImage *thumbnailImage = [UIImage imageWithData:imageData];
 
         CATransition *transition = [CATransition animation];
-        transition.duration = 2.0;
+        transition.duration = 1.0;
         transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
         transition.type = kCATransitionFade;
         [cell.layer addAnimation:transition forKey:nil];
@@ -94,6 +94,15 @@ static NSString * const reuseIdentifier = @"PortalCell";
     }];
 
     return cell;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionReusableView *reusableView = nil;
+
+    if (kind == UICollectionElementKindSectionHeader) {
+        <#statements#>
+    }
 }
 
 #pragma mark <UICollectionViewDelegateFlowLayout>

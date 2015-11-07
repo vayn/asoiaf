@@ -1,0 +1,13 @@
+//
+//  PortalCollectionReusableView.h
+//  ice
+//
+//  Created by Vicent Tsai on 15/11/8.
+//  Copyright © 2015年 HeZhi Corp. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface PortalCollectionReusableView : UICollectionReusableView
+
+@end
