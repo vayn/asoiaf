@@ -6,6 +6,8 @@
 //  Copyright © 2015年 HeZhi Corp. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "PortalCollectionViewController.h"
 #import "PortalCell.h"
 #import "DataManager.h"
@@ -28,8 +30,8 @@ static NSString * const reuseIdentifier = @"PortalCell";
 
     self = [super initWithCollectionViewLayout:flowLayout];
     if (self) {
-        [[DataManager sharedManager] getPortals:^(NSArray *result) {
-            self.portals = [result copy];
+        [[DataManager sharedManager] getPortals:^(id responseObject) {
+            self.portals = [(NSArray *)responseObject copy];
 
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.collectionView reloadData];
@@ -68,11 +70,29 @@ static NSString * const reuseIdentifier = @"PortalCell";
 - (PortalCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     PortalCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     PortalModel *portal = self.portals[indexPath.row];
+
+    [cell.loadingIndicator startAnimating];
     
     // Configure the cell
     cell.titleLabel.text = portal.title;
-    cell.portalImageView.image = [UIImage imageNamed:@"collect_test_100x70"];
-    
+    //cell.portalImageView.image = [UIImage imageNamed:@"collect_test_100x70"];
+
+    [[DataManager sharedManager] getPageThumbnailWithPageId:portal.pageId completionBlock:^(id responseObject) {
+        NSData *imageData = (NSData *)responseObject;
+        UIImage *thumbnailImage = [UIImage imageWithData:imageData];
+
+        CATransition *transition = [CATransition animation];
+        transition.duration = 2.0;
+        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        transition.type = kCATransitionFade;
+        [cell.layer addAnimation:transition forKey:nil];
+
+        cell.portalImageView.image = thumbnailImage;
+
+        [cell.loadingIndicator stopAnimating];
+        [cell.loadingIndicator removeFromSuperview];
+    }];
+
     return cell;
 }
 
