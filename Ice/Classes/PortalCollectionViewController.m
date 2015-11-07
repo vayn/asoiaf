@@ -80,7 +80,7 @@ static NSString * const reuseIdentifier = @"PortalCell";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGSize retVal = CGSizeMake(100, 100);
+    CGSize retVal = CGSizeMake(100, 85);
     return retVal;
 }
 
