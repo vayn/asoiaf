@@ -8,7 +8,7 @@
 
 @import Foundation;
 
-typedef void (^ManagerCompletionBlock)(NSArray *result);
+typedef void (^ManagerCompletionBlock)(id responseObject);
 
 @interface DataManager : NSObject
 
@@ -16,5 +16,6 @@ typedef void (^ManagerCompletionBlock)(NSArray *result);
 
 - (void)getFeaturedQuotes:(ManagerCompletionBlock)completionBlock;
 - (void)getPortals:(ManagerCompletionBlock)completionBlock;
+- (void)getPageThumbnailWithPageId:(NSNumber *)pageId completionBlock:(ManagerCompletionBlock)completionBlock;
 
 @end

@@ -84,8 +84,7 @@
               dispatch_async(dispatch_get_main_queue(), ^{
                   [[NSNotificationCenter defaultCenter] postNotificationName:@"getFeaturedQuotes" object:nil];
               });
-          }
-          failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
+          } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
               NSLog(@"Error: %@", error);
           }
     ];
@@ -104,11 +103,12 @@
               NSMutableArray *portals = [@[] mutableCopy];
 
               for (id portalObject in portalObjects) {
+                  NSNumber *pageId = portalObject[@"pageid"];
                   NSString *title = portalObject[@"title"];
-                  NSInteger pageId = (NSInteger)portalObject[@"pageid"];
 
-                  if ([title hasPrefix:@"Portal:"]) {
-                      title = [title substringFromIndex:7];
+                  if ([title rangeOfString:@":"].location != NSNotFound) {
+                      NSArray *temp = [title componentsSeparatedByString:@":"];
+                      title = temp[1];
                   }
 
                   PortalModel *portalModel = [[PortalModel alloc] initWithTitle:title pageId:pageId];
@@ -120,8 +120,30 @@
               dispatch_async(dispatch_get_main_queue(), ^{
                   [[NSNotificationCenter defaultCenter] postNotificationName:@"getPortals" object:nil];
               });
-          }
-          failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
+          } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
+              NSLog(@"Error: %@", error);
+          }];
+}
+
+- (void)getPageThumbnailWithPageId:(NSNumber *)pageId completionBlock:(ManagerCompletionBlock)completionBlock
+{
+    NSString *API = [[NSString alloc] initWithFormat:@"%@/api.php?action=query&pageids=%@&prop=pageimages&format=json&pithumbsize=120",
+                     self.siteURL, [pageId stringValue]];
+    NSString *URL = [API stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+
+    [_manager GET:URL
+       parameters:nil
+          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+              NSDictionary *page = responseObject[@"query"][@"pages"][[pageId stringValue]];
+
+              NSDictionary *thumbnail = [page objectForKey:@"thumbnail"];
+              if (thumbnail != nil) {
+                  NSString *thumbnailSource = thumbnail[@"source"];
+                  NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:thumbnailSource] options:0 error:nil];
+                  
+                  completionBlock(imageData);
+              }
+          } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
               NSLog(@"Error: %@", error);
           }];
 }
