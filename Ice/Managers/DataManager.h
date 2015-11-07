@@ -8,10 +8,13 @@
 
 @import Foundation;
 
+typedef void (^ManagerCompletionBlock)(NSArray *result);
+
 @interface DataManager : NSObject
 
 + (instancetype)sharedManager;
 
-- (void)getFeaturedQuotes:(void (^)(NSArray *featuredQuotes))completion;
+- (void)getFeaturedQuotes:(ManagerCompletionBlock)completionBlock;
+- (void)getPortals:(ManagerCompletionBlock)completionBlock;
 
 @end

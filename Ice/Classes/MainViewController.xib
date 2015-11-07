@@ -10,6 +10,7 @@
                 <outlet property="authorLabel" destination="eOT-NK-rFX" id="vcA-0H-KsT"/>
                 <outlet property="centerView" destination="B3C-bj-hjq" id="3FI-cY-JOA"/>
                 <outlet property="featuredQuoteActivity" destination="gMr-qb-fMj" id="kTc-xj-ygM"/>
+                <outlet property="portalCollectionView" destination="eU7-b6-TeO" id="Hhu-7X-dpT"/>
                 <outlet property="quoteLabel" destination="hq2-df-mJr" id="fYL-Ov-vX8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="EMD-2p-MLH"/>
             </connections>
@@ -68,6 +69,11 @@
                             </subviews>
                             <animations/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eU7-b6-TeO" userLabel="Portal Collection View">
+                            <rect key="frame" x="8" y="287" width="359" height="320"/>
+                            <animations/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                     </subviews>
                     <animations/>

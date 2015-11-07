@@ -12,6 +12,7 @@
 #import "MainViewController.h"
 #import "SlideMenuViewController.h"
 #import "GalleryViewController.h"
+#import "PortalCollectionViewController.h"
 
 #import "DataManager.h"
 #import "FeaturedQuoteModel.h"
@@ -26,8 +27,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *quoteLabel;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *featuredQuoteActivity;
+@property (weak, nonatomic) IBOutlet UIView *portalCollectionView;
 
 @property (nonatomic, strong) GalleryViewController *galleryViewController;
+@property (nonatomic, strong) PortalCollectionViewController *portalCollectionViewController;
 
 @property (nonatomic, strong) SlideMenuViewController *slideMenuViewController;
 @property (nonatomic, assign) BOOL showingSlideMenu;
@@ -62,9 +65,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
-    [self setupGalleryView];
     [self setupOverlayView];
+    [self setupGalleryView];
     [self setupFeaturedQuoteLabel];
+    [self setupPortalCollectionView];
 
     [self setupGestures];
 }
@@ -172,18 +176,31 @@
     return view;
 }
 
-- (void)setupGalleryView
-{
-    self.galleryViewController = [[GalleryViewController alloc] init];
-    [self.centerView addSubview:self.galleryViewController.view];
-    [self didMoveToParentViewController:self.galleryViewController];
-}
-
 - (void)setupOverlayView
 {
     self.overlayView = [[UIView alloc] initWithFrame:self.navigationController.view.frame];
     self.overlayView.backgroundColor = [UIColor blackColor];
     self.overlayView.alpha = OVERLAY_ALPHA_BEGAN;
+}
+
+- (void)setupGalleryView
+{
+    self.galleryViewController = [[GalleryViewController alloc] init];
+
+    [self.centerView addSubview:self.galleryViewController.view];
+    [self addChildViewController:self.galleryViewController];
+    [self didMoveToParentViewController:self.galleryViewController];
+}
+
+- (void)setupPortalCollectionView
+{
+    self.portalCollectionViewController = [[PortalCollectionViewController alloc] init];
+    self.portalCollectionViewController.view.frame = self.portalCollectionView.frame;
+    self.portalCollectionViewController.collectionView.backgroundColor = [UIColor whiteColor];
+
+    [self.centerView addSubview:self.portalCollectionViewController.view];
+    [self addChildViewController:self.portalCollectionViewController];
+    [self didMoveToParentViewController:self.parentViewController];
 }
 
 - (void)setupFeaturedQuoteLabel

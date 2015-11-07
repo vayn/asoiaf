@@ -11,10 +11,11 @@
 #import "RegexKitLite.h"
 
 #import "FeaturedQuoteModel.h"
+#import "PortalModel.h"
 
 @interface DataManager ()
 
-@property (nonatomic, strong) NSString *apiUrl;
+@property (nonatomic, strong) NSString *siteURL;
 @property (nonatomic, strong) AFHTTPSessionManager *manager;
 
 @end
@@ -47,18 +48,18 @@
     self = [super init];
 
     if (self) {
-        _apiUrl = @"http://asoiaf.huiji.wiki";
+        _siteURL = @"http://asoiaf.huiji.wiki";
         _manager = [AFHTTPSessionManager manager];
     }
 
     return self;
 }
 
-- (void)getFeaturedQuotes:(void (^)(NSArray *featuredQuotes))completion
+- (void)getFeaturedQuotes:(ManagerCompletionBlock)completionBlock
 {
-    NSString *raw = [[NSString alloc] initWithFormat:@"%@/api.php?action=expandtemplates&text={{Featured Quote}}&prop=wikitext&format=json",
-                     self.apiUrl];
-    NSString *URL = [raw stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    NSString *API = [[NSString alloc] initWithFormat:@"%@/api.php?action=expandtemplates&text={{Featured Quote}}&prop=wikitext&format=json",
+                     self.siteURL];
+    NSString *URL = [API stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 
     [_manager GET:URL
        parameters:nil
@@ -78,7 +79,7 @@
                   [featuredQuotes addObject:featuredQuote];
               }];
 
-              completion(featuredQuotes);
+              completionBlock(featuredQuotes);
 
               dispatch_async(dispatch_get_main_queue(), ^{
                   [[NSNotificationCenter defaultCenter] postNotificationName:@"getFeaturedQuotes" object:nil];
@@ -88,6 +89,35 @@
               NSLog(@"Error: %@", error);
           }
     ];
+}
+
+- (void)getPortals:(ManagerCompletionBlock)completionBlock
+{
+    NSString *API = [[NSString alloc] initWithFormat:@"%@/api.php?action=query&list=categorymembers&cmtitle=Category:Portal&cmnamespace=0&format=json",
+                     self.siteURL];
+    NSString *URL = [API stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+
+    [_manager GET:URL
+       parameters:nil
+          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+              NSArray *portalObjects = responseObject[@"query"][@"categorymembers"];
+              NSMutableArray *portals = [@[] mutableCopy];
+
+              for (id portalObject in portalObjects) {
+                  PortalModel *portalModel = [[PortalModel alloc] initWithTitle:portalObject[@"title"]
+                                                                         pageId:(NSInteger)portalObject[@"pageid"]];
+                  [portals addObject:portalModel];
+              }
+
+              completionBlock(portals);
+
+              dispatch_async(dispatch_get_main_queue(), ^{
+                  [[NSNotificationCenter defaultCenter] postNotificationName:@"getPortals" object:nil];
+              });
+          }
+          failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
+              NSLog(@"Error: %@", error);
+          }];
 }
 
 @end

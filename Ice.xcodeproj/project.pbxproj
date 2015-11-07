@@ -22,6 +22,10 @@
 		F35D51951BE6679A006E3821 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F35D51931BE6679A006E3821 /* DataManager.m */; };
 		F3E1F1891BE4A04100E14B25 /* WikipediaHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E1F1881BE4A04100E14B25 /* WikipediaHelper.m */; };
 		F3EE87431BE4FA19000ED4D6 /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EE87411BE4FA19000ED4D6 /* GalleryViewController.m */; };
+		F3F792AB1BEDB81B00E51E84 /* PortalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F792AA1BEDB81B00E51E84 /* PortalCell.m */; };
+		F3F792AF1BEDB8A100E51E84 /* PortalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3F792AE1BEDB8A100E51E84 /* PortalCell.xib */; };
+		F3F792B61BEDBC6000E51E84 /* PortalCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F792B41BEDBC6000E51E84 /* PortalCollectionViewController.m */; };
+		F3F792BA1BEDF00F00E51E84 /* PortalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F792B91BEDF00F00E51E84 /* PortalModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +55,13 @@
 		F3E1F1881BE4A04100E14B25 /* WikipediaHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WikipediaHelper.m; sourceTree = "<group>"; };
 		F3EE87401BE4FA19000ED4D6 /* GalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GalleryViewController.h; path = Ice/Classes/GalleryViewController.h; sourceTree = "<group>"; };
 		F3EE87411BE4FA19000ED4D6 /* GalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GalleryViewController.m; path = Ice/Classes/GalleryViewController.m; sourceTree = "<group>"; };
+		F3F792A91BEDB81B00E51E84 /* PortalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PortalCell.h; path = Ice/Classes/PortalCell.h; sourceTree = "<group>"; };
+		F3F792AA1BEDB81B00E51E84 /* PortalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PortalCell.m; path = Ice/Classes/PortalCell.m; sourceTree = "<group>"; };
+		F3F792AE1BEDB8A100E51E84 /* PortalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PortalCell.xib; path = Ice/Classes/PortalCell.xib; sourceTree = "<group>"; };
+		F3F792B31BEDBC6000E51E84 /* PortalCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PortalCollectionViewController.h; path = Ice/Classes/PortalCollectionViewController.h; sourceTree = "<group>"; };
+		F3F792B41BEDBC6000E51E84 /* PortalCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PortalCollectionViewController.m; path = Ice/Classes/PortalCollectionViewController.m; sourceTree = "<group>"; };
+		F3F792B81BEDF00F00E51E84 /* PortalModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PortalModel.h; path = Ice/Models/PortalModel.h; sourceTree = SOURCE_ROOT; };
+		F3F792B91BEDF00F00E51E84 /* PortalModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PortalModel.m; path = Ice/Models/PortalModel.m; sourceTree = SOURCE_ROOT; };
 		FB851E1C8F53A888D3C01047 /* Pods-ice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ice.release.xcconfig"; path = "Pods/Target Support Files/Pods-ice/Pods-ice.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,6 +144,7 @@
 			children = (
 				F30BB1751BDCC38400F4FAD2 /* MainViewController.xib */,
 				F32E94DF1BDCCD04008F9AA5 /* SlideMenuViewController.xib */,
+				F3F792AE1BEDB8A100E51E84 /* PortalCell.xib */,
 			);
 			name = Views;
 			path = ..;
@@ -147,6 +159,10 @@
 				F3EE87411BE4FA19000ED4D6 /* GalleryViewController.m */,
 				F32E94DD1BDCCD04008F9AA5 /* SlideMenuViewController.h */,
 				F32E94DE1BDCCD04008F9AA5 /* SlideMenuViewController.m */,
+				F3F792B31BEDBC6000E51E84 /* PortalCollectionViewController.h */,
+				F3F792B41BEDBC6000E51E84 /* PortalCollectionViewController.m */,
+				F3F792A91BEDB81B00E51E84 /* PortalCell.h */,
+				F3F792AA1BEDB81B00E51E84 /* PortalCell.m */,
 			);
 			name = Classes;
 			path = ..;
@@ -166,6 +182,8 @@
 			children = (
 				F33527041BE650FB004716C2 /* FeaturedQuoteModel.h */,
 				F33527051BE650FC004716C2 /* FeaturedQuoteModel.m */,
+				F3F792B81BEDF00F00E51E84 /* PortalModel.h */,
+				F3F792B91BEDF00F00E51E84 /* PortalModel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -264,6 +282,7 @@
 				F30BB1671BDCC27C00F4FAD2 /* ice-Prefix.pch in Resources */,
 				F32E94E11BDCCD04008F9AA5 /* SlideMenuViewController.xib in Resources */,
 				F30BB1771BDCC38400F4FAD2 /* MainViewController.xib in Resources */,
+				F3F792AF1BEDB8A100E51E84 /* PortalCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,14 +342,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				F30BB1651BDCC27C00F4FAD2 /* AppDelegate.m in Sources */,
+				F3F792AB1BEDB81B00E51E84 /* PortalCell.m in Sources */,
 				F35D51951BE6679A006E3821 /* DataManager.m in Sources */,
 				F30BB1761BDCC38400F4FAD2 /* MainViewController.m in Sources */,
+				F3F792B61BEDBC6000E51E84 /* PortalCollectionViewController.m in Sources */,
 				F32E94E01BDCCD04008F9AA5 /* SlideMenuViewController.m in Sources */,
 				F3E1F1891BE4A04100E14B25 /* WikipediaHelper.m in Sources */,
 				F30BB1621BDCC27C00F4FAD2 /* main.m in Sources */,
 				F33527061BE650FC004716C2 /* FeaturedQuoteModel.m in Sources */,
 				F3EE87431BE4FA19000ED4D6 /* GalleryViewController.m in Sources */,
 				F33527011BE64F36004716C2 /* NSArray+Random.m in Sources */,
+				F3F792BA1BEDF00F00E51E84 /* PortalModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
