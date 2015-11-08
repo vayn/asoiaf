@@ -8,10 +8,12 @@
 
 #import "SlideMenuViewController.h"
 
-@interface SlideMenuViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface SlideMenuViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *myTableView;
-@property (nonatomic, strong) NSArray *category;
+@property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
+
+@property (nonatomic, strong) NSArray *categoryArray;
 
 @end
 
@@ -21,16 +23,16 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.category = @[@"Portal:书",
-                          @"Portal:章节",
-                          @"Portal:人物",
-                          @"Portal:家族",
-                          @"Portal:历史",
-                          @"Portal:文化",
-                          @"Portal:地理",
-                          @"Portal:电视剧",
-                          @"理论推测"
-                          ];
+        self.categoryArray = @[@"书籍",
+                               @"章节",
+                               @"人物",
+                               @"家族",
+                               @"历史",
+                               @"文化",
+                               @"地理",
+                               @"电视剧",
+                               @"理论推测"
+                               ];
     }
     return self;
 }
@@ -56,17 +58,24 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.category count];
+    return [self.categoryArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"myTableViewCell" forIndexPath:indexPath];
 
-    NSString *category = self.category[indexPath.row];
-    cell.textLabel.text = category;
+    NSString *categoryArray = self.categoryArray[indexPath.row];
+    cell.textLabel.text = categoryArray;
 
     return cell;
+}
+
+#pragma mark - UISearchBar Delegate
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    NSLog(@"%@", searchBar.text);
 }
 
 @end
