@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SlideMenuViewController">
             <connections>
                 <outlet property="myTableView" destination="isL-ZY-Fub" id="ayG-Gg-cIR"/>
+                <outlet property="searchDisplayController" destination="vM5-dh-SHZ" id="gZ1-Wc-JTu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,22 +17,46 @@
             <rect key="frame" x="0.0" y="0.0" width="185" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleAspectFit" fixedFrame="YES" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="isL-ZY-Fub">
-                    <rect key="frame" x="0.0" y="0.0" width="185" height="667"/>
+                <tableView clipsSubviews="YES" contentMode="scaleAspectFit" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="isL-ZY-Fub">
+                    <rect key="frame" x="0.0" y="116" width="185" height="551"/>
                     <animations/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="separatorColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Zvm-UK-KEE"/>
                         <outlet property="delegate" destination="-1" id="sBX-rl-SSq"/>
                     </connections>
                 </tableView>
+                <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ycK-JF-qaX">
+                    <rect key="frame" x="0.0" y="0.0" width="185" height="44"/>
+                    <animations/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="r1S-Yk-3Jf"/>
+                    </connections>
+                </searchBar>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="huiji_white_logo" translatesAutoresizingMaskIntoConstraints="NO" id="iWS-wH-Xh4">
+                    <rect key="frame" x="14" y="44" width="135" height="72"/>
+                    <animations/>
+                </imageView>
             </subviews>
             <animations/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="87.5" y="87.5"/>
+            <point key="canvasLocation" x="87.5" y="93.5"/>
         </view>
+        <searchDisplayController id="vM5-dh-SHZ">
+            <connections>
+                <outlet property="delegate" destination="-1" id="Z6b-jc-FIn"/>
+                <outlet property="searchBar" destination="ycK-JF-qaX" id="55z-uc-Q4I"/>
+                <outlet property="searchContentsController" destination="-1" id="hZf-gw-BlF"/>
+                <outlet property="searchResultsDataSource" destination="-1" id="b8G-GY-502"/>
+                <outlet property="searchResultsDelegate" destination="-1" id="QdA-5x-lVN"/>
+            </connections>
+        </searchDisplayController>
     </objects>
+    <resources>
+        <image name="huiji_white_logo" width="393" height="124"/>
+    </resources>
 </document>
