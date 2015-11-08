@@ -160,7 +160,7 @@
     if (self.slideMenuViewController == nil) {
         self.slideMenuViewController = [[SlideMenuViewController alloc] initWithNibName:@"SlideMenuViewController" bundle:nil];
 
-        [self.scrollView addSubview:self.slideMenuViewController.view];
+        [self.view addSubview:self.slideMenuViewController.view];
 
         // Stop scrolling when slide menu slides out
         self.scrollView.scrollEnabled = NO;
