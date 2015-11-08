@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
+#import "YFStartView.h"
 
 @interface AppDelegate ()
 
@@ -24,15 +25,16 @@
 
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
 
-    /*
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [DataStore sharedStore];
-    });
-     */
-
     self.window.rootViewController = navController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+
+    YFStartView *startView = [YFStartView startView];
+    startView.randomImages = [NSMutableArray arrayWithObjects:@"launch_bg", nil];
+    startView.logoPosition = LogoPositionCenter;
+    startView.logoImage = [UIImage imageNamed:@"launch_logo"];
+
+    [startView configYFStartView];
 
     return YES;
 }
