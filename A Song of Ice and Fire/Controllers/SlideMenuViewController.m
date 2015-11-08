@@ -71,6 +71,28 @@
     return cell;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    CGRect frame = CGRectMake(0, 0, 185, 15);
+    UIView *footer = [[UIView alloc] initWithFrame:frame];
+    footer.backgroundColor = [UIColor clearColor];
+
+    UILabel *label = [[UILabel alloc] initWithFrame:footer.frame];
+    label.backgroundColor = [UIColor clearColor];
+    label.textColor = [UIColor lightGrayColor];
+    label.font = [UIFont fontWithName:@"HelveticaNeue" size:9.0];
+    label.text = @"Vayn♥诚意制作";
+    label.textAlignment = NSTextAlignmentCenter;
+    [footer addSubview:label];
+
+    return footer;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 15.0;
+}
+
 #pragma mark - UISearchBar Delegate
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
