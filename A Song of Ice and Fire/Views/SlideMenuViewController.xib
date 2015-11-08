@@ -17,10 +17,14 @@
             <rect key="frame" x="0.0" y="0.0" width="185" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ycK-JF-qaX">
+                <searchBar contentMode="redraw" fixedFrame="YES" placeholder="搜索" translatesAutoresizingMaskIntoConstraints="NO" id="ycK-JF-qaX">
                     <rect key="frame" x="0.0" y="65" width="185" height="44"/>
                     <animations/>
                     <textInputTraits key="textInputTraits"/>
+                    <scopeButtonTitles>
+                        <string>Title</string>
+                        <string>Title</string>
+                    </scopeButtonTitles>
                     <connections>
                         <outlet property="delegate" destination="-1" id="r1S-Yk-3Jf"/>
                     </connections>
