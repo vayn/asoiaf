@@ -27,6 +27,9 @@
 		F334D0111BEE73FC0074734D /* WikipediaHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F334CFFF1BEE73FC0074734D /* WikipediaHelper.m */; };
 		F37B448F1BEE8AB400764D92 /* PortalCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F37B448D1BEE8AB400764D92 /* PortalCollectionHeaderView.m */; };
 		F37B44921BEE8AFD00764D92 /* PortalCollectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F37B44911BEE8AFD00764D92 /* PortalCollectionHeaderView.xib */; };
+		F3BE138C1BF26F5E00CC5159 /* KnowTipModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F3BE138B1BF26F5E00CC5159 /* KnowTipModel.m */; };
+		F3BE13901BF270CF00CC5159 /* KnowTipTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3BE138E1BF270CF00CC5159 /* KnowTipTableViewController.m */; };
+		F3BE13941BF2711100CC5159 /* KnowTipTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3BE13931BF2711100CC5159 /* KnowTipTableViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +69,11 @@
 		F37B448C1BEE8AB400764D92 /* PortalCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalCollectionHeaderView.h; sourceTree = "<group>"; };
 		F37B448D1BEE8AB400764D92 /* PortalCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalCollectionHeaderView.m; sourceTree = "<group>"; };
 		F37B44911BEE8AFD00764D92 /* PortalCollectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PortalCollectionHeaderView.xib; sourceTree = "<group>"; };
+		F3BE138A1BF26F5E00CC5159 /* KnowTipModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KnowTipModel.h; sourceTree = "<group>"; };
+		F3BE138B1BF26F5E00CC5159 /* KnowTipModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KnowTipModel.m; sourceTree = "<group>"; };
+		F3BE138D1BF270CF00CC5159 /* KnowTipTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KnowTipTableViewController.h; sourceTree = "<group>"; };
+		F3BE138E1BF270CF00CC5159 /* KnowTipTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KnowTipTableViewController.m; sourceTree = "<group>"; };
+		F3BE13931BF2711100CC5159 /* KnowTipTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KnowTipTableViewController.xib; path = "A Song of Ice and Fire/Views/KnowTipTableViewController.xib"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +156,7 @@
 				F334D0151BEE74480074734D /* SlideMenuController */,
 				F334D0121BEE74270074734D /* CarrouselController */,
 				F334D0141BEE743C0074734D /* PortalCollectionController */,
+				F3BE13921BF270D600CC5159 /* KnowTipTableController */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -159,6 +168,8 @@
 				F334CFEC1BEE73FC0074734D /* FeaturedQuoteModel.m */,
 				F334CFED1BEE73FC0074734D /* PortalModel.h */,
 				F334CFEE1BEE73FC0074734D /* PortalModel.m */,
+				F3BE138A1BF26F5E00CC5159 /* KnowTipModel.h */,
+				F3BE138B1BF26F5E00CC5159 /* KnowTipModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -178,6 +189,7 @@
 				F334CFF31BEE73FC0074734D /* MainViewController.xib */,
 				F334CFF61BEE73FC0074734D /* SlideMenuViewController.xib */,
 				F37B44861BEE88BF00764D92 /* PortalCollection */,
+				F3BE13931BF2711100CC5159 /* KnowTipTableViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -258,6 +270,15 @@
 			name = PortalCollection;
 			sourceTree = "<group>";
 		};
+		F3BE13921BF270D600CC5159 /* KnowTipTableController */ = {
+			isa = PBXGroup;
+			children = (
+				F3BE138D1BF270CF00CC5159 /* KnowTipTableViewController.h */,
+				F3BE138E1BF270CF00CC5159 /* KnowTipTableViewController.m */,
+			);
+			name = KnowTipTableController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -320,6 +341,7 @@
 			files = (
 				F334CFD61BEE73420074734D /* LaunchScreen.storyboard in Resources */,
 				F334D00A1BEE73FC0074734D /* MainViewController.xib in Resources */,
+				F3BE13941BF2711100CC5159 /* KnowTipTableViewController.xib in Resources */,
 				F334D00D1BEE73FC0074734D /* SlideMenuViewController.xib in Resources */,
 				F37B44921BEE8AFD00764D92 /* PortalCollectionHeaderView.xib in Resources */,
 				F334D00E1BEE73FC0074734D /* Assets.xcassets in Resources */,
@@ -385,7 +407,9 @@
 				F334D00F1BEE73FC0074734D /* AppDelegate.m in Sources */,
 				F334CFCC1BEE73420074734D /* main.m in Sources */,
 				F334D0091BEE73FC0074734D /* DataManager.m in Sources */,
+				F3BE13901BF270CF00CC5159 /* KnowTipTableViewController.m in Sources */,
 				F334D0101BEE73FC0074734D /* NSArray+Random.m in Sources */,
+				F3BE138C1BF26F5E00CC5159 /* KnowTipModel.m in Sources */,
 				F334D0031BEE73FC0074734D /* PortalCell.m in Sources */,
 				F334D0081BEE73FC0074734D /* PortalModel.m in Sources */,
 				F334D0021BEE73FC0074734D /* MainViewController.m in Sources */,

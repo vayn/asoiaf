@@ -57,7 +57,7 @@
 
 - (void)getFeaturedQuotes:(ManagerCompletionBlock)completionBlock
 {
-    NSString *API = [[NSString alloc] initWithFormat:@"%@/api.php?action=expandtemplates&text={{Featured Quote}}&prop=wikitext&format=json",
+    NSString *API = [NSString stringWithFormat:@"%@/api.php?action=expandtemplates&text={{Featured Quote}}&prop=wikitext&format=json",
                      self.siteURL];
     NSString *URL = [API stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 
@@ -67,13 +67,13 @@
               NSString *wikitext = responseObject[@"expandtemplates"][@"wikitext"];
 
               // Parse featured quote into key-value pairs
-              NSString *regex = @"(?<=quote\\|)(.*?)(?=\\|)(?:\\|\\[\\[)(.*?)(?=\\]\\])";
+              NSString *pattern = @"(?<=quote\\|)(.*?)(?=\\|)(?:\\|\\[\\[)(.*?)(?=\\]\\])";
 
               NSMutableArray *featuredQuotes = [[NSMutableArray alloc] init];
 
-              [wikitext enumerateStringsMatchedByRegex:regex usingBlock:^(NSInteger captureCount,
-                                                                          NSString *const __unsafe_unretained *capturedStrings,
-                                                                          const NSRange *capturedRanges, volatile BOOL *const stop) {
+              [wikitext enumerateStringsMatchedByRegex:pattern usingBlock:^(NSInteger captureCount,
+                                                                            NSString *const __unsafe_unretained *capturedStrings,
+                                                                            const NSRange *capturedRanges, volatile BOOL *const stop) {
                   FeaturedQuoteModel *featuredQuote = [[FeaturedQuoteModel alloc] initWithQuote:capturedStrings[1]
                                                                                          author:capturedStrings[2]];
                   [featuredQuotes addObject:featuredQuote];
@@ -88,6 +88,40 @@
               NSLog(@"Error: %@", error);
           }
     ];
+}
+
+- (void)getKnowTip:(ManagerCompletionBlock)completionBlock
+{
+    NSString *API = [NSString stringWithFormat:@"%@/api.php?action=expandtemplates&text={{Do You Know}}&prop=wikitext&format=json",
+                     self.siteURL];
+    NSString *URL = [API stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+
+    [_manager GET:URL
+       parameters:nil
+          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+              NSString *wikitext = responseObject[@"expandtemplates"][@"wikitext"];
+              NSMutableArray *options = [@[] mutableCopy];
+
+              // Parse "Do You Know" into key-value pairs
+              NSString *pattern = @"<option>(.*?)</option>";
+
+              [wikitext enumerateStringsMatchedByRegex:pattern
+                                           options:RKLDotAll
+                                           inRange:NSMakeRange(0, [wikitext length])
+                                             error:nil
+                                enumerationOptions:RKLRegexEnumerationNoOptions
+                                        usingBlock:^(NSInteger captureCount, NSString *const __unsafe_unretained *capturedStrings, const NSRange *capturedRanges, volatile BOOL *const stop) {
+                                            [options addObject:capturedStrings[1]];
+                                        }];
+
+              completionBlock(options);
+
+              dispatch_async(dispatch_get_main_queue(), ^{
+                  [[NSNotificationCenter defaultCenter] postNotificationName:@"getKnowTip" object:nil];
+              });
+          } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
+              NSLog(@"Error: %@", error);
+          }];
 }
 
 - (void)getPortals:(ManagerCompletionBlock)completionBlock
@@ -133,7 +167,7 @@
 
 - (void)getPageThumbnailWithPageId:(NSNumber *)pageId completionBlock:(ManagerCompletionBlock)completionBlock
 {
-    NSString *API = [[NSString alloc] initWithFormat:@"%@/api.php?action=query&pageids=%@&prop=pageimages&format=json&pithumbsize=120",
+    NSString *API = [NSString stringWithFormat:@"%@/api.php?action=query&pageids=%@&prop=pageimages&format=json&pithumbsize=120",
                      self.siteURL, [pageId stringValue]];
     NSString *URL = [API stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 

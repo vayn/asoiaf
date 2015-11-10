@@ -12,7 +12,8 @@
 #import "MainViewController.h"
 #import "SlideMenuViewController.h"
 #import "CarrouselViewController.h"
-#import "PortalCollectionViewController.h"
+#import "portalCollectionViewController.h"
+#import "KnowTipTableViewController.h"
 
 #import "DataManager.h"
 #import "FeaturedQuoteModel.h"
@@ -29,10 +30,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *quoteLabel;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *featuredQuoteActivity;
-@property (weak, nonatomic) IBOutlet UIView *portalCollectionView;
+@property (weak, nonatomic) IBOutlet UIView *portalView;
+@property (weak, nonatomic) IBOutlet UIView *knowTipView;
 
 @property (nonatomic, strong) CarrouselViewController *carrouselViewController;
 @property (nonatomic, strong) PortalCollectionViewController *portalCollectionViewController;
+@property (nonatomic, strong) KnowTipTableViewController *knowTipTableViewController;
 
 @property (nonatomic, strong) SlideMenuViewController *slideMenuViewController;
 @property (nonatomic, assign) BOOL showingSlideMenu;
@@ -77,7 +80,8 @@
     [self setupOverlayView];
     [self setupCarrouselView];
     [self setupFeaturedQuoteLabel];
-    [self setupPortalCollectionView];
+    [self setupPortalView];
+    [self setupKnowTipView];
 
     [self setupGestures];
 }
@@ -207,17 +211,6 @@
     [self didMoveToParentViewController:self.carrouselViewController];
 }
 
-- (void)setupPortalCollectionView
-{
-    self.portalCollectionViewController = [[PortalCollectionViewController alloc] init];
-    self.portalCollectionViewController.view.frame = self.portalCollectionView.frame;
-    self.portalCollectionViewController.collectionView.backgroundColor = [UIColor whiteColor];
-
-    [self.containerView addSubview:self.portalCollectionViewController.view];
-    [self addChildViewController:self.portalCollectionViewController];
-    [self didMoveToParentViewController:self.parentViewController];
-}
-
 - (void)setupFeaturedQuoteLabel
 {
     [self.featuredQuoteActivity startAnimating];
@@ -247,6 +240,27 @@
                                                       [self.quoteLabel setHidden:NO];
                                                       [self.authorLabel setHidden:NO];
                                                   }];
+}
+
+- (void)setupPortalView
+{
+    self.portalCollectionViewController = [[PortalCollectionViewController alloc] init];
+    self.portalCollectionViewController.view.frame = self.portalView.frame;
+    self.portalCollectionViewController.collectionView.backgroundColor = [UIColor whiteColor];
+
+    [self.containerView addSubview:self.portalCollectionViewController.view];
+    [self addChildViewController:self.portalCollectionViewController];
+    [self didMoveToParentViewController:self.portalCollectionViewController];
+}
+
+- (void)setupKnowTipView
+{
+    self.knowTipTableViewController = [[KnowTipTableViewController alloc] init];
+    self.knowTipTableViewController.view.frame = self.knowTipView.frame;
+
+    [self.containerView addSubview:self.knowTipTableViewController.view];
+    [self addChildViewController:self.knowTipTableViewController];
+    [self didMoveToParentViewController:self.knowTipTableViewController];
 }
 
 - (void)hideLoadingActivity
