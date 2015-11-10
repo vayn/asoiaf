@@ -80,7 +80,7 @@
     KnowTipModel *tipModel = self.tips[indexPath.row];
     cell.textLabel.text = tipModel.tip;
 
-    UIFont *myFont = [UIFont systemFontOfSize:12.0];
+    UIFont *myFont = [UIFont systemFontOfSize:14.0];
     cell.textLabel.font = myFont;
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.textLabel.numberOfLines = 0;
@@ -90,22 +90,24 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 44;
+    return 54;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
-
-    // Create custom view to display section header
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, tableView.frame.size.width, 18)];
-    [label setFont:[UIFont boldSystemFontOfSize:17]];
-    NSString *string = @"你知道吗";
+    label.font = [UIFont boldSystemFontOfSize:17];
+    label.text = [self tableView:tableView titleForHeaderInSection:section];
 
-    [label setText:string];
-    [view addSubview:label];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+    [headerView addSubview:label];
 
-    return view;
+    return headerView;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return @"你知道吗";
 }
 
 @end
