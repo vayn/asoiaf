@@ -1,1 +1,1 @@
-![Screencast](https://raw.githubusercontent.com/Vayn/ice/master/screencast.gif)
+![Screencast](httpshttps://coding.net/u/vayn/p/asoiaf/git/raw/master/screencast.gif)
