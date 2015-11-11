@@ -185,8 +185,8 @@
 
     UIView *view = self.slideMenuViewController.view;
 
-    [self.containerView addSubview:self.overlayView];
-    [self.containerView bringSubviewToFront:view];
+    [self.view addSubview:self.overlayView];
+    [self.view bringSubviewToFront:view];
 
     view.layer.shadowColor = [UIColor blackColor].CGColor;
     view.layer.shadowOpacity = 0.8;
@@ -276,12 +276,12 @@
                                                            initWithTarget:self
                                                            action:@selector(screenEdgeSwiped:)];
     edgePanRecognizer.edges = UIRectEdgeLeft;
-    [self.containerView addGestureRecognizer:edgePanRecognizer];
+    [self.view addGestureRecognizer:edgePanRecognizer];
 
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                     action:@selector(mainViewTapped:)];
     tapRecognizer.cancelsTouchesInView = NO;
-    [self.containerView addGestureRecognizer:tapRecognizer];
+    [self.view addGestureRecognizer:tapRecognizer];
 }
 
 - (void)setupSlideMenuGestures:(UIView *)menuView
@@ -352,9 +352,9 @@
 
 - (void)mainViewTapped:(UIGestureRecognizer *)sender
 {
-    CGPoint location = [sender locationInView:self.containerView];
+    CGPoint location = [sender locationInView:self.view];
     if (self.showingSlideMenu) {
-        if (CGRectContainsPoint(self.containerView.frame, location) &&
+        if (CGRectContainsPoint(self.view.frame, location) &&
             !CGRectContainsPoint(self.slideMenuViewController.view.frame, location)) {
             [self moveMenuToOriginalPosition];
         }
