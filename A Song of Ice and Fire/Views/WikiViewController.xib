@@ -20,11 +20,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="H1E-BM-6X7">
-                    <rect key="frame" x="8" y="74" width="136" height="165"/>
+                    <rect key="frame" x="8" y="73" width="136" height="123"/>
                     <animations/>
                 </imageView>
                 <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EgC-TV-MDJ">
-                    <rect key="frame" x="0.0" y="235" width="375" height="432"/>
+                    <rect key="frame" x="0.0" y="204" width="375" height="463"/>
                     <animations/>
                     <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                 </webView>
@@ -33,7 +33,7 @@
                     <animations/>
                 </activityIndicatorView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ExV-RJ-GDz" userLabel="Title Label">
-                    <rect key="frame" x="163" y="126" width="195" height="62"/>
+                    <rect key="frame" x="163" y="104" width="195" height="62"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
