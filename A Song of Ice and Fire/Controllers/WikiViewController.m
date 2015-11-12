@@ -9,26 +9,55 @@
 #import "WikiViewController.h"
 #import "WikipediaHelper.h"
 
-@interface WikiViewController () <WikipediaHelperDelegate>
+@interface WikiViewController () <WikipediaHelperDelegate, UIWebViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *imgView;
 @property (nonatomic, weak) IBOutlet UIWebView *webView;
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *loadingActivity;
 
+@property (nonatomic ,strong) WikipediaHelper *wikiHelper;
+@property (nonatomic, strong) UIImage *defaultImage;
+
 @end
 
 @implementation WikiViewController
 
-- (void)viewDidLoad {
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.wikiHelper = [[WikipediaHelper alloc] init];
+        self.wikiHelper.delegate = self;
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
-    WikipediaHelper *wikiHelper = [[WikipediaHelper alloc] init];
-    wikiHelper.delegate = self;
+    self.webView.delegate = self;
+    self.defaultImage = self.imgView.image;
+}
 
-    [wikiHelper fetchArticle:_pageTitle];
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    self.titleLabel.text = self.pageTitle;
+    [self.wikiHelper fetchArticle:self.pageTitle];
+
     [self.loadingActivity startAnimating];
-    self.loadingActivity.hidden = NO;
+    [self.loadingActivity setHidden:NO];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+
+    [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML = \"\";"];
+    self.imgView.image = self.defaultImage;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,21 +68,33 @@
 - (void)setPageTitle:(NSString *)pageTitle
 {
     _pageTitle = pageTitle;
-    self.titleLabel.text = pageTitle;
 }
 
 - (void)dataLoaded:(NSString *)htmlPage withUrlMainImage:(NSString *)urlMainImage
 {
-    if(![urlMainImage isEqualToString:@""]) {
+    if(![urlMainImage isEqualToString:@""] && urlMainImage != nil) {
         NSData *imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: urlMainImage]];
+
+        NSLog(@"%ld", [imageData length]);
+
         UIImage *image = [UIImage imageWithData:imageData];
         self.imgView.image = image;
     }
 
     [self.loadingActivity stopAnimating];
-    self.loadingActivity.hidden = YES;
+    [self.loadingActivity setHidden:YES];
 
     [self.webView loadHTMLString:htmlPage baseURL:nil];
+}
+
+#pragma mark - UIWebViewDelegate
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+        return NO;
+    }
+    return YES;
 }
 
 @end
