@@ -74,9 +74,6 @@
 {
     if(![urlMainImage isEqualToString:@""] && urlMainImage != nil) {
         NSData *imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: urlMainImage]];
-
-        NSLog(@"%ld", [imageData length]);
-
         UIImage *image = [UIImage imageWithData:imageData];
         self.imgView.image = image;
     }
