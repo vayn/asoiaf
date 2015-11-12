@@ -19,13 +19,9 @@
         apiUrl = @"http://asoiaf.huiji.wiki";
 
         imageBlackList = [[NSMutableArray alloc] init];
-        [imageBlackList addObject:@"http://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Padlock-silver.svg/20px-Padlock-silver.svg.png"];
-        [imageBlackList addObject:@"http://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Disambig-dark.svg/25px-Disambig-dark.svg.png"];
-        [imageBlackList addObject:@"http://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Qsicon_L%C3%BCcke.svg/24px-Qsicon_L%C3%BCcke.svg.png"];
-        [imageBlackList addObject:@"http://upload.wikimedia.org/wikipedia/en/thumb/9/94/Symbol_support_vote.svg/15px-Symbol_support_vote.svg.png"];
-        [imageBlackList addObject:@"http://upload.wikimedia.org/wikipedia/en/f/f4/Ambox_content.png"];
-        [imageBlackList addObject:@"http://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Crystal_Clear_app_kedit.svg/40px-Crystal_Clear_app_kedit.svg.png"];
-        [imageBlackList addObject:@"http://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Text_document_with_red_question_mark.svg/40px-Text_document_with_red_question_mark.svg.png"];
+        [imageBlackList addObject:@"http://cdn.huijiwiki.com/asoiaf/uploads/6/69/Disambig.png"];
+        [imageBlackList addObject:@"http://cdn.huijiwiki.com/asoiaf/thumb.php?f=Outdated_content.png"];
+        [imageBlackList addObject:@"http://cdn.huijiwiki.com/asoiaf/thumb.php?f=Mbox_notice.png"];
     }
     return self;
 }
@@ -71,29 +67,31 @@
     
     if([htmlSrc isEqualToString:@""])
         return htmlSrc;
-    
+
     NSArray *splitonce = [formatedHtmlSrc componentsSeparatedByString:@"src=\""];
     NSUInteger length =  [splitonce count];
     if (length > 1) {
-        NSString *finalSplitString = [[NSString alloc]  initWithString:[splitonce objectAtIndex:1]];
+        NSString *finalSplitString = [[NSString alloc] initWithString:[splitonce objectAtIndex:1]];
         NSArray *finalSplit = [finalSplitString  componentsSeparatedByString:@"\""];
 
-        NSString *imageURL = [[NSString alloc]  initWithString:[finalSplit objectAtIndex:0]];
-        imageURL = [imageURL stringByTrimmingCharactersInSet:[NSCharacterSet  whitespaceCharacterSet]];
+        NSString *imageURL = [[NSString alloc] initWithString:[finalSplit objectAtIndex:0]];
+        imageURL = [imageURL stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
         int i = 1;
         
         while([self isOnBlackList:imageURL]) { 
             // Get the next image tag
-            finalSplitString = [[NSString alloc]  initWithString:[splitonce objectAtIndex:i]];
+            finalSplitString = [[NSString alloc] initWithString:[splitonce objectAtIndex:i]];
             
             finalSplit = [finalSplitString  componentsSeparatedByString:@"\""];
             
             imageURL = [[NSString alloc]  initWithString:[finalSplit objectAtIndex:0]];
-            imageURL = [imageURL stringByTrimmingCharactersInSet:[NSCharacterSet  whitespaceCharacterSet]];
+            imageURL = [imageURL stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
             
             i++;
         }
+
+        imageURL = [imageURL stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
     
         return imageURL;
     } else {
@@ -104,7 +102,7 @@
 - (BOOL) isOnBlackList:(NSString *)imageURL {
     // Check if its not the correct image (Sometimes there are articles where the first image is an icon..)
     for(NSString *img in imageBlackList) {
-        if([img isEqualToString:imageURL]) {
+        if([imageURL containsString:img]) {
             return true;
         }
     }
