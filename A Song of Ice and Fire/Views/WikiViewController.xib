@@ -24,7 +24,7 @@
                     <animations/>
                 </imageView>
                 <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EgC-TV-MDJ">
-                    <rect key="frame" x="0.0" y="288" width="375" height="379"/>
+                    <rect key="frame" x="0.0" y="235" width="375" height="432"/>
                     <animations/>
                     <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                 </webView>
