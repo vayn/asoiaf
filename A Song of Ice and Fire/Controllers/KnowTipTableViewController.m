@@ -7,14 +7,18 @@
 //
 
 #import "KnowTipTableViewController.h"
+#import "WikiViewController.h"
+
 #import "DataManager.h"
 #import "KnowTipModel.h"
+
 #import "NSArray+Random.h"
 #import "RegexKitLite.h"
 
 @interface KnowTipTableViewController ()
 
 @property (nonatomic, strong) NSMutableArray *tips;
+@property (nonatomic, strong) WikiViewController *wikiViewController;
 
 @end
 
@@ -56,6 +60,8 @@
     [super viewDidLoad];
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"tableViewCell"];
+
+    self.wikiViewController = [[WikiViewController alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,7 +69,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -93,6 +99,8 @@
     return 54;
 }
 
+#pragma mark - UITableViewDelegate
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, tableView.frame.size.width, 18)];
@@ -108,6 +116,15 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     return @"你知道吗";
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    KnowTipModel *tipModel = self.tips[indexPath.row];
+
+    self.wikiViewController.pageTitle = tipModel.title;
+
+    [self.navigationController pushViewController:self.wikiViewController animated:YES];
 }
 
 @end
