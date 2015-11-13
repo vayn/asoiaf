@@ -18,8 +18,9 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIImageView *imageView;
 
-@property (nonatomic ,strong) WikipediaHelper *wikiHelper;
+@property (nonatomic, strong) WikipediaHelper *wikiHelper;
 @property (nonatomic, strong) UIImage *defaultImage;
+@property (nonatomic, assign) BOOL isUnloaded;
 
 @end
 
@@ -33,6 +34,7 @@
         self.wikiHelper.delegate = self;
 
         self.defaultImage = [UIImage imageNamed:@"huiji_white_logo"];
+        self.isUnloaded = YES;
     }
     return self;
 }
@@ -49,12 +51,16 @@
 {
     [super viewWillAppear:animated];
 
-    [self.wikiHelper fetchArticle:self.pageTitle];
+    if (self.isUnloaded) {
+        [self.wikiHelper fetchArticle:self.pageTitle];
 
-    [self.loadingActivity startAnimating];
-    [self.loadingActivity setHidden:NO];
+        [self.loadingActivity startAnimating];
+        [self.loadingActivity setHidden:NO];
 
-    [self setupHeaderView];
+        [self setupHeaderView];
+
+        self.isUnloaded = NO;
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -63,6 +69,7 @@
 
     [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML = \"\";"];
     self.imageView.image = nil;
+    self.isUnloaded = YES;
 }
 
 - (void)didReceiveMemoryWarning {
