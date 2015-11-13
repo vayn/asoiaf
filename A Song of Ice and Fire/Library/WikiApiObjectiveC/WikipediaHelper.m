@@ -20,8 +20,11 @@
 
         imageBlackList = [[NSMutableArray alloc] init];
         [imageBlackList addObject:@"http://cdn.huijiwiki.com/asoiaf/uploads/6/69/Disambig.png"];
+        [imageBlackList addObject:@"http://cdn.huijiwiki.com/asoiaf/thumb.php?f=Disambig.png"];
         [imageBlackList addObject:@"http://cdn.huijiwiki.com/asoiaf/thumb.php?f=Outdated_content.png"];
         [imageBlackList addObject:@"http://cdn.huijiwiki.com/asoiaf/thumb.php?f=Mbox_notice.png"];
+        [imageBlackList addObject:@"http://cdn.huijiwiki.com/asoiaf/uploads/0/07/Headlogo.png"];
+        [imageBlackList addObject:@"http://cdn.huijiwiki.com/asoiaf/uploads/6/61/Dots.png"];
     }
     return self;
 }
