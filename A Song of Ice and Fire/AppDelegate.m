@@ -21,7 +21,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     MainViewController *mainViewController = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
-    mainViewController.title = @"冰与火之歌中文维基";
+    mainViewController.title = @"Home";
 
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
 
