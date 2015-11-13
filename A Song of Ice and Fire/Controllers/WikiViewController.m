@@ -9,6 +9,8 @@
 #import "WikiViewController.h"
 #import "WikipediaHelper.h"
 
+#define TITLE_LABEL_HEIGHT 58
+
 @interface WikiViewController () <WikipediaHelperDelegate, UIWebViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UIWebView *webView;
@@ -126,8 +128,8 @@
     self.imageView.contentMode = UIViewContentModeScaleAspectFill;
     self.imageView.clipsToBounds = YES;
 
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.imageView.frame.size.height - 88,
-                                                               self.imageView.frame.size.width, 88)];
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.imageView.frame.size.height - TITLE_LABEL_HEIGHT,
+                                                               self.imageView.frame.size.width, TITLE_LABEL_HEIGHT)];
 
     self.titleLabel.backgroundColor = [UIColor colorWithRed:42/255.0 green:196/255.0 blue:234/255.0 alpha:0.7];
     self.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:21.0];
@@ -136,7 +138,7 @@
     self.titleLabel.shadowOffset = CGSizeMake(0, 1);
     self.titleLabel.textAlignment = UIControlContentHorizontalAlignmentLeft|UIControlContentVerticalAlignmentBottom;
     self.titleLabel.numberOfLines = 0;
-    self.titleLabel.text = _pageTitle;
+    self.titleLabel.text = [NSString stringWithFormat:@"  %@", _pageTitle];
 
     [self.imageView addSubview:self.titleLabel];
 
