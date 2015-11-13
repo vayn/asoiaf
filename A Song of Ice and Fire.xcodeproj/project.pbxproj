@@ -329,6 +329,7 @@
 				TargetAttributes = {
 					F334CFC61BEE73420074734D = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 876H5F9MZY;
 					};
 				};
 			};
@@ -539,6 +540,7 @@
 			baseConfigurationReference = E9FD70A58E3803C69D210489 /* Pods-A Song of Ice and Fire.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "A Song of Ice and Fire/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = li.hezhi.asoiaf;
@@ -552,6 +554,7 @@
 			baseConfigurationReference = 13A50C6FBDF2811B8C20D9A3 /* Pods-A Song of Ice and Fire.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "A Song of Ice and Fire/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = li.hezhi.asoiaf;
