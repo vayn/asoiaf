@@ -17,6 +17,7 @@
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <color key="separatorColor" red="0.16470588235294117" green="0.76862745098039209" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="dataSource" destination="-1" id="Tng-2m-Rnh"/>
                 <outlet property="delegate" destination="-1" id="9aC-8N-iBw"/>

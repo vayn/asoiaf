@@ -126,6 +126,20 @@
     self.imageView.contentMode = UIViewContentModeScaleAspectFill;
     self.imageView.clipsToBounds = YES;
 
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.imageView.frame.size.height - 88,
+                                                               self.imageView.frame.size.width, 88)];
+
+    self.titleLabel.backgroundColor = [UIColor colorWithRed:42/255.0 green:196/255.0 blue:234/255.0 alpha:0.7];
+    self.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:21.0];
+    self.titleLabel.textColor = [UIColor whiteColor];
+    self.titleLabel.shadowColor = [UIColor blackColor];
+    self.titleLabel.shadowOffset = CGSizeMake(0, 1);
+    self.titleLabel.textAlignment = UIControlContentHorizontalAlignmentLeft|UIControlContentVerticalAlignmentBottom;
+    self.titleLabel.numberOfLines = 0;
+    self.titleLabel.text = _pageTitle;
+
+    [self.imageView addSubview:self.titleLabel];
+
     CGRect f = self.webBrowserView.frame;
     f.origin.y = self.imageView.frame.size.height;
     self.webBrowserView.frame = f;
