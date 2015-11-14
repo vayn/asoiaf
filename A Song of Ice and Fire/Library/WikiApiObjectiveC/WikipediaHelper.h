@@ -15,12 +15,12 @@
 - (void) dataLoaded:(NSString *)htmlPage withUrlMainImage:(NSString *) urlMainImage;
 @end
 
-@interface WikipediaHelper : NSObject {
-    NSString *apiUrl;
-    NSMutableArray *imageBlackList;
-    NSString *fetchedArticle;
-    id delegate;
-}
+@interface WikipediaHelper : NSObject
+
+@property (nonatomic, strong) NSString *apiUrl;
+@property (nonatomic, strong) NSMutableArray *imageBlackList;
+@property (nonatomic, strong) NSString *fetchedArticle;
+@property (nonatomic, strong) id delegate;
 
 /**
  *  Asynchronously fetches an wikipedia article HTML Code from the wikipedia api
@@ -55,10 +55,5 @@
  *  @return If its a black list image or not
  */
 - (BOOL) isOnBlackList:(NSString *)imageURL;
-
-@property (nonatomic, retain) NSString *apiUrl;
-@property (nonatomic, retain) NSMutableArray *imageBlackList;
-@property (nonatomic, retain) NSString *fetchedArticle;
-@property (nonatomic, retain) id delegate;
 
 @end
