@@ -66,9 +66,9 @@
     formatedHtmlSrc = [formatedHtmlSrc stringByReplacingOccurrencesOfString:@"class=\"editsection\"" withString:@"style=\"visibility: hidden\""];
 
     // Clean the html page
-    NSString *cleanedHtmlSrc = [self cleanHTMLPage:formatedHtmlSrc];
+    formatedHtmlSrc = [self cleanHTMLPage:formatedHtmlSrc];
     
-    return cleanedHtmlSrc;
+    return formatedHtmlSrc;
 }
 
 - (NSString *)cleanHTMLPage:(NSString *)htmlSrc
