@@ -69,8 +69,8 @@
 {
     [super viewDidDisappear:animated];
 
-    [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML = \"\";"];
-    self.imageView.image = nil;
+    [self resetView];
+
     self.isUnloaded = YES;
 }
 
@@ -147,6 +147,15 @@
     self.webBrowserView.frame = f;
 
     [self.webView.scrollView addSubview:self.imageView];
+}
+
+- (void)resetView
+{
+
+    [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML = \"\";"];
+    [self.webView.scrollView setContentOffset:CGPointMake(0, -self.webView.scrollView.contentInset.top) animated:NO];
+
+    self.imageView.image = nil;
 }
 
 @end
