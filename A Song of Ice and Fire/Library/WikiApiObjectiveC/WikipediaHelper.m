@@ -10,6 +10,12 @@
 #import "AFNetworking.h"
 #import "IGHTMLQuery.h"
 
+@interface WikipediaHelper ()
+
+@property (nonatomic, strong) NSString *wikicss;
+
+@end
+
 @implementation WikipediaHelper
 @synthesize apiUrl, imageBlackList, delegate, fetchedArticle;
 
@@ -19,6 +25,13 @@
     if (self) {
         // Standard values for the api URL
         apiUrl = @"http://asoiaf.huiji.wiki";
+
+        NSBundle *mainBundle = [NSBundle mainBundle];
+        NSString *cssPath = [mainBundle pathForResource:@"wikiview" ofType:@"css"];
+        _wikicss = [NSString stringWithContentsOfFile:cssPath encoding:NSUTF8StringEncoding error:nil];
+        _wikicss = [NSString stringWithFormat:@"<style>%@</style>", _wikicss];
+        _wikicss = [_wikicss stringByAppendingString:
+                    @"<meta name='viewport' content='width=device-width, user-scalable=no initial-scale=1.0'/>"];
 
         imageBlackList = [[NSMutableArray alloc] init];
         [imageBlackList addObject:@"http://cdn.huijiwiki.com/asoiaf/uploads/6/69/Disambig.png"];
@@ -67,7 +80,9 @@
 
     // Clean the html page
     formatedHtmlSrc = [self cleanHTMLPage:formatedHtmlSrc];
-    
+
+    formatedHtmlSrc = [self.wikicss stringByAppendingString:formatedHtmlSrc];
+
     return formatedHtmlSrc;
 }
 
@@ -89,18 +104,28 @@
     // so we use try-catch block to prevent app crashing.
     @try {
         [[contents queryWithXPath:@"//div[contains(@class, 'thumb') and contains(@class, 'tright')]"][0] remove];
-
-        [[contents queryWithXPath:@"//table[@class='infobox']//caption"] remove];
-        [[contents queryWithXPath:@"//table[@class='infobox']//tr[1]"] remove];
-        [[contents queryWithXPath:@"//table[@class='infobox']//div[@class='floatnone']"] remove];
     }
     @catch (NSException *exception) {
         NSLog( @"Name: %@", exception.name);
         NSLog( @"Reason: %@", exception.reason );
     }
 
-    [[contents queryWithXPath:@"//span[@class='mw-editsection']"] remove];
-    [[contents queryWithXPath:@"//table[@style='margin: 0px 0px 5px 0px; border: 1px solid #aaa; background:#fbfbfb;']"] remove];
+    @try {
+        [[contents queryWithXPath:@"//table[@class='infobox']"] remove];
+    }
+    @catch (NSException *exception) {
+        NSLog( @"Name: %@", exception.name);
+        NSLog( @"Reason: %@", exception.reason );
+    }
+
+    @try {
+        [[contents queryWithXPath:@"//span[@class='mw-editsection']"] remove];
+        [[contents queryWithXPath:@"//table[@style='margin: 0px 0px 5px 0px; border: 1px solid #aaa; background:#fbfbfb;']"] remove];
+    }
+    @catch (NSException *exception) {
+        NSLog( @"Name: %@", exception.name);
+        NSLog( @"Reason: %@", exception.reason );
+    }
 
     // Append copyright to the end of article
     NSString *copyright = @"<div id=\"copyright\">\
