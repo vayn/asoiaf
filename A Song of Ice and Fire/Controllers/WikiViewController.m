@@ -114,7 +114,8 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+    if (navigationType == UIWebViewNavigationTypeLinkClicked &&
+        [[[request URL] absoluteString] hasPrefix:@"http"]) {
         return NO;
     }
     return YES;
