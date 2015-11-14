@@ -156,6 +156,7 @@
     [self.webView.scrollView setContentOffset:CGPointMake(0, -self.webView.scrollView.contentInset.top) animated:NO];
 
     self.imageView.image = nil;
+    self.titleLabel.text = @"";
 }
 
 @end
