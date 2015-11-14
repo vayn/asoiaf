@@ -96,10 +96,16 @@
         // Remove UIImageView
         [self.imageView removeFromSuperview];
 
+        CGRect titleFrame = self.titleLabel.frame;
+        titleFrame.origin.y = 0;
+        self.titleLabel.frame = titleFrame;
+
+        [self.webView.scrollView addSubview:self.titleLabel];
+
         // Restore UIWebBrowserView's position
         [UIView animateWithDuration:1.0 animations:^{
             CGRect f = self.webBrowserView.frame;
-            f.origin.y = 0;
+            f.origin.y = TITLE_LABEL_HEIGHT;
             self.webBrowserView.frame = f;
         }];
     }
@@ -121,6 +127,12 @@
     return YES;
 }
 
+/* Disable UIWebView horizontal scrolling */
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [webView.scrollView setContentSize: CGSizeMake(webView.frame.size.width, webView.scrollView.contentSize.height)];
+}
+
 #pragma mark - Setup Views
 
 - (void)setupHeaderView
@@ -132,6 +144,7 @@
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.imageView.frame.size.height - TITLE_LABEL_HEIGHT,
                                                                self.imageView.frame.size.width, TITLE_LABEL_HEIGHT)];
 
+    self.titleLabel.text = [NSString stringWithFormat:@"  %@", _pageTitle];
     self.titleLabel.backgroundColor = [UIColor colorWithRed:42/255.0 green:196/255.0 blue:234/255.0 alpha:0.7];
     self.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:21.0];
     self.titleLabel.textColor = [UIColor whiteColor];
@@ -139,7 +152,8 @@
     self.titleLabel.shadowOffset = CGSizeMake(0, 1);
     self.titleLabel.textAlignment = UIControlContentHorizontalAlignmentLeft|UIControlContentVerticalAlignmentBottom;
     self.titleLabel.numberOfLines = 0;
-    self.titleLabel.text = [NSString stringWithFormat:@"  %@", _pageTitle];
+    self.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.titleLabel.minimumScaleFactor = 0.5;
 
     [self.imageView addSubview:self.titleLabel];
 
@@ -157,7 +171,7 @@
     [self.webView.scrollView setContentOffset:CGPointMake(0, -self.webView.scrollView.contentInset.top) animated:NO];
 
     self.imageView.image = nil;
-    self.titleLabel.text = @"";
+    [self.titleLabel removeFromSuperview];
 }
 
 @end
