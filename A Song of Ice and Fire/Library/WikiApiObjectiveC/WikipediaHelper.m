@@ -8,11 +8,13 @@
 
 #import "WikipediaHelper.h"
 #import "AFNetworking.h"
+#import "IGHTMLQuery.h"
 
 @implementation WikipediaHelper
 @synthesize apiUrl, imageBlackList, delegate, fetchedArticle;
 
-- (id)init {
+- (instancetype)init
+{
     self = [super init];
     if (self) {
         // Standard values for the api URL
@@ -29,7 +31,10 @@
     return self;
 }
 
-- (void) fetchArticle:(NSString *)name {
+#pragma mark - Data Source
+
+- (void)fetchArticle:(NSString *)name
+{
     NSString *str = [[NSString alloc] initWithFormat:@"%@/api.php?action=query&prop=revisions&titles=%@&rvprop=content&rvparse&format=json&redirects", apiUrl, name];
     NSString *url = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 
@@ -38,7 +43,7 @@
     [manager GET:url parameters:nil success:^(NSURLSessionTask *task, id responseObject) {
         NSArray *htmlTemp = [[[responseObject objectForKey:@"query"] objectForKey:@"pages"] allValues];
         fetchedArticle = [[[[htmlTemp objectAtIndex:0] objectForKey:@"revisions"] objectAtIndex:0] objectForKey:@"*"];
-        
+
         [delegate dataLoaded:[self formatHTMLPage:fetchedArticle] withUrlMainImage:[self getUrlOfMainImage:fetchedArticle]];
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
@@ -46,7 +51,10 @@
     }];
 }
 
-- (NSString *) formatHTMLPage:(NSString *)htmlSrc {
+#pragma mark - HTML Formatter
+
+- (NSString *)formatHTMLPage:(NSString *)htmlSrc
+{
     NSString *wikiString = [NSString stringWithFormat:@"%@/wiki/", apiUrl];
     NSString *ahrefWikiString = [NSString stringWithFormat:@"<a href=\"%@/wiki\"", apiUrl];
     NSString *ahrefWikiStringReplacement = [NSString stringWithFormat:@"<a target=\"blank\" href=\"%@/wiki\"", apiUrl];
@@ -56,14 +64,64 @@
     
     formatedHtmlSrc = [formatedHtmlSrc stringByReplacingOccurrencesOfString:@"//upload.wikimedia.org" withString:@"http://upload.wikimedia.org"];
     formatedHtmlSrc = [formatedHtmlSrc stringByReplacingOccurrencesOfString:@"class=\"editsection\"" withString:@"style=\"visibility: hidden\""];
+
+    // Clean the html page
+    NSString *cleanedHtmlSrc = [self cleanHTMLPage:formatedHtmlSrc];
     
-    // Append html and body tags, Add some style
-    formatedHtmlSrc = [NSString stringWithFormat:@"<body style=\"font-size: 13px; font-family: Helvetica, Verdana\">%@<br/><br/><br/>The article above is based on this article of the free encyclopedia Wikipedia and it is licensed under „Creative Commons Attribution/Share Alike“. Here you find versions/authors.</body>", formatedHtmlSrc];
-    
-    return formatedHtmlSrc;
+    return cleanedHtmlSrc;
 }
 
-- (NSString *) getUrlOfMainImage:(NSString *)htmlSrc {
+- (NSString *)cleanHTMLPage:(NSString *)htmlSrc
+{
+    NSString *pattern = @"<h2><span class=\"mw-headline\" id=\".E5.BC.95.E7.94.A8.E4.B8.8E.E6.B3.A8.E9.87.8A";
+    NSRange range = [htmlSrc rangeOfString:pattern];
+
+    if (range.location != NSNotFound) {
+        htmlSrc = [htmlSrc substringToIndex:range.location];
+    }
+
+    NSMutableArray *cleanedHtmlSrcList = [[NSMutableArray alloc] init];
+
+    IGHTMLDocument* node = [[IGHTMLDocument alloc] initWithHTMLString:htmlSrc error:nil];
+    IGXMLNodeSet* contents = [node children];
+
+    // There are some bugs in IGHTMLQuery on iOS (works fine on OSX),
+    // so we use try-catch block to prevent app crashing.
+    @try {
+        [[contents queryWithXPath:@"//div[contains(@class, 'thumb') and contains(@class, 'tright')]"][0] remove];
+
+        [[contents queryWithXPath:@"//table[@class='infobox']//caption"] remove];
+        [[contents queryWithXPath:@"//table[@class='infobox']//tr[1]"] remove];
+        [[contents queryWithXPath:@"//table[@class='infobox']//div[@class='floatnone']"] remove];
+    }
+    @catch (NSException *exception) {
+        NSLog( @"Name: %@", exception.name);
+        NSLog( @"Reason: %@", exception.reason );
+    }
+
+    [[contents queryWithXPath:@"//span[@class='mw-editsection']"] remove];
+    [[contents queryWithXPath:@"//table[@style='margin: 0px 0px 5px 0px; border: 1px solid #aaa; background:#fbfbfb;']"] remove];
+
+    // Append copyright to the end of article
+    NSString *copyright = @"<div id=\"copyright\">\
+版权信息 2015\
+</div>";
+    IGHTMLDocument *copyrightNode = [[IGHTMLDocument alloc] initWithHTMLString:copyright error:nil];
+    [contents appendWithNode:copyrightNode];
+
+    [contents enumerateNodesUsingBlock:^(IGXMLNode* content, NSUInteger idx, BOOL *stop){
+        [cleanedHtmlSrcList addObject:content.xml];
+    }];
+
+    NSString *cleanedHtmlSrc = [cleanedHtmlSrcList componentsJoinedByString:@""];
+
+    return cleanedHtmlSrc;
+}
+
+#pragma mark - Main Image Generator
+
+- (NSString *)getUrlOfMainImage:(NSString *)htmlSrc
+{
     
     // Otherwise images have an incorrect url
     NSString *formatedHtmlSrc = [htmlSrc stringByReplacingOccurrencesOfString:@"//upload.wikimedia.org" withString:@"http://upload.wikimedia.org"];
@@ -106,7 +164,8 @@
     }
 }
 
-- (BOOL) isOnBlackList:(NSString *)imageURL {
+- (BOOL) isOnBlackList:(NSString *)imageURL
+{
     // Check if its not the correct image (Sometimes there are articles where the first image is an icon..)
     for(NSString *img in imageBlackList) {
         if([imageURL containsString:img]) {
