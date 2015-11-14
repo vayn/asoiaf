@@ -1,0 +1,1 @@
+../../../IGHTMLQuery/IGHTMLQuery/Classes/IGXMLNodeTraversal.h
