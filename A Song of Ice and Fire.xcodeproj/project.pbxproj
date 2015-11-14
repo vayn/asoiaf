@@ -27,6 +27,7 @@
 		F334D00F1BEE73FC0074734D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F334CFF81BEE73FC0074734D /* AppDelegate.m */; };
 		F334D0101BEE73FC0074734D /* NSArray+Random.m in Sources */ = {isa = PBXBuildFile; fileRef = F334CFFC1BEE73FC0074734D /* NSArray+Random.m */; };
 		F334D0111BEE73FC0074734D /* WikipediaHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F334CFFF1BEE73FC0074734D /* WikipediaHelper.m */; };
+		F33C82D61BF7D045005A0908 /* wikiview.css in Resources */ = {isa = PBXBuildFile; fileRef = F33C82D51BF7D045005A0908 /* wikiview.css */; };
 		F37B448F1BEE8AB400764D92 /* PortalCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F37B448D1BEE8AB400764D92 /* PortalCollectionHeaderView.m */; };
 		F37B44921BEE8AFD00764D92 /* PortalCollectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F37B44911BEE8AFD00764D92 /* PortalCollectionHeaderView.xib */; };
 		F3BE138C1BF26F5E00CC5159 /* KnowTipModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F3BE138B1BF26F5E00CC5159 /* KnowTipModel.m */; };
@@ -71,6 +72,7 @@
 		F334CFFE1BEE73FC0074734D /* WikipediaHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WikipediaHelper.h; sourceTree = "<group>"; };
 		F334CFFF1BEE73FC0074734D /* WikipediaHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WikipediaHelper.m; sourceTree = "<group>"; };
 		F334D0001BEE73FC0074734D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F33C82D51BF7D045005A0908 /* wikiview.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = wikiview.css; sourceTree = "<group>"; };
 		F37B448C1BEE8AB400764D92 /* PortalCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalCollectionHeaderView.h; sourceTree = "<group>"; };
 		F37B448D1BEE8AB400764D92 /* PortalCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalCollectionHeaderView.m; sourceTree = "<group>"; };
 		F37B44911BEE8AFD00764D92 /* PortalCollectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PortalCollectionHeaderView.xib; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				F334CFF71BEE73FC0074734D /* Assets.xcassets */,
 				F334CFF91BEE73FC0074734D /* Library */,
 				F334CFCA1BEE73420074734D /* Supporting Files */,
+				F33C82D41BF7D045005A0908 /* Resources */,
 			);
 			path = "A Song of Ice and Fire";
 			sourceTree = "<group>";
@@ -277,6 +280,14 @@
 			name = SlideMenuController;
 			sourceTree = "<group>";
 		};
+		F33C82D41BF7D045005A0908 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F33C82D51BF7D045005A0908 /* wikiview.css */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		F37B44861BEE88BF00764D92 /* PortalCollection */ = {
 			isa = PBXGroup;
 			children = (
@@ -363,6 +374,7 @@
 				F334D00D1BEE73FC0074734D /* SlideMenuViewController.xib in Resources */,
 				F37B44921BEE8AFD00764D92 /* PortalCollectionHeaderView.xib in Resources */,
 				F334D00E1BEE73FC0074734D /* Assets.xcassets in Resources */,
+				F33C82D61BF7D045005A0908 /* wikiview.css in Resources */,
 				F334D00B1BEE73FC0074734D /* PortalCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
