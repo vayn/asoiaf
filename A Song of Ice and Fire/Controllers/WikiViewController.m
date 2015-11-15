@@ -156,7 +156,6 @@
 
     self.blurView = [[GradientView alloc] initWithFrame:CGRectMake(0, -85, self.view.frame.size.width, self.originalHeight + 85)
                                                    type:TransparentGradientTwiceType];
-    self.blurView.alpha = 0.85;
     
     [self.imageView addSubview:self.blurView];
     [self.imageView bringSubviewToFront:self.titleLabel];
