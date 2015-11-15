@@ -159,6 +159,10 @@
         
         while([self isOnBlackList:imageURL] || [imageURL hasPrefix:@"<"]) {
             // Get the next image tag
+            if (i > length) {
+                return nil;
+            }
+
             finalSplitString = [[NSString alloc] initWithString:[splitonce objectAtIndex:i]];
 
             finalSplit = [finalSplitString componentsSeparatedByString:@"\""];
