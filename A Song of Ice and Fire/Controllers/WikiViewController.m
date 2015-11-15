@@ -8,21 +8,26 @@
 
 #import "WikiViewController.h"
 #import "WikipediaHelper.h"
+#import "ParallaxHeaderView.h"
+#import "GradientView.h"
 
 #define TITLE_LABEL_HEIGHT 58
 
-@interface WikiViewController () <WikipediaHelperDelegate, UIWebViewDelegate>
+@interface WikiViewController () <WikipediaHelperDelegate, UIWebViewDelegate, UIScrollViewDelegate, ParallaxHeaderViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UIWebView *webView;
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *loadingActivity;
 
-@property (nonatomic, strong) UIView *webBrowserView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) UIView *webBrowserView;
+@property (nonatomic, strong) GradientView *blurView;
+@property (nonatomic, strong) ParallaxHeaderView *parallaxHeaderView;
 
 @property (nonatomic, strong) WikipediaHelper *wikiHelper;
 @property (nonatomic, strong) UIImage *defaultImage;
 @property (nonatomic, assign) BOOL isUnloaded;
+@property (nonatomic, assign) CGFloat originalHeight;
 
 @end
 
@@ -52,6 +57,7 @@
     [super viewDidLoad];
 
     self.webView.delegate = self;
+    self.webView.scrollView.delegate = self;
     self.webBrowserView = [[self.webView.scrollView subviews] objectAtIndex:0];
 }
 
@@ -65,7 +71,7 @@
         [self.loadingActivity startAnimating];
         [self.loadingActivity setHidden:NO];
 
-        [self setupHeaderView];
+        [self setupParallaxHeaderView];
 
         self.isUnloaded = NO;
     }
@@ -85,6 +91,91 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Setup Views
+
+- (void)resetView
+{
+
+    [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML = \"\";"];
+    [self.webView.scrollView setContentOffset:CGPointMake(0, -self.webView.scrollView.contentInset.top) animated:NO];
+
+    self.imageView.image = nil;
+    [self.titleLabel removeFromSuperview];
+}
+
+- (void)setupHeaderView
+{
+    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 223)];
+    self.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.imageView.clipsToBounds = YES;
+
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.imageView.frame.size.height - TITLE_LABEL_HEIGHT,
+                                                               self.imageView.frame.size.width, TITLE_LABEL_HEIGHT)];
+
+    self.titleLabel.text = [NSString stringWithFormat:@"  %@", self.title];
+    self.titleLabel.backgroundColor = [UIColor colorWithRed:42/255.0 green:196/255.0 blue:234/255.0 alpha:0.7];
+    self.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:21.0];
+    self.titleLabel.textColor = [UIColor whiteColor];
+    self.titleLabel.shadowColor = [UIColor blackColor];
+    self.titleLabel.shadowOffset = CGSizeMake(0, 1);
+    self.titleLabel.textAlignment = UIControlContentHorizontalAlignmentLeft|UIControlContentVerticalAlignmentBottom;
+    self.titleLabel.numberOfLines = 0;
+    self.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.titleLabel.minimumScaleFactor = 0.5;
+
+    [self.imageView addSubview:self.titleLabel];
+
+    CGRect f = self.webBrowserView.frame;
+    f.origin.y = self.imageView.frame.size.height;
+    self.webBrowserView.frame = f;
+
+    [self.webView.scrollView addSubview:self.imageView];
+}
+
+- (void)setupParallaxHeaderView
+{
+    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 223)];
+    self.imageView.contentMode = UIViewContentModeScaleAspectFill;
+
+    self.originalHeight = self.imageView.frame.size.height;
+
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, self.originalHeight - 80, self.imageView.frame.size.width - 30, 60)];
+
+    self.titleLabel.text = [NSString stringWithFormat:@"  %@", self.title];
+    self.titleLabel.text = [NSString stringWithFormat:@"  %@", self.title];
+    self.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:21.0];
+    self.titleLabel.textColor = [UIColor whiteColor];
+    self.titleLabel.shadowColor = [UIColor blackColor];
+    self.titleLabel.shadowOffset = CGSizeMake(0, 1);
+    self.titleLabel.textAlignment = UIControlContentHorizontalAlignmentLeft|UIControlContentVerticalAlignmentBottom;
+    self.titleLabel.numberOfLines = 0;
+    self.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.titleLabel.minimumScaleFactor = 0.5;
+
+    [self.imageView addSubview:self.titleLabel];
+
+    self.blurView = [[GradientView alloc] initWithFrame:CGRectMake(0, -85, self.view.frame.size.width, self.originalHeight + 85)
+                                                   type:TransparentGradientTwiceType];
+    self.blurView.alpha = 0.85;
+    
+    [self.imageView addSubview:self.blurView];
+    [self.imageView bringSubviewToFront:self.titleLabel];
+
+    self.parallaxHeaderView = [ParallaxHeaderView parallaxWebHeaderViewWithSubView:self.imageView
+                                                                           forSize:CGSizeMake(self.view.frame.size.width, 223)];
+    self.parallaxHeaderView.delegate = self;
+
+    // We set _parallaxHeaderView's origin.y as -20, and _imageView is subview of it,
+    // so we should set _webBrowerView's origin.y is -20 smaller than it of _imageView.
+    CGRect f = self.webBrowserView.frame;
+    f.origin.y = self.imageView.frame.size.height - 20;
+    self.webBrowserView.frame = f;
+    
+    [self.webView.scrollView addSubview:self.parallaxHeaderView];
+}
+
+#pragma mark - WikipediaHelperDelegate
+
 - (void)dataLoaded:(NSString *)htmlPage withUrlMainImage:(NSString *)urlMainImage
 {
     if(![urlMainImage isEqualToString:@""] && urlMainImage != nil) {
@@ -93,6 +184,9 @@
         self.imageView.image = image;
     } else {
         // Reset subviews of self.webView if there is no image in the wiki page
+
+        /**
+         * When use ParallaxHeaderView, we don't need to reset header view
 
         // Remove UIImageView
         [self.imageView removeFromSuperview];
@@ -109,6 +203,8 @@
             f.origin.y = TITLE_LABEL_HEIGHT;
             self.webBrowserView.frame = f;
         }];
+
+         */
     }
 
     [self.loadingActivity stopAnimating];
@@ -145,45 +241,37 @@
     [webView.scrollView setContentSize: CGSizeMake(webView.frame.size.width, webView.scrollView.contentSize.height)];
 }
 
-#pragma mark - Setup Views
+#pragma mark - UIScrollViewDelegate
 
-- (void)setupHeaderView
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 223)];
-    self.imageView.contentMode = UIViewContentModeScaleAspectFill;
-    self.imageView.clipsToBounds = YES;
+    CGFloat incrementY = scrollView.contentOffset.y;
+    if (incrementY < 0) {
+        // 不断设置titleLabel以保证frame正确
+        self.titleLabel.frame = CGRectMake(15, self.originalHeight - 80 - incrementY, self.view.frame.size.width - 30, 60);
 
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.imageView.frame.size.height - TITLE_LABEL_HEIGHT,
-                                                               self.imageView.frame.size.width, TITLE_LABEL_HEIGHT)];
+        // 不断添加删除blurView.layer.sublayers![0]以保证frame正确
+        self.blurView.frame = CGRectMake(0, -85 - incrementY, self.view.frame.size.width, self.originalHeight + 85);
+        [self.blurView.layer.sublayers[0] removeFromSuperlayer];
+        [self.blurView insertTwiceTransparentGradient];
 
-    self.titleLabel.text = [NSString stringWithFormat:@"  %@", self.title];
-    self.titleLabel.backgroundColor = [UIColor colorWithRed:42/255.0 green:196/255.0 blue:234/255.0 alpha:0.7];
-    self.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:21.0];
-    self.titleLabel.textColor = [UIColor whiteColor];
-    self.titleLabel.shadowColor = [UIColor blackColor];
-    self.titleLabel.shadowOffset = CGSizeMake(0, 1);
-    self.titleLabel.textAlignment = UIControlContentHorizontalAlignmentLeft|UIControlContentVerticalAlignmentBottom;
-    self.titleLabel.numberOfLines = 0;
-    self.titleLabel.adjustsFontSizeToFitWidth = YES;
-    self.titleLabel.minimumScaleFactor = 0.5;
+        // 使Label不被遮挡
+        [self.imageView bringSubviewToFront:self.titleLabel];
+    }
 
-    [self.imageView addSubview:self.titleLabel];
-
-    CGRect f = self.webBrowserView.frame;
-    f.origin.y = self.imageView.frame.size.height;
-    self.webBrowserView.frame = f;
-
-    [self.webView.scrollView addSubview:self.imageView];
+    [self.parallaxHeaderView layoutWebHeaderViewForScrollViewOffset:scrollView.contentOffset];
 }
 
-- (void)resetView
+#pragma mark - ParallaxHeaderViewDelegate
+
+/**
+ * 设置滑动极限
+ * 修改该值需要一并更改 layoutWebHeaderViewForScrollViewOffset 中的对应值
+ */
+- (void)lockDirection
 {
-
-    [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML = \"\";"];
-    [self.webView.scrollView setContentOffset:CGPointMake(0, -self.webView.scrollView.contentInset.top) animated:NO];
-
-    self.imageView.image = nil;
-    [self.titleLabel removeFromSuperview];
+    CGPoint offset = self.webView.scrollView.contentOffset;
+    self.webView.scrollView.contentOffset = CGPointMake(offset.x, -154);
 }
 
 #pragma mark - Private methods
