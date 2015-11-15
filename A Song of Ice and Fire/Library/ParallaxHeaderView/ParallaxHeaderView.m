@@ -21,53 +21,51 @@
 
 @implementation ParallaxHeaderView
 
-+ (id)parallaxHeaderViewWithSubView:(UIView *)subView forSize:(CGSize)headerSize;
++ (id)parallaxHeaderViewWithSubView:(UIView *)subView forSize:(CGSize)headerSize
 {
-    //根据传入的参数确定frame
+    // 根据传入的参数确定frame
     ParallaxHeaderView *headerView = [[ParallaxHeaderView alloc] initWithFrame:CGRectMake(0, 0, headerSize.width, headerSize.height)];
     
-    //初始化设置并返回
+    // 初始化设置并返回
     [headerView initialSetupForCustomSubView:subView];
     return headerView;
 }
 
-+ (id)parallaxWebHeaderViewWithSubView:(UIView *)subView forSize:(CGSize)headerSize;
++ (id)parallaxWebHeaderViewWithSubView:(UIView *)subView forSize:(CGSize)headerSize
 {
-    //根据传入的参数确定frame
+    // 根据传入的参数确定frame
     ParallaxHeaderView *headerView = [[ParallaxHeaderView alloc] initWithFrame:CGRectMake(0, -20, headerSize.width, headerSize.height)];
     
-    //初始化设置并返回
+    // 初始化设置并返回
     [headerView initialSetupForCustomSubView:subView];
     return headerView;
 }
 
-+ (id)parallaxThemeHeaderViewWithSubView:(UIView *)subView forSize:(CGSize)headerSize andImage: (UIImage *)blurViewImageParam;
++ (id)parallaxThemeHeaderViewWithSubView:(UIView *)subView forSize:(CGSize)headerSize andImage: (UIImage *)blurViewImageParam
 {
-    //根据传入的参数确定frame
+    // 根据传入的参数确定frame
     ParallaxHeaderView *headerView = [[ParallaxHeaderView alloc] initWithFrame:CGRectMake(0, 0, headerSize.width, headerSize.height)];
     
-    //初始化设置并返回
+    // 初始化设置并返回
     [headerView initialThemeSetupForCustomSubView:subView andImage:blurViewImageParam ];
     return headerView;
 }
 
 - (void)layoutHeaderViewForScrollViewOffset:(CGPoint)offset
 {
-//    CGRect frame = self.imageScrollView.frame;
+    //CGRect frame = self.imageScrollView.frame;
     
-    if (NO)
-    {
-        //另一种效果 此处用不到
-//        frame.origin.y = MAX(offset.y *0.5, 0);
-//        self.imageScrollView.frame = frame;
-//        self.clipsToBounds = YES;
-    }
-    else if (offset.y < -154) {
+    if (NO) {
+        /*
+        // 另一种效果 此处用不到
+        frame.origin.y = MAX(offset.y *0.5, 0);
+        self.imageScrollView.frame = frame;
+        self.clipsToBounds = YES;
+         */
+    } else if (offset.y < -154) {
         //只是留个位置供接触到父ViewController的方法
         [self.delegate lockDirection];
-    }
-    else
-    {
+    } else {
         CGFloat delta = 0.0f;
         CGRect rect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
 
@@ -83,18 +81,14 @@
 
 - (void)layoutWebHeaderViewForScrollViewOffset:(CGPoint)offset
 {
-//    CGRect frame = self.imageScrollView.frame;
+    //CGRect frame = self.imageScrollView.frame;
     
-    if (offset.y > 0)
-    {
+    if (offset.y > 0) {
 
-    }
-    else if (offset.y < -85) {
-        //只是留个位置供接触到父ViewController的方法
+    } else if (offset.y < -154) {
+        // 只是留个位置供接触到父ViewController的方法
         [self.delegate lockDirection];
-    }
-    else
-    {
+    } else {
         CGFloat delta = 0.0f;
         CGRect rect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
         
@@ -108,20 +102,16 @@
     
 }
 
-- (void)layoutThemeHeaderViewForScrollViewOffset:(CGPoint)offset;
+- (void)layoutThemeHeaderViewForScrollViewOffset:(CGPoint)offset
 {
     CGRect frame = self.imageScrollView.frame;
-    if (offset.y > 0)
-    {
+    if (offset.y > 0) {
         frame.origin.y = offset.y;
         self.imageScrollView.frame = frame;
         self.clipsToBounds = NO;
-    }
-    else if (offset.y < -95) {
+    } else if (offset.y < -95) {
         [self.delegate lockDirection];
-    }
-    else
-    {
+    } else {
         CGFloat delta = 0.0f;
         CGRect rect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
         
