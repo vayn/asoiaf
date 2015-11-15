@@ -150,22 +150,22 @@
     NSUInteger length =  [splitonce count];
     if (length > 1) {
         NSString *finalSplitString = [[NSString alloc] initWithString:[splitonce objectAtIndex:1]];
-        NSArray *finalSplit = [finalSplitString  componentsSeparatedByString:@"\""];
+        NSArray *finalSplit = [finalSplitString componentsSeparatedByString:@"\""];
 
         NSString *imageURL = [[NSString alloc] initWithString:[finalSplit objectAtIndex:0]];
         imageURL = [imageURL stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
         int i = 0;
         
-        while([self isOnBlackList:imageURL]) { 
+        while([self isOnBlackList:imageURL] || [imageURL hasPrefix:@"<"]) {
             // Get the next image tag
             finalSplitString = [[NSString alloc] initWithString:[splitonce objectAtIndex:i]];
 
-            finalSplit = [finalSplitString  componentsSeparatedByString:@"\""];
+            finalSplit = [finalSplitString componentsSeparatedByString:@"\""];
             
-            imageURL = [[NSString alloc]  initWithString:[finalSplit objectAtIndex:0]];
+            imageURL = [[NSString alloc] initWithString:[finalSplit objectAtIndex:0]];
             imageURL = [imageURL stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-            
+
             i++;
         }
 
