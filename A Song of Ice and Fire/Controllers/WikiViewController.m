@@ -55,6 +55,7 @@
 
     if (self.isUnloaded) {
         [self.wikiHelper fetchArticle:self.pageTitle];
+        [self.navigationController.navigationItem setTitle:self.pageTitle];
 
         [self.loadingActivity startAnimating];
         [self.loadingActivity setHidden:NO];
@@ -127,7 +128,7 @@
         if ([url hasPrefix:prefix]) {
             WikiViewController *nextWikiVC = [[WikiViewController alloc] init];
 
-            NSString *pageTitle = [[url substringFromIndex:[url rangeOfString:prefix].length] stringByRemovingPercentEncoding];
+            NSString *pageTitle = [[url substringFromIndex:[prefix length]] stringByRemovingPercentEncoding];
 
             nextWikiVC.pageTitle = pageTitle;
 
