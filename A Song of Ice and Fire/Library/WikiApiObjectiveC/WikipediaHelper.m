@@ -155,7 +155,7 @@
         NSString *imageURL = [[NSString alloc] initWithString:[finalSplit objectAtIndex:0]];
         imageURL = [imageURL stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
-        int i = 1;
+        int i = 0;
         
         while([self isOnBlackList:imageURL]) { 
             // Get the next image tag
@@ -181,7 +181,7 @@
     }
 }
 
-- (BOOL) isOnBlackList:(NSString *)imageURL
+- (BOOL)isOnBlackList:(NSString *)imageURL
 {
     // Check if its not the correct image (Sometimes there are articles where the first image is an icon..)
     for(NSString *img in imageBlackList) {
