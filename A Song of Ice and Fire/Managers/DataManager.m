@@ -13,6 +13,8 @@
 #import "FeaturedQuoteModel.h"
 #import "PortalModel.h"
 
+#define ERR_INTERNET_DISCONNECTED @"ERR_INTERNET_DISCONNECTED"
+
 @interface DataManager ()
 
 @property (nonatomic, strong) NSString *siteURL;
@@ -50,6 +52,15 @@
     if (self) {
         _siteURL = @"http://asoiaf.huiji.wiki";
         _manager = [AFHTTPSessionManager manager];
+
+        [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+            //NSLog(@"Reachability: %@", AFStringFromNetworkReachabilityStatus(status));
+            
+            if (status == AFNetworkReachabilityStatusNotReachable) {
+              [[NSNotificationCenter defaultCenter] postNotificationName:ERR_INTERNET_DISCONNECTED object:nil];
+            }
+        }];
+        [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     }
 
     return self;

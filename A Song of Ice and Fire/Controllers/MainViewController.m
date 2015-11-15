@@ -77,6 +77,25 @@
     [self setupKnowTipView];
 
     [self setupGestures];
+
+    // When the network is disconnected
+    [[NSNotificationCenter defaultCenter]
+     addObserverForName:@"ERR_INTERNET_DISCONNECTED"
+                 object:nil
+                 queue:nil
+            usingBlock:^(NSNotification * _Nonnull note) {
+                self.overlayView.alpha = OVERLAY_ALPHA_END;
+                [self.view addSubview:self.overlayView];
+
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"应用未联网"
+                                                                               message:@"请联网后重新打开应用"
+                                                                        preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK"
+                                                                        style:UIAlertActionStyleDefault
+                                                                      handler:^(UIAlertAction * _Nonnull action) { }];
+                [alert addAction:defaultAction];
+                [self presentViewController:alert animated:YES completion:nil];
+    }];
 }
 
 #pragma mark - Button Actions

@@ -60,7 +60,7 @@
         [delegate dataLoaded:[self formatHTMLPage:fetchedArticle] withUrlMainImage:[self getUrlOfMainImage:fetchedArticle]];
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
-        [delegate dataLoaded:@"test" withUrlMainImage:@"test"];
+        [delegate dataLoaded:@"请联网后重新打开应用" withUrlMainImage:@"test"];
     }];
 }
 
