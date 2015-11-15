@@ -130,7 +130,6 @@
             NSString *pageTitle = [[url substringFromIndex:[url rangeOfString:prefix].length] stringByRemovingPercentEncoding];
 
             nextWikiVC.pageTitle = pageTitle;
-            NSLog(@"%@", nextWikiVC.pageTitle);
 
             [self.navigationController pushViewController:nextWikiVC animated:YES];
         }
