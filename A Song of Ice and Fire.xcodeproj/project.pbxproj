@@ -32,6 +32,7 @@
 		F37B44921BEE8AFD00764D92 /* PortalCollectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F37B44911BEE8AFD00764D92 /* PortalCollectionHeaderView.xib */; };
 		F3BD1DF11BF8D8AE00B6DA69 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = F3BD1DF01BF8D8AE00B6DA69 /* UIImage+ImageEffects.m */; };
 		F3BD1DF51BF8D8C300B6DA69 /* ParallaxHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F3BD1DF41BF8D8C300B6DA69 /* ParallaxHeaderView.m */; };
+		F3BD1DF91BF8E71600B6DA69 /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = F3BD1DF81BF8E71600B6DA69 /* GradientView.m */; };
 		F3BE138C1BF26F5E00CC5159 /* KnowTipModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F3BE138B1BF26F5E00CC5159 /* KnowTipModel.m */; };
 		F3BE13901BF270CF00CC5159 /* KnowTipTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3BE138E1BF270CF00CC5159 /* KnowTipTableViewController.m */; };
 		F3BE13941BF2711100CC5159 /* KnowTipTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3BE13931BF2711100CC5159 /* KnowTipTableViewController.xib */; };
@@ -82,6 +83,8 @@
 		F3BD1DF01BF8D8AE00B6DA69 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		F3BD1DF31BF8D8C300B6DA69 /* ParallaxHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParallaxHeaderView.h; sourceTree = "<group>"; };
 		F3BD1DF41BF8D8C300B6DA69 /* ParallaxHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParallaxHeaderView.m; sourceTree = "<group>"; };
+		F3BD1DF71BF8E71600B6DA69 /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
+		F3BD1DF81BF8E71600B6DA69 /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
 		F3BE138A1BF26F5E00CC5159 /* KnowTipModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KnowTipModel.h; sourceTree = "<group>"; };
 		F3BE138B1BF26F5E00CC5159 /* KnowTipModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KnowTipModel.m; sourceTree = "<group>"; };
 		F3BE138D1BF270CF00CC5159 /* KnowTipTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KnowTipTableViewController.h; sourceTree = "<group>"; };
@@ -222,6 +225,7 @@
 		F334CFF91BEE73FC0074734D /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				F3BD1DF61BF8E71600B6DA69 /* GradientView */,
 				F3BD1DF21BF8D8C300B6DA69 /* ParallaxHeaderView */,
 				F334CFFA1BEE73FC0074734D /* Utilities */,
 				F334CFFD1BEE73FC0074734D /* WikiApiObjectiveC */,
@@ -313,6 +317,15 @@
 				F3BD1DF41BF8D8C300B6DA69 /* ParallaxHeaderView.m */,
 			);
 			path = ParallaxHeaderView;
+			sourceTree = "<group>";
+		};
+		F3BD1DF61BF8E71600B6DA69 /* GradientView */ = {
+			isa = PBXGroup;
+			children = (
+				F3BD1DF71BF8E71600B6DA69 /* GradientView.h */,
+				F3BD1DF81BF8E71600B6DA69 /* GradientView.m */,
+			);
+			path = GradientView;
 			sourceTree = "<group>";
 		};
 		F3BE13921BF270D600CC5159 /* KnowTipTableController */ = {
@@ -465,6 +478,7 @@
 				F334D0021BEE73FC0074734D /* MainViewController.m in Sources */,
 				F334D0111BEE73FC0074734D /* WikipediaHelper.m in Sources */,
 				F334D0061BEE73FC0074734D /* SlideMenuViewController.m in Sources */,
+				F3BD1DF91BF8E71600B6DA69 /* GradientView.m in Sources */,
 				F334D0051BEE73FC0074734D /* PortalCollectionViewController.m in Sources */,
 				F334D0071BEE73FC0074734D /* FeaturedQuoteModel.m in Sources */,
 				F334D0011BEE73FC0074734D /* CarrouselViewController.m in Sources */,
