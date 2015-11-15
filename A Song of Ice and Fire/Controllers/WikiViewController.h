@@ -10,6 +10,4 @@
 
 @interface WikiViewController : UIViewController
 
-@property (nonatomic, strong) NSString *pageTitle;
-
 @end

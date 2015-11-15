@@ -54,8 +54,7 @@
     [super viewWillAppear:animated];
 
     if (self.isUnloaded) {
-        [self.wikiHelper fetchArticle:self.pageTitle];
-        [self.navigationController.navigationItem setTitle:self.pageTitle];
+        [self.wikiHelper fetchArticle:self.title];
 
         [self.loadingActivity startAnimating];
         [self.loadingActivity setHidden:NO];
@@ -78,11 +77,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)setPageTitle:(NSString *)pageTitle
-{
-    _pageTitle = pageTitle;
 }
 
 - (void)dataLoaded:(NSString *)htmlPage withUrlMainImage:(NSString *)urlMainImage
@@ -128,9 +122,8 @@
         if ([url hasPrefix:prefix]) {
             WikiViewController *nextWikiVC = [[WikiViewController alloc] init];
 
-            NSString *pageTitle = [[url substringFromIndex:[prefix length]] stringByRemovingPercentEncoding];
-
-            nextWikiVC.pageTitle = pageTitle;
+            NSString *title = [[url substringFromIndex:[prefix length]] stringByRemovingPercentEncoding];
+            nextWikiVC.title = title;
 
             [self.navigationController pushViewController:nextWikiVC animated:YES];
         }
@@ -157,7 +150,7 @@
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.imageView.frame.size.height - TITLE_LABEL_HEIGHT,
                                                                self.imageView.frame.size.width, TITLE_LABEL_HEIGHT)];
 
-    self.titleLabel.text = [NSString stringWithFormat:@"  %@", _pageTitle];
+    self.titleLabel.text = [NSString stringWithFormat:@"  %@", self.title];
     self.titleLabel.backgroundColor = [UIColor colorWithRed:42/255.0 green:196/255.0 blue:234/255.0 alpha:0.7];
     self.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:21.0];
     self.titleLabel.textColor = [UIColor whiteColor];

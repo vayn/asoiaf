@@ -121,8 +121,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     KnowTipModel *tipModel = self.tips[indexPath.row];
-
-    self.wikiViewController.pageTitle = tipModel.title;
+    self.wikiViewController.title = tipModel.title;
 
     [self.navigationController pushViewController:self.wikiViewController animated:YES];
 }
