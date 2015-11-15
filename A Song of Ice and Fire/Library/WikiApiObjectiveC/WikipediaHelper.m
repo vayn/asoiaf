@@ -159,12 +159,8 @@
         
         while([self isOnBlackList:imageURL]) { 
             // Get the next image tag
-            if (i > length) {
-                return nil;
-            } else {
-                finalSplitString = [[NSString alloc] initWithString:[splitonce objectAtIndex:i]];
-            }
-            
+            finalSplitString = [[NSString alloc] initWithString:[splitonce objectAtIndex:i]];
+
             finalSplit = [finalSplitString  componentsSeparatedByString:@"\""];
             
             imageURL = [[NSString alloc]  initWithString:[finalSplit objectAtIndex:0]];
