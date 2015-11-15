@@ -120,10 +120,23 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    if (navigationType == UIWebViewNavigationTypeLinkClicked &&
-        [[[request URL] absoluteString] hasPrefix:@"http"]) {
+    NSString *url = [[request URL] absoluteString];
+    NSString *prefix = @"http://asoiaf.huiji.wiki/wiki/";
+
+    if (navigationType == UIWebViewNavigationTypeLinkClicked && [url hasPrefix:@"http"]) {
+        if ([url hasPrefix:prefix]) {
+            WikiViewController *nextWikiVC = [[WikiViewController alloc] init];
+
+            NSString *pageTitle = [[url substringFromIndex:[url rangeOfString:prefix].length] stringByRemovingPercentEncoding];
+
+            nextWikiVC.pageTitle = pageTitle;
+            NSLog(@"%@", nextWikiVC.pageTitle);
+
+            [self.navigationController pushViewController:nextWikiVC animated:YES];
+        }
         return NO;
     }
+
     return YES;
 }
 
