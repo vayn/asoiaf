@@ -103,14 +103,6 @@
     // There are some bugs in IGHTMLQuery on iOS (works fine on OSX),
     // so we use try-catch block to prevent app crashing.
     @try {
-        [[contents queryWithXPath:@"//div[contains(@class, 'thumb') and contains(@class, 'tright')]"][0] remove];
-    }
-    @catch (NSException *exception) {
-        NSLog( @"Name: %@", exception.name);
-        NSLog( @"Reason: %@", exception.reason );
-    }
-
-    @try {
         [[contents queryWithXPath:@"//table[@class='infobox']"] remove];
     }
     @catch (NSException *exception) {
