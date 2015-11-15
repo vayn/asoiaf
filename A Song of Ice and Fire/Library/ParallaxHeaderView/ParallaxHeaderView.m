@@ -12,9 +12,11 @@
 #import "UIImage+ImageEffects.h"
 
 @interface ParallaxHeaderView ()
+
 @property (weak, nonatomic) IBOutlet UIScrollView *imageScrollView;
 @property (weak, nonatomic) IBOutlet UIView *subView;
 @property (nonatomic) IBOutlet UIImageView *bluredImageView;
+
 @end
 
 #define kDefaultHeaderFrame CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
@@ -131,6 +133,7 @@
 {
     //初始化中间层imageScrollView
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
+    scrollView.scrollsToTop = NO;
     scrollView.backgroundColor = [UIColor whiteColor];
     self.imageScrollView = scrollView;
     
