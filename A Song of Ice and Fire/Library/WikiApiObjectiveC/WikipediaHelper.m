@@ -40,6 +40,7 @@
         [imageBlackList addObject:@"http://cdn.huijiwiki.com/asoiaf/thumb.php?f=Mbox_notice.png"];
         [imageBlackList addObject:@"http://cdn.huijiwiki.com/asoiaf/uploads/0/07/Headlogo.png"];
         [imageBlackList addObject:@"http://cdn.huijiwiki.com/asoiaf/uploads/6/61/Dots.png"];
+        [imageBlackList addObject:@"http://cdn.huijiwiki.com/asoiaf/thumb.php?f=Klipper.png"];
     }
     return self;
 }
@@ -52,6 +53,24 @@
     NSString *url = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+
+    [manager setDataTaskWillCacheResponseBlock:^NSCachedURLResponse * _Nonnull(NSURLSession * _Nonnull session, NSURLSessionDataTask * _Nonnull dataTask, NSCachedURLResponse * _Nonnull proposedResponse) {
+        NSCachedURLResponse * responseCached;
+        NSHTTPURLResponse * httpResponse = (NSHTTPURLResponse *)[proposedResponse response];
+        if (dataTask.originalRequest.cachePolicy == NSURLRequestUseProtocolCachePolicy) {
+            NSDictionary *headers = httpResponse.allHeaderFields;
+            NSString * cacheControl = [headers valueForKey:@"Cache-Control"];
+            NSString * expires = [headers valueForKey:@"Expires"];
+            if (cacheControl == nil && expires == nil) {
+                NSLog(@"Server does not provide expiration information and use are using NSURLRequestUseProtocolCachePolicy");
+                responseCached = [[NSCachedURLResponse alloc] initWithResponse:dataTask.response
+                                                                          data:proposedResponse.data
+                                                                      userInfo:@{ @"response": dataTask.response, @"proposed": proposedResponse.data }
+                                                                 storagePolicy:NSURLCacheStorageAllowed];
+            }
+        }
+        return responseCached;
+    }];
 
     [manager GET:url parameters:nil success:^(NSURLSessionTask *task, id responseObject) {
         NSArray *htmlTemp = [[[responseObject objectForKey:@"query"] objectForKey:@"pages"] allValues];
@@ -159,11 +178,12 @@
         
         while([self isOnBlackList:imageURL] || [imageURL hasPrefix:@"<"]) {
             // Get the next image tag
-            if (i > length) {
+            @try {
+                finalSplitString = [[NSString alloc] initWithString:[splitonce objectAtIndex:i]];
+            }
+            @catch (NSException *exception) {
                 return nil;
             }
-
-            finalSplitString = [[NSString alloc] initWithString:[splitonce objectAtIndex:i]];
 
             finalSplit = [finalSplitString componentsSeparatedByString:@"\""];
             
