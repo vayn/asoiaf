@@ -35,6 +35,12 @@
         self.wikiHelper = [[WikipediaHelper alloc] init];
         self.wikiHelper.delegate = self;
 
+        UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"home"]
+                                                                       style:UIBarButtonItemStylePlain
+                                                                      target:self
+                                                                      action:@selector(homePressed:)];
+        self.navigationItem.rightBarButtonItem = homeButton;
+
         self.defaultImage = [UIImage imageNamed:@"huiji_white_logo"];
         self.isUnloaded = YES;
     }
@@ -178,6 +184,13 @@
 
     self.imageView.image = nil;
     [self.titleLabel removeFromSuperview];
+}
+
+#pragma mark - Private methods
+
+- (void)homePressed:(id)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end
