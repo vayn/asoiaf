@@ -18,7 +18,7 @@
 @interface KnowTipTableViewController ()
 
 @property (nonatomic, strong) NSMutableArray *tips;
-@property (nonatomic, strong) WikiViewController *wikiViewController;
+@property (nonatomic, strong) NSMutableDictionary *wikiVCDict;
 
 @end
 
@@ -29,6 +29,7 @@
     self = [super init];
     if (self) {
         _tips = [@[] mutableCopy];
+        _wikiVCDict = [@{} mutableCopy];
         
         [[DataManager sharedManager] getKnowTip:^(id responseObject) {
             NSString *bigTipString = [(NSArray *) responseObject randomObject];
@@ -118,12 +119,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.wikiViewController = [[WikiViewController alloc] init];
-
     KnowTipModel *tipModel = self.tips[indexPath.row];
-    self.wikiViewController.title = tipModel.title;
 
-    [self.navigationController pushViewController:self.wikiViewController animated:YES];
+    WikiViewController *wikiVC = [self.wikiVCDict objectForKey:tipModel.title];
+
+    if (!wikiVC) {
+        wikiVC = [[WikiViewController alloc] init];
+        wikiVC.title = tipModel.title;
+
+        [self.wikiVCDict setObject:wikiVC forKey:tipModel.title];
+    }
+
+    [self.navigationController pushViewController:wikiVC animated:YES];
 }
 
 @end
