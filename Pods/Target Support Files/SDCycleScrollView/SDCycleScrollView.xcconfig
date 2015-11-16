@@ -1,4 +1,4 @@
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/SDCycleScrollView" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/CSSSelectorConverter" "${PODS_ROOT}/Headers/Public/CocoaLumberjack" "${PODS_ROOT}/Headers/Public/IGHTMLQuery" "${PODS_ROOT}/Headers/Public/NUIParse" "${PODS_ROOT}/Headers/Public/RegexKitLite-NoWarning" "${PODS_ROOT}/Headers/Public/SDCycleScrollView" "${PODS_ROOT}/Headers/Public/YFStartView"
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/SDCycleScrollView" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/CSSSelectorConverter" "${PODS_ROOT}/Headers/Public/CocoaLumberjack" "${PODS_ROOT}/Headers/Public/IGHTMLQuery" "${PODS_ROOT}/Headers/Public/NUIParse" "${PODS_ROOT}/Headers/Public/RegexKitLite-NoWarning" "${PODS_ROOT}/Headers/Public/SDCycleScrollView" "${PODS_ROOT}/Headers/Public/UIImageViewAligned" "${PODS_ROOT}/Headers/Public/YFStartView"
 PODS_ROOT = ${SRCROOT}
 SKIP_INSTALL = YES

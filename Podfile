@@ -6,5 +6,6 @@ target 'A Song of Ice and Fire' do
     pod "IGHTMLQuery", '~> 0.8.4'
     pod 'RegexKitLite-NoWarning'
     pod 'YFStartView'
+    pod 'UIImageViewAligned', '~> 0.0.1'
 end
 
