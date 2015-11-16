@@ -93,13 +93,12 @@
     
     NSString *formatedHtmlSrc = [htmlSrc stringByReplacingOccurrencesOfString:@"/wiki/" withString:wikiString];
     formatedHtmlSrc = [formatedHtmlSrc stringByReplacingOccurrencesOfString:ahrefWikiString withString:ahrefWikiStringReplacement];
-    
-    formatedHtmlSrc = [formatedHtmlSrc stringByReplacingOccurrencesOfString:@"//upload.wikimedia.org" withString:@"http://upload.wikimedia.org"];
     formatedHtmlSrc = [formatedHtmlSrc stringByReplacingOccurrencesOfString:@"class=\"editsection\"" withString:@"style=\"visibility: hidden\""];
 
     // Clean the html page
     formatedHtmlSrc = [self cleanHTMLPage:formatedHtmlSrc];
 
+    // Add CSS style
     formatedHtmlSrc = [self.wikicss stringByAppendingString:formatedHtmlSrc];
 
     return formatedHtmlSrc;
