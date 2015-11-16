@@ -60,8 +60,6 @@
     [super viewDidLoad];
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"tableViewCell"];
-
-    self.wikiViewController = [[WikiViewController alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -120,6 +118,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    self.wikiViewController = [[WikiViewController alloc] init];
+
     KnowTipModel *tipModel = self.tips[indexPath.row];
     self.wikiViewController.title = tipModel.title;
 

@@ -26,7 +26,6 @@
 
 @property (nonatomic, strong) WikipediaHelper *wikiHelper;
 @property (nonatomic, strong) UIImage *defaultImage;
-@property (nonatomic, assign) BOOL isUnloaded;
 @property (nonatomic, assign) CGFloat originalHeight;
 
 @end
@@ -47,7 +46,6 @@
         self.navigationItem.rightBarButtonItem = homeButton;
 
         self.defaultImage = [UIImage imageNamed:@"huiji_white_logo"];
-        self.isUnloaded = YES;
     }
     return self;
 }
@@ -59,31 +57,13 @@
     self.webView.delegate = self;
     self.webView.scrollView.delegate = self;
     self.webBrowserView = [[self.webView.scrollView subviews] objectAtIndex:0];
-}
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
+    [self.wikiHelper fetchArticle:self.title];
 
-    if (self.isUnloaded) {
-        [self.wikiHelper fetchArticle:self.title];
+    [self.loadingActivity startAnimating];
+    [self.loadingActivity setHidden:NO];
 
-        [self.loadingActivity startAnimating];
-        [self.loadingActivity setHidden:NO];
-
-        [self setupParallaxHeaderView];
-
-        self.isUnloaded = NO;
-    }
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-
-    [self resetView];
-
-    self.isUnloaded = YES;
+    [self setupParallaxHeaderView];
 }
 
 - (void)didReceiveMemoryWarning {
