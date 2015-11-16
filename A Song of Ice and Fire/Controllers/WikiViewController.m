@@ -10,6 +10,7 @@
 #import "WikipediaHelper.h"
 #import "ParallaxHeaderView.h"
 #import "GradientView.h"
+#import "UIImageViewAligned.h"
 
 #define TITLE_LABEL_HEIGHT 58
 
@@ -19,7 +20,7 @@
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *loadingActivity;
 
 @property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) UIImageViewAligned *imageView;
 @property (nonatomic, strong) UIView *webBrowserView;
 @property (nonatomic, strong) GradientView *blurView;
 @property (nonatomic, strong) ParallaxHeaderView *parallaxHeaderView;
@@ -85,7 +86,7 @@
 
 - (void)setupHeaderView
 {
-    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 223)];
+    self.imageView = [[UIImageViewAligned alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 223)];
     self.imageView.contentMode = UIViewContentModeScaleAspectFill;
     self.imageView.clipsToBounds = YES;
 
@@ -114,7 +115,7 @@
 
 - (void)setupParallaxHeaderView
 {
-    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 223)];
+    self.imageView = [[UIImageViewAligned alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 223)];
     self.imageView.contentMode = UIViewContentModeScaleAspectFill;
 
     self.originalHeight = self.imageView.frame.size.height;
