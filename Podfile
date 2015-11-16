@@ -7,5 +7,6 @@ target 'A Song of Ice and Fire' do
     pod 'RegexKitLite-NoWarning'
     pod 'YFStartView'
     pod 'UIImageViewAligned', '~> 0.0.1'
+    pod 'JTSImageViewController', '~> 1.5.1'
 end
 
