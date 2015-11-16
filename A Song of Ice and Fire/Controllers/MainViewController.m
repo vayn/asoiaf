@@ -325,10 +325,8 @@
 
         if (!self.showMenu) {
             [self moveMenuToOriginalPosition];
-        } else {
-            if (self.showingSlideMenu) {
-                [self moveMenuRight];
-            }
+        } else if (self.showingSlideMenu) {
+            [self moveMenuRight];
         }
     }
 
@@ -345,10 +343,10 @@
 
         self.preVelocity = velocity;
 
-        if (sender.view.frame.origin.x >= 0) {
-            sender.view.frame = CGRectMake(0, sender.view.frame.origin.y,
-                                           sender.view.frame.size.width, sender.view.frame.size.height);
-        }
+        CGFloat newX =  MAX(-sender.view.frame.size.width, MIN(0, sender.view.frame.origin.x));
+
+        sender.view.frame = CGRectMake(newX, sender.view.frame.origin.y,
+                                       sender.view.frame.size.width, sender.view.frame.size.height);
     }
 
 }
