@@ -25,7 +25,7 @@
 
 + (id)parallaxHeaderViewWithSubView:(UIView *)subView forSize:(CGSize)headerSize
 {
-    // 根据传入的参数确定frame
+    // 根据传入的参数确定 frame
     ParallaxHeaderView *headerView = [[ParallaxHeaderView alloc] initWithFrame:CGRectMake(0, 0, headerSize.width, headerSize.height)];
     
     // 初始化设置并返回
@@ -35,7 +35,7 @@
 
 + (id)parallaxWebHeaderViewWithSubView:(UIView *)subView forSize:(CGSize)headerSize
 {
-    // 根据传入的参数确定frame
+    // 根据传入的参数确定 frame
     ParallaxHeaderView *headerView = [[ParallaxHeaderView alloc] initWithFrame:CGRectMake(0, -20, headerSize.width, headerSize.height)];
     
     // 初始化设置并返回
@@ -45,7 +45,7 @@
 
 + (id)parallaxThemeHeaderViewWithSubView:(UIView *)subView forSize:(CGSize)headerSize andImage: (UIImage *)blurViewImageParam
 {
-    // 根据传入的参数确定frame
+    // 根据传入的参数确定 frame
     ParallaxHeaderView *headerView = [[ParallaxHeaderView alloc] initWithFrame:CGRectMake(0, 0, headerSize.width, headerSize.height)];
     
     // 初始化设置并返回
@@ -65,7 +65,7 @@
         self.clipsToBounds = YES;
          */
     } else if (offset.y < -154) {
-        //只是留个位置供接触到父ViewController的方法
+        // 只是留个位置供接触到父 ViewController 的方法
         [self.delegate lockDirection];
     } else {
         CGFloat delta = 0.0f;
@@ -86,9 +86,9 @@
     //CGRect frame = self.imageScrollView.frame;
     
     if (offset.y > 0) {
-
+        // ...
     } else if (offset.y < -154) {
-        // 只是留个位置供接触到父ViewController的方法
+        // 只是留个位置供接触到父 ViewController 的方法
         [self.delegate lockDirection];
     } else {
         CGFloat delta = 0.0f;
@@ -121,7 +121,7 @@
         rect.origin.y += delta;
         rect.size.height -= delta;
         
-        //调整透明度实现模糊渐变
+        // 调整透明度实现模糊渐变
         self.bluredImageView.alpha =  (95+offset.y) / 95;
         
         self.imageScrollView.frame = rect;
@@ -131,17 +131,17 @@
 
 - (void)initialSetupForCustomSubView:(UIView *)subView
 {
-    //初始化中间层imageScrollView
+    // 初始化中间层 imageScrollView
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
     scrollView.scrollsToTop = NO;
     scrollView.backgroundColor = [UIColor whiteColor];
     self.imageScrollView = scrollView;
     
-    //设置内容层的自动布局并存储
+    // 设置内容层的自动布局并存储
     subView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.subView = subView;
     
-    //将内容层View添加到scrollView上
+    // 将内容层 View 添加到 scrollView 上
     [self.imageScrollView addSubview:subView];
     
     [self addSubview:self.imageScrollView];
@@ -149,19 +149,19 @@
 
 - (void)initialThemeSetupForCustomSubView:(UIView *)subView andImage: (UIImage *)blurViewImageParam;
 {
-    //初始化中间层imageScrollView
+    // 初始化中间层 imageScrollView
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
     scrollView.backgroundColor = [UIColor whiteColor];
     self.imageScrollView = scrollView;
     
-    //设置内容层的自动布局并存储
+    // 设置内容层的自动布局并存储
     subView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.subView = subView;
     
-    //将内容层View添加到scrollView上
+    // 将内容层 View 添加到 scrollView 上
     [self.imageScrollView addSubview:subView];
     
-    //将模糊层添加到scrollView上
+    // 将模糊层添加到scrollView上
     self.bluredImageView = [[UIImageView alloc] initWithFrame:self.subView.frame];
     self.bluredImageView.autoresizingMask = self.subView.autoresizingMask;
     self.bluredImageView.alpha = 1.0f;
@@ -178,8 +178,8 @@
 //为模糊效果新加的函数
 - (void)refreshBlurViewForNewImage
 {
-//    UIImage *screenShot = [self screenShotOfView:self];
-//    screenShot = [screenShot applyBlurWithRadius:5 tintColor:nil saturationDeltaFactor:1.0 maskImage:nil];
+    //UIImage *screenShot = [self screenShotOfView:self];
+    //screenShot = [screenShot applyBlurWithRadius:5 tintColor:nil saturationDeltaFactor:1.0 maskImage:nil];
     
     if (self.blurViewImage != nil) {
         UIImage *screenShot = [self.blurViewImage applyBlurWithRadius:5 tintColor:nil saturationDeltaFactor:1.0 maskImage:nil];

@@ -162,27 +162,27 @@
         UIImage *image = [UIImage imageWithData:imageData];
         self.imageView.image = image;
     } else {
-        // Reset subviews of self.webView if there is no image in the wiki page
-
         /**
          * When use ParallaxHeaderView, we don't need to reset header view
-
-        // Remove UIImageView
-        [self.imageView removeFromSuperview];
-
-        CGRect titleFrame = self.titleLabel.frame;
-        titleFrame.origin.y = 0;
-        self.titleLabel.frame = titleFrame;
-
-        [self.webView.scrollView addSubview:self.titleLabel];
-
-        // Restore UIWebBrowserView's position
-        [UIView animateWithDuration:1.0 animations:^{
-            CGRect f = self.webBrowserView.frame;
-            f.origin.y = TITLE_LABEL_HEIGHT;
-            self.webBrowserView.frame = f;
-        }];
-
+         *
+         * // Reset subviews of self.webView if there is no image in the wiki page
+         *
+         * // Remove UIImageView
+         * [self.imageView removeFromSuperview];
+         *
+         * CGRect titleFrame = self.titleLabel.frame;
+         * titleFrame.origin.y = 0;
+         * self.titleLabel.frame = titleFrame;
+         *
+         * [self.webView.scrollView addSubview:self.titleLabel];
+         *
+         * // Restore UIWebBrowserView's position
+         * [UIView animateWithDuration:1.0 animations:^{
+         *     CGRect f = self.webBrowserView.frame;
+         *     f.origin.y = TITLE_LABEL_HEIGHT;
+         *     self.webBrowserView.frame = f;
+         * }];
+         *
          */
     }
 
@@ -226,15 +226,15 @@
 {
     CGFloat incrementY = scrollView.contentOffset.y;
     if (incrementY < 0) {
-        // 不断设置titleLabel以保证frame正确
+        // 不断设置 titleLabel 以保证 frame 正确
         self.titleLabel.frame = CGRectMake(15, self.originalHeight - 80 - incrementY, self.view.frame.size.width - 30, 60);
 
-        // 不断添加删除blurView.layer.sublayers![0]以保证frame正确
+        // 不断添加删除 blurView.layer.sublayers![0] 以保证 frame 正确
         self.blurView.frame = CGRectMake(0, -85 - incrementY, self.view.frame.size.width, self.originalHeight + 85);
         [self.blurView.layer.sublayers[0] removeFromSuperlayer];
         [self.blurView insertTwiceTransparentGradient];
 
-        // 使Label不被遮挡
+        // 使 Label 不被遮挡
         [self.imageView bringSubviewToFront:self.titleLabel];
     }
 
