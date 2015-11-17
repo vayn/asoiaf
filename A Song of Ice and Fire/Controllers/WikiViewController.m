@@ -14,6 +14,7 @@
 #import "JTSImageViewController.h"
 
 #define TITLE_LABEL_HEIGHT 58
+#define BLUR_VIEW_OFFSET 85
 
 @interface WikiViewController () <
 WikipediaHelperDelegate,
@@ -143,7 +144,8 @@ UIGestureRecognizerDelegate
 
     [self.imageView addSubview:self.titleLabel];
 
-    self.blurView = [[GradientView alloc] initWithFrame:CGRectMake(0, -85, self.view.frame.size.width, self.originalHeight + 85)
+    self.blurView = [[GradientView alloc] initWithFrame:CGRectMake(0, -BLUR_VIEW_OFFSET,
+                                                                   self.view.frame.size.width, self.originalHeight + BLUR_VIEW_OFFSET)
                                                    type:TransparentGradientTwiceType];
     
     [self.imageView addSubview:self.blurView];
@@ -274,7 +276,8 @@ UIGestureRecognizerDelegate
         self.titleLabel.frame = CGRectMake(15, self.originalHeight - 80 - incrementY, self.view.frame.size.width - 30, 60);
 
         // 不断添加删除 blurView.layer.sublayers![0] 以保证 frame 正确
-        self.blurView.frame = CGRectMake(0, -85 - incrementY, self.view.frame.size.width, self.originalHeight + 85);
+        self.blurView.frame = CGRectMake(0, -BLUR_VIEW_OFFSET - incrementY,
+                                         self.view.frame.size.width, self.originalHeight + BLUR_VIEW_OFFSET);
         [self.blurView.layer.sublayers[0] removeFromSuperlayer];
         [self.blurView insertTwiceTransparentGradient];
 
