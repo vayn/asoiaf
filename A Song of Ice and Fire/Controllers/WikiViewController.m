@@ -204,9 +204,17 @@ UIGestureRecognizerDelegate
 - (void)dataLoaded:(NSString *)htmlPage withUrlMainImage:(NSString *)urlMainImage
 {
     if(![urlMainImage isEqualToString:@""] && urlMainImage != nil) {
-        NSData *imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: urlMainImage]];
-        UIImage *image = [UIImage imageWithData:imageData];
-        self.imageView.image = image;
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            // Perform long running process
+            NSData *imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: urlMainImage]];
+            UIImage *image = [UIImage imageWithData:imageData];
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // Update the UI
+                self.imageView.image = image;
+            });
+        });
+
     } else {
         /**
          * When use ParallaxHeaderView, we don't need to reset header view
