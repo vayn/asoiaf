@@ -246,7 +246,14 @@ UIGestureRecognizerDelegate
     NSString *prefix = @"http://asoiaf.huiji.wiki/wiki/";
 
     if (navigationType == UIWebViewNavigationTypeLinkClicked && [url hasPrefix:@"http"]) {
-        if ([url hasPrefix:prefix]) {
+        // Check if the clicked link is a image or not
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\.(jpg|gif|png)"
+                                                                               options:NSRegularExpressionCaseInsensitive
+                                                                                 error:nil];
+        NSTextCheckingResult *match = [regex firstMatchInString:url options:0 range:NSMakeRange(0, [url length])];
+
+        // All internal links except IMAGE could create new wiki view controller
+        if ([url hasPrefix:prefix] && !match) {
             WikiViewController *nextWikiVC = [[WikiViewController alloc] init];
 
             NSString *title = [[url substringFromIndex:[prefix length]] stringByRemovingPercentEncoding];
