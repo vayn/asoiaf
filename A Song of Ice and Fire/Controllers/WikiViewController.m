@@ -15,7 +15,13 @@
 
 #define TITLE_LABEL_HEIGHT 58
 
-@interface WikiViewController () <WikipediaHelperDelegate, UIWebViewDelegate, UIScrollViewDelegate, ParallaxHeaderViewDelegate>
+@interface WikiViewController () <
+WikipediaHelperDelegate,
+UIWebViewDelegate,
+UIScrollViewDelegate,
+ParallaxHeaderViewDelegate,
+UIGestureRecognizerDelegate
+>
 
 @property (nonatomic, weak) IBOutlet UIWebView *webView;
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *loadingActivity;
@@ -44,7 +50,7 @@
         UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"home"]
                                                                        style:UIBarButtonItemStylePlain
                                                                       target:self
-                                                                      action:@selector(homePressed:)];
+                                                                      action:@selector(homeButtonPressed:)];
         self.navigationItem.rightBarButtonItem = homeButton;
 
         self.defaultImage = [UIImage imageNamed:@"huiji_white_logo"];
@@ -66,6 +72,7 @@
     [self.loadingActivity setHidden:NO];
 
     [self setupParallaxHeaderView];
+    [self setupGestures];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -155,6 +162,41 @@
     [self.webView.scrollView addSubview:self.parallaxHeaderView];
 }
 
+
+#pragma mark - Setup Gestures
+
+- (void)setupGestures
+{
+    UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+    [self.webView addGestureRecognizer:singleTap];
+    singleTap.delegate = self;
+    singleTap.cancelsTouchesInView = NO;
+}
+
+-(void)handleSingleTap:(UITapGestureRecognizer *)sender
+{
+    CGPoint pt = [sender locationInView:self.webView];
+    NSString *imgURL = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).src", pt.x, pt.y];
+    NSString *imageSource = [self.webView stringByEvaluatingJavaScriptFromString:imgURL];
+    if (imageSource.length > 0) {
+        // Create image info
+        JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
+        imageInfo.imageURL = [NSURL URLWithString:imageSource];
+
+        imageInfo.referenceRect = self.webView.frame;
+        imageInfo.referenceView = self.webView.superview;
+
+        // Setup view controller
+        JTSImageViewController *imageViewer = [[JTSImageViewController alloc]
+                                               initWithImageInfo:imageInfo
+                                               mode:JTSImageViewControllerMode_Image
+                                               backgroundStyle:JTSImageViewControllerBackgroundOption_Scaled];
+
+        // Present the view controller.
+        [imageViewer showFromViewController:self transition:JTSImageViewControllerTransition_FromOriginalPosition];
+    }
+}
+
 #pragma mark - WikipediaHelperDelegate
 
 - (void)dataLoaded:(NSString *)htmlPage withUrlMainImage:(NSString *)urlMainImage
@@ -203,35 +245,12 @@
 
     if (navigationType == UIWebViewNavigationTypeLinkClicked && [url hasPrefix:@"http"]) {
         if ([url hasPrefix:prefix]) {
-            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(jpg|png|gif)"
-                                                                                   options:NSRegularExpressionCaseInsensitive
-                                                                                     error:nil];
-            NSInteger matchNum =  [regex numberOfMatchesInString:url
-                                                         options:NSMatchingWithTransparentBounds
-                                                           range:NSMakeRange(0, [url length])];
-            if (matchNum > 0) {
-                // Create image info
-                JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
-                imageInfo.imageURL = [NSURL URLWithString:url];
-                imageInfo.referenceRect = self.webView.frame;
-                imageInfo.referenceView = self.webView.superview;
+            WikiViewController *nextWikiVC = [[WikiViewController alloc] init];
 
-                // Setup view controller
-                JTSImageViewController *imageViewer = [[JTSImageViewController alloc]
-                                                       initWithImageInfo:imageInfo
-                                                       mode:JTSImageViewControllerMode_Image
-                                                       backgroundStyle:JTSImageViewControllerBackgroundOption_Scaled];
+            NSString *title = [[url substringFromIndex:[prefix length]] stringByRemovingPercentEncoding];
+            nextWikiVC.title = title;
 
-                // Present the view controller.
-                [imageViewer showFromViewController:self transition:JTSImageViewControllerTransition_FromOriginalPosition];
-            } else {
-                WikiViewController *nextWikiVC = [[WikiViewController alloc] init];
-
-                NSString *title = [[url substringFromIndex:[prefix length]] stringByRemovingPercentEncoding];
-                nextWikiVC.title = title;
-
-                [self.navigationController pushViewController:nextWikiVC animated:YES];
-            }
+            [self.navigationController pushViewController:nextWikiVC animated:YES];
         }
         return NO;
     }
@@ -266,6 +285,13 @@
     [self.parallaxHeaderView layoutWebHeaderViewForScrollViewOffset:scrollView.contentOffset];
 }
 
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
+
 #pragma mark - ParallaxHeaderViewDelegate
 
 /**
@@ -280,7 +306,7 @@
 
 #pragma mark - Private methods
 
-- (void)homePressed:(id)sender
+- (void)homeButtonPressed:(id)sender
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
 }

@@ -1,5 +1,8 @@
 platform :ios, '8.0'
 
+# Ignore all warnings from all pods
+inhibit_all_warnings!
+
 target 'A Song of Ice and Fire' do
     pod 'SDCycleScrollView', '~> 1.3'
     pod 'AFNetworking', '~> 3.0.0-beta.2'
