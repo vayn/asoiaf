@@ -139,7 +139,7 @@
 
     // Append copyright to the end of article
     NSString *copyright = @"<div id=\"copyright\">\
-版权信息 2015\
+本站文字内容若未经特别声明，则遵循协议CC-BY-SA.此协议与百度百科不相容，请勿转载至百度百科，否则一经发现我们会通过灰机wiki平台维权投诉，责任自负。\
 </div>";
     IGHTMLDocument *copyrightNode = [[IGHTMLDocument alloc] initWithHTMLString:copyright error:nil];
     [contents appendWithNode:copyrightNode];

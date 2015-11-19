@@ -214,7 +214,6 @@ UIGestureRecognizerDelegate
                 self.imageView.image = image;
             });
         });
-
     } else {
         /**
          * When use ParallaxHeaderView, we don't need to reset header view
