@@ -34,7 +34,6 @@ UIGestureRecognizerDelegate
 @property (nonatomic, strong) ParallaxHeaderView *parallaxHeaderView;
 
 @property (nonatomic, strong) WikipediaHelper *wikiHelper;
-@property (nonatomic, strong) UIImage *defaultImage;
 @property (nonatomic, assign) CGFloat originalHeight;
 
 @end
@@ -53,8 +52,6 @@ UIGestureRecognizerDelegate
                                                                       target:self
                                                                       action:@selector(homeButtonPressed:)];
         self.navigationItem.rightBarButtonItem = homeButton;
-
-        self.defaultImage = [UIImage imageNamed:@"huiji_white_logo"];
     }
     return self;
 }

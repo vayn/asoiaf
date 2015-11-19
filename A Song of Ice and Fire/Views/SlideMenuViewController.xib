@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SlideMenuViewController">
             <connections>
+                <outlet property="logoButton" destination="Rce-RR-WxR" id="QDr-KW-fWs"/>
                 <outlet property="myTableView" destination="isL-ZY-Fub" id="ayG-Gg-cIR"/>
                 <outlet property="searchBar" destination="61i-ns-waM" id="koU-pV-eZL"/>
                 <outlet property="searchDisplayController" destination="vM5-dh-SHZ" id="gZ1-Wc-JTu"/>
@@ -39,10 +40,14 @@
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tgA-bV-r89" userLabel="Logo View">
                     <rect key="frame" x="0.0" y="109" width="185" height="78"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="huiji_white_logo" translatesAutoresizingMaskIntoConstraints="NO" id="iWS-wH-Xh4" userLabel="Logo Image View">
-                            <rect key="frame" x="29" y="1" width="112" height="67"/>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rce-RR-WxR">
+                            <rect key="frame" x="4" y="8" width="177" height="65"/>
                             <animations/>
-                        </imageView>
+                            <state key="normal" backgroundImage="huiji_white_logo"/>
+                            <connections>
+                                <action selector="logoButtonPressed:" destination="-1" eventType="touchUpInside" id="Vdl-cm-XB0"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <animations/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>

@@ -221,4 +221,23 @@
           }];
 }
 
+- (void)getRandomPage:(ManagerCompletionBlock)completionBlock
+{
+    NSString *URL = [NSString stringWithFormat:@"%@/api.php?action=query&list=random&rnlimit=1&format=json", self.siteURL];
+    [_manager GET:URL
+       parameters:nil
+          success:^(NSURLSessionDataTask *task, id responseObject) {
+              NSDictionary *random = responseObject[@"query"][@"random"][0];
+              NSString *title = random[@"title"];
+
+              if ([title hasPrefix:@"File:"]) {
+                  [self getRandomPage:completionBlock];
+              } else {
+                  completionBlock(random);
+              }
+          } failure:^(NSURLSessionDataTask *task, NSError *error) {
+              NSLog(@"getRandomPage Error: %@", error);
+          }];
+}
+
 @end

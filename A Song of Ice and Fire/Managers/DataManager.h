@@ -18,5 +18,6 @@ typedef void (^ManagerCompletionBlock)(id responseObject);
 - (void)getPortals:(ManagerCompletionBlock)completionBlock;
 - (void)getPageThumbnailWithPageId:(NSNumber *)pageId completionBlock:(ManagerCompletionBlock)completionBlock;
 - (void)getKnowTip:(ManagerCompletionBlock)completionBlock;
+- (void)getRandomPage:(ManagerCompletionBlock)completionBlock;
 
 @end

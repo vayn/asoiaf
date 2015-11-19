@@ -7,11 +7,14 @@
 //
 
 #import "SlideMenuViewController.h"
+#import "DataManager.h"
+#import "WikiViewController.h"
 
 @interface SlideMenuViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *myTableView;
 @property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
+@property (weak, nonatomic) IBOutlet UIButton *logoButton;
 
 @property (nonatomic, strong) NSArray *categoryArray;
 
@@ -98,6 +101,16 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     NSLog(@"%@", searchBar.text);
+}
+
+#pragma mark - logoButton methods
+- (IBAction)logoButtonPressed:(id)sender {
+    [[DataManager sharedManager] getRandomPage:^(NSDictionary *responseObject) {
+
+        WikiViewController *wikiVC = [[WikiViewController alloc] init];
+        wikiVC.title = responseObject[@"title"];
+        [self.navigationController pushViewController:wikiVC animated:YES];
+    }];
 }
 
 @end
