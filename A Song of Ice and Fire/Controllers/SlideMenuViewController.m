@@ -106,11 +106,19 @@
 #pragma mark - logoButton methods
 - (IBAction)logoButtonPressed:(id)sender
 {
+    __weak typeof(self) weakSelf = self;
+
     [[DataManager sharedManager] getRandomPage:^(NSDictionary *responseObject) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+
         WikiViewController *wikiVC = [[WikiViewController alloc] init];
         wikiVC.title = responseObject[@"title"];
 
         [self.navigationController pushViewController:wikiVC animated:YES];
+
+        if (strongSelf) {
+            strongSelf.view.frame = CGRectOffset(strongSelf.view.frame, -strongSelf.view.frame.size.width, 0);
+        }
     }];
 }
 
