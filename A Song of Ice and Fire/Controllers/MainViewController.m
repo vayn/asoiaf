@@ -98,6 +98,13 @@
     }];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    [self moveMenuToOriginalPosition];
+}
+
 #pragma mark - Button Actions
 
 - (void)btnMoveMenuRight:(id)sender
