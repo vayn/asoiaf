@@ -104,11 +104,12 @@
 }
 
 #pragma mark - logoButton methods
-- (IBAction)logoButtonPressed:(id)sender {
+- (IBAction)logoButtonPressed:(id)sender
+{
     [[DataManager sharedManager] getRandomPage:^(NSDictionary *responseObject) {
-
         WikiViewController *wikiVC = [[WikiViewController alloc] init];
         wikiVC.title = responseObject[@"title"];
+
         [self.navigationController pushViewController:wikiVC animated:YES];
     }];
 }
