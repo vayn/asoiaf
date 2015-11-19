@@ -206,6 +206,13 @@ UIGestureRecognizerDelegate
             NSData *imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: urlMainImage]];
             UIImage *image = [UIImage imageWithData:imageData];
 
+            /**
+             * Check for imageView before dispatching to the main thread.
+             * This avoids the main queue dispatch if the network request took a long time and
+             * the imageView is no longer there for one reason or another.
+             */
+            if (!self.imageView) return;
+
             dispatch_async(dispatch_get_main_queue(), ^{
                 // Update the UI
                 self.imageView.image = image;
