@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *logoButton;
 
 @property (nonatomic, strong) NSArray *categoryArray;
+@property (nonatomic, strong) NSString *randomTitle;
 
 @end
 
@@ -45,6 +46,15 @@
     // Do any additional setup after loading the view from its nib.
 
     [self.myTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"myTableViewCell"];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    [[DataManager sharedManager] getRandomTitle:^(NSDictionary *responseObject) {
+        self.randomTitle = responseObject[@"title"];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -104,14 +114,21 @@
 }
 
 #pragma mark - logoButton methods
+
+// Easter Egg
 - (IBAction)logoButtonPressed:(id)sender
 {
-    [[DataManager sharedManager] getRandomPage:^(NSDictionary *responseObject) {
+    if (self.randomTitle) {
         WikiViewController *wikiVC = [[WikiViewController alloc] init];
-        wikiVC.title = responseObject[@"title"];
-
+        wikiVC.title = self.randomTitle;
         [self.navigationController pushViewController:wikiVC animated:YES];
-    }];
+    } else {
+        [[DataManager sharedManager] getRandomTitle:^(NSDictionary *responseObject) {
+            WikiViewController *wikiVC = [[WikiViewController alloc] init];
+            wikiVC.title = responseObject[@"title"];
+            [self.navigationController pushViewController:wikiVC animated:YES];
+        }];
+    }
 }
 
 @end
