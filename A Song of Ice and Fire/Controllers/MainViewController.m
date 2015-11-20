@@ -84,9 +84,6 @@
                  object:nil
                  queue:nil
             usingBlock:^(NSNotification * _Nonnull note) {
-                self.overlayView.alpha = OVERLAY_ALPHA_END;
-                [self.view addSubview:self.overlayView];
-
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"应用未联网"
                                                                                message:@"请联网后重新打开应用"
                                                                         preferredStyle:UIAlertControllerStyleAlert];
