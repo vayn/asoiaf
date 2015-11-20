@@ -201,7 +201,7 @@ static OSMessage *message;
     return  [[self base64Encode:string] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
 }
 +(NSString*)urlDecode:(NSString*)input{
-   return [[input stringByReplacingOccurrencesOfString:@"+" withString:@" "]stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+   return [[input stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByRemovingPercentEncoding];
 }
 /**
  *  截屏功能。via：http://stackoverflow.com/a/8017292/3825920
