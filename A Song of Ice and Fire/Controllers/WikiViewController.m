@@ -48,10 +48,9 @@ UIGestureRecognizerDelegate
         self.wikiHelper = [[WikipediaHelper alloc] init];
         self.wikiHelper.delegate = self;
 
-        UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"home"]
-                                                                       style:UIBarButtonItemStylePlain
-                                                                      target:self
-                                                                      action:@selector(homeButtonPressed:)];
+        UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply
+                                                                                    target:self
+                                                                                    action:@selector(homeButtonPressed:)];
         UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
                                                                                      target:self
                                                                                      action:@selector(shareButtonPressed:)];

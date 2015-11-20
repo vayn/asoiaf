@@ -30,16 +30,16 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 
+    // 全局注册 appId
+    [OpenShare connectQQWithAppId:@"1103194207"];
+    [OpenShare connectWeixinWithAppId:@"wxd930ea5d5a258f4f"];
+
     YFStartView *startView = [YFStartView startView];
     startView.randomImages = [NSMutableArray arrayWithObjects:@"launch_bg", nil];
     startView.logoPosition = LogoPositionCenter;
     startView.logoImage = [UIImage imageNamed:@"launch_logo"];
 
     [startView configYFStartView];
-
-    // 全局注册 appId
-    [OpenShare connectQQWithAppId:@"1103194207"];
-    [OpenShare connectWeixinWithAppId:@"wxd930ea5d5a258f4f"];
 
     return YES;
 }
