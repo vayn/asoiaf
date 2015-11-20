@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
 #import "YFStartView.h"
+#import "OpenShareHeader.h"
 
 @interface AppDelegate ()
 
@@ -36,6 +37,10 @@
 
     [startView configYFStartView];
 
+    // 全局注册 appId
+    [OpenShare connectQQWithAppId:@"1103194207"];
+    [OpenShare connectWeixinWithAppId:@"wxd930ea5d5a258f4f"];
+
     return YES;
 }
 
@@ -59,6 +64,16 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options
+{
+    // 如果 OpenShare 能处理这个回调，就调用 block 中的方法，如果不能处理，就交给其他（比如支付宝）。
+    if ([OpenShare handleOpenURL:url]) {
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 @end

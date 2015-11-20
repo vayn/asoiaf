@@ -227,10 +227,20 @@
     [_manager GET:URL
        parameters:nil
           success:^(NSURLSessionDataTask *task, id responseObject) {
+              NSArray *blacklist = @[@"File:", @"Category:", @"Talk:", @"User:", @"MediaWiki"];
+              BOOL isOnBlackList = NO;
+
               NSDictionary *random = responseObject[@"query"][@"random"][0];
               NSString *title = random[@"title"];
 
-              if ([title hasPrefix:@"File:"]) {
+              for (NSString *prefix in blacklist) {
+                  if ([title hasPrefix:prefix]) {
+                      isOnBlackList = YES;
+                      break;
+                  }
+              }
+
+              if (isOnBlackList) {
                   [self getRandomPage:completionBlock];
               } else {
                   completionBlock(random);

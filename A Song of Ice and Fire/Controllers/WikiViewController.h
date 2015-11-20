@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+#ifdef DEBUG
+#   define ULog(fmt, ...) {\
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"%s\n [Line %d] ", __PRETTY_FUNCTION__, __LINE__] message:[NSString stringWithFormat:fmt, ##__VA_ARGS__] preferredStyle:UIAlertControllerStyleAlert];\
+        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) { }];\
+        [alert addAction:defaultAction];\
+        [self presentViewController:alert animated:YES completion:nil];\
+    }
+#else
+#   define ULog(...)
+#endif
+
 @interface WikiViewController : UIViewController
 
 @end

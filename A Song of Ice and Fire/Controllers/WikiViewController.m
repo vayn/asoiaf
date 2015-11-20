@@ -12,6 +12,7 @@
 #import "GradientView.h"
 #import "UIImageViewAligned.h"
 #import "JTSImageViewController.h"
+#import "OpenShareHeader.h"
 
 #define TITLE_LABEL_HEIGHT 58
 #define BLUR_VIEW_OFFSET 85
@@ -51,7 +52,10 @@ UIGestureRecognizerDelegate
                                                                        style:UIBarButtonItemStylePlain
                                                                       target:self
                                                                       action:@selector(homeButtonPressed:)];
-        self.navigationItem.rightBarButtonItem = homeButton;
+        UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                                                                     target:self
+                                                                                     action:@selector(shareButtonPressed:)];
+        self.navigationItem.rightBarButtonItems = @[homeButton, shareButton];
     }
     return self;
 }
@@ -330,6 +334,29 @@ UIGestureRecognizerDelegate
 - (void)homeButtonPressed:(id)sender
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (void)shareButtonPressed:(id)sender
+{
+    //分享纯文本消息到微信朋友圈，其他类型可以参考示例代码
+    OSMessage *msg = [[OSMessage alloc] init];
+
+    msg.title = [NSString stringWithFormat:@"冰与火之歌 - %@", self.title];
+    msg.link = [NSString stringWithFormat:@"http://asoiaf.huiji.wiki/wiki/%@", self.title];
+
+    UIImage *image = self.imageView.image;
+
+    if (image) {
+        msg.image = image;
+    } else {
+        msg.image = [UIImage imageNamed:@"launch_bg"];
+    }
+
+    [OpenShare shareToWeixinTimeline:msg Success:^(OSMessage *message) {
+        ULog(@"微信分享到朋友圈成功：\n%@", message);
+    } Fail:^(OSMessage *message, NSError *error) {
+        ULog(@"微信分享到朋友圈失败：\n%@\n%@", error, message);
+    }];
 }
 
 @end
