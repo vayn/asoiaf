@@ -30,7 +30,7 @@
             <animations/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-            <point key="canvasLocation" x="449.5" y="395.5"/>
+            <point key="canvasLocation" x="42.5" y="361.5"/>
         </view>
     </objects>
 </document>
