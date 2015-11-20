@@ -1,1 +1,0 @@
-../../../OpenShare/openshare/OpenShare+QQ.h
