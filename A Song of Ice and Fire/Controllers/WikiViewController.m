@@ -338,7 +338,7 @@ UIGestureRecognizerDelegate
 
 - (void)shareButtonPressed:(id)sender
 {
-    //分享纯文本消息到微信朋友圈，其他类型可以参考示例代码
+    // 分享链接消息到微信朋友圈
     OSMessage *msg = [[OSMessage alloc] init];
 
     msg.title = [NSString stringWithFormat:@"冰与火之歌 - %@", self.title];
