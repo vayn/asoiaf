@@ -221,7 +221,7 @@
           }];
 }
 
-- (void)getRandomTitle:(ManagerCompletionBlock)completionBlock
+- (void)getRandomTitle:(void (^)(NSString *title))completionBlock
 {
     NSString *URL = [NSString stringWithFormat:@"%@/api.php?action=query&list=random&rnlimit=1&format=json", self.siteURL];
     [_manager GET:URL
@@ -243,7 +243,7 @@
               if (isOnBlackList) {
                   [self getRandomTitle:completionBlock];
               } else {
-                  completionBlock(random);
+                  completionBlock(title);
               }
           } failure:^(NSURLSessionDataTask *task, NSError *error) {
               NSLog(@"getRandomPage Error: %@", error);

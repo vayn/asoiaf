@@ -52,8 +52,8 @@
 {
     [super viewWillAppear:animated];
 
-    [[DataManager sharedManager] getRandomTitle:^(NSDictionary *responseObject) {
-        self.randomTitle = responseObject[@"title"];
+    [[DataManager sharedManager] getRandomTitle:^(NSString *title) {
+        self.randomTitle = title;
     }];
 }
 
@@ -123,9 +123,9 @@
         wikiVC.title = self.randomTitle;
         [self.navigationController pushViewController:wikiVC animated:YES];
     } else {
-        [[DataManager sharedManager] getRandomTitle:^(NSDictionary *responseObject) {
+        [[DataManager sharedManager] getRandomTitle:^(NSString *title) {
             WikiViewController *wikiVC = [[WikiViewController alloc] init];
-            wikiVC.title = responseObject[@"title"];
+            wikiVC.title = title;
             [self.navigationController pushViewController:wikiVC animated:YES];
         }];
     }
