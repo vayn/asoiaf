@@ -20,9 +20,9 @@
 
 #import "FLAnimatedImage.h"
 
-#define SLIDE_TIMING 0.25
-#define OVERLAY_ALPHA_BEGAN 0.0
-#define OVERLAY_ALPHA_END 0.7
+static const CGFloat SLIDE_TIMING = 0.25;
+static const CGFloat OVERLAY_ALPHA_BEGAN = 0.0;
+static const CGFloat OVERLAY_ALPHA_END = 0.7;
 
 @interface MainViewController () <UIGestureRecognizerDelegate>
 
@@ -80,7 +80,7 @@
 
     [self setupGestures];
 
-    // When the network is disconnected
+    // Test if the network is disconnected
     [[NSNotificationCenter defaultCenter]
      addObserverForName:@"ERR_INTERNET_DISCONNECTED"
                  object:nil

@@ -250,4 +250,20 @@
           }];
 }
 
+- (void)getCategoryList:(NSString *)category completionBlock:(void (^)(NSArray *))completionBlock
+{
+    NSString *API = [NSString stringWithFormat:@"%@/api.php?action=query&list=categorymembers&cmtype=subcat&cmtitle=Category:%@&rawcontinue&format=json",
+                     self.siteURL, category];
+    NSString *URL = [API stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+
+    [_manager GET:URL
+       parameters:nil
+          success:^(NSURLSessionDataTask *task, id responseObject) {
+              NSArray *categoryList = responseObject[@"query"][@"categorymembers"];
+              completionBlock(categoryList);
+          } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+              NSLog(@"getCategoryList Error: %@", error);
+          }];
+}
+
 @end

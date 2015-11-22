@@ -13,6 +13,7 @@
 #import "PortalCollectionHeaderView.h"
 #import "DataManager.h"
 #import "PortalModel.h"
+#import "CatListViewController.h"
 
 @interface PortalCollectionViewController () <UICollectionViewDelegateFlowLayout>
 
@@ -142,7 +143,12 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     PortalModel *portal =  self.portals[indexPath.row];
-    NSLog(@"Selecte: %@", portal.title);
+    NSLog(@"Selected: %@", portal.title);
+
+    CatListViewController *catListVC = [[CatListViewController alloc] initWithStyle:UITableViewStylePlain];
+    catListVC.parentCategory = portal.title;
+    
+    [self.navigationController pushViewController:catListVC animated:YES];
 }
 
 @end
