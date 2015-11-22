@@ -7,15 +7,19 @@
 //
 
 #import "WikiViewController.h"
+
 #import "WikipediaHelper.h"
 #import "ParallaxHeaderView.h"
 #import "GradientView.h"
 #import "UIImageViewAligned.h"
+
 #import "JTSImageViewController.h"
 #import "OpenShareHeader.h"
+#import "MBProgressHUD.h"
 
-#define TITLE_LABEL_HEIGHT 58
-#define BLUR_VIEW_OFFSET 85
+static const NSInteger TITLE_LABEL_HEIGHT = 58;
+static const NSInteger BLUR_VIEW_OFFSET = 85;
+static const CGFloat HUD_SHOW_TIME = 2.18;
 
 @interface WikiViewController () <
 WikipediaHelperDelegate,
@@ -351,11 +355,22 @@ UIGestureRecognizerDelegate
         msg.image = [UIImage imageNamed:@"launch_bg"];
     }
 
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.removeFromSuperViewOnHide = YES;
+
     [OpenShare shareToWeixinTimeline:msg Success:^(OSMessage *message) {
-        ULog(@"微信分享到朋友圈成功：\n%@", message);
+        // ULog(@"微信分享到朋友圈成功：\n%@", message);
+
+        hud.labelText = @"微信分享到朋友圈成功";
+        [hud hide:YES afterDelay:HUD_SHOW_TIME];
     } Fail:^(OSMessage *message, NSError *error) {
-        ULog(@"微信分享到朋友圈失败：\n%@\n%@", error, message);
+        // ULog(@"微信分享到朋友圈失败：\n%@\n%@", error, message);
+        
+        hud.labelText = @"微信分享到朋友圈失败";
+        [hud hide:YES afterDelay:HUD_SHOW_TIME];
     }];
+
 }
 
 @end

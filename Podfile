@@ -11,5 +11,6 @@ target 'A Song of Ice and Fire' do
     pod 'YFStartView'
     pod 'UIImageViewAligned', '~> 0.0.1'
     pod 'JTSImageViewController', '~> 1.5.1'
+    pod 'MBProgressHUD', '~> 0.9.1'
 end
 
