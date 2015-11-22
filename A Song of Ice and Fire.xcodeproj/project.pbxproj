@@ -35,6 +35,7 @@
 		F34684F31BFF5A4500C7C56D /* OpenShare+Weibo.m in Sources */ = {isa = PBXBuildFile; fileRef = F34684EA1BFF5A4500C7C56D /* OpenShare+Weibo.m */; };
 		F34684F41BFF5A4500C7C56D /* OpenShare+Weixin.m in Sources */ = {isa = PBXBuildFile; fileRef = F34684EC1BFF5A4500C7C56D /* OpenShare+Weixin.m */; };
 		F34684F51BFF5A4500C7C56D /* OpenShare.m in Sources */ = {isa = PBXBuildFile; fileRef = F34684EE1BFF5A4500C7C56D /* OpenShare.m */; };
+		F34684F71C02176D00C7C56D /* cubic_spinner.gif in Resources */ = {isa = PBXBuildFile; fileRef = F34684F61C02176D00C7C56D /* cubic_spinner.gif */; };
 		F37B448F1BEE8AB400764D92 /* PortalCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F37B448D1BEE8AB400764D92 /* PortalCollectionHeaderView.m */; };
 		F37B44921BEE8AFD00764D92 /* PortalCollectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F37B44911BEE8AFD00764D92 /* PortalCollectionHeaderView.xib */; };
 		F3BD1DF11BF8D8AE00B6DA69 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = F3BD1DF01BF8D8AE00B6DA69 /* UIImage+ImageEffects.m */; };
@@ -98,6 +99,7 @@
 		F34684ED1BFF5A4500C7C56D /* OpenShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenShare.h; sourceTree = "<group>"; };
 		F34684EE1BFF5A4500C7C56D /* OpenShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenShare.m; sourceTree = "<group>"; };
 		F34684EF1BFF5A4500C7C56D /* OpenShareHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenShareHeader.h; sourceTree = "<group>"; };
+		F34684F61C02176D00C7C56D /* cubic_spinner.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = cubic_spinner.gif; sourceTree = "<group>"; };
 		F37B448C1BEE8AB400764D92 /* PortalCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalCollectionHeaderView.h; sourceTree = "<group>"; };
 		F37B448D1BEE8AB400764D92 /* PortalCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalCollectionHeaderView.m; sourceTree = "<group>"; };
 		F37B44911BEE8AFD00764D92 /* PortalCollectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PortalCollectionHeaderView.xib; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 		F33C82D41BF7D045005A0908 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F34684F61C02176D00C7C56D /* cubic_spinner.gif */,
 				F33C82D51BF7D045005A0908 /* wikiview.css */,
 			);
 			path = Resources;
@@ -450,6 +453,7 @@
 				F334D00D1BEE73FC0074734D /* SlideMenuViewController.xib in Resources */,
 				F37B44921BEE8AFD00764D92 /* PortalCollectionHeaderView.xib in Resources */,
 				F334D00E1BEE73FC0074734D /* Assets.xcassets in Resources */,
+				F34684F71C02176D00C7C56D /* cubic_spinner.gif in Resources */,
 				F33C82D61BF7D045005A0908 /* wikiview.css in Resources */,
 				F334D00B1BEE73FC0074734D /* PortalCell.xib in Resources */,
 			);

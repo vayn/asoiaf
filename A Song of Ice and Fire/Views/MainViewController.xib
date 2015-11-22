@@ -10,7 +10,7 @@
             <connections>
                 <outlet property="authorLabel" destination="eOT-NK-rFX" id="vcA-0H-KsT"/>
                 <outlet property="containerView" destination="tFZ-KN-enT" id="SuV-VQ-d14"/>
-                <outlet property="featuredQuoteActivity" destination="gMr-qb-fMj" id="kTc-xj-ygM"/>
+                <outlet property="featuredQuoteView" destination="u5D-N6-RDk" id="k9z-zF-gF5"/>
                 <outlet property="knowTipView" destination="Mv9-Ce-Zns" id="cjU-gL-7LZ"/>
                 <outlet property="portalView" destination="eU7-b6-TeO" id="LD8-68-9H6"/>
                 <outlet property="quoteLabel" destination="hq2-df-mJr" id="fYL-Ov-vX8"/>
@@ -63,10 +63,6 @@
                                             <color key="textColor" red="0.56470588235294117" green="0.56470588235294117" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="gMr-qb-fMj" userLabel="Featured Quote Activity">
-                                            <rect key="frame" x="169" y="36" width="20" height="20"/>
-                                            <animations/>
-                                        </activityIndicatorView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" layoutMarginsFollowReadableWidth="YES" text="—— 瓦里斯" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eOT-NK-rFX" userLabel="Author Label">
                                             <rect key="frame" x="211" y="54" width="120" height="24"/>
                                             <animations/>

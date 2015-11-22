@@ -18,6 +18,8 @@
 #import "DataManager.h"
 #import "FeaturedQuoteModel.h"
 
+#import "FLAnimatedImage.h"
+
 #define SLIDE_TIMING 0.25
 #define OVERLAY_ALPHA_BEGAN 0.0
 #define OVERLAY_ALPHA_END 0.7
@@ -27,9 +29,9 @@
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
+@property (weak, nonatomic) IBOutlet UIView *featuredQuoteView;
 @property (weak, nonatomic) IBOutlet UILabel *quoteLabel;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *featuredQuoteActivity;
 @property (weak, nonatomic) IBOutlet UIView *portalView;
 @property (weak, nonatomic) IBOutlet UIView *knowTipView;
 
@@ -229,9 +231,21 @@
 
 - (void)setupFeaturedQuoteLabel
 {
-    [self.featuredQuoteActivity startAnimating];
     [self.quoteLabel setHidden:YES];
     [self.authorLabel setHidden:YES];
+
+    // Use custom loading spinner instead of UIActivityIndicatorView
+    NSString *spinnerPath = [[NSBundle mainBundle] pathForResource:@"cubic_spinner" ofType:@"gif"];
+    FLAnimatedImage *spinnerImage = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfFile:spinnerPath]];
+    FLAnimatedImageView *spinnerImageView = [[FLAnimatedImageView alloc] init];
+    spinnerImageView.animatedImage = spinnerImage;
+    spinnerImageView.frame = CGRectMake(0, 0, 32, 32);
+
+    [self.featuredQuoteView addSubview:spinnerImageView];
+    spinnerImageView.center = CGPointMake(self.featuredQuoteView.frame.size.width/2,
+                                   self.featuredQuoteView.frame.size.height/2);
+
+    [spinnerImageView startAnimating];
 
     [[DataManager sharedManager] getFeaturedQuotes:^(NSArray *featuredQuotes) {
         FeaturedQuoteModel *featuredQuote = [featuredQuotes randomObject];
@@ -243,8 +257,7 @@
                                                       object:nil
                                                        queue:nil
                                                   usingBlock:^(NSNotification * _Nonnull note) {
-                                                      [self.featuredQuoteActivity stopAnimating];
-                                                      [self.featuredQuoteActivity setHidden:YES];
+                                                      [spinnerImageView setHidden:YES];
 
                                                       CATransition *animation = [CATransition animation];
                                                       animation.type = kCATransitionFade;
@@ -255,6 +268,8 @@
 
                                                       [self.quoteLabel setHidden:NO];
                                                       [self.authorLabel setHidden:NO];
+
+                                                      [spinnerImageView removeFromSuperview];
                                                   }];
 }
 
