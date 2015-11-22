@@ -359,7 +359,7 @@ UIGestureRecognizerDelegate
     if (image) {
         msg.image = image;
     } else {
-        msg.image = [UIImage imageNamed:@"launch_bg"];
+        msg.image = [UIImage imageNamed:@"Launch Background"];
     }
 
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
