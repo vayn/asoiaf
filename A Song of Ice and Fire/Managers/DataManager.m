@@ -227,7 +227,7 @@
     [_manager GET:URL
        parameters:nil
           success:^(NSURLSessionDataTask *task, id responseObject) {
-              NSArray *blacklist = @[@"File:", @"Category:", @"Talk:", @"User:", @"MediaWiki"];
+              NSArray *blacklist = @[@"File:", @"Category:", @"Talk:", @"User:", @"MediaWiki:", @"Template:"];
               BOOL isOnBlackList = NO;
 
               NSDictionary *random = responseObject[@"query"][@"random"][0];
