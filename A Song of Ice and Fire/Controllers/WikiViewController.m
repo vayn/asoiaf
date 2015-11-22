@@ -52,13 +52,20 @@ UIGestureRecognizerDelegate
         self.wikiHelper = [[WikipediaHelper alloc] init];
         self.wikiHelper.delegate = self;
 
+        NSMutableArray *rightButtons = [@[] mutableCopy];
         UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply
                                                                                     target:self
                                                                                     action:@selector(homeButtonPressed:)];
-        UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-                                                                                     target:self
-                                                                                     action:@selector(shareButtonPressed:)];
-        self.navigationItem.rightBarButtonItems = @[homeButton, shareButton];
+        [rightButtons addObject:homeButton];
+
+        if ([OpenShare isWeixinInstalled]) {
+            UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                                                                         target:self
+                                                                                         action:@selector(shareButtonPressed:)];
+            [rightButtons addObject:shareButton];
+        }
+
+        self.navigationItem.rightBarButtonItems = [rightButtons copy];
     }
     return self;
 }
