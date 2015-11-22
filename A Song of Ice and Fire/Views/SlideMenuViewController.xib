@@ -43,7 +43,7 @@
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rce-RR-WxR">
                             <rect key="frame" x="4" y="8" width="177" height="65"/>
                             <animations/>
-                            <state key="normal" backgroundImage="huiji_white_logo"/>
+                            <state key="normal" backgroundImage="Huiji White Logo"/>
                             <connections>
                                 <action selector="logoButtonPressed:" destination="-1" eventType="touchUpInside" id="Vdl-cm-XB0"/>
                             </connections>
@@ -69,6 +69,6 @@
         </searchDisplayController>
     </objects>
     <resources>
-        <image name="huiji_white_logo" width="393" height="124"/>
+        <image name="Huiji White Logo" width="393" height="124"/>
     </resources>
 </document>
