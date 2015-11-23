@@ -7,7 +7,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WikiViewController">
             <connections>
-                <outlet property="loadingActivity" destination="jim-kV-Vpv" id="Esz-oQ-qig"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="webView" destination="EgC-TV-MDJ" id="41v-x4-Bce"/>
             </connections>
@@ -22,10 +21,6 @@
                     <animations/>
                     <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                 </webView>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="jim-kV-Vpv" userLabel="Loading Activity">
-                    <rect key="frame" x="177" y="324" width="20" height="20"/>
-                    <animations/>
-                </activityIndicatorView>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

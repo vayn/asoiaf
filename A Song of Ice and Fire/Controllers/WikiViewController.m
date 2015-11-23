@@ -12,6 +12,7 @@
 #import "ParallaxHeaderView.h"
 #import "GradientView.h"
 #import "UIImageViewAligned.h"
+#import "CubicSpinner.h"
 
 #import "JTSImageViewController.h"
 #import "OpenShareHeader.h"
@@ -30,13 +31,13 @@ UIGestureRecognizerDelegate
 >
 
 @property (nonatomic, weak) IBOutlet UIWebView *webView;
-@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *loadingActivity;
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIImageViewAligned *imageView;
 @property (nonatomic, strong) UIView *webBrowserView;
 @property (nonatomic, strong) GradientView *blurView;
 @property (nonatomic, strong) ParallaxHeaderView *parallaxHeaderView;
+@property (nonatomic, strong) CubicSpinner *spinner;
 
 @property (nonatomic, strong) WikipediaHelper *wikiHelper;
 @property (nonatomic, assign) CGFloat originalHeight;
@@ -49,8 +50,9 @@ UIGestureRecognizerDelegate
 {
     self = [super init];
     if (self) {
-        self.wikiHelper = [[WikipediaHelper alloc] init];
-        self.wikiHelper.delegate = self;
+        _wikiHelper = [[WikipediaHelper alloc] init];
+        _wikiHelper.delegate = self;
+        _spinner = [CubicSpinner spinner];
 
         NSMutableArray *rightButtons = [@[] mutableCopy];
         UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply
@@ -78,13 +80,15 @@ UIGestureRecognizerDelegate
     self.webView.scrollView.delegate = self;
     self.webBrowserView = [[self.webView.scrollView subviews] objectAtIndex:0];
 
-    [self.wikiHelper fetchArticle:self.title];
-
-    [self.loadingActivity startAnimating];
-    [self.loadingActivity setHidden:NO];
+    self.spinner.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2);
+    [self.view addSubview:self.spinner];
+    [self.spinner startAnimating];
 
     [self setupParallaxHeaderView];
     [self setupGestures];
+
+    // Start fetch article with page title
+    [self.wikiHelper fetchArticle:self.title];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -257,8 +261,10 @@ UIGestureRecognizerDelegate
          */
     }
 
-    [self.loadingActivity stopAnimating];
-    [self.loadingActivity setHidden:YES];
+    // When the article is loaded, hide and remove spinner from self.view
+    [self.spinner stopAnimating];
+    [self.spinner setHidden:YES];
+    [self.spinner removeFromSuperview];
 
     [self.webView loadHTMLString:htmlPage baseURL:nil];
 }
