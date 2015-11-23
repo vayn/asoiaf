@@ -260,10 +260,10 @@
           }];
 }
 
-- (void)getCategoryList:(NSString *)category completionBlock:(void (^)(NSArray *))completionBlock
+- (void)getCategoryList:(NSString *)categoryLink completionBlock:(void (^)(NSArray *))completionBlock
 {
-    NSString *API = [NSString stringWithFormat:@"%@/api.php?action=query&list=categorymembers&cmtype=subcat&cmtitle=Category:%@&rawcontinue&format=json",
-                     self.siteURL, category];
+    NSString *API = [NSString stringWithFormat:@"%@/api.php?action=query&list=categorymembers&cmtitle=%@&cmnamespace=0&format=json",
+                     self.siteURL, categoryLink];
     NSString *URL = [API stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 
     [_manager GET:URL

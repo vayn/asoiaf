@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PortalModel.h"
 
 @interface CatListViewController : UITableViewController
 
-@property (nonatomic, strong) NSString *parentCategory;
+@property (nonatomic, strong) PortalModel *parentCategory;
 
 @end

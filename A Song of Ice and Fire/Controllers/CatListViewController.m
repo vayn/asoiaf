@@ -8,6 +8,7 @@
 
 #import "CatListViewController.h"
 #import "DataManager.h"
+#import "WikiViewController.h"
 
 @interface CatListViewController ()
 
@@ -25,13 +26,13 @@
     return self;
 }
 
-- (void)setParentCategory:(NSString *)parentCategory
+- (void)setParentCategory:(PortalModel *)parentCategory
 {
     _parentCategory = parentCategory;
 
-    self.navigationItem.title = [NSString stringWithFormat:@"分类：%@", _parentCategory];
+    self.navigationItem.title = _parentCategory.title;
 
-    [[DataManager sharedManager] getCategoryList:_parentCategory completionBlock:^(NSArray *categoryList) {
+    [[DataManager sharedManager] getCategoryList:_parentCategory.link completionBlock:^(NSArray *categoryList) {
         if (categoryList.count > 0) {
             _categoryList = categoryList;
 
@@ -76,6 +77,19 @@
     cell.textLabel.text = title;
 
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    NSDictionary *category = self.categoryList[indexPath.row];
+
+    NSString *title = category[@"title"];
+
+    WikiViewController *wikiVC = [[WikiViewController alloc] init];
+    wikiVC.title = title;
+
+    [self.navigationController pushViewController:wikiVC animated:YES];
 }
 
 @end

@@ -54,47 +54,47 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 {
     NSArray *portals = @[@{
                              @"pageid": @303,
-                             @"link": @"Portal:书",
+                             @"link": @"Category:书籍",
                              @"title": @"分卷介绍"
                          },
                          @{
                              @"pageid": @46724,
-                             @"link": @"Portal:章节",
+                             @"link": @"Category:冰与火之歌章节",
                              @"title": @"章节梗概"
                          },
                          @{
                              @"pageid": @5480,
-                             @"link": @"Portal:人物",
+                             @"link": @"Category:POV人物",
                              @"title": @"人物介绍"
                          },
                          @{
                              @"pageid": @46711,
-                             @"link": @"Portal:家族",
+                             @"link": @"Category:贵族家族",
                              @"title": @"各大家族"
                          },
                          @{
                              @"pageid": @5481,
-                             @"link": @"Portal:历史",
+                             @"link": @"Category:历史",
                              @"title": @"七国历史"
                          },
                          @{
                              @"pageid": @5483,
-                             @"link": @"Portal:文化",
+                             @"link": @"Category:文化",
                              @"title": @"文化风俗"
                          },
                          @{
                              @"pageid": @5482,
-                             @"link": @"Portal:地理",
+                             @"link": @"Category:维斯特洛地点",
                              @"title": @"地理信息"
                          },
                          @{
                              @"pageid": @5484,
-                             @"link": @"Portal:电视剧",
+                             @"link": @"Category:剧集",
                              @"title": @"剧集相关"
                          },
                          @{
                              @"pageid": @2780,
-                             @"link": @"理论推测",
+                             @"link": @"Category:理论推测",
                              @"title": @"理论推测"
                          }];
     NSMutableArray *tempArray = [@[] mutableCopy];
@@ -210,7 +210,7 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
     NSLog(@"Selected: %@", portal.title);
 
     CatListViewController *catListVC = [[CatListViewController alloc] initWithStyle:UITableViewStylePlain];
-    catListVC.parentCategory = portal.title;
+    catListVC.parentCategory = portal;
     
     [self.navigationController pushViewController:catListVC animated:YES];
 }
