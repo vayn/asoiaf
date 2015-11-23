@@ -17,8 +17,7 @@
 
 #import "DataManager.h"
 #import "FeaturedQuoteModel.h"
-
-#import "FLAnimatedImage.h"
+#import "CubicSpinner.h"
 
 static const CGFloat SLIDE_TIMING = 0.25;
 static const CGFloat OVERLAY_ALPHA_BEGAN = 0.0;
@@ -235,16 +234,12 @@ static const CGFloat OVERLAY_ALPHA_END = 0.7;
     [self.authorLabel setHidden:YES];
 
     // Use custom loading spinner instead of UIActivityIndicatorView
-    NSString *spinnerPath = [[NSBundle mainBundle] pathForResource:@"cubic_spinner" ofType:@"gif"];
-    FLAnimatedImage *spinnerImage = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfFile:spinnerPath]];
-    FLAnimatedImageView *spinnerImageView = [[FLAnimatedImageView alloc] init];
-    spinnerImageView.animatedImage = spinnerImage;
-    spinnerImageView.frame = CGRectMake(0, 0, 32, 32);
-    [spinnerImageView startAnimating];
+    CubicSpinner *spinner = [CubicSpinner spinner];
 
-    [self.featuredQuoteView addSubview:spinnerImageView];
-    spinnerImageView.center = CGPointMake(self.featuredQuoteView.frame.size.width/2,
-                                          self.featuredQuoteView.frame.size.height/2);
+    [self.featuredQuoteView addSubview:spinner];
+    spinner.center = CGPointMake(self.featuredQuoteView.frame.size.width/2,
+                                 self.featuredQuoteView.frame.size.height/2);
+    [spinner startAnimating];
 
     [[DataManager sharedManager] getFeaturedQuotes:^(NSArray *featuredQuotes) {
         FeaturedQuoteModel *featuredQuote = [featuredQuotes randomObject];
@@ -266,7 +261,7 @@ static const CGFloat OVERLAY_ALPHA_END = 0.7;
                                                       [self.quoteLabel setHidden:NO];
                                                       [self.authorLabel setHidden:NO];
 
-                                                      [spinnerImageView removeFromSuperview];
+                                                      [spinner removeFromSuperview];
                                                   }];
 }
 
