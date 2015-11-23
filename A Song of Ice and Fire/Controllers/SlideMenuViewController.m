@@ -27,16 +27,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.categoryArray = @[@"书籍",
-                               @"章节",
-                               @"人物",
-                               @"家族",
-                               @"历史",
-                               @"文化",
-                               @"地理",
-                               @"电视剧",
-                               @"理论推测"
-                               ];
+        self.categoryArray = @[@"关于"];
     }
     return self;
 }
