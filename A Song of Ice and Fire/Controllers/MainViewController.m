@@ -240,12 +240,11 @@ static const CGFloat OVERLAY_ALPHA_END = 0.7;
     FLAnimatedImageView *spinnerImageView = [[FLAnimatedImageView alloc] init];
     spinnerImageView.animatedImage = spinnerImage;
     spinnerImageView.frame = CGRectMake(0, 0, 32, 32);
+    [spinnerImageView startAnimating];
 
     [self.featuredQuoteView addSubview:spinnerImageView];
     spinnerImageView.center = CGPointMake(self.featuredQuoteView.frame.size.width/2,
-                                   self.featuredQuoteView.frame.size.height/2);
-
-    [spinnerImageView startAnimating];
+                                          self.featuredQuoteView.frame.size.height/2);
 
     [[DataManager sharedManager] getFeaturedQuotes:^(NSArray *featuredQuotes) {
         FeaturedQuoteModel *featuredQuote = [featuredQuotes randomObject];
@@ -257,8 +256,6 @@ static const CGFloat OVERLAY_ALPHA_END = 0.7;
                                                       object:nil
                                                        queue:nil
                                                   usingBlock:^(NSNotification * _Nonnull note) {
-                                                      [spinnerImageView setHidden:YES];
-
                                                       CATransition *animation = [CATransition animation];
                                                       animation.type = kCATransitionFade;
                                                       animation.duration = 0.4;

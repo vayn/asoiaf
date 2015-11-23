@@ -15,6 +15,9 @@
 #import "PortalModel.h"
 #import "CatListViewController.h"
 
+static NSString * const reuseCell = @"PortalCell";
+static NSString * const reuseHeader = @"PortalCollectionHeaderView";
+
 @interface PortalCollectionViewController () <UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) NSArray *portals;
@@ -22,9 +25,6 @@
 @end
 
 @implementation PortalCollectionViewController
-
-static NSString * const reuseCell = @"PortalCell";
-static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 
 - (instancetype)init
 {
@@ -50,7 +50,7 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 
     self.collectionView.scrollEnabled = NO;
 
-    // Uncomment the following line to preserve selection between presentations
+    // Uncomment the following lide to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
 
     UINib *cellNib = [UINib nibWithNibName:@"PortalCell" bundle:nil];

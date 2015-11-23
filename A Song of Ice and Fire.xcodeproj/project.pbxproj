@@ -207,9 +207,6 @@
 			children = (
 				F334D0131BEE74330074734D /* MainController */,
 				F334D0151BEE74480074734D /* SlideMenuController */,
-				F334D0121BEE74270074734D /* CarrouselController */,
-				F334D0141BEE743C0074734D /* PortalCollectionController */,
-				F3BE13921BF270D600CC5159 /* KnowTipTableController */,
 				F34684FD1C022FBC00C7C56D /* CategoryListController */,
 				F3152B481BF44BEF0048D69E /* WikiViewController */,
 			);
@@ -298,6 +295,9 @@
 			children = (
 				F334CFE01BEE73FC0074734D /* MainViewController.h */,
 				F334CFE11BEE73FC0074734D /* MainViewController.m */,
+				F334D0121BEE74270074734D /* CarrouselController */,
+				F334D0141BEE743C0074734D /* PortalCollectionController */,
+				F3BE13921BF270D600CC5159 /* KnowTipTableController */,
 			);
 			name = MainController;
 			sourceTree = "<group>";
