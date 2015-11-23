@@ -18,10 +18,10 @@
 #import "OpenShareHeader.h"
 #import "MBProgressHUD.h"
 
-static const NSInteger TITLE_LABEL_HEIGHT = 58;
-static const NSInteger BLUR_VIEW_OFFSET = 85;
-static const CGFloat HUD_SHOW_TIME = 2.18;
-
+static NSInteger const TITLE_LABEL_HEIGHT = 58;
+static NSInteger const BLUR_VIEW_OFFSET = 85;
+static CGFloat const HUD_SHOW_TIME = 2.18;
+                 
 @interface WikiViewController () <
 WikipediaHelperDelegate,
 UIWebViewDelegate,

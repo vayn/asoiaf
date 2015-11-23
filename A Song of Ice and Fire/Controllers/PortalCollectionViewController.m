@@ -17,10 +17,10 @@
 
 static NSString * const reuseCell = @"PortalCell";
 static NSString * const reuseHeader = @"PortalCollectionHeaderView";
-
+                 
 @interface PortalCollectionViewController () <UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic, strong) NSArray *portals;
+@property (nonatomic, strong) NSArray<PortalModel *> *portals;
 
 @end
 
@@ -34,6 +34,9 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 
     self = [super initWithCollectionViewLayout:flowLayout];
     if (self) {
+        /* Portals which are from getPortal API lack of many important categories,
+         * so I decide to use hard-coded portal list.
+
         [[DataManager sharedManager] getPortals:^(id responseObject) {
             self.portals = [(NSArray *)responseObject copy];
 
@@ -41,8 +44,69 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
                 [self.collectionView reloadData];
             });
         }];
+         */
+        [self setupPortals];
     }
     return self;
+}
+
+- (void)setupPortals
+{
+    NSArray *portals = @[@{
+                             @"pageid": @303,
+                             @"link": @"Portal:书",
+                             @"title": @"分卷介绍"
+                         },
+                         @{
+                             @"pageid": @46724,
+                             @"link": @"Portal:章节",
+                             @"title": @"章节梗概"
+                         },
+                         @{
+                             @"pageid": @5480,
+                             @"link": @"Portal:人物",
+                             @"title": @"人物介绍"
+                         },
+                         @{
+                             @"pageid": @46711,
+                             @"link": @"Portal:家族",
+                             @"title": @"各大家族"
+                         },
+                         @{
+                             @"pageid": @5481,
+                             @"link": @"Portal:历史",
+                             @"title": @"七国历史"
+                         },
+                         @{
+                             @"pageid": @5483,
+                             @"link": @"Portal:文化",
+                             @"title": @"文化风俗"
+                         },
+                         @{
+                             @"pageid": @5482,
+                             @"link": @"Portal:地理",
+                             @"title": @"地理信息"
+                         },
+                         @{
+                             @"pageid": @5484,
+                             @"link": @"Portal:电视剧",
+                             @"title": @"剧集相关"
+                         },
+                         @{
+                             @"pageid": @2780,
+                             @"link": @"理论推测",
+                             @"title": @"理论推测"
+                         }];
+    NSMutableArray *tempArray = [@[] mutableCopy];
+
+    for (NSDictionary *portal in portals) {
+        PortalModel *pm = [[PortalModel alloc] initWithTitle:portal[@"title"]
+                                                      pageId:portal[@"pageid"]
+                                                        link:portal[@"link"]];
+        [tempArray addObject:pm];
+    }
+
+    _portals = [tempArray copy];
 }
 
 - (void)viewDidLoad {

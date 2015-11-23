@@ -10,12 +10,24 @@
 
 @implementation PortalModel
 
-- (instancetype)initWithTitle:(NSString *)title pageId:(NSNumber *)pageId
+-(instancetype)initWithTitle:(NSString *)aTitle
 {
+    return [self initWithTitle:aTitle pageId:nil];
+}
+
+- (instancetype)initWithTitle:(NSString *)aTitle pageId:(NSNumber *)aPageId
+{
+    return [self initWithTitle:aTitle pageId:aPageId link:nil];
+}
+
+- (instancetype)initWithTitle:(NSString *)aTitle pageId:(NSNumber *)aPageId link:(NSString *)aLink
+{
+
     self = [super init];
     if (self) {
-        _title = title;
-        _pageId = pageId;
+        _title = aTitle;
+        _pageId = aPageId;
+        _link = aLink;
     }
     return self;
 }

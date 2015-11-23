@@ -12,8 +12,11 @@
 
 @property (nonatomic, strong) NSNumber *pageId;
 @property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *link;
 @property (nonatomic, strong) UIImage *backgroundImage;
 
-- (instancetype)initWithTitle:(NSString *)title pageId:(NSNumber *)pageId;
+- (instancetype)initWithTitle:(NSString *)aTitle;
+- (instancetype)initWithTitle:(NSString *)aTitle pageId:(NSNumber *)aPageId;
+- (instancetype)initWithTitle:(NSString *)aTitle pageId:(NSNumber *)aPageId link:(NSString *)aLink;
 
 @end

@@ -19,10 +19,10 @@
 #import "FeaturedQuoteModel.h"
 #import "CubicSpinner.h"
 
-static const CGFloat SLIDE_TIMING = 0.25;
-static const CGFloat OVERLAY_ALPHA_BEGAN = 0.0;
-static const CGFloat OVERLAY_ALPHA_END = 0.7;
-
+static CGFloat const SLIDE_TIMING = 0.25;
+static CGFloat const OVERLAY_ALPHA_BEGAN = 0.0;
+static CGFloat const OVERLAY_ALPHA_END = 0.7;
+               
 @interface MainViewController () <UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *containerView;

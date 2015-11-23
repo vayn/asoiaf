@@ -40,7 +40,7 @@
 - (instancetype)init
 {
     @throw [NSException exceptionWithName:@"Singleton"
-                                   reason:@"Use +[DataStore sharedStore]"
+                                   reason:@"Use +[DataStore sharedManager]"
                                  userInfo:nil];
     return nil;
 }
@@ -150,8 +150,8 @@
               for (id portalObject in portalObjects) {
                   NSNumber *pageId = portalObject[@"pageid"];
 
-                  // Hack: 306 和 5480 都是「人物」，只要 306
-                  if ([pageId isEqualToNumber:@(5480)]) {
+                  // Hack: 306 和 5480 都是「人物」，只要 5480
+                  if ([pageId isEqualToNumber:@306]) {
                       continue;
                   }
 
@@ -184,7 +184,7 @@
 
     [_manager GET:URL
        parameters:nil
-          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+          success:^(NSURLSessionDataTask *task, id responseObject) {
               NSURL *sourceURL;
               NSDictionary *page = responseObject[@"query"][@"pages"][[pageId stringValue]];
               NSDictionary *thumbnail = [page objectForKey:@"thumbnail"];
@@ -194,18 +194,28 @@
                   sourceURL = [NSURL URLWithString:thumbnailSource];
               } else {
                   switch ([pageId integerValue]) {
-                      case 5483: { // 文化
+                      case 46724: { // 章节梗概
+                          sourceURL = [NSURL URLWithString:@"http://cdn.huijiwiki.com/asoiaf/thumb.php?f=LordOfLightProtectUs_JZee.jpg&width=120"];
+                          break;
+                      }
+
+                      case 5480: { // 人物介绍
+                          sourceURL = [NSURL URLWithString:@"http://cdn.huijiwiki.com/asoiaf/thumb.php?f=Katherine_Dinger_CLannister.jpg&width=120"];
+                          break;
+                      }
+
+                      case 46711: { // 各大家族
+                          sourceURL = [NSURL URLWithString:@"http://cdn.huijiwiki.com/asoiaf/thumb.php?f=Iron_Throne_by_thegryph.jpg&width=120"];
+                          break;
+                      }
+
+                      case 5483: { // 文化风俗
                           sourceURL = [NSURL URLWithString:@"http://cdn.huijiwiki.com/asoiaf/thumb.php?f=Faith_by_thegryph.jpg&width=120"];
                           break;
                       }
 
                       case 2780: { // 理论推测
                           sourceURL = [NSURL URLWithString:@"http://cdn.huijiwiki.com/asoiaf/thumb.php?f=Morgaine_le_Fee_Rhaego_TargaryenIIII.jpg&width=118"];
-                          break;
-                      }
-
-                      case 306: { // 人物
-                          sourceURL = [NSURL URLWithString:@"http://cdn.huijiwiki.com/asoiaf/thumb.php?f=John_Picacio_Daenerys_Targaryen.jpg&width=100"];
                           break;
                       }
 
