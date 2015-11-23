@@ -241,10 +241,7 @@
 		F334CFF21BEE73FC0074734D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F334CFF31BEE73FC0074734D /* MainViewController.xib */,
-				F334CFF61BEE73FC0074734D /* SlideMenuViewController.xib */,
-				F37B44861BEE88BF00764D92 /* PortalCollection */,
-				F3BE13931BF2711100CC5159 /* KnowTipTableViewController.xib */,
+				F34685041C03544F00C7C56D /* MainView */,
 				F3152B461BF44BD00048D69E /* WikiViewController.xib */,
 			);
 			path = Views;
@@ -365,6 +362,17 @@
 				F34684FB1C022FAD00C7C56D /* CatListViewController.m */,
 			);
 			name = CategoryListController;
+			sourceTree = "<group>";
+		};
+		F34685041C03544F00C7C56D /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				F334CFF31BEE73FC0074734D /* MainViewController.xib */,
+				F334CFF61BEE73FC0074734D /* SlideMenuViewController.xib */,
+				F37B44861BEE88BF00764D92 /* PortalCollection */,
+				F3BE13931BF2711100CC5159 /* KnowTipTableViewController.xib */,
+			);
+			name = MainView;
 			sourceTree = "<group>";
 		};
 		F37B44861BEE88BF00764D92 /* PortalCollection */ = {
