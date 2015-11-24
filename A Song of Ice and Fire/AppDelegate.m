@@ -32,7 +32,7 @@
 
     // 全局注册 appId
     [OpenShare connectQQWithAppId:@"1103194207"];
-    [OpenShare connectWeixinWithAppId:@"wxd930ea5d5a258f4f"];
+    [OpenShare connectWeixinWithAppId:@"wx3e08e658d87ad516"];
 
     YFStartView *startView = [YFStartView startView];
     startView.randomImages = [NSMutableArray arrayWithObjects:@"Launch Background", nil];
