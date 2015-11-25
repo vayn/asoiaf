@@ -251,8 +251,8 @@
 		F334CFF91BEE73FC0074734D /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				F34684E21BFF5A4500C7C56D /* openshare */,
 				F3BD1DF61BF8E71600B6DA69 /* GradientView */,
+				F34684E21BFF5A4500C7C56D /* OpenShare */,
 				F3BD1DF21BF8D8C300B6DA69 /* ParallaxHeaderView */,
 				F334CFFA1BEE73FC0074734D /* Utilities */,
 				F334CFFD1BEE73FC0074734D /* WikiApiObjectiveC */,
@@ -336,7 +336,7 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		F34684E21BFF5A4500C7C56D /* openshare */ = {
+		F34684E21BFF5A4500C7C56D /* OpenShare */ = {
 			isa = PBXGroup;
 			children = (
 				F34684E31BFF5A4500C7C56D /* OpenShare+Alipay.h */,
@@ -353,6 +353,7 @@
 				F34684EE1BFF5A4500C7C56D /* OpenShare.m */,
 				F34684EF1BFF5A4500C7C56D /* OpenShareHeader.h */,
 			);
+			name = OpenShare;
 			path = openshare;
 			sourceTree = "<group>";
 		};
