@@ -355,6 +355,22 @@ UIGestureRecognizerDelegate
 
 - (void)shareButtonPressed:(id)sender
 {
+    OSMessage *msg = [[OSMessage alloc] init];
+    msg.title = [NSString stringWithFormat:@"冰与火之歌 - %@", self.title];
+    msg.link = [NSString stringWithFormat:@"http://asoiaf.huiji.wiki/wiki/%@", self.title];
+
+    UIImage *image = self.imageView.image;
+
+    if (image) {
+        msg.image = image;
+    } else {
+        msg.image = [UIImage imageNamed:@"Launch Background"];
+    }
+
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.removeFromSuperViewOnHide = YES;
+
     UIAlertController *actionController = [UIAlertController alertControllerWithTitle:nil
                                                                               message:nil
                                                                        preferredStyle:UIAlertControllerStyleActionSheet];
@@ -365,35 +381,29 @@ UIGestureRecognizerDelegate
                                                            [self dismissViewControllerAnimated:YES completion:^{ }];
                                                        }]];
 
-    [actionController addAction:[UIAlertAction actionWithTitle:@"分享到微信朋友圈"
+    [actionController addAction:[UIAlertAction actionWithTitle:@"分享给微信好友"
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction * _Nonnull action) {
+                                                           // 分享链接消息到微信好友
+                                                           [OpenShare shareToWeixinSession:msg Success:^(OSMessage *message) {
+                                                               hud.labelText = @"微信分享给朋友成功";
+                                                               [hud hide:YES afterDelay:HUD_SHOW_TIME];
+                                                           } Fail:^(OSMessage *message, NSError *error) {
+                                                               hud.labelText = @"微信分享给朋友失败";
+                                                               [hud hide:YES afterDelay:HUD_SHOW_TIME];
+                                                           }];
+                                                       }]];
+
+    [actionController addAction:[UIAlertAction actionWithTitle:@"分享到朋友圈"
                                                          style:UIAlertActionStyleDefault
                                                        handler:^(UIAlertAction *action) {
                                                            // 分享链接消息到微信朋友圈
-                                                           OSMessage *msg = [[OSMessage alloc] init];
-
-                                                           msg.title = [NSString stringWithFormat:@"冰与火之歌 - %@", self.title];
-                                                           msg.link = [NSString stringWithFormat:@"http://asoiaf.huiji.wiki/wiki/%@", self.title];
-
-                                                           UIImage *image = self.imageView.image;
-
-                                                           if (image) {
-                                                               msg.image = image;
-                                                           } else {
-                                                               msg.image = [UIImage imageNamed:@"Launch Background"];
-                                                           }
-
-                                                           MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                                                           hud.mode = MBProgressHUDModeText;
-                                                           hud.removeFromSuperViewOnHide = YES;
-
                                                            [OpenShare shareToWeixinTimeline:msg Success:^(OSMessage *message) {
                                                                // ULog(@"微信分享到朋友圈成功：\n%@", message);
-
                                                                hud.labelText = @"微信分享到朋友圈成功";
                                                                [hud hide:YES afterDelay:HUD_SHOW_TIME];
                                                            } Fail:^(OSMessage *message, NSError *error) {
                                                                // ULog(@"微信分享到朋友圈失败：\n%@\n%@", error, message);
-                                                               
                                                                hud.labelText = @"微信分享到朋友圈失败";
                                                                [hud hide:YES afterDelay:HUD_SHOW_TIME];
                                                            }];
