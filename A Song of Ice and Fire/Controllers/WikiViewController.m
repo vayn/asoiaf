@@ -375,8 +375,7 @@ UIGestureRecognizerDelegate
     [actionController addAction:[UIAlertAction actionWithTitle:@"取消"
                                                          style:UIAlertActionStyleCancel
                                                        handler:^(UIAlertAction * _Nonnull action) {
-                                                           [self dismissViewControllerAnimated:YES completion:^{ }];
-                                                           [hud hide:YES afterDelay:0];
+                                                           [self dismissViewControllerAnimated:YES completion:nil];
                                                        }]];
 
     [actionController addAction:[UIAlertAction actionWithTitle:@"分享给微信好友"
