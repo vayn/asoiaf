@@ -404,6 +404,7 @@ UIGestureRecognizerDelegate
                                                            }];
                                                        }]];
 
+    /*
     [actionController addAction:[UIAlertAction actionWithTitle:@"分享到QQ"
                                                          style:UIAlertActionStyleDefault
                                                        handler:^(UIAlertAction *action) {
@@ -415,6 +416,7 @@ UIGestureRecognizerDelegate
                                                                [hud hide:YES afterDelay:kHUD_SHOW_TIME];
                                                            }];
                                                        }]];
+     */
 
     [self presentViewController:actionController animated:YES completion:nil];
 }
