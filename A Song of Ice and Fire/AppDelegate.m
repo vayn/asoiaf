@@ -31,7 +31,7 @@
     [self.window makeKeyAndVisible];
 
     // 全局注册 appId
-    [OpenShare connectQQWithAppId:@"1103194207"];
+    [OpenShare connectQQWithAppId:@"1104991968"];
     [OpenShare connectWeixinWithAppId:@"wx3e08e658d87ad516"];
 
     YFStartView *startView = [YFStartView startView];

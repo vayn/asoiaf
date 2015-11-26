@@ -18,9 +18,9 @@
 #import "OpenShareHeader.h"
 #import "MBProgressHUD.h"
 
-static NSInteger const TITLE_LABEL_HEIGHT = 58;
-static NSInteger const BLUR_VIEW_OFFSET = 85;
-static CGFloat const HUD_SHOW_TIME = 2.18;
+static NSInteger const kTITLE_LABEL_HEIGHT = 58;
+static NSInteger const kBLUR_VIEW_OFFSET = 85;
+static CGFloat const kHUD_SHOW_TIME = 2.18;
                  
 @interface WikiViewController ()
 <
@@ -115,8 +115,8 @@ UIGestureRecognizerDelegate
     self.imageView.contentMode = UIViewContentModeScaleAspectFill;
     self.imageView.clipsToBounds = YES;
 
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.imageView.frame.size.height - TITLE_LABEL_HEIGHT,
-                                                               self.imageView.frame.size.width, TITLE_LABEL_HEIGHT)];
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.imageView.frame.size.height - kTITLE_LABEL_HEIGHT,
+                                                               self.imageView.frame.size.width, kTITLE_LABEL_HEIGHT)];
 
     self.titleLabel.text = self.title;
     self.titleLabel.backgroundColor = [UIColor colorWithRed:42/255.0 green:196/255.0 blue:234/255.0 alpha:0.7];
@@ -160,8 +160,8 @@ UIGestureRecognizerDelegate
 
     [self.imageView addSubview:self.titleLabel];
 
-    self.blurView = [[GradientView alloc] initWithFrame:CGRectMake(0, -BLUR_VIEW_OFFSET,
-                                                                   self.view.frame.size.width, self.originalHeight + BLUR_VIEW_OFFSET)
+    self.blurView = [[GradientView alloc] initWithFrame:CGRectMake(0, -kBLUR_VIEW_OFFSET,
+                                                                   self.view.frame.size.width, self.originalHeight + kBLUR_VIEW_OFFSET)
                                                    type:TransparentGradientTwiceType];
     
     [self.imageView addSubview:self.blurView];
@@ -315,8 +315,8 @@ UIGestureRecognizerDelegate
         self.titleLabel.frame = CGRectMake(15, self.originalHeight - 80 - incrementY, self.view.frame.size.width - 30, 60);
 
         // 不断添加删除 blurView.layer.sublayers![0] 以保证 frame 正确
-        self.blurView.frame = CGRectMake(0, -BLUR_VIEW_OFFSET - incrementY,
-                                         self.view.frame.size.width, self.originalHeight + BLUR_VIEW_OFFSET);
+        self.blurView.frame = CGRectMake(0, -kBLUR_VIEW_OFFSET - incrementY,
+                                         self.view.frame.size.width, self.originalHeight + kBLUR_VIEW_OFFSET);
         [self.blurView.layer.sublayers[0] removeFromSuperlayer];
         [self.blurView insertTwiceTransparentGradient];
 
@@ -346,7 +346,7 @@ UIGestureRecognizerDelegate
     self.webView.scrollView.contentOffset = CGPointMake(offset.x, -154);
 }
 
-#pragma mark - Private methods
+#pragma mark - Control Action
 
 - (void)homeButtonPressed:(id)sender
 {
@@ -357,6 +357,7 @@ UIGestureRecognizerDelegate
 {
     OSMessage *msg = [[OSMessage alloc] init];
     msg.title = [NSString stringWithFormat:@"冰与火之歌 - %@", self.title];
+    msg.desc = self.title;
     msg.link = [NSString stringWithFormat:@"http://asoiaf.huiji.wiki/wiki/%@", self.title];
 
     UIImage *image = self.imageView.image;
@@ -366,10 +367,6 @@ UIGestureRecognizerDelegate
     } else {
         msg.image = [UIImage imageNamed:@"Launch Background"];
     }
-
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.mode = MBProgressHUDModeText;
-    hud.removeFromSuperViewOnHide = YES;
 
     UIAlertController *actionController = [UIAlertController alertControllerWithTitle:nil
                                                                               message:nil
@@ -384,32 +381,54 @@ UIGestureRecognizerDelegate
     [actionController addAction:[UIAlertAction actionWithTitle:@"分享给微信好友"
                                                          style:UIAlertActionStyleDefault
                                                        handler:^(UIAlertAction * _Nonnull action) {
-                                                           // 分享链接消息到微信好友
                                                            [OpenShare shareToWeixinSession:msg Success:^(OSMessage *message) {
-                                                               hud.labelText = @"微信分享给朋友成功";
-                                                               [hud hide:YES afterDelay:HUD_SHOW_TIME];
+                                                               MBProgressHUD *hud = [self messageHUD:@"微信分享给朋友成功"];
+                                                               [hud hide:YES afterDelay:kHUD_SHOW_TIME];
                                                            } Fail:^(OSMessage *message, NSError *error) {
-                                                               hud.labelText = @"微信分享给朋友失败";
-                                                               [hud hide:YES afterDelay:HUD_SHOW_TIME];
+                                                               MBProgressHUD *hud = [self messageHUD:@"微信分享给朋友失败"];
+                                                               [hud hide:YES afterDelay:kHUD_SHOW_TIME];
                                                            }];
                                                        }]];
 
     [actionController addAction:[UIAlertAction actionWithTitle:@"分享到朋友圈"
                                                          style:UIAlertActionStyleDefault
                                                        handler:^(UIAlertAction *action) {
-                                                           // 分享链接消息到微信朋友圈
                                                            [OpenShare shareToWeixinTimeline:msg Success:^(OSMessage *message) {
                                                                // ULog(@"微信分享到朋友圈成功：\n%@", message);
-                                                               hud.labelText = @"微信分享到朋友圈成功";
-                                                               [hud hide:YES afterDelay:HUD_SHOW_TIME];
+                                                               MBProgressHUD *hud = [self messageHUD:@"微信分享到朋友圈成功"];
+                                                               [hud hide:YES afterDelay:kHUD_SHOW_TIME];
                                                            } Fail:^(OSMessage *message, NSError *error) {
                                                                // ULog(@"微信分享到朋友圈失败：\n%@\n%@", error, message);
-                                                               hud.labelText = @"微信分享到朋友圈失败";
-                                                               [hud hide:YES afterDelay:HUD_SHOW_TIME];
+                                                               MBProgressHUD *hud = [self messageHUD:@"微信分享到朋友圈失败"];
+                                                               [hud hide:YES afterDelay:kHUD_SHOW_TIME];
+                                                           }];
+                                                       }]];
+
+    [actionController addAction:[UIAlertAction actionWithTitle:@"分享到QQ"
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction *action) {
+                                                           [OpenShare shareToQQFriends:msg Success:^(OSMessage *message) {
+                                                               MBProgressHUD *hud = [self messageHUD:@"分享到QQ成功"];
+                                                               [hud hide:YES afterDelay:kHUD_SHOW_TIME];
+                                                           } Fail:^(OSMessage *message, NSError *error) {
+                                                               MBProgressHUD *hud = [self messageHUD:@"分享到QQ失败"];
+                                                               [hud hide:YES afterDelay:kHUD_SHOW_TIME];
                                                            }];
                                                        }]];
 
     [self presentViewController:actionController animated:YES completion:nil];
+}
+
+#pragma mark - Private Helper Function
+
+- (MBProgressHUD *)messageHUD:(NSString *)message
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.removeFromSuperViewOnHide = YES;
+    hud.labelText = message;
+
+    return hud;
 }
 
 @end
