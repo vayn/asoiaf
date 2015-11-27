@@ -361,6 +361,10 @@ UIGestureRecognizerDelegate
     NSURL *link = [NSURL URLWithString:linkString];
 
     UIImage *image = self.imageView.image;
+    if (!image) {
+        image = [UIImage imageNamed:@"Launch Background"];
+    }
+    
     UIView *hudScene = self.view;
 
     NSArray *objectsToShare = @[title, link, image, hudScene];
