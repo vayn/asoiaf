@@ -38,6 +38,7 @@
 		F34684F71C02176D00C7C56D /* cubic_spinner.gif in Resources */ = {isa = PBXBuildFile; fileRef = F34684F61C02176D00C7C56D /* cubic_spinner.gif */; };
 		F34684FC1C022FAD00C7C56D /* CatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F34684FB1C022FAD00C7C56D /* CatListViewController.m */; };
 		F34685031C03505D00C7C56D /* CubicSpinner.m in Sources */ = {isa = PBXBuildFile; fileRef = F34685021C03505D00C7C56D /* CubicSpinner.m */; };
+		F346A5921C08171A00B4F97E /* WexinSessionActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = F346A5911C08171A00B4F97E /* WexinSessionActivity.m */; };
 		F37B448F1BEE8AB400764D92 /* PortalCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F37B448D1BEE8AB400764D92 /* PortalCollectionHeaderView.m */; };
 		F37B44921BEE8AFD00764D92 /* PortalCollectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F37B44911BEE8AFD00764D92 /* PortalCollectionHeaderView.xib */; };
 		F3BD1DF11BF8D8AE00B6DA69 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = F3BD1DF01BF8D8AE00B6DA69 /* UIImage+ImageEffects.m */; };
@@ -106,6 +107,8 @@
 		F34684FB1C022FAD00C7C56D /* CatListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatListViewController.m; sourceTree = "<group>"; };
 		F34685011C03505D00C7C56D /* CubicSpinner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CubicSpinner.h; sourceTree = "<group>"; };
 		F34685021C03505D00C7C56D /* CubicSpinner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CubicSpinner.m; sourceTree = "<group>"; };
+		F346A5901C08171A00B4F97E /* WexinSessionActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WexinSessionActivity.h; sourceTree = "<group>"; };
+		F346A5911C08171A00B4F97E /* WexinSessionActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WexinSessionActivity.m; sourceTree = "<group>"; };
 		F37B448C1BEE8AB400764D92 /* PortalCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalCollectionHeaderView.h; sourceTree = "<group>"; };
 		F37B448D1BEE8AB400764D92 /* PortalCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalCollectionHeaderView.m; sourceTree = "<group>"; };
 		F37B44911BEE8AFD00764D92 /* PortalCollectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PortalCollectionHeaderView.xib; sourceTree = "<group>"; };
@@ -263,14 +266,9 @@
 		F334CFFA1BEE73FC0074734D /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				F3BD1DEF1BF8D8AE00B6DA69 /* UIImage+ImageEffects.h */,
-				F3BD1DF01BF8D8AE00B6DA69 /* UIImage+ImageEffects.m */,
-				F334CFFB1BEE73FC0074734D /* NSArray+Random.h */,
-				F334CFFC1BEE73FC0074734D /* NSArray+Random.m */,
-				F31F72F81BFD4D6900DFFA9B /* UIParallelogramButton.h */,
-				F31F72F91BFD4D6900DFFA9B /* UIParallelogramButton.m */,
-				F34685011C03505D00C7C56D /* CubicSpinner.h */,
-				F34685021C03505D00C7C56D /* CubicSpinner.m */,
+				F346A5951C081CDE00B4F97E /* Activity */,
+				F346A5931C081CAD00B4F97E /* Category */,
+				F346A5941C081CCF00B4F97E /* UI */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -374,6 +372,37 @@
 				F37B44861BEE88BF00764D92 /* PortalCollection */,
 			);
 			name = MainView;
+			sourceTree = "<group>";
+		};
+		F346A5931C081CAD00B4F97E /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				F334CFFB1BEE73FC0074734D /* NSArray+Random.h */,
+				F334CFFC1BEE73FC0074734D /* NSArray+Random.m */,
+				F3BD1DEF1BF8D8AE00B6DA69 /* UIImage+ImageEffects.h */,
+				F3BD1DF01BF8D8AE00B6DA69 /* UIImage+ImageEffects.m */,
+			);
+			name = Category;
+			sourceTree = "<group>";
+		};
+		F346A5941C081CCF00B4F97E /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				F34685011C03505D00C7C56D /* CubicSpinner.h */,
+				F34685021C03505D00C7C56D /* CubicSpinner.m */,
+				F31F72F81BFD4D6900DFFA9B /* UIParallelogramButton.h */,
+				F31F72F91BFD4D6900DFFA9B /* UIParallelogramButton.m */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		F346A5951C081CDE00B4F97E /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				F346A5901C08171A00B4F97E /* WexinSessionActivity.h */,
+				F346A5911C08171A00B4F97E /* WexinSessionActivity.m */,
+			);
+			name = Activity;
 			sourceTree = "<group>";
 		};
 		F37B44861BEE88BF00764D92 /* PortalCollection */ = {
@@ -564,6 +593,7 @@
 				F3BD1DF91BF8E71600B6DA69 /* GradientView.m in Sources */,
 				F334D0051BEE73FC0074734D /* PortalCollectionViewController.m in Sources */,
 				F334D0071BEE73FC0074734D /* FeaturedQuoteModel.m in Sources */,
+				F346A5921C08171A00B4F97E /* WexinSessionActivity.m in Sources */,
 				F34684F41BFF5A4500C7C56D /* OpenShare+Weixin.m in Sources */,
 				F334D0011BEE73FC0074734D /* CarrouselViewController.m in Sources */,
 				F37B448F1BEE8AB400764D92 /* PortalCollectionHeaderView.m in Sources */,

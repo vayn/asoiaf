@@ -13,6 +13,7 @@
 #import "GradientView.h"
 #import "UIImageViewAligned.h"
 #import "CubicSpinner.h"
+#import "WexinSessionActivity.h"
 
 #import "JTSImageViewController.h"
 #import "OpenShareHeader.h"
@@ -20,7 +21,6 @@
 
 static NSInteger const kTITLE_LABEL_HEIGHT = 58;
 static NSInteger const kBLUR_VIEW_OFFSET = 85;
-static CGFloat const kHUD_SHOW_TIME = 2.18;
                  
 @interface WikiViewController ()
 <
@@ -355,70 +355,40 @@ UIGestureRecognizerDelegate
 
 - (void)shareButtonPressed:(id)sender
 {
-    OSMessage *msg = [[OSMessage alloc] init];
-    msg.title = [NSString stringWithFormat:@"冰与火之歌 - %@", self.title];
-    msg.desc = self.title;
-    msg.link = [NSString stringWithFormat:@"http://asoiaf.huiji.wiki/wiki/%@", self.title];
+    NSString *title = self.title;
+
+    NSString *linkString = [[NSString stringWithFormat:@"http://asoiaf.huiji.wiki/wiki/%@", self.title]
+                            stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    NSURL *link = [NSURL URLWithString:linkString];
 
     UIImage *image = self.imageView.image;
+    UIView *hudScene = self.view;
 
-    if (image) {
-        msg.image = image;
-    } else {
-        msg.image = [UIImage imageNamed:@"Launch Background"];
-    }
+    NSArray *objectsToShare = @[title, link, image, hudScene];
 
-    UIAlertController *actionController = [UIAlertController alertControllerWithTitle:nil
-                                                                              message:nil
-                                                                       preferredStyle:UIAlertControllerStyleActionSheet];
+    WexinSessionActivity *weActivity = [[WexinSessionActivity alloc] init];
 
-    [actionController addAction:[UIAlertAction actionWithTitle:@"取消"
-                                                         style:UIAlertActionStyleCancel
-                                                       handler:^(UIAlertAction * _Nonnull action) {
-                                                           [self dismissViewControllerAnimated:YES completion:nil];
-                                                       }]];
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare
+                                                                             applicationActivities:@[weActivity]];
 
-    [actionController addAction:[UIAlertAction actionWithTitle:@"分享给微信好友"
-                                                         style:UIAlertActionStyleDefault
-                                                       handler:^(UIAlertAction * _Nonnull action) {
-                                                           [OpenShare shareToWeixinSession:msg Success:^(OSMessage *message) {
-                                                               MBProgressHUD *hud = [self messageHUD:@"微信分享给朋友成功"];
-                                                               [hud hide:YES afterDelay:kHUD_SHOW_TIME];
-                                                           } Fail:^(OSMessage *message, NSError *error) {
-                                                               MBProgressHUD *hud = [self messageHUD:@"微信分享给朋友失败"];
-                                                               [hud hide:YES afterDelay:kHUD_SHOW_TIME];
-                                                           }];
-                                                       }]];
+    NSArray *excludeActivities = @[UIActivityTypePostToFacebook,
+                                   UIActivityTypePostToTwitter,
+                                   UIActivityTypePostToWeibo,
+                                   UIActivityTypeMessage,
+                                   UIActivityTypeMail,
+                                   UIActivityTypePrint,
+                                   UIActivityTypeCopyToPasteboard,
+                                   UIActivityTypeAssignToContact,
+                                   UIActivityTypeSaveToCameraRoll,
+                                   UIActivityTypeAddToReadingList,
+                                   UIActivityTypePostToFlickr,
+                                   UIActivityTypePostToVimeo,
+                                   UIActivityTypePostToTencentWeibo,
+                                   UIActivityTypeAirDrop];
 
-    [actionController addAction:[UIAlertAction actionWithTitle:@"分享到朋友圈"
-                                                         style:UIAlertActionStyleDefault
-                                                       handler:^(UIAlertAction *action) {
-                                                           [OpenShare shareToWeixinTimeline:msg Success:^(OSMessage *message) {
-                                                               // ULog(@"微信分享到朋友圈成功：\n%@", message);
-                                                               MBProgressHUD *hud = [self messageHUD:@"微信分享到朋友圈成功"];
-                                                               [hud hide:YES afterDelay:kHUD_SHOW_TIME];
-                                                           } Fail:^(OSMessage *message, NSError *error) {
-                                                               // ULog(@"微信分享到朋友圈失败：\n%@\n%@", error, message);
-                                                               MBProgressHUD *hud = [self messageHUD:@"微信分享到朋友圈失败"];
-                                                               [hud hide:YES afterDelay:kHUD_SHOW_TIME];
-                                                           }];
-                                                       }]];
+    activityVC.excludedActivityTypes = excludeActivities;
 
-    /*
-    [actionController addAction:[UIAlertAction actionWithTitle:@"分享到QQ"
-                                                         style:UIAlertActionStyleDefault
-                                                       handler:^(UIAlertAction *action) {
-                                                           [OpenShare shareToQQFriends:msg Success:^(OSMessage *message) {
-                                                               MBProgressHUD *hud = [self messageHUD:@"分享到QQ成功"];
-                                                               [hud hide:YES afterDelay:kHUD_SHOW_TIME];
-                                                           } Fail:^(OSMessage *message, NSError *error) {
-                                                               MBProgressHUD *hud = [self messageHUD:@"分享到QQ失败"];
-                                                               [hud hide:YES afterDelay:kHUD_SHOW_TIME];
-                                                           }];
-                                                       }]];
-     */
-
-    [self presentViewController:actionController animated:YES completion:nil];
+    [self presentViewController:activityVC animated:YES completion:nil];
 }
 
 #pragma mark - Private Helper Function
