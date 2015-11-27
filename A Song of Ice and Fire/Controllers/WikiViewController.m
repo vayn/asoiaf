@@ -374,15 +374,12 @@ UIGestureRecognizerDelegate
                                                                              applicationActivities:@[weActivity]];
 
     NSArray *excludeActivities = @[UIActivityTypePostToFacebook,
-                                   UIActivityTypePostToTwitter,
-                                   UIActivityTypePostToWeibo,
                                    UIActivityTypeMessage,
                                    UIActivityTypeMail,
                                    UIActivityTypePrint,
                                    UIActivityTypeCopyToPasteboard,
                                    UIActivityTypeAssignToContact,
                                    UIActivityTypeSaveToCameraRoll,
-                                   UIActivityTypeAddToReadingList,
                                    UIActivityTypePostToFlickr,
                                    UIActivityTypePostToVimeo,
                                    UIActivityTypePostToTencentWeibo,
