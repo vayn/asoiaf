@@ -146,8 +146,7 @@ UIGestureRecognizerDelegate
 
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, self.originalHeight - 80, self.imageView.frame.size.width - 30, 60)];
 
-    self.titleLabel.text = [NSString stringWithFormat:@"  %@", self.title];
-    self.titleLabel.text = [NSString stringWithFormat:@"  %@", self.title];
+    self.titleLabel.text = self.title;
     self.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:21.0];
     self.titleLabel.textColor = [UIColor whiteColor];
     self.titleLabel.shadowColor = [UIColor blackColor];
