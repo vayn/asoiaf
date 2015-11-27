@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "icon_timeline-8.png",
+      "filename" : "wexin_timeline.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "icon_timeline-8@2x.png",
+      "filename" : "wexin_timeline@2x.png",
       "scale" : "2x"
     },
     {
