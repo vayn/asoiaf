@@ -17,7 +17,6 @@
 
 #import "JTSImageViewController.h"
 #import "OpenShareHeader.h"
-#import "MBProgressHUD.h"
 
 static NSInteger const kTITLE_LABEL_HEIGHT = 58;
 static NSInteger const kBLUR_VIEW_OFFSET = 85;
@@ -389,18 +388,6 @@ UIGestureRecognizerDelegate
     activityVC.excludedActivityTypes = excludeActivities;
 
     [self presentViewController:activityVC animated:YES completion:nil];
-}
-
-#pragma mark - Private Helper Function
-
-- (MBProgressHUD *)messageHUD:(NSString *)message
-{
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.mode = MBProgressHUDModeText;
-    hud.removeFromSuperViewOnHide = YES;
-    hud.labelText = message;
-
-    return hud;
 }
 
 @end
