@@ -1,5 +1,5 @@
 //
-//  WexinSessionActivity.h
+//  WexinTimelineActivity.h
 //  A Song of Ice and Fire
 //
 //  Created by Vicent Tsai on 15/11/27.
@@ -8,7 +8,7 @@
 
 #import "BaseActivity.h"
 
-@interface WexinSessionActivity : BaseActivity <BaseActivityDelegate>
+@interface WexinTimelineActivity : BaseActivity <BaseActivityDelegate>
 
 @property (nonatomic, strong) NSString *successMessage;
 @property (nonatomic, strong) NSString *failureMessage;

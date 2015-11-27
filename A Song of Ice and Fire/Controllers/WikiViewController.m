@@ -13,7 +13,7 @@
 #import "GradientView.h"
 #import "UIImageViewAligned.h"
 #import "CubicSpinner.h"
-#import "WexinSessionActivity.h"
+#import "ShareActivity.h"
 
 #import "JTSImageViewController.h"
 #import "OpenShareHeader.h"
@@ -368,10 +368,11 @@ UIGestureRecognizerDelegate
 
     NSArray *objectsToShare = @[title, link, image, hudScene];
 
-    WexinSessionActivity *weActivity = [[WexinSessionActivity alloc] init];
+    NSArray *activity = @[[[WexinSessionActivity alloc] init],
+                          [[WexinTimelineActivity alloc] init]];
 
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare
-                                                                             applicationActivities:@[weActivity]];
+                                                                             applicationActivities:activity];
 
     NSArray *excludeActivities = @[UIActivityTypePostToFacebook,
                                    UIActivityTypeMessage,
