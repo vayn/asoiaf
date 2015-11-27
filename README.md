@@ -1,1 +1,1 @@
-![Screencast](https://coding.net/u/vayn/p/asoiaf/git/raw/master/screencast.gif)
+冰与火之歌中文维基 iOS APP
