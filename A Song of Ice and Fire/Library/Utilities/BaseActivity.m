@@ -40,13 +40,13 @@
 
 - (BOOL)canPerformWithActivityItems:(NSArray *)activityItems
 {
-    NSLog(@"%s", __FUNCTION__);
+    //NSLog(@"%s", __FUNCTION__);
     return YES;
 }
 
 - (UIViewController *)activityViewController
 {
-    NSLog(@"%s",__FUNCTION__);
+    //NSLog(@"%s",__FUNCTION__);
     return nil;
 }
 

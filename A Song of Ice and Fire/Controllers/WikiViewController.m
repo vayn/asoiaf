@@ -369,7 +369,8 @@ UIGestureRecognizerDelegate
     NSArray *objectsToShare = @[title, link, image, hudScene];
 
     NSArray *activity = @[[[WexinSessionActivity alloc] init],
-                          [[WexinTimelineActivity alloc] init]];
+                          [[WexinTimelineActivity alloc] init],
+                          [[QQActivity alloc] init]];
 
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare
                                                                              applicationActivities:activity];

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "WexinSessionActivity.h"
 #import "WexinTimelineActivity.h"
+#import "QQActivity.h"
 
 @interface ShareActivity : NSObject
 
