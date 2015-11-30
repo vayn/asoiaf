@@ -62,7 +62,7 @@
 		F3152B461BF44BD00048D69E /* WikiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WikiViewController.xib; path = "A Song of Ice and Fire/Views/WikiViewController.xib"; sourceTree = SOURCE_ROOT; };
 		F31F72F81BFD4D6900DFFA9B /* UIParallelogramButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIParallelogramButton.h; sourceTree = "<group>"; };
 		F31F72F91BFD4D6900DFFA9B /* UIParallelogramButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIParallelogramButton.m; sourceTree = "<group>"; };
-		F334CFC71BEE73420074734D /* A Song of Ice and Fire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "A Song of Ice and Fire.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F334CFC71BEE73420074734D /* 冰火中文维基.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "冰火中文维基.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F334CFCB1BEE73420074734D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F334CFD51BEE73420074734D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F334CFD71BEE73420074734D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -188,7 +188,7 @@
 		F334CFC81BEE73420074734D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F334CFC71BEE73420074734D /* A Song of Ice and Fire.app */,
+				F334CFC71BEE73420074734D /* 冰火中文维基.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -481,7 +481,7 @@
 			);
 			name = "A Song of Ice and Fire";
 			productName = "A Song of Ice and Fire";
-			productReference = F334CFC71BEE73420074734D /* A Song of Ice and Fire.app */;
+			productReference = F334CFC71BEE73420074734D /* 冰火中文维基.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -729,7 +729,7 @@
 				INFOPLIST_FILE = "A Song of Ice and Fire/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = li.hezhi.asoiaf;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "冰火中文维基";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -743,7 +743,7 @@
 				INFOPLIST_FILE = "A Song of Ice and Fire/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = li.hezhi.asoiaf;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "冰火中文维基";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
