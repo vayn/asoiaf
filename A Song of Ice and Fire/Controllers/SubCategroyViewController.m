@@ -6,17 +6,17 @@
 //  Copyright © 2015年 HeZhi Corp. All rights reserved.
 //
 
-#import "CatListViewController.h"
+#import "SubCategroyViewController.h"
 #import "DataManager.h"
 #import "WikiViewController.h"
 
-@interface CatListViewController ()
+@interface SubCategroyViewController ()
 
 @property (nonatomic, strong) NSArray *categoryList;
 
 @end
 
-@implementation CatListViewController
+@implementation SubCategroyViewController
 
 - (instancetype)initWithStyle:(UITableViewStyle)style
 {
