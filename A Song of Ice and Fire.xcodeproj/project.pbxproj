@@ -42,6 +42,7 @@
 		F346A5981C08457700B4F97E /* WexinSessionActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = F346A5971C08457700B4F97E /* WexinSessionActivity.m */; };
 		F346A59B1C084B0700B4F97E /* ShareActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = F346A59A1C084B0700B4F97E /* ShareActivity.m */; };
 		F346A59E1C084E9700B4F97E /* WexinTimelineActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = F346A59D1C084E9700B4F97E /* WexinTimelineActivity.m */; };
+		F34DCA391C0BD38E00979CA7 /* CAPSPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = F34DCA381C0BD38E00979CA7 /* CAPSPageMenu.m */; };
 		F37B448F1BEE8AB400764D92 /* PortalCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F37B448D1BEE8AB400764D92 /* PortalCollectionHeaderView.m */; };
 		F37B44921BEE8AFD00764D92 /* PortalCollectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F37B44911BEE8AFD00764D92 /* PortalCollectionHeaderView.xib */; };
 		F3A659E01C093EF800E16766 /* QQActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A659DF1C093EF800E16766 /* QQActivity.m */; };
@@ -119,6 +120,8 @@
 		F346A59A1C084B0700B4F97E /* ShareActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareActivity.m; sourceTree = "<group>"; };
 		F346A59C1C084E9700B4F97E /* WexinTimelineActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WexinTimelineActivity.h; sourceTree = "<group>"; };
 		F346A59D1C084E9700B4F97E /* WexinTimelineActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WexinTimelineActivity.m; sourceTree = "<group>"; };
+		F34DCA371C0BD38E00979CA7 /* CAPSPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPSPageMenu.h; sourceTree = "<group>"; };
+		F34DCA381C0BD38E00979CA7 /* CAPSPageMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPSPageMenu.m; sourceTree = "<group>"; };
 		F37B448C1BEE8AB400764D92 /* PortalCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalCollectionHeaderView.h; sourceTree = "<group>"; };
 		F37B448D1BEE8AB400764D92 /* PortalCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalCollectionHeaderView.m; sourceTree = "<group>"; };
 		F37B44911BEE8AFD00764D92 /* PortalCollectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PortalCollectionHeaderView.xib; sourceTree = "<group>"; };
@@ -266,6 +269,7 @@
 		F334CFF91BEE73FC0074734D /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				F34DCA361C0BD38E00979CA7 /* CAPSPageMenu */,
 				F3BD1DF61BF8E71600B6DA69 /* GradientView */,
 				F34684E21BFF5A4500C7C56D /* OpenShare */,
 				F3BD1DF21BF8D8C300B6DA69 /* ParallaxHeaderView */,
@@ -423,6 +427,15 @@
 				F346A59D1C084E9700B4F97E /* WexinTimelineActivity.m */,
 			);
 			name = Activity;
+			sourceTree = "<group>";
+		};
+		F34DCA361C0BD38E00979CA7 /* CAPSPageMenu */ = {
+			isa = PBXGroup;
+			children = (
+				F34DCA371C0BD38E00979CA7 /* CAPSPageMenu.h */,
+				F34DCA381C0BD38E00979CA7 /* CAPSPageMenu.m */,
+			);
+			path = CAPSPageMenu;
 			sourceTree = "<group>";
 		};
 		F37B44861BEE88BF00764D92 /* PortalCollection */ = {
@@ -592,6 +605,7 @@
 			files = (
 				F3BD1DF51BF8D8C300B6DA69 /* ParallaxHeaderView.m in Sources */,
 				F346A59E1C084E9700B4F97E /* WexinTimelineActivity.m in Sources */,
+				F34DCA391C0BD38E00979CA7 /* CAPSPageMenu.m in Sources */,
 				F3A659E01C093EF800E16766 /* QQActivity.m in Sources */,
 				F334D00F1BEE73FC0074734D /* AppDelegate.m in Sources */,
 				F334CFCC1BEE73420074734D /* main.m in Sources */,
