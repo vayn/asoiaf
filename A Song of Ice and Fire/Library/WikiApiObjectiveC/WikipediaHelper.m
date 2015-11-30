@@ -26,10 +26,17 @@
         // Standard values for the api URL
         apiUrl = @"http://asoiaf.huiji.wiki";
 
+        // Main bundle
         NSBundle *mainBundle = [NSBundle mainBundle];
+
+#ifdef DEBUG
         NSString *cssPath = [mainBundle pathForResource:@"wikiview" ofType:@"css"];
-        _wikicss = [NSString stringWithContentsOfFile:cssPath encoding:NSUTF8StringEncoding error:nil];
-        _wikicss = [NSString stringWithFormat:@"<style>%@</style>", _wikicss];
+#else
+        NSString *cssPath = [mainBundle pathForResource:@"wikiview-min" ofType:@"css"];
+#endif
+
+        NSString *css = [NSString stringWithContentsOfFile:cssPath encoding:NSUTF8StringEncoding error:nil];
+        _wikicss = [NSString stringWithFormat:@"<style>%@</style>", css];
         _wikicss = [_wikicss stringByAppendingString:
                     @"<meta name='viewport' content='width=device-width, user-scalable=no initial-scale=1.0'/>"];
 
@@ -97,6 +104,10 @@
 
     // Clean the html page
     formatedHtmlSrc = [self cleanHTMLPage:formatedHtmlSrc];
+
+    // Wrap html in DIV
+    formatedHtmlSrc = [NSString stringWithFormat:
+    @"<div id='wiki-outer-body'><div id='wiki-body' class='container'><div id='content'>%@</div></div></div>", formatedHtmlSrc];
 
     // Add CSS style
     formatedHtmlSrc = [self.wikicss stringByAppendingString:formatedHtmlSrc];
