@@ -36,7 +36,7 @@
 		F34684F41BFF5A4500C7C56D /* OpenShare+Weixin.m in Sources */ = {isa = PBXBuildFile; fileRef = F34684EC1BFF5A4500C7C56D /* OpenShare+Weixin.m */; };
 		F34684F51BFF5A4500C7C56D /* OpenShare.m in Sources */ = {isa = PBXBuildFile; fileRef = F34684EE1BFF5A4500C7C56D /* OpenShare.m */; };
 		F34684F71C02176D00C7C56D /* cubic_spinner.gif in Resources */ = {isa = PBXBuildFile; fileRef = F34684F61C02176D00C7C56D /* cubic_spinner.gif */; };
-		F34684FC1C022FAD00C7C56D /* SubCategroyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F34684FB1C022FAD00C7C56D /* SubCategroyViewController.m */; };
+		F34684FC1C022FAD00C7C56D /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F34684FB1C022FAD00C7C56D /* PageViewController.m */; };
 		F34685031C03505D00C7C56D /* CubicSpinner.m in Sources */ = {isa = PBXBuildFile; fileRef = F34685021C03505D00C7C56D /* CubicSpinner.m */; };
 		F346A5921C08171A00B4F97E /* BaseActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = F346A5911C08171A00B4F97E /* BaseActivity.m */; };
 		F346A5981C08457700B4F97E /* WexinSessionActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = F346A5971C08457700B4F97E /* WexinSessionActivity.m */; };
@@ -109,8 +109,8 @@
 		F34684EE1BFF5A4500C7C56D /* OpenShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenShare.m; sourceTree = "<group>"; };
 		F34684EF1BFF5A4500C7C56D /* OpenShareHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenShareHeader.h; sourceTree = "<group>"; };
 		F34684F61C02176D00C7C56D /* cubic_spinner.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = cubic_spinner.gif; sourceTree = "<group>"; };
-		F34684FA1C022FAD00C7C56D /* SubCategroyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubCategroyViewController.h; sourceTree = "<group>"; };
-		F34684FB1C022FAD00C7C56D /* SubCategroyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubCategroyViewController.m; sourceTree = "<group>"; };
+		F34684FA1C022FAD00C7C56D /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
+		F34684FB1C022FAD00C7C56D /* PageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageViewController.m; sourceTree = "<group>"; };
 		F34685011C03505D00C7C56D /* CubicSpinner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CubicSpinner.h; sourceTree = "<group>"; };
 		F34685021C03505D00C7C56D /* CubicSpinner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CubicSpinner.m; sourceTree = "<group>"; };
 		F346A5901C08171A00B4F97E /* BaseActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseActivity.h; sourceTree = "<group>"; };
@@ -374,13 +374,13 @@
 			path = openshare;
 			sourceTree = "<group>";
 		};
-		F34684FD1C022FBC00C7C56D /* SubCategoryViewController */ = {
+		F34684FD1C022FBC00C7C56D /* PageTable */ = {
 			isa = PBXGroup;
 			children = (
-				F34684FA1C022FAD00C7C56D /* SubCategroyViewController.h */,
-				F34684FB1C022FAD00C7C56D /* SubCategroyViewController.m */,
+				F34684FA1C022FAD00C7C56D /* PageViewController.h */,
+				F34684FB1C022FAD00C7C56D /* PageViewController.m */,
 			);
-			name = SubCategoryViewController;
+			name = PageTable;
 			sourceTree = "<group>";
 		};
 		F34685041C03544F00C7C56D /* MainView */ = {
@@ -446,7 +446,7 @@
 			children = (
 				F34DCA3B1C0BD4C700979CA7 /* CategoryViewController.h */,
 				F34DCA3C1C0BD4C700979CA7 /* CategoryViewController.m */,
-				F34684FD1C022FBC00C7C56D /* SubCategoryViewController */,
+				F34684FD1C022FBC00C7C56D /* PageTable */,
 			);
 			name = CategoryController;
 			sourceTree = "<group>";
@@ -456,8 +456,16 @@
 			children = (
 				F37B44911BEE8AFD00764D92 /* PortalCollectionHeaderView.xib */,
 				F334CFF41BEE73FC0074734D /* PortalCell.xib */,
+				F39290D21C0D97CE00A7BD2C /* Category */,
 			);
 			name = PortalCollection;
+			sourceTree = "<group>";
+		};
+		F39290D21C0D97CE00A7BD2C /* Category */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Category;
 			sourceTree = "<group>";
 		};
 		F3BD1DF21BF8D8C300B6DA69 /* ParallaxHeaderView */ = {
@@ -635,7 +643,7 @@
 				F3BE138C1BF26F5E00CC5159 /* KnowTipModel.m in Sources */,
 				F34684F31BFF5A4500C7C56D /* OpenShare+Weibo.m in Sources */,
 				F334D0031BEE73FC0074734D /* PortalCell.m in Sources */,
-				F34684FC1C022FAD00C7C56D /* SubCategroyViewController.m in Sources */,
+				F34684FC1C022FAD00C7C56D /* PageViewController.m in Sources */,
 				F334D0081BEE73FC0074734D /* PortalModel.m in Sources */,
 				F334D0021BEE73FC0074734D /* MainViewController.m in Sources */,
 				F34684F01BFF5A4500C7C56D /* OpenShare+Alipay.m in Sources */,

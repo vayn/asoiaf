@@ -25,6 +25,7 @@
     mainViewController.title = @"Home";
 
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
+    navController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor orangeColor]};
 
     self.window.rootViewController = navController;
     self.window.backgroundColor = [UIColor whiteColor];

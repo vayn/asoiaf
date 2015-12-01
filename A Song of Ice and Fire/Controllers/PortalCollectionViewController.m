@@ -13,7 +13,7 @@
 #import "PortalCollectionHeaderView.h"
 #import "DataManager.h"
 #import "PortalModel.h"
-#import "CatListViewController.h"
+#import "CategoryViewController.h"
 
 static NSString * const reuseCell = @"PortalCell";
 static NSString * const reuseHeader = @"PortalCollectionHeaderView";
@@ -209,10 +209,10 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
     PortalModel *portal =  self.portals[indexPath.row];
     NSLog(@"Selected: %@", portal.title);
 
-    CatListViewController *catListVC = [[CatListViewController alloc] initWithStyle:UITableViewStylePlain];
-    catListVC.parentCategory = portal;
+    CategoryViewController *categoryVC = [[CategoryViewController alloc] init];
+    categoryVC.category = portal;
     
-    [self.navigationController pushViewController:catListVC animated:YES];
+    [self.navigationController pushViewController:categoryVC animated:YES];
 }
 
 @end

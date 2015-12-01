@@ -135,7 +135,7 @@
           }];
 }
 
-- (void)getPortals:(ManagerCompletionBlock)completionBlock
+- (void)getCategories:(ManagerCompletionBlock)completionBlock
 {
     NSString *API = [[NSString alloc] initWithFormat:@"%@/api.php?action=query&list=categorymembers&cmtitle=Category:Portal&cmnamespace=0&format=json",
                      self.siteURL];
@@ -260,7 +260,7 @@
           }];
 }
 
-- (void)getCategoryList:(NSString *)categoryLink completionBlock:(void (^)(NSArray *))completionBlock
+- (void)getPagesWithCate:(NSString *)categoryLink completionBlock:(void (^)(NSArray *))completionBlock
 {
     NSString *API = [NSString stringWithFormat:@"%@/api.php?action=query&list=categorymembers&cmtitle=%@&cmnamespace=0&format=json",
                      self.siteURL, categoryLink];

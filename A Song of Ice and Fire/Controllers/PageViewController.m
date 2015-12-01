@@ -1,22 +1,22 @@
 //
-//  CatListViewController.m
+//  PageViewController.m
 //  A Song of Ice and Fire
 //
 //  Created by Vicent Tsai on 15/11/23.
 //  Copyright © 2015年 HeZhi Corp. All rights reserved.
 //
 
-#import "SubCategroyViewController.h"
+#import "PageViewController.h"
 #import "DataManager.h"
 #import "WikiViewController.h"
 
-@interface SubCategroyViewController ()
+@interface PageViewController ()
 
 @property (nonatomic, strong) NSArray *categoryList;
 
 @end
 
-@implementation SubCategroyViewController
+@implementation PageViewController
 
 - (instancetype)initWithStyle:(UITableViewStyle)style
 {
@@ -32,7 +32,7 @@
 
     self.navigationItem.title = _parentCategory.title;
 
-    [[DataManager sharedManager] getCategoryList:_parentCategory.link completionBlock:^(NSArray *categoryList) {
+    [[DataManager sharedManager] getPagesWithCate:_parentCategory.link completionBlock:^(NSArray *categoryList) {
         if (categoryList.count > 0) {
             _categoryList = categoryList;
 
@@ -89,7 +89,7 @@
     WikiViewController *wikiVC = [[WikiViewController alloc] init];
     wikiVC.title = title;
 
-    [self.navigationController pushViewController:wikiVC animated:YES];
+    [self.parentVC.navigationController pushViewController:wikiVC animated:YES];
 }
 
 @end

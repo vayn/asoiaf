@@ -15,10 +15,10 @@ typedef void (^ManagerCompletionBlock)(id responseObject);
 + (instancetype)sharedManager;
 
 - (void)getFeaturedQuotes:(ManagerCompletionBlock)completionBlock;
-- (void)getPortals:(ManagerCompletionBlock)completionBlock;
+- (void)getCategories:(ManagerCompletionBlock)completionBlock;
 - (void)getPageThumbnailWithPageId:(NSNumber *)pageId completionBlock:(ManagerCompletionBlock)completionBlock;
 - (void)getKnowTip:(ManagerCompletionBlock)completionBlock;
 - (void)getRandomTitle:(void (^)(NSString *title))completionBlock;
-- (void)getCategoryList:(NSString *)category completionBlock:(void (^)(NSArray *categoryList))completionBlock;
+- (void)getPagesWithCate:(NSString *)category completionBlock:(void (^)(NSArray *categoryList))completionBlock;
 
 @end
