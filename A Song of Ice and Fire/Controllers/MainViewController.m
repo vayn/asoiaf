@@ -16,7 +16,7 @@
 #import "KnowTipTableViewController.h"
 
 #import "DataManager.h"
-#import "FeaturedQuoteModel.h"
+#import "Models.h"
 #import "CubicSpinner.h"
 
 static CGFloat const SLIDE_TIMING = 0.25;

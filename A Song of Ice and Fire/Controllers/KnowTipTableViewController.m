@@ -10,7 +10,7 @@
 #import "WikiViewController.h"
 
 #import "DataManager.h"
-#import "KnowTipModel.h"
+#import "Models.h"
 
 #import "NSArray+Random.h"
 #import "RegexKitLite.h"

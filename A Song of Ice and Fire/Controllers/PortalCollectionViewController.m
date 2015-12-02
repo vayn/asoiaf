@@ -11,9 +11,11 @@
 #import "PortalCollectionViewController.h"
 #import "PortalCell.h"
 #import "PortalCollectionHeaderView.h"
-#import "DataManager.h"
-#import "PortalModel.h"
+
 #import "CategoryViewController.h"
+
+#import "DataManager.h"
+#import "Models.h"
 
 static NSString * const reuseCell = @"PortalCell";
 static NSString * const reuseHeader = @"PortalCollectionHeaderView";
