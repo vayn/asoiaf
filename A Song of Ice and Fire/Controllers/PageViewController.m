@@ -7,12 +7,14 @@
 //
 
 #import "PageViewController.h"
-#import "DataManager.h"
 #import "WikiViewController.h"
+
+#import "Models.h"
+#import "DataManager.h"
 
 @interface PageViewController ()
 
-@property (nonatomic, strong) NSArray *categoryList;
+@property (nonatomic, strong) NSArray *pages;
 
 @end
 
@@ -32,9 +34,9 @@
 
     self.navigationItem.title = _parentCategory.title;
 
-    [[DataManager sharedManager] getPagesWithCate:_parentCategory.link completionBlock:^(NSArray *categoryList) {
-        if (categoryList.count > 0) {
-            _categoryList = categoryList;
+    [[DataManager sharedManager] getPagesWithCate:_parentCategory.link completionBlock:^(NSArray *pages) {
+        if (pages.count > 0) {
+            _pages = pages;
 
             [self.tableView reloadData];
         }
@@ -59,15 +61,15 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.categoryList.count;
+    return self.pages.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
     
-    NSDictionary *category = self.categoryList[indexPath.row];
+    PageModel *page = self.pages[indexPath.row];
 
-    NSString *title = category[@"title"];
+    NSString *title = page.title;
 
     if ([title rangeOfString:@":"].location != NSNotFound) {
         NSArray *temp = [title componentsSeparatedByString:@":"];
@@ -82,12 +84,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    NSDictionary *category = self.categoryList[indexPath.row];
-
-    NSString *title = category[@"title"];
+    PageModel *page = self.pages[indexPath.row];
 
     WikiViewController *wikiVC = [[WikiViewController alloc] init];
-    wikiVC.title = title;
+    wikiVC.title = page.title;
 
     [self.parentVC.navigationController pushViewController:wikiVC animated:YES];
 }
