@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class PortalModel;
+@class CategoryMemberModel;
 
 @interface CategoryViewController : UIViewController
 
-@property (nonatomic, strong) PortalModel *category;
+@property (nonatomic, strong) CategoryMemberModel *category;
 
 @end

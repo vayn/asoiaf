@@ -22,7 +22,7 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
                  
 @interface PortalCollectionViewController () <UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic, strong) NSArray<PortalModel *> *portals;
+@property (nonatomic, strong) NSArray<CategoryMemberModel *> *portals;
 
 @end
 
@@ -102,10 +102,8 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
     NSMutableArray *tempArray = [@[] mutableCopy];
 
     for (NSDictionary *portal in portals) {
-        PortalModel *pm = [[PortalModel alloc] initWithTitle:portal[@"title"]
-                                                      pageId:portal[@"pageid"]
-                                                        link:portal[@"link"]];
-        [tempArray addObject:pm];
+        CategoryMemberModel *cm = [[CategoryMemberModel alloc] initWithLink:portal[@"title"] pageId:portal[@"pageid"]];
+        [tempArray addObject:cm];
     }
 
     _portals = [tempArray copy];
@@ -144,7 +142,7 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 
 - (PortalCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     PortalCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseCell forIndexPath:indexPath];
-    PortalModel *portal = self.portals[indexPath.row];
+    CategoryMemberModel *portal = self.portals[indexPath.row];
 
     [cell.loadingIndicator startAnimating];
     
@@ -208,7 +206,7 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    PortalModel *portal =  self.portals[indexPath.row];
+    CategoryMemberModel *portal =  self.portals[indexPath.row];
     NSLog(@"Selected: %@", portal.title);
 
     CategoryViewController *categoryVC = [[CategoryViewController alloc] init];

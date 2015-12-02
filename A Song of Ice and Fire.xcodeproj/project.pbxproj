@@ -19,7 +19,6 @@
 		F334D0051BEE73FC0074734D /* PortalCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F334CFE71BEE73FC0074734D /* PortalCollectionViewController.m */; };
 		F334D0061BEE73FC0074734D /* SlideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F334CFE91BEE73FC0074734D /* SlideMenuViewController.m */; };
 		F334D0071BEE73FC0074734D /* FeaturedQuoteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F334CFEC1BEE73FC0074734D /* FeaturedQuoteModel.m */; };
-		F334D0081BEE73FC0074734D /* PortalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F334CFEE1BEE73FC0074734D /* PortalModel.m */; };
 		F334D0091BEE73FC0074734D /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F334CFF11BEE73FC0074734D /* DataManager.m */; };
 		F334D00A1BEE73FC0074734D /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F334CFF31BEE73FC0074734D /* MainViewController.xib */; };
 		F334D00B1BEE73FC0074734D /* PortalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F334CFF41BEE73FC0074734D /* PortalCell.xib */; };
@@ -84,8 +83,6 @@
 		F334CFE91BEE73FC0074734D /* SlideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideMenuViewController.m; sourceTree = "<group>"; };
 		F334CFEB1BEE73FC0074734D /* FeaturedQuoteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeaturedQuoteModel.h; sourceTree = "<group>"; };
 		F334CFEC1BEE73FC0074734D /* FeaturedQuoteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeaturedQuoteModel.m; sourceTree = "<group>"; };
-		F334CFED1BEE73FC0074734D /* PortalModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalModel.h; sourceTree = "<group>"; };
-		F334CFEE1BEE73FC0074734D /* PortalModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalModel.m; sourceTree = "<group>"; };
 		F334CFF01BEE73FC0074734D /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		F334CFF11BEE73FC0074734D /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		F334CFF31BEE73FC0074734D /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
@@ -254,8 +251,6 @@
 				F39290D71C0E9DE600A7BD2C /* Models.m */,
 				F334CFEB1BEE73FC0074734D /* FeaturedQuoteModel.h */,
 				F334CFEC1BEE73FC0074734D /* FeaturedQuoteModel.m */,
-				F334CFED1BEE73FC0074734D /* PortalModel.h */,
-				F334CFEE1BEE73FC0074734D /* PortalModel.m */,
 				F3BE138A1BF26F5E00CC5159 /* KnowTipModel.h */,
 				F3BE138B1BF26F5E00CC5159 /* KnowTipModel.m */,
 				F39290D31C0E887900A7BD2C /* CategoryMemberModel.h */,
@@ -674,7 +669,6 @@
 				F34684F31BFF5A4500C7C56D /* OpenShare+Weibo.m in Sources */,
 				F334D0031BEE73FC0074734D /* PortalCell.m in Sources */,
 				F34684FC1C022FAD00C7C56D /* PageViewController.m in Sources */,
-				F334D0081BEE73FC0074734D /* PortalModel.m in Sources */,
 				F334D0021BEE73FC0074734D /* MainViewController.m in Sources */,
 				F34684F01BFF5A4500C7C56D /* OpenShare+Alipay.m in Sources */,
 				F334D0111BEE73FC0074734D /* WikipediaHelper.m in Sources */,

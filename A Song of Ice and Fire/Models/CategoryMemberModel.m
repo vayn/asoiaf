@@ -10,21 +10,32 @@
 
 @implementation CategoryMemberModel
 
+- (instancetype)initWithLink:(NSString *)aLink
+{
+    return [self initWithLink:aLink pageId:nil];
+}
+
 // Designated Intializer
-- (instancetype)initWithTitle:(NSString *)aTitle pageId:(NSNumber *)aPageId
+- (instancetype)initWithLink:(NSString *)aLink pageId:(NSNumber *)aPageId
 {
     self = [super init];
     if (self) {
-        _title = aTitle;
+        _link = aLink;
         _pageId = aPageId;
     }
     return self;
 }
 
-- (instancetype)init
+- (void)setLink:(NSString *)link
 {
-    self = [self initWithTitle:nil pageId:nil];
-    return self;
+    _link = link;
+
+    if ([link rangeOfString:@":"].location != NSNotFound) {
+        NSArray *temp = [link componentsSeparatedByString:@":"];
+        _title = temp[1];
+    } else {
+        _title = link;
+    }
 }
 
 @end

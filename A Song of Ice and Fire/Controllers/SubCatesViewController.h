@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class PortalModel;
+@class CategoryMemberModel;
 
 @interface SubCatesViewController : UITableViewController
 
-@property (nonatomic, strong) PortalModel *parentCategory;
+@property (nonatomic, strong) CategoryMemberModel *parentCategory;
 @property (nonatomic, strong) UIViewController *parentVC;
 
 @end

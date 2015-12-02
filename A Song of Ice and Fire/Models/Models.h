@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "FeaturedQuoteModel.h"
-#import "PortalModel.h"
 #import "KnowTipModel.h"
 #import "CategoryMemberModel.h"
 

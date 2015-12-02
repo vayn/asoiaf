@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PortalModel.h"
+
+@class CategoryMemberModel;
 
 @interface PageViewController : UITableViewController
 
-@property (nonatomic, strong) PortalModel *parentCategory;
+@property (nonatomic, strong) CategoryMemberModel *parentCategory;
 @property (nonatomic, strong) UIViewController *parentVC;
 
 @end

@@ -143,26 +143,21 @@
     [_manager GET:URL
        parameters:nil
           success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-              NSArray *portalObjects = responseObject[@"query"][@"categorymembers"];
+              NSArray *categoryMembersArray = responseObject[@"query"][@"categorymembers"];
               NSMutableArray *portals = [@[] mutableCopy];
 
-              for (id portalObject in portalObjects) {
-                  NSNumber *pageId = portalObject[@"pageid"];
+              for (id cmObject in categoryMembersArray) {
+                  NSNumber *pageId = cmObject[@"pageid"];
 
                   // Hack: 306 和 5480 都是「人物」，只要 5480
                   if ([pageId isEqualToNumber:@306]) {
                       continue;
                   }
 
-                  NSString *title = portalObject[@"title"];
+                  NSString *link = cmObject[@"title"];
 
-                  if ([title rangeOfString:@":"].location != NSNotFound) {
-                      NSArray *temp = [title componentsSeparatedByString:@":"];
-                      title = temp[1];
-                  }
-
-                  PortalModel *portalModel = [[PortalModel alloc] initWithTitle:title pageId:pageId];
-                  [portals addObject:portalModel];
+                  CategoryMemberModel *categoryMember = [[CategoryMemberModel alloc] initWithLink:link pageId:pageId];
+                  [portals addObject:categoryMember];
               }
 
               completionBlock(portals);
@@ -270,8 +265,9 @@
           success:^(NSURLSessionDataTask *task, id responseObject) {
               NSMutableArray *pages = [@[] mutableCopy];
 
-              for (NSDictionary *cateMember in responseObject[@"query"][@"categorymembers"]) {
-                  [pages addObject:[[CategoryMemberModel alloc] initWithTitle:cateMember[@"title"] pageId:cateMember[@"pageid"]]];
+              for (NSDictionary *categoryMember in responseObject[@"query"][@"categorymembers"]) {
+                  [pages addObject:[[CategoryMemberModel alloc] initWithLink:categoryMember[@"title"]
+                                                                      pageId:categoryMember[@"pageid"]]];
               }
 
               completionBlock([pages copy]);
@@ -291,8 +287,9 @@
           success:^(NSURLSessionDataTask *task, id responseObject) {
               NSMutableArray *pages = [@[] mutableCopy];
 
-              for (NSDictionary *cateMember in responseObject[@"query"][@"categorymembers"]) {
-                  [pages addObject:[[CategoryMemberModel alloc] initWithTitle:cateMember[@"title"] pageId:cateMember[@"pageid"]]];
+              for (NSDictionary *categoryMember in responseObject[@"query"][@"categorymembers"]) {
+                  [pages addObject:[[CategoryMemberModel alloc] initWithLink:categoryMember[@"title"]
+                                                                      pageId:categoryMember[@"pageid"]]];
               }
 
               completionBlock([pages copy]);
@@ -312,8 +309,9 @@
           success:^(NSURLSessionDataTask *task, id responseObject) {
               NSMutableArray *subCates = [@[] mutableCopy];
 
-              for (NSDictionary *cateMember in responseObject[@"query"][@"categorymembers"]) {
-                  [subCates addObject:[[CategoryMemberModel alloc] initWithTitle:cateMember[@"title"] pageId:cateMember[@"pageid"]]];
+              for (NSDictionary *categoryMember in responseObject[@"query"][@"categorymembers"]) {
+                  [subCates addObject:[[CategoryMemberModel alloc] initWithLink:categoryMember[@"title"]
+                                                                         pageId:categoryMember[@"pageid"]]];
               }
 
               completionBlock([subCates copy]);
