@@ -66,7 +66,7 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
                          },
                          @{
                              @"pageid": @5480,
-                             @"link": @"Category:POV人物",
+                             @"link": @"Category:人物",
                              @"title": @"人物介绍"
                          },
                          @{
