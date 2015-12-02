@@ -18,8 +18,8 @@
 #import "JTSImageViewController.h"
 #import "OpenShareHeader.h"
 
-static NSInteger const kTITLE_LABEL_HEIGHT = 58;
-static NSInteger const kBLUR_VIEW_OFFSET = 85;
+static NSInteger const kTitleLabelHeight = 58;
+static NSInteger const kBlurViewOffset = 85;
                  
 @interface WikiViewController ()
 <
@@ -114,8 +114,8 @@ UIGestureRecognizerDelegate
     self.imageView.contentMode = UIViewContentModeScaleAspectFill;
     self.imageView.clipsToBounds = YES;
 
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.imageView.frame.size.height - kTITLE_LABEL_HEIGHT,
-                                                               self.imageView.frame.size.width, kTITLE_LABEL_HEIGHT)];
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.imageView.frame.size.height - kTitleLabelHeight,
+                                                               self.imageView.frame.size.width, kTitleLabelHeight)];
 
     self.titleLabel.text = self.title;
     self.titleLabel.backgroundColor = [UIColor colorWithRed:42/255.0 green:196/255.0 blue:234/255.0 alpha:0.7];
@@ -158,8 +158,8 @@ UIGestureRecognizerDelegate
 
     [self.imageView addSubview:self.titleLabel];
 
-    self.blurView = [[GradientView alloc] initWithFrame:CGRectMake(0, -kBLUR_VIEW_OFFSET,
-                                                                   self.view.frame.size.width, self.originalHeight + kBLUR_VIEW_OFFSET)
+    self.blurView = [[GradientView alloc] initWithFrame:CGRectMake(0, -kBlurViewOffset,
+                                                                   self.view.frame.size.width, self.originalHeight + kBlurViewOffset)
                                                    type:TransparentGradientTwiceType];
     
     [self.imageView addSubview:self.blurView];
@@ -313,8 +313,8 @@ UIGestureRecognizerDelegate
         self.titleLabel.frame = CGRectMake(15, self.originalHeight - 80 - incrementY, self.view.frame.size.width - 30, 60);
 
         // 不断添加删除 blurView.layer.sublayers![0] 以保证 frame 正确
-        self.blurView.frame = CGRectMake(0, -kBLUR_VIEW_OFFSET - incrementY,
-                                         self.view.frame.size.width, self.originalHeight + kBLUR_VIEW_OFFSET);
+        self.blurView.frame = CGRectMake(0, -kBlurViewOffset - incrementY,
+                                         self.view.frame.size.width, self.originalHeight + kBlurViewOffset);
         [self.blurView.layer.sublayers[0] removeFromSuperlayer];
         [self.blurView insertTwiceTransparentGradient];
 

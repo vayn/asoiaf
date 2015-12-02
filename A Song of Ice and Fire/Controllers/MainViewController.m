@@ -19,9 +19,9 @@
 #import "Models.h"
 #import "CubicSpinner.h"
 
-static CGFloat const SLIDE_TIMING = 0.25;
-static CGFloat const OVERLAY_ALPHA_BEGAN = 0.0;
-static CGFloat const OVERLAY_ALPHA_END = 0.7;
+static CGFloat const kSlideTiming = 0.25;
+static CGFloat const kOverlayAlphaBegan = 0.0;
+static CGFloat const kOverlayAlphaEnd = 0.7;
                
 @interface MainViewController () <UIGestureRecognizerDelegate>
 
@@ -130,10 +130,10 @@ static CGFloat const OVERLAY_ALPHA_END = 0.7;
 {
     UIView *childView = [self getSlideMenuView];
 
-    [UIView animateWithDuration:SLIDE_TIMING delay:0 options:UIViewAnimationOptionBeginFromCurrentState
+    [UIView animateWithDuration:kSlideTiming delay:0 options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
                          childView.frame = CGRectOffset(childView.frame, -childView.frame.size.width, 0);
-                         self.overlayView.alpha = OVERLAY_ALPHA_BEGAN;
+                         self.overlayView.alpha = kOverlayAlphaBegan;
                      }
                      completion:^(BOOL finished) {
                          if (finished) {
@@ -146,11 +146,11 @@ static CGFloat const OVERLAY_ALPHA_END = 0.7;
 {
     UIView *childView = [self getSlideMenuView];
 
-    [UIView animateWithDuration:SLIDE_TIMING delay:0 options:UIViewAnimationOptionBeginFromCurrentState
+    [UIView animateWithDuration:kSlideTiming delay:0 options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
                          childView.frame = CGRectMake(0, 0,
                                                       childView.frame.size.width, childView.frame.size.height);
-                         self.overlayView.alpha = OVERLAY_ALPHA_END;
+                         self.overlayView.alpha = kOverlayAlphaEnd;
                      } completion:^(BOOL finished) {
                          if (finished) {
                              self.navigationItem.leftBarButtonItem.tag = 0;
@@ -193,7 +193,7 @@ static CGFloat const OVERLAY_ALPHA_END = 0.7;
                                                                -self.slideMenuViewController.view.frame.size.width, 0);
 
         CGFloat slideMenuWidth = self.slideMenuViewController.view.frame.size.width;
-        self.overlayAlphaSpeed = fabs(OVERLAY_ALPHA_BEGAN - OVERLAY_ALPHA_END) / slideMenuWidth;
+        self.overlayAlphaSpeed = fabs(kOverlayAlphaBegan - kOverlayAlphaEnd) / slideMenuWidth;
 
         [self setupSlideMenuGestures:self.slideMenuViewController.view];
     }
@@ -216,7 +216,7 @@ static CGFloat const OVERLAY_ALPHA_END = 0.7;
 {
     self.overlayView = [[UIView alloc] initWithFrame:self.navigationController.view.frame];
     self.overlayView.backgroundColor = [UIColor blackColor];
-    self.overlayView.alpha = OVERLAY_ALPHA_BEGAN;
+    self.overlayView.alpha = kOverlayAlphaBegan;
 }
 
 - (void)setupCarrouselView
@@ -348,8 +348,8 @@ static CGFloat const OVERLAY_ALPHA_END = 0.7;
         [(UIPanGestureRecognizer *)sender setTranslation:CGPointZero inView:self.containerView];
 
         self.overlayView.alpha += self.overlayAlphaSpeed * translatedPoint.x;
-        if (self.overlayView.alpha > OVERLAY_ALPHA_END) {
-            self.overlayView.alpha = OVERLAY_ALPHA_END;
+        if (self.overlayView.alpha > kOverlayAlphaEnd) {
+            self.overlayView.alpha = kOverlayAlphaEnd;
         }
 
         self.preVelocity = velocity;
