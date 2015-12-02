@@ -102,7 +102,9 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
     NSMutableArray *tempArray = [@[] mutableCopy];
 
     for (NSDictionary *portal in portals) {
-        CategoryMemberModel *cm = [[CategoryMemberModel alloc] initWithLink:portal[@"title"] pageId:portal[@"pageid"]];
+        CategoryMemberModel *cm = [[CategoryMemberModel alloc] initWithTitle:portal[@"title"]
+                                                                        link:portal[@"link"]
+                                                                      pageId:portal[@"pageid"]];
         [tempArray addObject:cm];
     }
 
@@ -207,7 +209,6 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CategoryMemberModel *portal =  self.portals[indexPath.row];
-    NSLog(@"Selected: %@", portal.title);
 
     CategoryViewController *categoryVC = [[CategoryViewController alloc] init];
     categoryVC.category = portal;

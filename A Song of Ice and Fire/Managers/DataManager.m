@@ -154,9 +154,9 @@
                       continue;
                   }
 
-                  NSString *link = cmObject[@"title"];
+                  NSString *title = cmObject[@"title"];
 
-                  CategoryMemberModel *categoryMember = [[CategoryMemberModel alloc] initWithLink:link pageId:pageId];
+                  CategoryMemberModel *categoryMember = [[CategoryMemberModel alloc] initWithTitle:title pageId:pageId];
                   [portals addObject:categoryMember];
               }
 
@@ -266,7 +266,7 @@
               NSMutableArray *pages = [@[] mutableCopy];
 
               for (NSDictionary *categoryMember in responseObject[@"query"][@"categorymembers"]) {
-                  [pages addObject:[[CategoryMemberModel alloc] initWithLink:categoryMember[@"title"]
+                  [pages addObject:[[CategoryMemberModel alloc] initWithTitle:categoryMember[@"title"]
                                                                       pageId:categoryMember[@"pageid"]]];
               }
 
@@ -288,7 +288,7 @@
               NSMutableArray *pages = [@[] mutableCopy];
 
               for (NSDictionary *categoryMember in responseObject[@"query"][@"categorymembers"]) {
-                  [pages addObject:[[CategoryMemberModel alloc] initWithLink:categoryMember[@"title"]
+                  [pages addObject:[[CategoryMemberModel alloc] initWithTitle:categoryMember[@"title"]
                                                                       pageId:categoryMember[@"pageid"]]];
               }
 
@@ -310,7 +310,7 @@
               NSMutableArray *subCates = [@[] mutableCopy];
 
               for (NSDictionary *categoryMember in responseObject[@"query"][@"categorymembers"]) {
-                  [subCates addObject:[[CategoryMemberModel alloc] initWithLink:categoryMember[@"title"]
+                  [subCates addObject:[[CategoryMemberModel alloc] initWithTitle:categoryMember[@"title"]
                                                                          pageId:categoryMember[@"pageid"]]];
               }
 

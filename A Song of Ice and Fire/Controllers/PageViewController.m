@@ -28,7 +28,7 @@
     return self;
 }
 
-- (void)setParentCategory:(PortalModel *)parentCategory
+- (void)setParentCategory:(CategoryMemberModel *)parentCategory
 {
     _parentCategory = parentCategory;
 
@@ -83,7 +83,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     CategoryMemberModel *page = self.pages[indexPath.row];
 
     WikiViewController *wikiVC = [[WikiViewController alloc] init];

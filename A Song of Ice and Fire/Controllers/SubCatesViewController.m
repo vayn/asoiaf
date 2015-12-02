@@ -7,7 +7,7 @@
 //
 
 #import "SubCatesViewController.h"
-#import "WikiViewController.h"
+#import "CategoryViewController.h"
 
 #import "Models.h"
 #import "DataManager.h"
@@ -20,7 +20,7 @@
 
 @implementation SubCatesViewController
 
-- (void)setParentCategory:(PortalModel *)parentCategory
+- (void)setParentCategory:(CategoryMemberModel *)parentCategory
 {
     _parentCategory = parentCategory;
 
@@ -75,20 +75,15 @@
     return cell;
 }
 
-/*
 #pragma mark - Table view delegate
 
-// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
-    
-    // Pass the selected object to the new view controller.
-    
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    CategoryMemberModel *category = self.subCates[indexPath.row];
+
+    CategoryViewController *subCategoryVC = [[CategoryViewController alloc] init];
+    subCategoryVC.category = category;
+
+    [self.parentVC.navigationController pushViewController:subCategoryVC animated:YES];
 }
-*/
 
 @end

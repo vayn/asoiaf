@@ -10,6 +10,7 @@
 #import "PageViewController.h"
 #import "SubCatesViewController.h"
 
+#import "Models.h"
 #import "CAPSPageMenu.h"
 
 @interface CategoryViewController ()
