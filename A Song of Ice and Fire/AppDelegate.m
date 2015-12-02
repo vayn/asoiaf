@@ -26,6 +26,7 @@
 
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
     navController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor orangeColor]};
+    navController.navigationBar.tintColor = [UIColor orangeColor];
 
     self.window.rootViewController = navController;
     self.window.backgroundColor = [UIColor whiteColor];
