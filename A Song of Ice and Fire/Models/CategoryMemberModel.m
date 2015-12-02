@@ -10,32 +10,39 @@
 
 @implementation CategoryMemberModel
 
-- (instancetype)initWithLink:(NSString *)aLink
+- (instancetype)initWithTitle:(NSString *)aTitle
 {
-    return [self initWithLink:aLink pageId:nil];
+    return [self initWithTitle:aTitle pageId:nil];
+}
+
+- (instancetype)initWithTitle:(NSString *)aTitle pageId:(NSNumber *)aPageId
+{
+    return [self initWithTitle:aTitle link:nil pageId:aPageId];
 }
 
 // Designated Intializer
-- (instancetype)initWithLink:(NSString *)aLink pageId:(NSNumber *)aPageId
+- (instancetype)initWithTitle:(NSString *)aTitle link:(NSString *)aLink pageId:(NSNumber *)aPageId
 {
     self = [super init];
+
     if (self) {
-        _link = aLink;
+        if ([aTitle rangeOfString:@":"].location != NSNotFound) {
+            NSArray *temp = [aTitle componentsSeparatedByString:@":"];
+            _title = temp[1];
+        } else {
+            _title = aTitle;
+        }
+
+        if (aLink) {
+            _link = aLink;
+        } else {
+            _link = aTitle;
+        }
+
         _pageId = aPageId;
     }
+
     return self;
-}
-
-- (void)setLink:(NSString *)link
-{
-    _link = link;
-
-    if ([link rangeOfString:@":"].location != NSNotFound) {
-        NSArray *temp = [link componentsSeparatedByString:@":"];
-        _title = temp[1];
-    } else {
-        _title = link;
-    }
 }
 
 @end
