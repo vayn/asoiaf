@@ -259,7 +259,7 @@
           }];
 }
 
-- (void)getPagesWithCate:(NSString *)categoryLink completionBlock:(void (^)(NSArray *))completionBlock
+- (void)getPagesWithCate:(NSString *)categoryLink completionBlock:(void (^)(NSArray *pages))completionBlock
 {
     NSString *API = [NSString stringWithFormat:@"%@/api.php?action=query&list=categorymembers&cmtitle=%@&cmnamespace=0&format=json",
                      self.siteURL, categoryLink];
@@ -280,7 +280,7 @@
           }];
 }
 
-- (void)getPagesUsingGeneratorAPIWithCate:(NSString *)categoryLink completionBlock:(void (^)(NSArray *))completionBlock
+- (void)getPagesUsingGeneratorAPIWithCate:(NSString *)categoryLink completionBlock:(void (^)(NSArray *pages))completionBlock
 {
     NSString *API = [NSString stringWithFormat:@"%@/api.php?action=query&generator=categorymembers&gcmtitle=%@&prop=categories&cllimit=max&gcmlimit=max&format=json",
                      self.siteURL, categoryLink];
@@ -299,6 +299,11 @@
           } failure:^(NSURLSessionDataTask *task, NSError *error) {
               NSLog(@"%s Error: %@", __FUNCTION__, error);
           }];
+}
+
+- (void)getSubCatesWithCate:(NSString *)CategoryLink completionBlock:(void (^)(NSArray *subCates))completionBlock
+{
+
 }
 
 @end
