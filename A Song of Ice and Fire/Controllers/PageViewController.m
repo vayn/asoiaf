@@ -20,14 +20,6 @@
 
 @implementation PageViewController
 
-- (instancetype)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-    }
-    return self;
-}
-
 - (void)setParentCategory:(CategoryMemberModel *)parentCategory
 {
     _parentCategory = parentCategory;
