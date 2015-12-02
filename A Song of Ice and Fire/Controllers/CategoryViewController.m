@@ -21,6 +21,18 @@
 
 @implementation CategoryViewController
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply
+                                                                                    target:self
+                                                                                    action:@selector(homeButtonPressed:)];
+        self.navigationItem.rightBarButtonItem = homeButton;
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -68,6 +80,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Control Action
+
+- (void)homeButtonPressed:(id)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end
