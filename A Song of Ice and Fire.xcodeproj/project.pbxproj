@@ -46,7 +46,7 @@
 		F34DCA3D1C0BD4C700979CA7 /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F34DCA3C1C0BD4C700979CA7 /* CategoryViewController.m */; };
 		F37B448F1BEE8AB400764D92 /* PortalCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F37B448D1BEE8AB400764D92 /* PortalCollectionHeaderView.m */; };
 		F37B44921BEE8AFD00764D92 /* PortalCollectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F37B44911BEE8AFD00764D92 /* PortalCollectionHeaderView.xib */; };
-		F39290D51C0E887900A7BD2C /* PageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F39290D41C0E887900A7BD2C /* PageModel.m */; };
+		F39290D51C0E887900A7BD2C /* CategoryMemberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F39290D41C0E887900A7BD2C /* CategoryMemberModel.m */; };
 		F39290D81C0E9DE600A7BD2C /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = F39290D71C0E9DE600A7BD2C /* Models.m */; };
 		F3A659E01C093EF800E16766 /* QQActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A659DF1C093EF800E16766 /* QQActivity.m */; };
 		F3BD1DF11BF8D8AE00B6DA69 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = F3BD1DF01BF8D8AE00B6DA69 /* UIImage+ImageEffects.m */; };
@@ -130,8 +130,8 @@
 		F37B448C1BEE8AB400764D92 /* PortalCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalCollectionHeaderView.h; sourceTree = "<group>"; };
 		F37B448D1BEE8AB400764D92 /* PortalCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalCollectionHeaderView.m; sourceTree = "<group>"; };
 		F37B44911BEE8AFD00764D92 /* PortalCollectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PortalCollectionHeaderView.xib; sourceTree = "<group>"; };
-		F39290D31C0E887900A7BD2C /* PageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageModel.h; sourceTree = "<group>"; };
-		F39290D41C0E887900A7BD2C /* PageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageModel.m; sourceTree = "<group>"; };
+		F39290D31C0E887900A7BD2C /* CategoryMemberModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryMemberModel.h; sourceTree = "<group>"; };
+		F39290D41C0E887900A7BD2C /* CategoryMemberModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryMemberModel.m; sourceTree = "<group>"; };
 		F39290D61C0E9DE600A7BD2C /* Models.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Models.h; sourceTree = "<group>"; };
 		F39290D71C0E9DE600A7BD2C /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
 		F3A659DE1C093EF800E16766 /* QQActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QQActivity.h; sourceTree = "<group>"; };
@@ -253,8 +253,8 @@
 				F334CFEE1BEE73FC0074734D /* PortalModel.m */,
 				F3BE138A1BF26F5E00CC5159 /* KnowTipModel.h */,
 				F3BE138B1BF26F5E00CC5159 /* KnowTipModel.m */,
-				F39290D31C0E887900A7BD2C /* PageModel.h */,
-				F39290D41C0E887900A7BD2C /* PageModel.m */,
+				F39290D31C0E887900A7BD2C /* CategoryMemberModel.h */,
+				F39290D41C0E887900A7BD2C /* CategoryMemberModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -638,7 +638,7 @@
 				F346A59E1C084E9700B4F97E /* WexinTimelineActivity.m in Sources */,
 				F34DCA391C0BD38E00979CA7 /* CAPSPageMenu.m in Sources */,
 				F3A659E01C093EF800E16766 /* QQActivity.m in Sources */,
-				F39290D51C0E887900A7BD2C /* PageModel.m in Sources */,
+				F39290D51C0E887900A7BD2C /* CategoryMemberModel.m in Sources */,
 				F334D00F1BEE73FC0074734D /* AppDelegate.m in Sources */,
 				F334CFCC1BEE73420074734D /* main.m in Sources */,
 				F34684F51BFF5A4500C7C56D /* OpenShare.m in Sources */,

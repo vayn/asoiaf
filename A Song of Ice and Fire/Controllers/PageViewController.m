@@ -67,7 +67,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
     
-    PageModel *page = self.pages[indexPath.row];
+    CategoryMemberModel *page = self.pages[indexPath.row];
 
     NSString *title = page.title;
 
@@ -84,7 +84,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    PageModel *page = self.pages[indexPath.row];
+    CategoryMemberModel *page = self.pages[indexPath.row];
 
     WikiViewController *wikiVC = [[WikiViewController alloc] init];
     wikiVC.title = page.title;

@@ -10,7 +10,7 @@
 #import "FeaturedQuoteModel.h"
 #import "PortalModel.h"
 #import "KnowTipModel.h"
-#import "PageModel.h"
+#import "CategoryMemberModel.h"
 
 @interface Models : NSObject
 

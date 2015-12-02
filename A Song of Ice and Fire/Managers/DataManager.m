@@ -270,8 +270,8 @@
           success:^(NSURLSessionDataTask *task, id responseObject) {
               NSMutableArray *pages = [@[] mutableCopy];
 
-              for (NSDictionary *pageDict in responseObject[@"query"][@"categorymembers"]) {
-                  [pages addObject:[[PageModel alloc] initWithTitle:pageDict[@"title"] pageId:pageDict[@"pageid"]]];
+              for (NSDictionary *cateMember in responseObject[@"query"][@"categorymembers"]) {
+                  [pages addObject:[[CategoryMemberModel alloc] initWithTitle:cateMember[@"title"] pageId:cateMember[@"pageid"]]];
               }
 
               completionBlock([pages copy]);
@@ -291,8 +291,8 @@
           success:^(NSURLSessionDataTask *task, id responseObject) {
               NSMutableArray *pages = [@[] mutableCopy];
 
-              for (NSDictionary *pageDict in responseObject[@"query"][@"categorymembers"]) {
-                  [pages addObject:[[PageModel alloc] initWithTitle:pageDict[@"title"] pageId:pageDict[@"pageid"]]];
+              for (NSDictionary *cateMember in responseObject[@"query"][@"categorymembers"]) {
+                  [pages addObject:[[CategoryMemberModel alloc] initWithTitle:cateMember[@"title"] pageId:cateMember[@"pageid"]]];
               }
 
               completionBlock([pages copy]);
@@ -301,9 +301,25 @@
           }];
 }
 
-- (void)getSubCatesWithCate:(NSString *)CategoryLink completionBlock:(void (^)(NSArray *subCates))completionBlock
+- (void)getSubCatesWithCate:(NSString *)categoryLink completionBlock:(void (^)(NSArray *subCates))completionBlock
 {
+    NSString *API = [NSString stringWithFormat:@"%@/api.php?action=query&list=categorymembers&cmtype=subcat&cmtitle=%@&format=json&continue",
+                     self.siteURL, categoryLink];
+    NSString *URL = [API stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 
+    [_manager GET:URL
+       parameters:nil
+          success:^(NSURLSessionDataTask *task, id responseObject) {
+              NSMutableArray *subCates = [@[] mutableCopy];
+
+              for (NSDictionary *cateMember in responseObject[@"query"][@"categorymembers"]) {
+                  [subCates addObject:[[CategoryMemberModel alloc] initWithTitle:cateMember[@"title"] pageId:cateMember[@"pageid"]]];
+              }
+
+              completionBlock([subCates copy]);
+          } failure:^(NSURLSessionDataTask *task, NSError *error) {
+              NSLog(@"%s Error: %@", __FUNCTION__, error);
+          }];
 }
 
 @end

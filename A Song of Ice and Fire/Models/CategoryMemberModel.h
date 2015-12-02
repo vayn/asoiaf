@@ -1,5 +1,5 @@
 //
-//  PageModel.h
+//  CategoryMemeberModel.h
 //  A Song of Ice and Fire
 //
 //  Created by Vicent Tsai on 15/12/2.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PageModel : NSObject
+@interface CategoryMemberModel : NSObject
 
 @property (nonatomic, strong) NSNumber *pageId;
 @property (nonatomic, strong) NSString *title;
