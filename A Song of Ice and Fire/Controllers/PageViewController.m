@@ -26,10 +26,11 @@
 
     self.navigationItem.title = _parentCategory.title;
 
-    [[DataManager sharedManager] getPagesWithCate:_parentCategory.link completionBlock:^(NSArray *pages) {
-        if (pages.count > 0) {
-            _pages = pages;
+    [[DataManager sharedManager] getPagesWithCate:_parentCategory.link completionBlock:^(NSDictionary *memberDict) {
+        _pages = memberDict[@"pages"];
+        _cmcontinue = memberDict[@"cmcontinue"];
 
+        if (_pages.count > 0) {
             [self.tableView reloadData];
         }
     }];

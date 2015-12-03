@@ -26,10 +26,11 @@
 
     self.navigationItem.title = _parentCategory.title;
 
-    [[DataManager sharedManager] getSubCatesWithCate:parentCategory.link completionBlock:^(NSArray *subCates) {
-        if (subCates.count > 0) {
-            _subCates = subCates;
+    [[DataManager sharedManager] getSubCatesWithCate:parentCategory.link completionBlock:^(NSDictionary *memberDict) {
+        _subCates = memberDict[@"members"];
+        _cmcontinue = memberDict[@"continue"];
 
+        if (_subCates.count > 0) {
             [self.tableView reloadData];
         }
     }];

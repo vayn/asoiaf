@@ -254,7 +254,7 @@
           }];
 }
 
-- (void)getPagesWithCate:(NSString *)categoryLink completionBlock:(void (^)(NSArray *pages))completionBlock
+- (void)getPagesWithCate:(NSString *)categoryLink completionBlock:(void (^)(NSDictionary *memberDict))completionBlock
 {
     NSString *API = [NSString stringWithFormat:@"%@/api.php?action=query&list=categorymembers&cmtitle=%@&cmnamespace=0&format=json&continue",
                      self.siteURL, categoryLink];
@@ -265,18 +265,22 @@
           success:^(NSURLSessionDataTask *task, id responseObject) {
               NSMutableArray *members = [@[] mutableCopy];
 
+              NSString *cmcontinue = responseObject[@"continues"][@"cmcontinue"];
+
               for (NSDictionary *categoryMember in responseObject[@"query"][@"categorymembers"]) {
                   [members addObject:[[CategoryMemberModel alloc] initWithTitle:categoryMember[@"title"]
-                                                                      pageId:categoryMember[@"pageid"]]];
+                                                                         pageId:categoryMember[@"pageid"]]];
               }
 
-              completionBlock([members copy]);
+              NSDictionary *queryDict = @{@"cmcontinue": cmcontinue, @"members": [members copy]};
+
+              completionBlock(queryDict);
           } failure:^(NSURLSessionDataTask *task, NSError *error) {
               NSLog(@"%s Error: %@", __FUNCTION__, error);
           }];
 }
 
-- (void)getPagesUsingGeneratorAPIWithCate:(NSString *)categoryLink completionBlock:(void (^)(NSArray *pages))completionBlock
+- (void)getPagesUsingGeneratorAPIWithCate:(NSString *)categoryLink completionBlock:(void (^)(NSArray *members))completionBlock
 {
     NSString *API = [NSString stringWithFormat:@"%@/api.php?action=query&generator=categorymembers&gcmtitle=%@&prop=categories&cllimit=max&gcmlimit=max&format=json",
                      self.siteURL, categoryLink];
@@ -298,7 +302,7 @@
           }];
 }
 
-- (void)getSubCatesWithCate:(NSString *)categoryLink completionBlock:(void (^)(NSArray *subCates))completionBlock
+- (void)getSubCatesWithCate:(NSString *)categoryLink completionBlock:(void (^)(NSDictionary *memberDict))completionBlock
 {
     NSString *API = [NSString stringWithFormat:@"%@/api.php?action=query&list=categorymembers&cmtype=subcat&cmtitle=%@&format=json&continue",
                      self.siteURL, categoryLink];
@@ -309,12 +313,16 @@
           success:^(NSURLSessionDataTask *task, id responseObject) {
               NSMutableArray *members = [@[] mutableCopy];
 
+              NSString *cmcontinue = responseObject[@"continues"][@"cmcontinue"];
+
               for (NSDictionary *categoryMember in responseObject[@"query"][@"categorymembers"]) {
                   [members addObject:[[CategoryMemberModel alloc] initWithTitle:categoryMember[@"title"]
                                                                          pageId:categoryMember[@"pageid"]]];
               }
 
-              completionBlock([members copy]);
+              NSDictionary *queryDict = @{@"cmcontinue": cmcontinue, @"members": [members copy]};
+
+              completionBlock(queryDict);
           } failure:^(NSURLSessionDataTask *task, NSError *error) {
               NSLog(@"%s Error: %@", __FUNCTION__, error);
           }];

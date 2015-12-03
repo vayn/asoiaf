@@ -19,8 +19,8 @@ typedef void (^ManagerCompletionBlock)(id responseObject);
 - (void)getPageThumbnailWithPageId:(NSNumber *)pageId completionBlock:(ManagerCompletionBlock)completionBlock;
 - (void)getKnowTip:(ManagerCompletionBlock)completionBlock;
 - (void)getRandomTitle:(void (^)(NSString *title))completionBlock;
-- (void)getPagesWithCate:(NSString *)categoryLink completionBlock:(void (^)(NSArray *pages))completionBlock;
-- (void)getPagesUsingGeneratorAPIWithCate:(NSString *)categoryLink completionBlock:(void (^)(NSArray *pages))completionBlock;
-- (void)getSubCatesWithCate:(NSString *)categoryLink completionBlock:(void (^)(NSArray *subCates))completionBlock;
+- (void)getPagesWithCate:(NSString *)categoryLink completionBlock:(void (^)(NSDictionary *memberDict))completionBlock;
+- (void)getPagesUsingGeneratorAPIWithCate:(NSString *)categoryLink completionBlock:(void (^)(NSArray *members))completionBlock;
+- (void)getSubCatesWithCate:(NSString *)categoryLink completionBlock:(void (^)(NSDictionary *memberDict))completionBlock;
 
 @end

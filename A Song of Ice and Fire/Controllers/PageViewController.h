@@ -13,6 +13,8 @@
 @interface PageViewController : UITableViewController
 
 @property (nonatomic, strong) CategoryMemberModel *parentCategory;
+@property (nonatomic, strong) NSString *cmcontinue;
+
 @property (nonatomic, strong) UIViewController *parentVC;
 
 @end
