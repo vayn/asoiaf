@@ -17,6 +17,7 @@
 @interface PageViewController ()
 
 @property (nonatomic, strong) NSArray<CategoryMemberModel *> *pages;
+@property (nonatomic, assign) BOOL isHeaderRefreshing;
 
 @end
 
@@ -24,13 +25,18 @@
 
 - (void)setParentCategory:(CategoryMemberModel *)parentCategory
 {
+    self.navigationItem.title = parentCategory.title;
     _parentCategory = parentCategory;
 
-    self.navigationItem.title = _parentCategory.title;
+    _nextContinue = [@[] mutableCopy];
+    _previousContinue = [@[] mutableCopy];
 
     [[DataManager sharedManager] getPagesWithCategory:parentCategory.link parameters:nil completionBlock:^(CategoryMembersModel *members) {
         _pages = members.members;
-        _cmcontinue = members.cmcontinue;
+
+        if (members.cmcontinue) {
+            [_nextContinue addObject:members.cmcontinue];
+        }
 
         if (_pages.count > 0) {
             [self.tableView reloadData];
@@ -40,27 +46,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
 
-    // 上拉加载更多页面
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        if (self.cmcontinue) {
-            NSDictionary *paramerters = @{@"cmcontinue": self.cmcontinue};
-            [[DataManager sharedManager]
-             getPagesWithCategory:self.parentCategory.link parameters:paramerters completionBlock:^(CategoryMembersModel *members) {
-                 self.cmcontinue = members.cmcontinue;
-                 NSArray *pages = members.members;
+    // Remove empty cells
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
-                 if (pages.count > 0) {
-                     self.pages = pages;
-                     [self.tableView reloadData];
-                 }
-             }];
-        }
+    // Pull to refresh setting
+    [self setupRefresh];
+}
 
-        [self.tableView.mj_footer endRefreshing];
-    }];
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+
+    NSIndexPath *indexPath = self.tableView.indexPathForSelectedRow;
+    if (indexPath) {
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -82,16 +85,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
     
     CategoryMemberModel *page = self.pages[indexPath.row];
-
-    NSString *title = page.title;
-
-    if ([title rangeOfString:@":"].location != NSNotFound) {
-        NSArray *temp = [title componentsSeparatedByString:@":"];
-        title = temp[1];
-    }
-
-    cell.textLabel.text = title;
-
+    cell.textLabel.text = page.title;
     return cell;
 }
 
@@ -103,6 +97,91 @@
     wikiVC.title = page.title;
 
     [self.parentVC.navigationController pushViewController:wikiVC animated:YES];
+}
+
+/* *
+ * Get notified when UITableView has finished asking for data
+ *
+ * Reference: http://dwz.cn/reloaddata
+ */
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ((indexPath.row == self.pages.count-1) && self.isHeaderRefreshing) {
+        [self.tableView.mj_footer resetNoMoreData];
+    }
+}
+
+#pragma mark - Private methods
+
+- (void)setupRefresh
+{
+    // 下拉加载上一页
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        self.isHeaderRefreshing = YES;
+
+        NSDictionary *parameters;
+
+        if (self.previousContinue.count > 1) {
+            NSString *continueString = [self.previousContinue lastObject];
+            [self.previousContinue removeLastObject];
+            parameters = @{@"cmcontinue": continueString};
+        } else {
+            if (self.previousContinue.count == 1) {
+                [self.previousContinue removeLastObject];
+            }
+            parameters = @{@"cmcontinue": @""};
+        }
+
+        [[DataManager sharedManager]
+         getPagesWithCategory:self.parentCategory.link parameters:parameters completionBlock:^(CategoryMembersModel *members) {
+             if (members.cmcontinue) {
+                 [self.nextContinue addObject:members.cmcontinue];
+             }
+
+             NSArray *pages = members.members;
+             if (pages.count > 0) {
+                 self.pages = pages;
+                 [self.tableView reloadData];
+             }
+         }];
+
+        [self.tableView.mj_header endRefreshing];
+    }];
+
+    // 上拉加载下一页
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        self.isHeaderRefreshing = NO;
+
+        if (self.nextContinue.count > 0) {
+            NSString *continueString = [self.nextContinue lastObject];
+            [self.nextContinue removeLastObject];
+
+            [self.previousContinue addObject:continueString];
+            NSDictionary *paramerters = @{@"cmcontinue": continueString};
+
+            [[DataManager sharedManager]
+             getPagesWithCategory:self.parentCategory.link parameters:paramerters completionBlock:^(CategoryMembersModel *members) {
+                 if (members.cmcontinue) {
+                     [self.nextContinue addObject:members.cmcontinue];
+                 }
+
+                 NSArray *pages = members.members;
+                 if (pages.count > 0) {
+                     self.pages = pages;
+                     [self.tableView reloadData];
+                 }
+
+                 if (self.nextContinue.count == 0) {
+                     [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                 } else {
+                     [self.tableView.mj_footer endRefreshing];
+                 }
+             }];
+        } else {
+            // 没有更多数据的状态
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        }
+    }];
 }
 
 @end
