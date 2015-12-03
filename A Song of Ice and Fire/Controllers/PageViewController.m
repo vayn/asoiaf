@@ -12,6 +12,8 @@
 #import "Models.h"
 #import "DataManager.h"
 
+#import "MJRefresh.h"
+
 @interface PageViewController ()
 
 @property (nonatomic, strong) NSArray *pages;
@@ -26,9 +28,9 @@
 
     self.navigationItem.title = _parentCategory.title;
 
-    [[DataManager sharedManager] getPagesWithCate:_parentCategory.link completionBlock:^(NSDictionary *memberDict) {
-        _pages = memberDict[@"pages"];
-        _cmcontinue = memberDict[@"cmcontinue"];
+    [[DataManager sharedManager] getPagesWithCategory:parentCategory.link parameters:nil completionBlock:^(CategoryMembersModel *members) {
+        _pages = members.members;
+        _cmcontinue = members.cmcontinue;
 
         if (_pages.count > 0) {
             [self.tableView reloadData];

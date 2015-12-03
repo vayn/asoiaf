@@ -26,7 +26,7 @@
 
     self.navigationItem.title = _parentCategory.title;
 
-    [[DataManager sharedManager] getSubCatesWithCate:parentCategory.link completionBlock:^(NSDictionary *memberDict) {
+    [[DataManager sharedManager] getSubCatesWithCategory:parentCategory.link completionBlock:^(NSDictionary *memberDict) {
         _subCates = memberDict[@"members"];
         _cmcontinue = memberDict[@"continue"];
 

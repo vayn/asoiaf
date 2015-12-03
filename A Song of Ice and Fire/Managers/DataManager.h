@@ -8,6 +8,10 @@
 
 @import Foundation;
 
+@class CategoryMembersModel;
+
+NS_ASSUME_NONNULL_BEGIN
+
 typedef void (^ManagerCompletionBlock)(id responseObject);
 
 @interface DataManager : NSObject
@@ -19,8 +23,14 @@ typedef void (^ManagerCompletionBlock)(id responseObject);
 - (void)getPageThumbnailWithPageId:(NSNumber *)pageId completionBlock:(ManagerCompletionBlock)completionBlock;
 - (void)getKnowTip:(ManagerCompletionBlock)completionBlock;
 - (void)getRandomTitle:(void (^)(NSString *title))completionBlock;
-- (void)getPagesWithCate:(NSString *)categoryLink completionBlock:(void (^)(NSDictionary *memberDict))completionBlock;
-- (void)getPagesUsingGeneratorAPIWithCate:(NSString *)categoryLink completionBlock:(void (^)(NSArray *members))completionBlock;
-- (void)getSubCatesWithCate:(NSString *)categoryLink completionBlock:(void (^)(NSDictionary *memberDict))completionBlock;
+
+- (void)getPagesWithCategory:(NSString *)categoryLink
+                  parameters:(nullable NSDictionary *)parameters
+             completionBlock:(void (^)(CategoryMembersModel *members))completionBlock;
+
+- (void)getPagesUsingGeneratorAPIWithCategory:(NSString *)categoryLink completionBlock:(void (^)(NSArray *members))completionBlock;
+- (void)getSubCatesWithCategory:(NSString *)categoryLink completionBlock:(void (^)(NSDictionary *memberDict))completionBlock;
 
 @end
+
+NS_ASSUME_NONNULL_END

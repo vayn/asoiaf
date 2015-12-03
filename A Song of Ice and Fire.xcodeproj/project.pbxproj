@@ -57,6 +57,7 @@
 		F3BE13901BF270CF00CC5159 /* KnowTipTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3BE138E1BF270CF00CC5159 /* KnowTipTableViewController.m */; };
 		F3BE13941BF2711100CC5159 /* KnowTipTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3BE13931BF2711100CC5159 /* KnowTipTableViewController.xib */; };
 		F3EF0B8B1C1028BF00B73DA7 /* wikiview-min.css in Resources */ = {isa = PBXBuildFile; fileRef = F3EF0B8A1C1028BF00B73DA7 /* wikiview-min.css */; };
+		F3EF0B941C10409500B73DA7 /* CategoryMembersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EF0B931C10409500B73DA7 /* CategoryMembersModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -151,6 +152,8 @@
 		F3BE138E1BF270CF00CC5159 /* KnowTipTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KnowTipTableViewController.m; sourceTree = "<group>"; };
 		F3BE13931BF2711100CC5159 /* KnowTipTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KnowTipTableViewController.xib; path = "A Song of Ice and Fire/Views/KnowTipTableViewController.xib"; sourceTree = SOURCE_ROOT; };
 		F3EF0B8A1C1028BF00B73DA7 /* wikiview-min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "wikiview-min.css"; sourceTree = "<group>"; };
+		F3EF0B921C10409500B73DA7 /* CategoryMembersModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryMembersModel.h; sourceTree = "<group>"; };
+		F3EF0B931C10409500B73DA7 /* CategoryMembersModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryMembersModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,6 +260,8 @@
 				F3BE138B1BF26F5E00CC5159 /* KnowTipModel.m */,
 				F39290D31C0E887900A7BD2C /* CategoryMemberModel.h */,
 				F39290D41C0E887900A7BD2C /* CategoryMemberModel.m */,
+				F3EF0B921C10409500B73DA7 /* CategoryMembersModel.h */,
+				F3EF0B931C10409500B73DA7 /* CategoryMembersModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -677,6 +682,7 @@
 				F34684F01BFF5A4500C7C56D /* OpenShare+Alipay.m in Sources */,
 				F334D0111BEE73FC0074734D /* WikipediaHelper.m in Sources */,
 				F346A59B1C084B0700B4F97E /* ShareActivity.m in Sources */,
+				F3EF0B941C10409500B73DA7 /* CategoryMembersModel.m in Sources */,
 				F334D0061BEE73FC0074734D /* SlideMenuViewController.m in Sources */,
 				F3BD1DF91BF8E71600B6DA69 /* GradientView.m in Sources */,
 				F334D0051BEE73FC0074734D /* PortalCollectionViewController.m in Sources */,
