@@ -24,13 +24,14 @@ typedef void (^ManagerCompletionBlock)(id responseObject);
 - (void)getKnowTip:(ManagerCompletionBlock)completionBlock;
 - (void)getRandomTitle:(void (^)(NSString *title))completionBlock;
 
+- (void)getPagesUsingGeneratorAPIWithCategory:(NSString *)categoryLink completionBlock:(void (^)(NSArray *members))completionBlock;
+
 - (void)getPagesWithCategory:(NSString *)categoryLink
                   parameters:(nullable NSDictionary *)parameters
              completionBlock:(void (^)(CategoryMembersModel *members))completionBlock;
-
-- (void)getPagesUsingGeneratorAPIWithCategory:(NSString *)categoryLink completionBlock:(void (^)(NSArray *members))completionBlock;
-- (void)getSubCategoriesWithCategory:(NSString *)categoryLink completionBlock:(void (^)(NSDictionary *memberDict))completionBlock;
-
+- (void)getSubCategoriesWithCategory:(NSString *)categoryLink
+                          parameters:(nullable NSDictionary *)parameters
+                     completionBlock:(void (^)(CategoryMembersModel *))completionBlock;
 @end
 
 NS_ASSUME_NONNULL_END

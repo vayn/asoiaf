@@ -1,27 +1,14 @@
 //
-//  PageViewController.m
+//  CMBaseTableViewController.m
 //  A Song of Ice and Fire
 //
-//  Created by Vicent Tsai on 15/11/23.
+//  Created by Vicent Tsai on 15/12/4.
 //  Copyright © 2015年 HeZhi Corp. All rights reserved.
 //
 
-#import "PageViewController.h"
-#import "WikiViewController.h"
+#import "CMBaseTableViewController.h"
 
-#import "Models.h"
-#import "DataManager.h"
-
-#import "MJRefresh.h"
-
-@interface PageViewController ()
-
-@property (nonatomic, strong) NSArray<CategoryMemberModel *> *pages;
-@property (nonatomic, assign) BOOL isHeaderRefreshing;
-
-@end
-
-@implementation PageViewController
+@implementation CMBaseTableViewController
 
 - (void)setParentCategory:(CategoryMemberModel *)parentCategory
 {
@@ -30,18 +17,6 @@
 
     _nextContinue = [@[] mutableCopy];
     _previousContinue = [@[] mutableCopy];
-
-    [[DataManager sharedManager] getPagesWithCategory:parentCategory.link parameters:nil completionBlock:^(CategoryMembersModel *members) {
-        _pages = members.members;
-
-        if (members.cmcontinue) {
-            [_nextContinue addObject:members.cmcontinue];
-        }
-
-        if (_pages.count > 0) {
-            [self.tableView reloadData];
-        }
-    }];
 }
 
 - (void)viewDidLoad {
@@ -78,23 +53,23 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.pages.count;
+    return self.members.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
     
-    CategoryMemberModel *page = self.pages[indexPath.row];
-    cell.textLabel.text = page.title;
+    CategoryMemberModel *member = self.members[indexPath.row];
+    cell.textLabel.text = member.title;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CategoryMemberModel *page = self.pages[indexPath.row];
+    CategoryMemberModel *member = self.members[indexPath.row];
 
     WikiViewController *wikiVC = [[WikiViewController alloc] init];
-    wikiVC.title = page.title;
+    wikiVC.title = member.title;
 
     [self.parentVC.navigationController pushViewController:wikiVC animated:YES];
 }
@@ -106,7 +81,7 @@
  */
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ((indexPath.row == self.pages.count-1) && self.isHeaderRefreshing) {
+    if ((indexPath.row == self.members.count-1) && self.isHeaderRefreshing) {
         [self.tableView.mj_footer resetNoMoreData];
     }
 }
@@ -132,18 +107,17 @@
             parameters = @{@"cmcontinue": @""};
         }
 
-        [[DataManager sharedManager]
-         getPagesWithCategory:self.parentCategory.link parameters:parameters completionBlock:^(CategoryMembersModel *members) {
+        [self.delegate getMembersWithCategory:self.parentCategory.link parameters:parameters completionBlock:^(CategoryMembersModel *members) {
              if (members.cmcontinue) {
                  [self.nextContinue addObject:members.cmcontinue];
              }
 
-             NSArray *pages = members.members;
-             if (pages.count > 0) {
-                 self.pages = pages;
+             NSArray *membersArray = members.members;
+             if (membersArray.count > 0) {
+                 self.members = membersArray;
                  [self.tableView reloadData];
              }
-         }];
+        }];
 
         [self.tableView.mj_header endRefreshing];
     }];
@@ -157,17 +131,16 @@
             [self.nextContinue removeLastObject];
 
             [self.previousContinue addObject:continueString];
-            NSDictionary *paramerters = @{@"cmcontinue": continueString};
+            NSDictionary *parameters = @{@"cmcontinue": continueString};
 
-            [[DataManager sharedManager]
-             getPagesWithCategory:self.parentCategory.link parameters:paramerters completionBlock:^(CategoryMembersModel *members) {
+            [self.delegate getMembersWithCategory:self.parentCategory.link parameters:parameters completionBlock:^(CategoryMembersModel *members) {
                  if (members.cmcontinue) {
                      [self.nextContinue addObject:members.cmcontinue];
                  }
 
-                 NSArray *pages = members.members;
-                 if (pages.count > 0) {
-                     self.pages = pages;
+                 NSArray *membersArray = members.members;
+                 if (membersArray.count > 0) {
+                     self.members = membersArray;
                      [self.tableView reloadData];
                  }
 

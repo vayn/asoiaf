@@ -302,27 +302,27 @@
           }];
 }
 
-- (void)getSubCategoriesWithCategory:(NSString *)categoryLink completionBlock:(void (^)(NSDictionary *memberDict))completionBlock
+- (void)getSubCategoriesWithCategory:(NSString *)categoryLink
+                          parameters:(nullable NSDictionary *)parameters
+                     completionBlock:(void (^)(CategoryMembersModel *))completionBlock
 {
     NSString *API = [NSString stringWithFormat:@"%@/api.php?action=query&list=categorymembers&cmtype=subcat&cmtitle=%@&format=json&continue",
                      self.siteURL, categoryLink];
     NSString *URL = [API stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 
     [_manager GET:URL
-       parameters:nil
+       parameters:parameters
           success:^(NSURLSessionDataTask *task, id responseObject) {
-              NSString *cmcontinue = responseObject[@"continues"][@"cmcontinue"];
-
-              NSMutableArray *members = [@[] mutableCopy];
+              NSString *cmcontinue = responseObject[@"continue"][@"cmcontinue"];
+              NSMutableArray<CategoryMemberModel *> *membersArray = [@[] mutableCopy];
 
               for (NSDictionary *categoryMember in responseObject[@"query"][@"categorymembers"]) {
-                  [members addObject:[[CategoryMemberModel alloc] initWithTitle:categoryMember[@"title"]
+                  [membersArray addObject:[[CategoryMemberModel alloc] initWithTitle:categoryMember[@"title"]
                                                                          pageId:categoryMember[@"pageid"]]];
               }
 
-              NSDictionary *queryDict = @{@"members": [members copy]};
-
-              completionBlock(queryDict);
+              CategoryMembersModel *members = [[CategoryMembersModel alloc] initWithMembers:[membersArray copy] cmcontinue:cmcontinue];
+              completionBlock(members);
           } failure:^(NSURLSessionDataTask *task, NSError *error) {
               NSLog(@"%s Error: %@", __FUNCTION__, error);
           }];

@@ -7,8 +7,8 @@
 //
 
 #import "CategoryViewController.h"
-#import "PageViewController.h"
-#import "SubCatesViewController.h"
+#import "PageTable.h"
+#import "SubCategoryTable.h"
 
 #import "Models.h"
 #import "CAPSPageMenu.h"
@@ -39,17 +39,17 @@
 
     self.title = _category.title;
 
-    PageViewController *pagesVC = [[PageViewController alloc] initWithStyle:UITableViewStylePlain];
-    pagesVC.title = @"页面";
-    pagesVC.parentCategory = _category;
-    pagesVC.parentVC = (UIViewController *)self;
+    PageTable *pageTable = [[PageTable alloc] initWithStyle:UITableViewStylePlain];
+    pageTable.title = @"页面";
+    pageTable.parentCategory = _category;
+    pageTable.parentVC = (UIViewController *)self;
 
-    SubCatesViewController *subCatesVC = [[SubCatesViewController alloc] initWithStyle:UITableViewStylePlain];
-    subCatesVC.title = @"子分类";
-    subCatesVC.parentCategory = _category;
-    subCatesVC.parentVC = (UIViewController *)self;
+    SubCategoryTable *subCategoryTable = [[SubCategoryTable alloc] initWithStyle:UITableViewStylePlain];
+    subCategoryTable.title = @"子分类";
+    subCategoryTable.parentCategory = _category;
+    subCategoryTable.parentVC = (UIViewController *)self;
 
-    NSArray *controllerArray = @[pagesVC, subCatesVC];
+    NSArray *controllerArray = @[pageTable, subCategoryTable];
 
     NSDictionary *parameters = @{
                      CAPSPageMenuOptionSelectedMenuItemLabelColor: [UIColor colorWithRed:18.0/255.0 green:150.0/255.0 blue:225.0/255.0 alpha:1.0],
