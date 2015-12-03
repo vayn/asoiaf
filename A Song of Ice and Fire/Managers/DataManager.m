@@ -312,7 +312,6 @@
        parameters:nil
           success:^(NSURLSessionDataTask *task, id responseObject) {
               NSString *cmcontinue = responseObject[@"continues"][@"cmcontinue"];
-              NSLog(@"subcategory cmcontinue: %@", cmcontinue);
 
               NSMutableArray *members = [@[] mutableCopy];
 
