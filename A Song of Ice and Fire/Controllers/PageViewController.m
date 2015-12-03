@@ -42,6 +42,25 @@
     [super viewDidLoad];
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
+
+    // 上拉加载更多页面
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        if (self.cmcontinue) {
+            NSDictionary *paramerters = @{@"cmcontinue": self.cmcontinue};
+            [[DataManager sharedManager]
+             getPagesWithCategory:self.parentCategory.link parameters:paramerters completionBlock:^(CategoryMembersModel *members) {
+                 self.cmcontinue = members.cmcontinue;
+                 NSArray *pages = members.members;
+
+                 if (pages.count > 0) {
+                     self.pages = pages;
+                     [self.tableView reloadData];
+                 }
+             }];
+        }
+
+        [self.tableView.mj_footer endRefreshing];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

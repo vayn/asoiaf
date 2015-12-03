@@ -265,7 +265,7 @@
     [_manager GET:URL
        parameters:parameters
           success:^(NSURLSessionDataTask *task, id responseObject) {
-              NSString *cmcontinue = responseObject[@"continues"][@"cmcontinue"];
+              NSString *cmcontinue = responseObject[@"continue"][@"cmcontinue"];
               NSMutableArray<CategoryMemberModel *> *membersArray = [@[] mutableCopy];
 
               for (NSDictionary *categoryMember in responseObject[@"query"][@"categorymembers"]) {
@@ -274,7 +274,6 @@
               }
 
               CategoryMembersModel *members = [[CategoryMembersModel alloc] initWithMembers:membersArray cmcontinue:cmcontinue];
-
               completionBlock(members);
           } failure:^(NSURLSessionDataTask *task, NSError *error) {
               NSLog(@"%s Error: %@", __FUNCTION__, error);
