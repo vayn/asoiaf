@@ -364,9 +364,9 @@
 		F33C82D41BF7D045005A0908 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F33C82D51BF7D045005A0908 /* wikiview.css */,
 				F3EF0B8A1C1028BF00B73DA7 /* wikiview-min.css */,
 				F34684F61C02176D00C7C56D /* cubic_spinner.gif */,
-				F33C82D51BF7D045005A0908 /* wikiview.css */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
