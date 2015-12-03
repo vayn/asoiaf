@@ -29,7 +29,7 @@ typedef void (^ManagerCompletionBlock)(id responseObject);
              completionBlock:(void (^)(CategoryMembersModel *members))completionBlock;
 
 - (void)getPagesUsingGeneratorAPIWithCategory:(NSString *)categoryLink completionBlock:(void (^)(NSArray *members))completionBlock;
-- (void)getSubCatesWithCategory:(NSString *)categoryLink completionBlock:(void (^)(NSDictionary *memberDict))completionBlock;
+- (void)getSubCategoriesWithCategory:(NSString *)categoryLink completionBlock:(void (^)(NSDictionary *memberDict))completionBlock;
 
 @end
 

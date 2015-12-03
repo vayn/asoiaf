@@ -14,7 +14,7 @@
 
 @interface SubCatesViewController ()
 
-@property (nonatomic, strong) NSArray *subCates;
+@property (nonatomic, strong) NSArray *subCategories;
 
 @end
 
@@ -26,11 +26,11 @@
 
     self.navigationItem.title = _parentCategory.title;
 
-    [[DataManager sharedManager] getSubCatesWithCategory:parentCategory.link completionBlock:^(NSDictionary *memberDict) {
-        _subCates = memberDict[@"members"];
+    [[DataManager sharedManager] getSubCategoriesWithCategory:parentCategory.link completionBlock:^(NSDictionary *memberDict) {
+        _subCategories = memberDict[@"members"];
         _cmcontinue = memberDict[@"continue"];
 
-        if (_subCates.count > 0) {
+        if (_subCategories.count > 0) {
             [self.tableView reloadData];
         }
     }];
@@ -56,13 +56,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.subCates.count;
+    return self.subCategories.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
     
-    CategoryMemberModel *subCategory = self.subCates[indexPath.row];
+    CategoryMemberModel *subCategory = self.subCategories[indexPath.row];
 
     NSString *title = subCategory.title;
 
@@ -79,7 +79,7 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    CategoryMemberModel *category = self.subCates[indexPath.row];
+    CategoryMemberModel *category = self.subCategories[indexPath.row];
 
     CategoryViewController *subCategoryVC = [[CategoryViewController alloc] init];
     subCategoryVC.category = category;
