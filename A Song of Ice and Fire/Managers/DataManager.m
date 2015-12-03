@@ -273,7 +273,7 @@
                                                                          pageId:categoryMember[@"pageid"]]];
               }
 
-              CategoryMembersModel *members = [[CategoryMembersModel alloc] initWithMembers:membersArray cmcontinue:cmcontinue];
+              CategoryMembersModel *members = [[CategoryMembersModel alloc] initWithMembers:[membersArray copy] cmcontinue:cmcontinue];
               completionBlock(members);
           } failure:^(NSURLSessionDataTask *task, NSError *error) {
               NSLog(@"%s Error: %@", __FUNCTION__, error);
