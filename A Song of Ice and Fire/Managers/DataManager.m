@@ -256,21 +256,21 @@
 
 - (void)getPagesWithCate:(NSString *)categoryLink completionBlock:(void (^)(NSArray *pages))completionBlock
 {
-    NSString *API = [NSString stringWithFormat:@"%@/api.php?action=query&list=categorymembers&cmtitle=%@&cmnamespace=0&format=json",
+    NSString *API = [NSString stringWithFormat:@"%@/api.php?action=query&list=categorymembers&cmtitle=%@&cmnamespace=0&format=json&continue",
                      self.siteURL, categoryLink];
     NSString *URL = [API stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 
     [_manager GET:URL
        parameters:nil
           success:^(NSURLSessionDataTask *task, id responseObject) {
-              NSMutableArray *pages = [@[] mutableCopy];
+              NSMutableArray *members = [@[] mutableCopy];
 
               for (NSDictionary *categoryMember in responseObject[@"query"][@"categorymembers"]) {
-                  [pages addObject:[[CategoryMemberModel alloc] initWithTitle:categoryMember[@"title"]
+                  [members addObject:[[CategoryMemberModel alloc] initWithTitle:categoryMember[@"title"]
                                                                       pageId:categoryMember[@"pageid"]]];
               }
 
-              completionBlock([pages copy]);
+              completionBlock([members copy]);
           } failure:^(NSURLSessionDataTask *task, NSError *error) {
               NSLog(@"%s Error: %@", __FUNCTION__, error);
           }];
@@ -285,14 +285,14 @@
     [_manager GET:URL
        parameters:nil
           success:^(NSURLSessionDataTask *task, id responseObject) {
-              NSMutableArray *pages = [@[] mutableCopy];
+              NSMutableArray *members = [@[] mutableCopy];
 
               for (NSDictionary *categoryMember in responseObject[@"query"][@"categorymembers"]) {
-                  [pages addObject:[[CategoryMemberModel alloc] initWithTitle:categoryMember[@"title"]
+                  [members addObject:[[CategoryMemberModel alloc] initWithTitle:categoryMember[@"title"]
                                                                       pageId:categoryMember[@"pageid"]]];
               }
 
-              completionBlock([pages copy]);
+              completionBlock([members copy]);
           } failure:^(NSURLSessionDataTask *task, NSError *error) {
               NSLog(@"%s Error: %@", __FUNCTION__, error);
           }];
@@ -307,14 +307,14 @@
     [_manager GET:URL
        parameters:nil
           success:^(NSURLSessionDataTask *task, id responseObject) {
-              NSMutableArray *subCates = [@[] mutableCopy];
+              NSMutableArray *members = [@[] mutableCopy];
 
               for (NSDictionary *categoryMember in responseObject[@"query"][@"categorymembers"]) {
-                  [subCates addObject:[[CategoryMemberModel alloc] initWithTitle:categoryMember[@"title"]
+                  [members addObject:[[CategoryMemberModel alloc] initWithTitle:categoryMember[@"title"]
                                                                          pageId:categoryMember[@"pageid"]]];
               }
 
-              completionBlock([subCates copy]);
+              completionBlock([members copy]);
           } failure:^(NSURLSessionDataTask *task, NSError *error) {
               NSLog(@"%s Error: %@", __FUNCTION__, error);
           }];
