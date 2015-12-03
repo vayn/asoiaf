@@ -16,7 +16,7 @@
 
 @interface PageViewController ()
 
-@property (nonatomic, strong) NSArray *pages;
+@property (nonatomic, strong) NSArray<CategoryMemberModel *> *pages;
 
 @end
 
