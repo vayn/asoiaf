@@ -467,10 +467,7 @@
 			children = (
 				F34DCA3B1C0BD4C700979CA7 /* CategoryViewController.h */,
 				F34DCA3C1C0BD4C700979CA7 /* CategoryViewController.m */,
-				F3EF0B951C10CDBE00B73DA7 /* CMBaseTableViewController.h */,
-				F3EF0B961C10CDBE00B73DA7 /* CMBaseTableViewController.m */,
-				F34684FD1C022FBC00C7C56D /* PageTable */,
-				F39290E01C0ED91B00A7BD2C /* SubCategoryTable */,
+				F3EF0BA31C10DBB200B73DA7 /* CMTable */,
 			);
 			name = CategoryController;
 			sourceTree = "<group>";
@@ -527,6 +524,17 @@
 				F3BE138E1BF270CF00CC5159 /* KnowTipTableViewController.m */,
 			);
 			name = KnowTipTableController;
+			sourceTree = "<group>";
+		};
+		F3EF0BA31C10DBB200B73DA7 /* CMTable */ = {
+			isa = PBXGroup;
+			children = (
+				F3EF0B951C10CDBE00B73DA7 /* CMBaseTableViewController.h */,
+				F3EF0B961C10CDBE00B73DA7 /* CMBaseTableViewController.m */,
+				F34684FD1C022FBC00C7C56D /* PageTable */,
+				F39290E01C0ED91B00A7BD2C /* SubCategoryTable */,
+			);
+			name = CMTable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
