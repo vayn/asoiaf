@@ -56,6 +56,7 @@
 		F3BE138C1BF26F5E00CC5159 /* KnowTipModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F3BE138B1BF26F5E00CC5159 /* KnowTipModel.m */; };
 		F3BE13901BF270CF00CC5159 /* KnowTipTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3BE138E1BF270CF00CC5159 /* KnowTipTableViewController.m */; };
 		F3BE13941BF2711100CC5159 /* KnowTipTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3BE13931BF2711100CC5159 /* KnowTipTableViewController.xib */; };
+		F3EF0B8B1C1028BF00B73DA7 /* wikiview-min.css in Resources */ = {isa = PBXBuildFile; fileRef = F3EF0B8A1C1028BF00B73DA7 /* wikiview-min.css */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -149,6 +150,7 @@
 		F3BE138D1BF270CF00CC5159 /* KnowTipTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KnowTipTableViewController.h; sourceTree = "<group>"; };
 		F3BE138E1BF270CF00CC5159 /* KnowTipTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KnowTipTableViewController.m; sourceTree = "<group>"; };
 		F3BE13931BF2711100CC5159 /* KnowTipTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KnowTipTableViewController.xib; path = "A Song of Ice and Fire/Views/KnowTipTableViewController.xib"; sourceTree = SOURCE_ROOT; };
+		F3EF0B8A1C1028BF00B73DA7 /* wikiview-min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "wikiview-min.css"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -357,6 +359,7 @@
 		F33C82D41BF7D045005A0908 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F3EF0B8A1C1028BF00B73DA7 /* wikiview-min.css */,
 				F34684F61C02176D00C7C56D /* cubic_spinner.gif */,
 				F33C82D51BF7D045005A0908 /* wikiview.css */,
 			);
@@ -584,6 +587,7 @@
 				F334D00D1BEE73FC0074734D /* SlideMenuViewController.xib in Resources */,
 				F37B44921BEE8AFD00764D92 /* PortalCollectionHeaderView.xib in Resources */,
 				F334D00E1BEE73FC0074734D /* Assets.xcassets in Resources */,
+				F3EF0B8B1C1028BF00B73DA7 /* wikiview-min.css in Resources */,
 				F34684F71C02176D00C7C56D /* cubic_spinner.gif in Resources */,
 				F39290DF1C0ED8D900A7BD2C /* SubCatesViewController.xib in Resources */,
 				F33C82D61BF7D045005A0908 /* wikiview.css in Resources */,
