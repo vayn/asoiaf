@@ -121,7 +121,11 @@
              NSArray *membersArray = members.members;
              if (membersArray.count > 0) {
                  self.members = membersArray;
-                 [self.tableView reloadData];
+
+                 // Reload data with animation
+                 NSRange range = NSMakeRange(0, [self numberOfSectionsInTableView:self.tableView]);
+                 NSIndexSet *sections = [NSIndexSet indexSetWithIndexesInRange:range];
+                 [self.tableView reloadSections:sections withRowAnimation:UITableViewRowAnimationAutomatic];
              }
         }];
 
@@ -157,7 +161,10 @@
                  NSArray *membersArray = members.members;
                  if (membersArray.count > 0) {
                      self.members = membersArray;
-                     [self.tableView reloadData];
+
+                     NSRange range = NSMakeRange(0, [self numberOfSectionsInTableView:self.tableView]);
+                     NSIndexSet *sections = [NSIndexSet indexSetWithIndexesInRange:range];
+                     [self.tableView reloadSections:sections withRowAnimation:UITableViewRowAnimationAutomatic];
                  }
 
                  if (self.nextContinue.count == 0) {
