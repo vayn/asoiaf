@@ -9,6 +9,15 @@
 #import "CMBaseTableViewController.h"
 #import "Spinner.h"
 
+#import "UIColor+Hexadecimal.h"
+#import "UIScrollView+EmptyDataSet.h"
+
+@interface CMBaseTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+
+@property (nonatomic, getter=isLoading) BOOL loading;
+
+@end
+
 @implementation CMBaseTableViewController
 
 - (void)setParentCategory:(CategoryMemberModel *)parentCategory
@@ -26,10 +35,14 @@
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
 
     // Remove empty cells
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.tableFooterView = [UIView new];
 
     // Pull to refresh setting
     [self setupRefresh];
+
+    // Show empty datasets whenever the view has no content to display
+    self.tableView.emptyDataSetSource = self;
+    self.tableView.emptyDataSetDelegate = self;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -63,16 +76,6 @@
     CategoryMemberModel *member = self.members[indexPath.row];
     cell.textLabel.text = member.title;
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    CategoryMemberModel *member = self.members[indexPath.row];
-
-    WikiViewController *wikiVC = [[WikiViewController alloc] init];
-    wikiVC.title = member.title;
-
-    [self.parentVC.navigationController pushViewController:wikiVC animated:YES];
 }
 
 /* *
@@ -178,6 +181,120 @@
     [footer setTitle:@"已经到达最后一页" forState:MJRefreshStateNoMoreData];
 
     self.tableView.mj_footer = footer;
+}
+
+#pragma mark - DZNEmptyDataSetSource Methods
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView
+{
+    NSMutableDictionary *attributes = [NSMutableDictionary new];
+
+    NSString *text = @"暂无内容";
+    UIFont *font = [UIFont systemFontOfSize:20.0];
+    UIColor *textColor = [UIColor colorWithHex:@"808080"];
+
+    [attributes setObject:font forKey:NSFontAttributeName];
+    [attributes setObject:textColor forKey:NSForegroundColorAttributeName];
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView
+{
+
+    NSMutableDictionary *attributes = [NSMutableDictionary new];
+
+    NSString *text = @"你已到达阴影之地";
+    UIFont *font = [UIFont systemFontOfSize:15.0];
+    UIColor *textColor = [UIColor colorWithHex:@"989898"];
+
+    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraph.alignment = NSTextAlignmentCenter;
+
+    [attributes setObject:font forKey:NSFontAttributeName];
+    [attributes setObject:textColor forKey:NSForegroundColorAttributeName];
+    [attributes setObject:paragraph forKey:NSParagraphStyleAttributeName];
+
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text attributes:attributes];
+
+    return attributedString;
+}
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView
+{
+    NSString *imageName = @"placeholder_emptydataset";
+
+    return [UIImage imageNamed:imageName];
+}
+
+- (CAAnimation *)imageAnimationForEmptyDataSet:(UIScrollView *)scrollView
+{
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform"];
+    animation.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
+    animation.toValue = [NSValue valueWithCATransform3D: CATransform3DMakeRotation(M_PI_2, 0.0, 0.0, 1.0) ];
+    animation.duration = 0.25;
+    animation.cumulative = YES;
+    animation.repeatCount = MAXFLOAT;
+    
+    return animation;
+}
+
+- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView
+{
+    return [UIColor colorWithHex:@"f2f2f2"];
+}
+
+- (CGFloat)verticalOffsetForEmptyDataSet:(UIScrollView *)scrollView
+{
+    return 0.0;
+}
+
+- (CGFloat)spaceHeightForEmptyDataSet:(UIScrollView *)scrollView
+{
+    return 0.0;
+}
+
+#pragma mark - DZNEmptyDataSetDelegate Methods
+
+
+
+- (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView
+{
+    return YES;
+}
+
+- (BOOL)emptyDataSetShouldAllowTouch:(UIScrollView *)scrollView
+{
+    return YES;
+}
+
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView
+{
+    return YES;
+}
+
+- (BOOL)emptyDataSetShouldAnimateImageView:(UIScrollView *)scrollView
+{
+    return self.isLoading;
+}
+
+- (void)emptyDataSet:(UIScrollView *)scrollView didTapView:(UIView *)view
+{
+    self.loading = YES;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.loading = NO;
+    });
+}
+
+- (void)emptyDataSet:(UIScrollView *)scrollView didTapButton:(UIButton *)button
+{
+    self.loading = YES;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.loading = NO;
+    });
 }
 
 @end
