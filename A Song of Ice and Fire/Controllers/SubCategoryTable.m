@@ -7,6 +7,7 @@
 //
 
 #import "SubCategoryTable.h"
+#import "CategoryViewController.h"
 
 @interface SubCategoryTable () <CMBaseTableDelegate>
 
@@ -55,6 +56,17 @@
                completionBlock:(void (^)(CategoryMembersModel * _Nonnull))completionBlock
 {
     [[DataManager sharedManager] getSubCategoriesWithCategory:categoryLink parameters:parameters completionBlock:completionBlock];
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CategoryMemberModel *member = self.members[indexPath.row];
+
+    CategoryViewController *subCategoryVC = [[CategoryViewController alloc] init];
+    subCategoryVC.category = member;
+
+    [self.parentVC.navigationController pushViewController:subCategoryVC animated:YES];
 }
 
 @end

@@ -53,4 +53,14 @@
     [[DataManager sharedManager] getPagesWithCategory:categoryLink parameters:parameters completionBlock:completionBlock];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CategoryMemberModel *member = self.members[indexPath.row];
+
+    WikiViewController *wikiVC = [[WikiViewController alloc] init];
+    wikiVC.title = member.title;
+
+    [self.parentVC.navigationController pushViewController:wikiVC animated:YES];
+}
+
 @end
