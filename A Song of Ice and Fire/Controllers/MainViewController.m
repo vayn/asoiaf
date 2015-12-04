@@ -17,7 +17,7 @@
 
 #import "DataManager.h"
 #import "Models.h"
-#import "CubicSpinner.h"
+#import "Spinner.h"
 
 static CGFloat const kSlideTiming = 0.25;
 static CGFloat const kOverlayAlphaBegan = 0.0;
@@ -234,12 +234,12 @@ static CGFloat const kOverlayAlphaEnd = 0.7;
     [self.authorLabel setHidden:YES];
 
     // Use custom loading spinner instead of UIActivityIndicatorView
-    CubicSpinner *spinner = [CubicSpinner spinner];
+    Spinner *cubeSpinner = [Spinner cubeSpinner];
 
-    [self.featuredQuoteView addSubview:spinner];
-    spinner.center = CGPointMake(self.featuredQuoteView.frame.size.width/2,
+    [self.featuredQuoteView addSubview:cubeSpinner];
+    cubeSpinner.center = CGPointMake(self.featuredQuoteView.frame.size.width/2,
                                  self.featuredQuoteView.frame.size.height/2);
-    [spinner startAnimating];
+    [cubeSpinner startAnimating];
 
     [[DataManager sharedManager] getFeaturedQuotes:^(NSArray *featuredQuotes) {
         FeaturedQuoteModel *featuredQuote = [featuredQuotes randomObject];
@@ -261,7 +261,7 @@ static CGFloat const kOverlayAlphaEnd = 0.7;
                                                       [self.quoteLabel setHidden:NO];
                                                       [self.authorLabel setHidden:NO];
 
-                                                      [spinner removeFromSuperview];
+                                                      [cubeSpinner removeFromSuperview];
                                                   }];
 }
 

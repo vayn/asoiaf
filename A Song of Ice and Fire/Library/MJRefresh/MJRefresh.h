@@ -7,8 +7,10 @@
 
 #import "MJRefreshNormalHeader.h"
 #import "MJRefreshGifHeader.h"
+#import "MJRefreshSpinnerHeader.h"
 
 #import "MJRefreshBackNormalFooter.h"
 #import "MJRefreshBackGifFooter.h"
 #import "MJRefreshAutoNormalFooter.h"
 #import "MJRefreshAutoGifFooter.h"
+#import "MJRefreshAutoSpinnerFooter.h"

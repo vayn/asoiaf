@@ -7,6 +7,7 @@
 //
 
 #import "CMBaseTableViewController.h"
+#import "Spinner.h"
 
 @implementation CMBaseTableViewController
 
@@ -90,8 +91,10 @@
 
 - (void)setupRefresh
 {
-    // 下拉加载上一页
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    /* *
+     * 下拉加载上一页
+     */
+    MJRefreshSpinnerHeader *header = [MJRefreshSpinnerHeader headerWithRefreshingBlock:^{
         self.isHeaderRefreshing = YES;
 
         NSDictionary *parameters;
@@ -122,8 +125,18 @@
         [self.tableView.mj_header endRefreshing];
     }];
 
-    // 上拉加载下一页
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+    // 隐藏时间
+    header.lastUpdatedTimeLabel.hidden = YES;
+
+    // 设置正在刷新状态的动画图片
+    [header setSpinner:[Spinner knightSpinner] forState:MJRefreshStateRefreshing];
+
+    self.tableView.mj_header = header;
+
+    /* *
+     * 上拉加载下一页
+     */
+     MJRefreshAutoSpinnerFooter *footer = [MJRefreshAutoSpinnerFooter footerWithRefreshingBlock:^{
         self.isHeaderRefreshing = NO;
 
         if (self.nextContinue.count > 0) {
@@ -155,6 +168,16 @@
             [self.tableView.mj_footer endRefreshingWithNoMoreData];
         }
     }];
+
+    // 设置刷新图片
+    [footer setSpinner:[Spinner knightSpinner] forState:MJRefreshStateRefreshing];
+
+    // 设置文字
+    [footer setTitle:@"上拉加载下一页" forState:MJRefreshStateIdle];
+    [footer setTitle:@"正在加载数据……" forState:MJRefreshStateRefreshing];
+    [footer setTitle:@"已经到达最后一页" forState:MJRefreshStateNoMoreData];
+
+    self.tableView.mj_footer = footer;
 }
 
 @end

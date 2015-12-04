@@ -1,28 +1,33 @@
 //
-//  MJRefreshSpinnerFooter.m
+//  MJRefreshAutoSpinneFooter.m
+//  A Song of Ice and Fire
 //
+//  Created by Vicent Tsai on 15/12/4.
+//  Copyright © 2015年 HeZhi Corp. All rights reserved.
 //
 
-#import "MJRefreshSpinnerFooter.h"
+#import "MJRefreshAutoSpinnerFooter.h"
 #import "Spinner.h"
 
-@interface MJRefreshSpinnerFooter ()
+@interface MJRefreshAutoSpinnerFooter ()
 
 @property (strong, nonatomic) Spinner *spinner;
 
 @end
 
-@implementation MJRefreshSpinnerFooter
-
-#pragma mark - 懒加载
+@implementation MJRefreshAutoSpinnerFooter
 
 #pragma mark - 公共方法
 
 - (void)setSpinner:(Spinner *)spinner forState:(MJRefreshState)state
 { 
-    if (spinner == nil) return;
+    if (spinner == nil) {
+        return;
+    }
 
     self.spinner = spinner;
+    self.spinner.hidden = YES;
+
     [self addSubview:self.spinner];
 
     /* 根据图片设置控件的高度 */ 
@@ -44,7 +49,7 @@
     if (self.spinner.constraints.count) return;
     
     self.spinner.frame = self.bounds;
-    if (self.stateLabel.hidden && self.lastUpdatedTimeLabel.hidden) {
+    if (self.isRefreshingTitleHidden) {
         self.spinner.contentMode = UIViewContentModeCenter;
     } else {
         self.spinner.contentMode = UIViewContentModeRight;
@@ -56,12 +61,16 @@
 {
     MJRefreshCheckState
 
-    if (!self.spinner) return;
+    if (!self.spinner) {
+        return;
+    }
 
     // 根据状态做事情
     if (state == MJRefreshStatePulling || state == MJRefreshStateRefreshing) {
+        self.spinner.hidden = NO;
         [self.spinner startAnimating];
-    } else if (state == MJRefreshStateIdle) {
+    } else if (state == MJRefreshStateNoMoreData || state == MJRefreshStateIdle) {
+        self.spinner.hidden = YES;
         [self.spinner stopAnimating];
     }
 }

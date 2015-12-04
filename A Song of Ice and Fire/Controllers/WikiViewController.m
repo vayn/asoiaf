@@ -12,7 +12,7 @@
 #import "ParallaxHeaderView.h"
 #import "GradientView.h"
 #import "UIImageViewAligned.h"
-#import "CubicSpinner.h"
+#import "Spinner.h"
 #import "ShareActivity.h"
 
 #import "JTSImageViewController.h"
@@ -37,7 +37,7 @@ UIGestureRecognizerDelegate
 @property (nonatomic, strong) UIView *webBrowserView;
 @property (nonatomic, strong) GradientView *blurView;
 @property (nonatomic, strong) ParallaxHeaderView *parallaxHeaderView;
-@property (nonatomic, strong) CubicSpinner *spinner;
+@property (nonatomic, strong) Spinner *cubeSpinner;
 
 @property (nonatomic, strong) WikipediaHelper *wikiHelper;
 @property (nonatomic, assign) CGFloat originalHeight;
@@ -52,7 +52,7 @@ UIGestureRecognizerDelegate
     if (self) {
         _wikiHelper = [[WikipediaHelper alloc] init];
         _wikiHelper.delegate = self;
-        _spinner = [CubicSpinner spinner];
+        _cubeSpinner = [Spinner cubeSpinner];
 
         NSMutableArray *rightButtons = [@[] mutableCopy];
         UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply
@@ -80,9 +80,9 @@ UIGestureRecognizerDelegate
     self.webView.scrollView.delegate = self;
     self.webBrowserView = [[self.webView.scrollView subviews] objectAtIndex:0];
 
-    self.spinner.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2);
-    [self.view addSubview:self.spinner];
-    [self.spinner startAnimating];
+    self.cubeSpinner.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2);
+    [self.view addSubview:self.cubeSpinner];
+    [self.cubeSpinner startAnimating];
 
     [self setupParallaxHeaderView];
     [self setupGestures];
@@ -261,9 +261,9 @@ UIGestureRecognizerDelegate
     }
 
     // When the article is loaded, hide and remove spinner from self.view
-    [self.spinner stopAnimating];
-    [self.spinner setHidden:YES];
-    [self.spinner removeFromSuperview];
+    [self.cubeSpinner stopAnimating];
+    [self.cubeSpinner setHidden:YES];
+    [self.cubeSpinner removeFromSuperview];
 
     [self.webView loadHTMLString:htmlPage baseURL:nil];
 }

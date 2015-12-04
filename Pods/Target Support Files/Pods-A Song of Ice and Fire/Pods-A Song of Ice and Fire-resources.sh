@@ -60,12 +60,10 @@ install_resource()
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "CSSSelectorConverter/CSSSelectorConverter/CSSSelectorGrammar.txt"
   install_resource "CSSSelectorConverter/CSSSelectorConverter/CSSSelectorParser.plist"
-  install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "CSSSelectorConverter/CSSSelectorConverter/CSSSelectorGrammar.txt"
   install_resource "CSSSelectorConverter/CSSSelectorConverter/CSSSelectorParser.plist"
-  install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
 fi
 
 mkdir -p "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

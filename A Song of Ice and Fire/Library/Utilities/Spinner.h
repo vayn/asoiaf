@@ -1,5 +1,5 @@
 //
-//  CubicSpinner.h
+//  Spinner.h
 //  A Song of Ice and Fire
 //
 //  Created by Vicent Tsai on 15/11/23.
@@ -8,8 +8,11 @@
 
 #import <FLAnimatedImage/FLAnimatedImage.h>
 
-@interface CubicSpinner : FLAnimatedImageView
+@interface Spinner : FLAnimatedImageView
 
-+ (CubicSpinner *)spinner;
++ (Spinner *)makeSpinner:(NSString *)spinnerPath;
+
++ (Spinner *)cubeSpinner;
++ (Spinner *)knightSpinner;
 
 @end
