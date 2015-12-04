@@ -138,6 +138,9 @@
     // 设置正在刷新状态的动画图片
     [header setSpinner:[Spinner knightSpinner] forState:MJRefreshStateRefreshing];
 
+    // 设置文字
+    [header setTitle:@"上拉返回上一页" forState:MJRefreshStateIdle];
+
     self.tableView.mj_header = header;
 
     /* *
