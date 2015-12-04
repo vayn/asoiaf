@@ -13,5 +13,6 @@ target 'A Song of Ice and Fire' do
     pod 'JTSImageViewController', '~> 1.5.1'
     pod 'MBProgressHUD', '~> 0.9.1'
     pod 'FLAnimatedImage', '~> 1.0.8'
+    pod 'DZNEmptyDataSet', '~> 1.7.2'
 end
 

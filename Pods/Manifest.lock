@@ -22,6 +22,7 @@ PODS:
   - CSSSelectorConverter (1.2.1):
     - CocoaLumberjack (~> 1.9.0)
     - NUIParse
+  - DZNEmptyDataSet (1.7.2)
   - FLAnimatedImage (1.0.8)
   - IGHTMLQuery (0.8.4):
     - IGHTMLQuery/Core (= 0.8.4)
@@ -37,6 +38,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0.0-beta.2)
+  - DZNEmptyDataSet (~> 1.7.2)
   - FLAnimatedImage (~> 1.0.8)
   - IGHTMLQuery (~> 0.8.4)
   - JTSImageViewController (~> 1.5.1)
@@ -50,6 +52,7 @@ SPEC CHECKSUMS:
   AFNetworking: e3639f8310904c9888ddf03a2fa585633594a6e3
   CocoaLumberjack: 628fca2e88ef06f7cf6817309aa405f325d9a6fa
   CSSSelectorConverter: 0fda7454165e40e668dd297b44cdb1c341cd53ae
+  DZNEmptyDataSet: 0ec00bfc230d7450997b60c127afdd0b9f24f3b6
   FLAnimatedImage: f9422f796135aff80d8c00b2afc48015bb746e24
   IGHTMLQuery: 6176bcb88ad36f80ee984dbfde5592bb3ccc921f
   JTSImageViewController: 1f8ce1cc93dab0d0af8e53badeea7528560cfec9
