@@ -81,6 +81,7 @@
 		F3EF0BE51C10ED0F00B73DA7 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EF0BD21C10ED0F00B73DA7 /* UIView+MJExtension.m */; };
 		F3EF0BE81C10EED100B73DA7 /* MJRefreshSpinnerHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EF0BE71C10EED100B73DA7 /* MJRefreshSpinnerHeader.m */; };
 		F3EF0BEB1C11754F00B73DA7 /* MJRefreshAutoSpinnerFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EF0BEA1C11754F00B73DA7 /* MJRefreshAutoSpinnerFooter.m */; };
+		F3EF0BF11C1182CA00B73DA7 /* UIColor+Hexadecimal.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EF0BF01C1182CA00B73DA7 /* UIColor+Hexadecimal.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -222,6 +223,8 @@
 		F3EF0BE71C10EED100B73DA7 /* MJRefreshSpinnerHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshSpinnerHeader.m; sourceTree = "<group>"; };
 		F3EF0BE91C11754F00B73DA7 /* MJRefreshAutoSpinnerFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshAutoSpinnerFooter.h; sourceTree = "<group>"; };
 		F3EF0BEA1C11754F00B73DA7 /* MJRefreshAutoSpinnerFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshAutoSpinnerFooter.m; sourceTree = "<group>"; };
+		F3EF0BEF1C1182CA00B73DA7 /* UIColor+Hexadecimal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hexadecimal.h"; sourceTree = "<group>"; };
+		F3EF0BF01C1182CA00B73DA7 /* UIColor+Hexadecimal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hexadecimal.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -486,6 +489,8 @@
 			children = (
 				F334CFFB1BEE73FC0074734D /* NSArray+Random.h */,
 				F334CFFC1BEE73FC0074734D /* NSArray+Random.m */,
+				F3EF0BEF1C1182CA00B73DA7 /* UIColor+Hexadecimal.h */,
+				F3EF0BF01C1182CA00B73DA7 /* UIColor+Hexadecimal.m */,
 				F3BD1DEF1BF8D8AE00B6DA69 /* UIImage+ImageEffects.h */,
 				F3BD1DF01BF8D8AE00B6DA69 /* UIImage+ImageEffects.m */,
 			);
@@ -871,6 +876,7 @@
 				F3EF0BE51C10ED0F00B73DA7 /* UIView+MJExtension.m in Sources */,
 				F3EF0BE21C10ED0F00B73DA7 /* MJRefreshConst.m in Sources */,
 				F3BD1DF91BF8E71600B6DA69 /* GradientView.m in Sources */,
+				F3EF0BF11C1182CA00B73DA7 /* UIColor+Hexadecimal.m in Sources */,
 				F3EF0BDB1C10ED0F00B73DA7 /* MJRefreshBackGifFooter.m in Sources */,
 				F3EF0BD31C10ED0F00B73DA7 /* MJRefreshAutoFooter.m in Sources */,
 				F334D0051BEE73FC0074734D /* PortalCollectionViewController.m in Sources */,
