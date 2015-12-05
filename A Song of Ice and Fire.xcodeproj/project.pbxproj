@@ -46,7 +46,6 @@
 		F37B44921BEE8AFD00764D92 /* PortalCollectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F37B44911BEE8AFD00764D92 /* PortalCollectionHeaderView.xib */; };
 		F39290D51C0E887900A7BD2C /* CategoryMemberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F39290D41C0E887900A7BD2C /* CategoryMemberModel.m */; };
 		F39290D81C0E9DE600A7BD2C /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = F39290D71C0E9DE600A7BD2C /* Models.m */; };
-		F39290DF1C0ED8D900A7BD2C /* SubCatesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F39290DE1C0ED8D900A7BD2C /* SubCatesViewController.xib */; };
 		F3A659E01C093EF800E16766 /* QQActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A659DF1C093EF800E16766 /* QQActivity.m */; };
 		F3BD1DF11BF8D8AE00B6DA69 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = F3BD1DF01BF8D8AE00B6DA69 /* UIImage+ImageEffects.m */; };
 		F3BD1DF51BF8D8C300B6DA69 /* ParallaxHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F3BD1DF41BF8D8C300B6DA69 /* ParallaxHeaderView.m */; };
@@ -157,7 +156,6 @@
 		F39290D41C0E887900A7BD2C /* CategoryMemberModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryMemberModel.m; sourceTree = "<group>"; };
 		F39290D61C0E9DE600A7BD2C /* Models.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Models.h; sourceTree = "<group>"; };
 		F39290D71C0E9DE600A7BD2C /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
-		F39290DE1C0ED8D900A7BD2C /* SubCatesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubCatesViewController.xib; sourceTree = "<group>"; };
 		F3A659DE1C093EF800E16766 /* QQActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QQActivity.h; sourceTree = "<group>"; };
 		F3A659DF1C093EF800E16766 /* QQActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QQActivity.m; sourceTree = "<group>"; };
 		F3BD1DEF1BF8D8AE00B6DA69 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
@@ -549,17 +547,8 @@
 			children = (
 				F37B44911BEE8AFD00764D92 /* PortalCollectionHeaderView.xib */,
 				F334CFF41BEE73FC0074734D /* PortalCell.xib */,
-				F39290D21C0D97CE00A7BD2C /* Category */,
 			);
 			name = PortalCollection;
-			sourceTree = "<group>";
-		};
-		F39290D21C0D97CE00A7BD2C /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				F39290DE1C0ED8D900A7BD2C /* SubCatesViewController.xib */,
-			);
-			name = Category;
 			sourceTree = "<group>";
 		};
 		F39290E01C0ED91B00A7BD2C /* SubCategoryTable */ = {
@@ -778,7 +767,6 @@
 				F334D00E1BEE73FC0074734D /* Assets.xcassets in Resources */,
 				F3EF0B8B1C1028BF00B73DA7 /* wikiview-min.css in Resources */,
 				F34684F71C02176D00C7C56D /* cubic_spinner.gif in Resources */,
-				F39290DF1C0ED8D900A7BD2C /* SubCatesViewController.xib in Resources */,
 				F33C82D61BF7D045005A0908 /* wikiview.css in Resources */,
 				F334D00B1BEE73FC0074734D /* PortalCell.xib in Resources */,
 			);
