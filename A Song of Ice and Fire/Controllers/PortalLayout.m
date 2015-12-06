@@ -62,8 +62,15 @@ static CGFloat const kHeaderHeight = 50;
     for (UICollectionViewLayoutAttributes *attributes in array) {
         if (attributes.representedElementCategory == UICollectionElementCategoryCell) {
             CGRect frame = attributes.frame;
-            CGFloat distance = fabs(self.collectionView.contentOffset.x + self.collectionView.contentInset.left - frame.origin.x);
+
+            // Calculate the distance between the portal image — that is, the cell — and the center of the screen.
+            CGFloat distance = fabs(self.collectionView.contentOffset.x + self.collectionView.contentInset.left +
+                                    kHeaderWidth - frame.origin.x);
+
+            // Scale the portal image between a factor of 0.75 and 1 depending on the distance calculated above.
+            // You then scale all images by 0.7 to keep them nice and small.
             CGFloat scale = 0.7 * (MIN(MAX(1 - distance / self.collectionView.bounds.size.width, 0.75), 1));
+
             attributes.transform = CGAffineTransformMakeScale(scale, scale);
         }
         if ([attributes.representedElementKind isEqualToString:UICollectionElementKindSectionHeader]) {
