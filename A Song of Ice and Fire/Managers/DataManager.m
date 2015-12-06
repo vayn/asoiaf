@@ -172,57 +172,62 @@
 
 - (void)getPageThumbnailWithPageId:(NSNumber *)pageId completionBlock:(ManagerCompletionBlock)completionBlock
 {
-    NSString *API = [NSString stringWithFormat:@"%@/api.php?action=query&pageids=%@&prop=pageimages&format=json&pithumbsize=120",
-                     self.siteURL, [pageId stringValue]];
-    NSString *URL = [API stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    NSURL *sourceURL = nil;
 
-    [_manager GET:URL
-       parameters:nil
-          success:^(NSURLSessionDataTask *task, id responseObject) {
-              NSURL *sourceURL;
-              NSDictionary *page = responseObject[@"query"][@"pages"][[pageId stringValue]];
-              NSDictionary *thumbnail = [page objectForKey:@"thumbnail"];
+    switch ([pageId integerValue]) {
+        case 46724: { // 章节梗概
+            sourceURL = [NSURL URLWithString:@"http://cdn.huijiwiki.com/asoiaf/thumb.php?f=LordOfLightProtectUs_JZee.jpg&width=300"];
+            break;
+        }
 
-              if (thumbnail != nil) {
-                  NSString *thumbnailSource = thumbnail[@"source"];
-                  sourceURL = [NSURL URLWithString:thumbnailSource];
-              } else {
-                  switch ([pageId integerValue]) {
-                      case 46724: { // 章节梗概
-                          sourceURL = [NSURL URLWithString:@"http://cdn.huijiwiki.com/asoiaf/thumb.php?f=LordOfLightProtectUs_JZee.jpg&width=120"];
-                          break;
-                      }
+        case 5480: { // 人物介绍
+            sourceURL = [NSURL URLWithString:@"http://cdn.huijiwiki.com/asoiaf/thumb.php?f=Katherine_Dinger_CLannister.jpg&width=300"];
+            break;
+        }
 
-                      case 5480: { // 人物介绍
-                          sourceURL = [NSURL URLWithString:@"http://cdn.huijiwiki.com/asoiaf/thumb.php?f=Katherine_Dinger_CLannister.jpg&width=120"];
-                          break;
-                      }
+        case 46711: { // 各大家族
+            sourceURL = [NSURL URLWithString:@"http://cdn.huijiwiki.com/asoiaf/thumb.php?f=Iron_Throne_by_thegryph.jpg&width=300"];
+            break;
+        }
 
-                      case 46711: { // 各大家族
-                          sourceURL = [NSURL URLWithString:@"http://cdn.huijiwiki.com/asoiaf/thumb.php?f=Iron_Throne_by_thegryph.jpg&width=120"];
-                          break;
-                      }
+        case 5483: { // 文化风俗
+            sourceURL = [NSURL URLWithString:@"http://cdn.huijiwiki.com/asoiaf/thumb.php?f=Faith_by_thegryph.jpg&width=300"];
+            break;
+        }
 
-                      case 5483: { // 文化风俗
-                          sourceURL = [NSURL URLWithString:@"http://cdn.huijiwiki.com/asoiaf/thumb.php?f=Faith_by_thegryph.jpg&width=120"];
-                          break;
-                      }
+        case 2780: { // 理论推测
+            sourceURL = [NSURL URLWithString:@"http://cdn.huijiwiki.com/asoiaf/thumb.php?f=Morgaine_le_Fee_Rhaego_TargaryenIIII.jpg&width=300"];
+            break;
+        }
 
-                      case 2780: { // 理论推测
-                          sourceURL = [NSURL URLWithString:@"http://cdn.huijiwiki.com/asoiaf/thumb.php?f=Morgaine_le_Fee_Rhaego_TargaryenIIII.jpg&width=118"];
-                          break;
-                      }
+        default:
+            break;
+    }
 
-                      default:
-                          break;
+    if (sourceURL) {
+        NSData *imageData = [NSData dataWithContentsOfURL:sourceURL options:0 error:nil];
+        completionBlock(imageData);
+    } else {
+        NSString *URL = [NSString stringWithFormat:@"%@/api.php?action=query&pageids=%@&prop=pageimages&format=json&pithumbsize=300",
+                         self.siteURL, [pageId stringValue]];
+        [_manager GET:URL
+           parameters:nil
+              success:^(NSURLSessionDataTask *task, id responseObject) {
+                  NSDictionary *page = responseObject[@"query"][@"pages"][[pageId stringValue]];
+                  NSDictionary *thumbnail = [page objectForKey:@"thumbnail"];
+
+                  if (thumbnail != nil) {
+                      NSString *thumbnailSource = thumbnail[@"source"];
+                      NSURL *sourceURL = [NSURL URLWithString:thumbnailSource];
+
+                      NSData *imageData = [NSData dataWithContentsOfURL:sourceURL options:0 error:nil];
+                      completionBlock(imageData);
                   }
-              }
+              } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
+                  NSLog(@"Error: %@", error);
+              }];
+    }
 
-              NSData *imageData = [NSData dataWithContentsOfURL:sourceURL options:0 error:nil];
-              completionBlock(imageData);
-          } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
-              NSLog(@"Error: %@", error);
-          }];
 }
 
 - (void)getRandomTitle:(void (^)(NSString *title))completionBlock

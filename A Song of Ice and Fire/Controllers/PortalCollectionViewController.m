@@ -11,6 +11,7 @@
 #import "PortalCollectionViewController.h"
 #import "PortalCell.h"
 #import "PortalCollectionHeaderView.h"
+#import "PortalLayout.h"
 
 #import "CategoryViewController.h"
 
@@ -20,9 +21,10 @@
 static NSString * const reuseCell = @"PortalCell";
 static NSString * const reuseHeader = @"PortalCollectionHeaderView";
                  
-@interface PortalCollectionViewController () <UICollectionViewDelegateFlowLayout>
+@interface PortalCollectionViewController ()
 
 @property (nonatomic, strong) NSArray<CategoryMemberModel *> *portals;
+@property (nonatomic, strong) NSMutableArray<UIImage *> *portalImages;
 
 @end
 
@@ -30,23 +32,13 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 
 - (instancetype)init
 {
-    UICollectionViewFlowLayout* flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    [flowLayout setHeaderReferenceSize:CGSizeMake(320, 50)];
+    PortalLayout *flowLayout = [[PortalLayout alloc] init];
 
     self = [super initWithCollectionViewLayout:flowLayout];
     if (self) {
-        /* Portals which are from getPortal API lack of many important categories,
-         * so I decide to use hard-coded portal list.
-
-        [[DataManager sharedManager] getPortals:^(id responseObject) {
-            self.portals = [(NSArray *)responseObject copy];
-
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.collectionView reloadData];
-            });
-        }];
-         */
+        self.collectionView.scrollEnabled = YES;
+        self.collectionView.showsHorizontalScrollIndicator = NO;
+        
         [self setupPortals];
     }
     return self;
@@ -109,6 +101,7 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
     }
 
     _portals = [tempArray copy];
+    _portalImages = [NSMutableArray arrayWithCapacity:_portals.count];
 }
 
 - (void)viewDidLoad {
@@ -137,7 +130,6 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
     return 1;
 }
 
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return [self.portals count];
 }
@@ -146,62 +138,47 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
     PortalCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseCell forIndexPath:indexPath];
     CategoryMemberModel *portal = self.portals[indexPath.row];
 
-    [cell.loadingIndicator startAnimating];
-    
     // Configure the cell
     cell.titleLabel.text = portal.title;
 
-    [[DataManager sharedManager] getPageThumbnailWithPageId:portal.pageId completionBlock:^(id responseObject) {
-        NSData *imageData = (NSData *)responseObject;
-        UIImage *thumbnailImage = [UIImage imageWithData:imageData];
+    if (indexPath.row >= self.portalImages.count) {
+        [cell.loadingIndicator startAnimating];
 
-        CATransition *transition = [CATransition animation];
-        transition.duration = 1.0;
-        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-        transition.type = kCATransitionFade;
-        [cell.layer addAnimation:transition forKey:nil];
+        [[DataManager sharedManager] getPageThumbnailWithPageId:portal.pageId completionBlock:^(id responseObject) {
+            NSData *imageData = (NSData *)responseObject;
+            UIImage *thumbnailImage = [UIImage imageWithData:imageData];
 
+            CATransition *transition = [CATransition animation];
+            transition.duration = 1.0;
+            transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+            transition.type = kCATransitionFade;
+            [cell.layer addAnimation:transition forKey:nil];
+
+            cell.portalImageView.image = thumbnailImage;
+
+            [cell.loadingIndicator stopAnimating];
+            [cell.loadingIndicator removeFromSuperview];
+            
+            [self.portalImages addObject:thumbnailImage];
+        }];
+    } else {
+        UIImage *thumbnailImage = [self.portalImages objectAtIndex:indexPath.row];
         cell.portalImageView.image = thumbnailImage;
-
-        [cell.loadingIndicator stopAnimating];
-        [cell.loadingIndicator removeFromSuperview];
-    }];
-
-    return cell;
-}
-
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionReusableView *reusableView = nil;
-
-    if (kind == UICollectionElementKindSectionHeader) {
-        PortalCollectionHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
-                                                                                    withReuseIdentifier:reuseHeader
-                                                                                           forIndexPath:indexPath];
-        headerView.headerTitle.text = @"精选栏目";
-
-        reusableView = headerView;
     }
 
-    return reusableView;
-}
+    cell.contentView.layer.cornerRadius = 4.0f;
+    cell.contentView.layer.borderWidth = 1.0f;
+    cell.contentView.layer.borderColor = [UIColor clearColor].CGColor;
+    cell.contentView.layer.masksToBounds = YES;
 
-#pragma mark <UICollectionViewDelegateFlowLayout>
+    cell.layer.shadowColor = [UIColor blackColor].CGColor;
+    cell.layer.shadowOffset = CGSizeMake(0, 2.0f);
+    cell.layer.shadowRadius = 4.0f;
+    cell.layer.shadowOpacity = 1.0f;
+    cell.layer.masksToBounds = NO;
+    cell.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:cell.bounds cornerRadius:cell.contentView.layer.cornerRadius].CGPath;
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    CGSize retVal = CGSizeMake(100, 85);
-    return retVal;
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
-{
-    return CGSizeMake(0, 42);
-}
-
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-{
-    return UIEdgeInsetsMake(0, 10, 5, 10);
+    return cell;
 }
 
 #pragma mark <UICollectionViewDelegate>

@@ -268,10 +268,10 @@ static CGFloat const kOverlayAlphaEnd = 0.7;
 - (void)setupPortalView
 {
     self.portalCollectionViewController = [[PortalCollectionViewController alloc] init];
-    self.portalCollectionViewController.view.frame = self.portalView.frame;
+    self.portalCollectionViewController.view.frame = self.portalView.bounds;
     self.portalCollectionViewController.collectionView.backgroundColor = [UIColor whiteColor];
 
-    [self.containerView addSubview:self.portalCollectionViewController.view];
+    [self.portalView addSubview:self.portalCollectionViewController.view];
     [self addChildViewController:self.portalCollectionViewController];
     [self didMoveToParentViewController:self.portalCollectionViewController];
 }

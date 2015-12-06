@@ -414,12 +414,12 @@
 		F334D0141BEE743C0074734D /* PortalCollectionController */ = {
 			isa = PBXGroup;
 			children = (
-				F3C8AAC81C13C54C0080C138 /* PortalLayout.h */,
-				F3C8AAC91C13C54C0080C138 /* PortalLayout.m */,
 				F334CFE21BEE73FC0074734D /* PortalCell.h */,
 				F334CFE31BEE73FC0074734D /* PortalCell.m */,
 				F37B448C1BEE8AB400764D92 /* PortalCollectionHeaderView.h */,
 				F37B448D1BEE8AB400764D92 /* PortalCollectionHeaderView.m */,
+				F3C8AAC81C13C54C0080C138 /* PortalLayout.h */,
+				F3C8AAC91C13C54C0080C138 /* PortalLayout.m */,
 				F334CFE61BEE73FC0074734D /* PortalCollectionViewController.h */,
 				F334CFE71BEE73FC0074734D /* PortalCollectionViewController.m */,
 				F34DCA3A1C0BD45300979CA7 /* CategoryController */,

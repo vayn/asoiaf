@@ -8,8 +8,8 @@
 
 #import "PortalLayout.h"
 
-static CGFloat const kPageWidth = 100;
-static CGFloat const kPageHeight = 74;
+static CGFloat const kItemSizeWidth = 150;
+static CGFloat const kItemSizeHeight = 170;
 
 @interface PortalLayout ()
 
@@ -23,8 +23,9 @@ static CGFloat const kPageHeight = 74;
 
     if (self) {
         self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        self.itemSize = CGSizeMake(kPageWidth, kPageHeight);
-        self.minimumInteritemSpacing = 10;
+        self.itemSize = CGSizeMake(kItemSizeWidth, kItemSizeHeight);
+        self.minimumInteritemSpacing = 2;
+        self.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
     }
 
     return self;
@@ -37,8 +38,8 @@ static CGFloat const kPageHeight = 74;
     // The rate at which we scroll the collection view.
     self.collectionView.decelerationRate = UIScrollViewDecelerationRateFast;
 
-    self.collectionView.contentInset = UIEdgeInsetsMake(0, self.collectionView.bounds.size.width/2 - kPageWidth/2,
-                                                        0, self.collectionView.bounds.size.width/2 - kPageWidth/2);
+    self.collectionView.contentInset = UIEdgeInsetsMake(0, self.collectionView.bounds.size.width/2 - kItemSizeWidth/2,
+                                                        0, self.collectionView.bounds.size.width/2 - kItemSizeWidth/2);
 }
 
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect
@@ -49,7 +50,7 @@ static CGFloat const kPageHeight = 74;
         if (attributes.representedElementCategory == UICollectionElementCategoryCell) {
             CGRect frame = attributes.frame;
             CGFloat distance = fabs(self.collectionView.contentOffset.x + self.collectionView.contentInset.left - frame.origin.x);
-            CFBit scale = 0.7 * (MIN(MAX(1 - distance / self.collectionView.bounds.size.width, 0.75), 1));
+            CGFloat scale = 0.7 * (MIN(MAX(1 - distance / self.collectionView.bounds.size.width, 0.75), 1));
             attributes.transform = CGAffineTransformMakeScale(scale, scale);
         }
     }

@@ -20,7 +20,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="1100"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="880"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xAR-Ci-Dpy">
@@ -78,13 +78,13 @@
                                         <constraint firstAttribute="height" constant="91" id="3oI-hS-WOf"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eU7-b6-TeO" userLabel="Portal Collection View">
-                                    <rect key="frame" x="8" y="301" width="359" height="343"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eU7-b6-TeO" userLabel="Portal Collection View" customClass="UICollectionView">
+                                    <rect key="frame" x="8" y="301" width="359" height="200"/>
                                     <animations/>
                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mv9-Ce-Zns" userLabel="Know Tip View">
-                                    <rect key="frame" x="8" y="657" width="359" height="348"/>
+                                    <rect key="frame" x="8" y="514" width="359" height="348"/>
                                     <animations/>
                                     <color key="backgroundColor" red="1" green="0.95512270470000005" blue="0.63212683319999996" alpha="1" colorSpace="calibratedRGB"/>
                                 </view>
@@ -103,14 +103,16 @@
                                 <constraint firstItem="eU7-b6-TeO" firstAttribute="top" secondItem="u5D-N6-RDk" secondAttribute="bottom" constant="8" symbolic="YES" id="PAR-1g-xEJ"/>
                                 <constraint firstItem="Mv9-Ce-Zns" firstAttribute="top" secondItem="eU7-b6-TeO" secondAttribute="bottom" constant="13" id="Q9f-ad-dWD"/>
                                 <constraint firstItem="WcL-Rt-6GY" firstAttribute="leading" secondItem="tFZ-KN-enT" secondAttribute="leading" id="Rq0-5m-hjb"/>
+                                <constraint firstItem="eU7-b6-TeO" firstAttribute="leading" secondItem="tFZ-KN-enT" secondAttribute="leading" constant="8" id="Skn-qh-MpG"/>
                                 <constraint firstAttribute="bottom" secondItem="WcL-Rt-6GY" secondAttribute="bottom" constant="921" id="TuY-v3-MzN"/>
                                 <constraint firstItem="WcL-Rt-6GY" firstAttribute="centerX" secondItem="tFZ-KN-enT" secondAttribute="centerX" id="UYq-zW-QlC"/>
-                                <constraint firstAttribute="bottom" secondItem="Mv9-Ce-Zns" secondAttribute="bottom" constant="95" id="YMZ-9d-6yr"/>
+                                <constraint firstAttribute="bottom" secondItem="Mv9-Ce-Zns" secondAttribute="bottom" constant="238" id="YMZ-9d-6yr"/>
                                 <constraint firstItem="WcL-Rt-6GY" firstAttribute="top" secondItem="tFZ-KN-enT" secondAttribute="top" constant="14" id="aH2-Fn-tl9"/>
                                 <constraint firstAttribute="trailing" secondItem="WcL-Rt-6GY" secondAttribute="trailing" id="eVp-4P-wEJ"/>
                                 <constraint firstItem="WcL-Rt-6GY" firstAttribute="leading" secondItem="tFZ-KN-enT" secondAttribute="leading" id="gDc-CM-3s7"/>
                                 <constraint firstItem="WcL-Rt-6GY" firstAttribute="centerX" secondItem="Mv9-Ce-Zns" secondAttribute="centerX" id="kY2-yP-Imi"/>
-                                <constraint firstAttribute="bottom" secondItem="eU7-b6-TeO" secondAttribute="bottom" constant="456" id="m2U-U9-LpO"/>
+                                <constraint firstAttribute="trailing" secondItem="eU7-b6-TeO" secondAttribute="trailing" constant="8" id="keq-0P-a7P"/>
+                                <constraint firstAttribute="bottom" secondItem="eU7-b6-TeO" secondAttribute="bottom" constant="599" id="m2U-U9-LpO"/>
                                 <constraint firstItem="WcL-Rt-6GY" firstAttribute="leading" secondItem="tFZ-KN-enT" secondAttribute="leading" id="nYi-jB-jvM"/>
                                 <constraint firstItem="u5D-N6-RDk" firstAttribute="leading" secondItem="tFZ-KN-enT" secondAttribute="leadingMargin" id="r5M-J8-eMA"/>
                                 <constraint firstItem="u5D-N6-RDk" firstAttribute="top" secondItem="WcL-Rt-6GY" secondAttribute="bottom" constant="23" id="udE-H7-1p0"/>
@@ -134,11 +136,11 @@
                 <constraint firstItem="xAR-Ci-Dpy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="35T-t2-aDi"/>
                 <constraint firstItem="xAR-Ci-Dpy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4j7-TW-Azb"/>
                 <constraint firstAttribute="trailing" secondItem="xAR-Ci-Dpy" secondAttribute="trailing" id="Ned-rO-qQe"/>
-                <constraint firstAttribute="bottom" secondItem="xAR-Ci-Dpy" secondAttribute="bottom" id="Twf-rf-rTl"/>
+                <constraint firstAttribute="bottom" secondItem="xAR-Ci-Dpy" secondAttribute="bottom" constant="-220" id="Twf-rf-rTl"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-106.5" y="381"/>
+            <point key="canvasLocation" x="-106.5" y="269"/>
         </view>
     </objects>
 </document>
