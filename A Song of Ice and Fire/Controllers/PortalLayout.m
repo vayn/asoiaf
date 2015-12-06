@@ -9,7 +9,7 @@
 #import "PortalLayout.h"
 
 static CGFloat const kItemSizeWidth = 150;
-static CGFloat const kItemSizeHeight = 170;
+static CGFloat const kItemSizeHeight = 200;
 static CGFloat const kHeaderWidth = 100;
 static CGFloat const kHeaderHeight = 50;
 
@@ -26,7 +26,7 @@ static CGFloat const kHeaderHeight = 50;
     if (self) {
         self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         self.itemSize = CGSizeMake(kItemSizeWidth, kItemSizeHeight);
-        self.minimumInteritemSpacing = 2;
+        self.minimumInteritemSpacing = 5;
         self.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
         self.headerReferenceSize = CGSizeMake(kHeaderWidth, kHeaderHeight);
     }
