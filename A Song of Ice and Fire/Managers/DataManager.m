@@ -75,6 +75,7 @@
        parameters:nil
           success:^(NSURLSessionTask *task, id responseObject) {
               NSString *wikitext = responseObject[@"expandtemplates"][@"wikitext"];
+              wikitext = [wikitext stringByReplacingOccurrencesOfString: @"<br>" withString: @"\n"];
 
               // Parse featured quote into key-value pairs
               NSString *pattern = @"(?<=quote\\|)(.*?)(?=\\|)(?:\\|\\[\\[)(.*?)(?=\\]\\])";
