@@ -119,7 +119,7 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark <UICollectionViewDataSource>
+#pragma mark - UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
@@ -197,16 +197,35 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
     return reusableView;
 }
 
-#pragma mark <UICollectionViewDelegate>
+#pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CategoryMemberModel *portal =  self.portals[indexPath.row];
+    NSIndexPath *selectedIndexPath = [self selectedIndexPath];
 
-    CategoryViewController *categoryVC = [[CategoryViewController alloc] init];
-    categoryVC.category = portal;
-    
-    [self.navigationController pushViewController:categoryVC animated:YES];
+    if (selectedIndexPath && (selectedIndexPath == indexPath)) {
+        CategoryMemberModel *portal =  self.portals[selectedIndexPath.row];
+
+        CategoryViewController *categoryVC = [[CategoryViewController alloc] init];
+        categoryVC.category = portal;
+        
+        [self.navigationController pushViewController:categoryVC animated:YES];
+    }
+}
+
+#pragma mark - Helpers
+
+- (NSIndexPath *)selectedIndexPath
+{
+    UICollectionView *cv = self.collectionView;
+    CGPoint point = CGPointMake(cv.contentOffset.x + cv.bounds.size.width / 2, cv.bounds.size.height / 2);
+    NSIndexPath *indexPath = [cv indexPathForItemAtPoint:point];
+
+    if (indexPath) {
+        return indexPath;
+    }
+
+    return nil;
 }
 
 @end
