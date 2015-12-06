@@ -98,4 +98,37 @@ static CGFloat const kHeaderHeight = 50;
     return YES;
 }
 
+- (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset withScrollingVelocity:(CGPoint)velocity
+{
+    /* *
+     * Snap cells to centre
+     */
+
+    CGPoint newOffset = CGPointZero;
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
+
+    // Get the total width of a cell
+    CGFloat width = layout.itemSize.width + layout.minimumLineSpacing;
+
+    // Calculate the current offset with respect to the center of the screen
+    CGFloat offset = proposedContentOffset.x + self.collectionView.contentInset.left;
+
+    // Think of offset/width as the portal you’d like to scroll to
+    if (velocity.x > 0) { // The user is scrolling to the right
+        // Ceil returns next biggest number
+        offset = width * ceil(offset / width);
+    } else if (velocity.x == 0) { // The user didn’t put enough oomph into scrolling
+        // Rounds the argument
+        offset = width * round(offset / width);
+    } else if (velocity.x < 0) { // The user is scrolling left
+        // Removes decimal part of argument
+        offset = width * floor(offset / width);
+    }
+    // Update the new x offset and return.
+    // This guarantees that a portal cell will always be centered in the middle.
+    newOffset.x = offset - self.collectionView.contentInset.left;
+    newOffset.y = proposedContentOffset.y; //y will always be the same...
+    return newOffset;
+}
+
 @end
