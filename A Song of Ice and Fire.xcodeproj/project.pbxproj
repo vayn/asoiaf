@@ -53,6 +53,7 @@
 		F3BE138C1BF26F5E00CC5159 /* KnowTipModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F3BE138B1BF26F5E00CC5159 /* KnowTipModel.m */; };
 		F3BE13901BF270CF00CC5159 /* KnowTipTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3BE138E1BF270CF00CC5159 /* KnowTipTableViewController.m */; };
 		F3BE13941BF2711100CC5159 /* KnowTipTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3BE13931BF2711100CC5159 /* KnowTipTableViewController.xib */; };
+		F3C8AACA1C13C54C0080C138 /* PortalLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F3C8AAC91C13C54C0080C138 /* PortalLayout.m */; };
 		F3EF0B8B1C1028BF00B73DA7 /* wikiview-min.css in Resources */ = {isa = PBXBuildFile; fileRef = F3EF0B8A1C1028BF00B73DA7 /* wikiview-min.css */; };
 		F3EF0B941C10409500B73DA7 /* CategoryMembersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EF0B931C10409500B73DA7 /* CategoryMembersModel.m */; };
 		F3EF0B971C10CDBE00B73DA7 /* CMBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EF0B961C10CDBE00B73DA7 /* CMBaseTableViewController.m */; };
@@ -169,6 +170,8 @@
 		F3BE138D1BF270CF00CC5159 /* KnowTipTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KnowTipTableViewController.h; sourceTree = "<group>"; };
 		F3BE138E1BF270CF00CC5159 /* KnowTipTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KnowTipTableViewController.m; sourceTree = "<group>"; };
 		F3BE13931BF2711100CC5159 /* KnowTipTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KnowTipTableViewController.xib; path = "A Song of Ice and Fire/Views/KnowTipTableViewController.xib"; sourceTree = SOURCE_ROOT; };
+		F3C8AAC81C13C54C0080C138 /* PortalLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalLayout.h; sourceTree = "<group>"; };
+		F3C8AAC91C13C54C0080C138 /* PortalLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalLayout.m; sourceTree = "<group>"; };
 		F3EF0B8A1C1028BF00B73DA7 /* wikiview-min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "wikiview-min.css"; sourceTree = "<group>"; };
 		F3EF0B921C10409500B73DA7 /* CategoryMembersModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryMembersModel.h; sourceTree = "<group>"; };
 		F3EF0B931C10409500B73DA7 /* CategoryMembersModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryMembersModel.m; sourceTree = "<group>"; };
@@ -411,6 +414,8 @@
 		F334D0141BEE743C0074734D /* PortalCollectionController */ = {
 			isa = PBXGroup;
 			children = (
+				F3C8AAC81C13C54C0080C138 /* PortalLayout.h */,
+				F3C8AAC91C13C54C0080C138 /* PortalLayout.m */,
 				F334CFE21BEE73FC0074734D /* PortalCell.h */,
 				F334CFE31BEE73FC0074734D /* PortalCell.m */,
 				F37B448C1BEE8AB400764D92 /* PortalCollectionHeaderView.h */,
@@ -836,6 +841,7 @@
 				F39290D51C0E887900A7BD2C /* CategoryMemberModel.m in Sources */,
 				F334D00F1BEE73FC0074734D /* AppDelegate.m in Sources */,
 				F334CFCC1BEE73420074734D /* main.m in Sources */,
+				F3C8AACA1C13C54C0080C138 /* PortalLayout.m in Sources */,
 				F34684F51BFF5A4500C7C56D /* OpenShare.m in Sources */,
 				F3EF0BDC1C10ED0F00B73DA7 /* MJRefreshBackNormalFooter.m in Sources */,
 				F3152B441BF44B870048D69E /* WikiViewController.m in Sources */,
