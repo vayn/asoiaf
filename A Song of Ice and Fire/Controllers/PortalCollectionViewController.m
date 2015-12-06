@@ -169,7 +169,7 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
     maskLayer.frame = cell.contentView.bounds;
     maskLayer.path = maskPath.CGPath;
 
-    cell.contentView.layer.borderWidth = 1.0;
+    cell.contentView.layer.borderWidth = 0.0;
     cell.contentView.layer.borderColor = [UIColor clearColor].CGColor;
     cell.contentView.layer.mask = maskLayer;
     cell.contentView.layer.masksToBounds = YES;
