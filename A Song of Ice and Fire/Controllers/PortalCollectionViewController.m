@@ -161,17 +161,25 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
         cell.portalImageView.image = thumbnailImage;
     }
 
-    cell.contentView.layer.cornerRadius = 4.0f;
-    cell.contentView.layer.borderWidth = 1.0f;
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:cell.contentView.bounds
+                                                   byRoundingCorners:(UIRectCornerTopRight|UIRectCornerBottomRight)
+                                                         cornerRadii:CGSizeMake(12.0, 12.0)];
+
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = cell.contentView.bounds;
+    maskLayer.path = maskPath.CGPath;
+
+    cell.contentView.layer.borderWidth = 1.0;
     cell.contentView.layer.borderColor = [UIColor clearColor].CGColor;
+    cell.contentView.layer.mask = maskLayer;
     cell.contentView.layer.masksToBounds = YES;
 
     cell.layer.shadowColor = [UIColor blackColor].CGColor;
-    cell.layer.shadowOffset = CGSizeMake(0, 2.0f);
-    cell.layer.shadowRadius = 4.0f;
-    cell.layer.shadowOpacity = 1.0f;
+    cell.layer.shadowOffset = CGSizeMake(0, 1.0);
+    cell.layer.shadowRadius = 2.0;
+    cell.layer.shadowOpacity = 1.0;
+    cell.layer.shadowPath = maskPath.CGPath;
     cell.layer.masksToBounds = NO;
-    cell.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:cell.bounds cornerRadius:cell.contentView.layer.cornerRadius].CGPath;
 
     return cell;
 }
