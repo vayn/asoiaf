@@ -107,11 +107,6 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.collectionView.scrollEnabled = NO;
-
-    // Uncomment the following lide to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
-
     UINib *cellNib = [UINib nibWithNibName:@"PortalCell" bundle:nil];
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:reuseCell];
 
@@ -179,6 +174,19 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
     cell.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:cell.bounds cornerRadius:cell.contentView.layer.cornerRadius].CGPath;
 
     return cell;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionReusableView *reusableView = nil;
+    if (kind == UICollectionElementKindSectionHeader) {
+        PortalCollectionHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+                                                                                    withReuseIdentifier:reuseHeader
+                                                                                           forIndexPath:indexPath];
+        headerView.headerTitle.text = @"精选栏目";
+        reusableView = headerView;
+    }
+    return reusableView;
 }
 
 #pragma mark <UICollectionViewDelegate>
