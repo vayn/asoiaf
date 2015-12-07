@@ -161,6 +161,7 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
         cell.portalImageView.image = thumbnailImage;
     }
 
+    // Add rounded corner and shadows
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:cell.contentView.bounds
                                                    byRoundingCorners:(UIRectCornerTopRight|UIRectCornerBottomRight)
                                                          cornerRadii:CGSizeMake(12.0, 12.0)];
