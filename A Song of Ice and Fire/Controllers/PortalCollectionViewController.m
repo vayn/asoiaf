@@ -201,21 +201,27 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSIndexPath *selectedIndexPath = [self selectedIndexPath];
+    NSIndexPath *centraIndexPath = [self centralIndexPath];
 
-    if (selectedIndexPath && (selectedIndexPath == indexPath)) {
-        CategoryMemberModel *portal =  self.portals[selectedIndexPath.row];
+    if (centraIndexPath && (centraIndexPath == indexPath)) {
+        CategoryMemberModel *portal =  self.portals[indexPath.row];
 
         CategoryViewController *categoryVC = [[CategoryViewController alloc] init];
         categoryVC.category = portal;
         
         [self.navigationController pushViewController:categoryVC animated:YES];
+    } else {
+        CGFloat collectionViewWidth = CGRectGetWidth(self.collectionView.bounds);
+
+        UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+        CGPoint offset = CGPointMake(cell.center.x - collectionViewWidth / 2, 0);
+        [collectionView setContentOffset:offset animated:YES];
     }
 }
 
 #pragma mark - Helpers
 
-- (NSIndexPath *)selectedIndexPath
+- (NSIndexPath *)centralIndexPath
 {
     UICollectionView *cv = self.collectionView;
     CGPoint point = CGPointMake(cv.contentOffset.x + cv.bounds.size.width / 2, cv.bounds.size.height / 2);
