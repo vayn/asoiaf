@@ -141,7 +141,13 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 
         [[DataManager sharedManager] getPageThumbnailWithPageId:portal.pageId completionBlock:^(id responseObject) {
             NSData *imageData = (NSData *)responseObject;
-            UIImage *thumbnailImage = [UIImage imageWithData:imageData];
+            UIImage *thumbnailImage;
+
+            if (imageData) {
+                thumbnailImage = [UIImage imageWithData:imageData];
+            } else {
+                thumbnailImage = [UIImage imageNamed:@"placeholder_emptydataset"];
+            }
 
             CATransition *transition = [CATransition animation];
             transition.duration = 1.0;
