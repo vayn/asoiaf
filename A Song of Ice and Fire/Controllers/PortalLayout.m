@@ -63,8 +63,8 @@
                                     kHeaderWidth - frame.origin.x);
 
             // Scale the portal image between a factor of 0.75 and 1 depending on the distance calculated above.
-            // You then scale all images by 0.7 to keep them nice and small.
-            CGFloat scale = 0.7 * (MIN(MAX(1 - distance / self.collectionView.bounds.size.width, 0.75), 1));
+            // You then scale all images by 0.75 to keep them nice and small.
+            CGFloat scale = 0.75 * (MIN(MAX(1 - distance / self.collectionView.bounds.size.width, 0.75), 1));
 
             attributes.transform = CGAffineTransformMakeScale(scale, scale);
         }
