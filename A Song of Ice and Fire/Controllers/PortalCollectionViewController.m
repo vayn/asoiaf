@@ -104,6 +104,21 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
     _portalImages = [NSMutableArray arrayWithCapacity:_portals.count];
 }
 
+
+- (void)setupCyclicPortals
+{
+    id firstItem = self.portals[0];
+    id lastItem = [self.portals lastObject];
+
+    NSMutableArray *workingArray = [self.portals mutableCopy];
+
+    [workingArray insertObject:lastItem atIndex:0];
+    [workingArray addObject:firstItem];
+
+    self.portals = [NSArray arrayWithArray:workingArray];
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -112,6 +127,9 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 
     UINib *headerNib = [UINib nibWithNibName:@"PortalCollectionHeaderView" bundle:nil];
     [self.collectionView registerNib:headerNib forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reuseHeader];
+
+    [self setupPortals];
+    [self setupCyclicPortals];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -218,12 +236,15 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
         
         [self.navigationController pushViewController:categoryVC animated:YES];
     } else {
-        CGFloat collectionViewWidth = CGRectGetWidth(self.collectionView.bounds);
-
-        UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-        CGPoint offset = CGPointMake(cell.center.x - collectionViewWidth / 2, 0);
-        [collectionView setContentOffset:offset animated:YES];
+        [self snapItemToCenterAtIndexPath:indexPath animated:YES];
     }
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    //NSLog(@"Decelerating working");
 }
 
 #pragma mark - Helpers
@@ -239,6 +260,17 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
     }
 
     return nil;
+}
+
+- (void)snapItemToCenterAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated
+{
+    UICollectionView *cv = self.collectionView;
+
+    CGFloat collectionViewWidth = CGRectGetWidth(cv.bounds);
+
+    UICollectionViewCell *cell = [cv cellForItemAtIndexPath:indexPath];
+    CGPoint offset = CGPointMake(cell.center.x - collectionViewWidth / 2, 0);
+    [cv setContentOffset:offset animated:animated];
 }
 
 @end
