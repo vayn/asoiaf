@@ -24,7 +24,7 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 @interface PortalCollectionViewController ()
 
 @property (nonatomic, strong) NSArray<CategoryMemberModel *> *portals;
-@property (nonatomic, strong) NSMutableArray<UIImage *> *portalImages;
+@property (nonatomic, assign) BOOL isViewIntialized;
 
 @end
 
@@ -38,7 +38,7 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
     if (self) {
         self.collectionView.scrollEnabled = YES;
         self.collectionView.showsHorizontalScrollIndicator = NO;
-        
+
         [self setupPortals];
     }
     return self;
@@ -46,78 +46,65 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 
 - (void)setupPortals
 {
-    NSArray *portals = @[@{
-                             @"pageid": @303,
-                             @"link": @"Category:书籍",
-                             @"title": @"分卷介绍"
-                         },
-                         @{
-                             @"pageid": @46724,
-                             @"link": @"Category:冰与火之歌章节",
-                             @"title": @"章节梗概"
-                         },
-                         @{
-                             @"pageid": @5480,
-                             @"link": @"Category:人物",
-                             @"title": @"人物介绍"
-                         },
-                         @{
-                             @"pageid": @46711,
-                             @"link": @"Category:贵族家族",
-                             @"title": @"各大家族"
-                         },
-                         @{
-                             @"pageid": @5481,
-                             @"link": @"Category:历史",
-                             @"title": @"七国历史"
-                         },
-                         @{
-                             @"pageid": @5483,
-                             @"link": @"Category:文化",
-                             @"title": @"文化风俗"
-                         },
-                         @{
-                             @"pageid": @5482,
-                             @"link": @"Category:维斯特洛地点",
-                             @"title": @"地理信息"
-                         },
-                         @{
-                             @"pageid": @5484,
-                             @"link": @"Category:剧集",
-                             @"title": @"剧集相关"
-                         },
-                         @{
-                             @"pageid": @2780,
-                             @"link": @"Category:理论推测",
-                             @"title": @"理论推测"
-                         }];
-    NSMutableArray *tempArray = [@[] mutableCopy];
+    NSArray *rawPortals = @[@{@"pageid": @303,
+                              @"link": @"Category:书籍",
+                              @"title": @"分卷介绍"
+                              },
+                            @{@"pageid": @46724,
+                              @"link": @"Category:冰与火之歌章节",
+                              @"title": @"章节梗概"
+                              },
+                            @{@"pageid": @5480,
+                              @"link": @"Category:人物",
+                              @"title": @"人物介绍"
+                              },
+                            @{@"pageid": @46711,
+                                 @"link": @"Category:贵族家族",
+                                 @"title": @"各大家族"
+                            },
+                            @{@"pageid": @5481,
+                                 @"link": @"Category:历史",
+                                 @"title": @"七国历史"
+                            },
+                            @{@"pageid": @5483,
+                                 @"link": @"Category:文化",
+                                 @"title": @"文化风俗"
+                            },
+                            @{@"pageid": @5482,
+                                 @"link": @"Category:维斯特洛地点",
+                                 @"title": @"地理信息"
+                            },
+                            @{@"pageid": @5484,
+                                 @"link": @"Category:剧集",
+                                 @"title": @"剧集相关"
+                            },
+                            @{@"pageid": @2780,
+                                @"link": @"Category:理论推测",
+                                @"title": @"理论推测"
+                            }];
+     NSMutableArray *workingArray = [@[] mutableCopy];
 
-    for (NSDictionary *portal in portals) {
+    for (NSDictionary *portal in rawPortals) {
         CategoryMemberModel *cm = [[CategoryMemberModel alloc] initWithTitle:portal[@"title"]
                                                                         link:portal[@"link"]
                                                                       pageId:portal[@"pageid"]];
-        [tempArray addObject:cm];
+        [workingArray addObject:cm];
     }
 
-    _portals = [tempArray copy];
-    _portalImages = [NSMutableArray arrayWithCapacity:_portals.count];
-}
+    // Grab references to the first and last items
+    // They're typed as id so you don't need to worry about what kind
+    // of objects the original array is holding
+    id firstItem = [workingArray firstObject];
+    id lastItem = [workingArray lastObject];
 
-
-- (void)setupCyclicPortals
-{
-    id firstItem = self.portals[0];
-    id lastItem = [self.portals lastObject];
-
-    NSMutableArray *workingArray = [self.portals mutableCopy];
-
+    // Add the copy of the last item to the beginning
     [workingArray insertObject:lastItem atIndex:0];
+
+    // Add the copy of the first item to the end
     [workingArray addObject:firstItem];
 
-    self.portals = [NSArray arrayWithArray:workingArray];
+    _portals = [workingArray copy];
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -129,32 +116,51 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
     [self.collectionView registerNib:headerNib forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reuseHeader];
 
     [self setupPortals];
-    [self setupCyclicPortals];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    // Scroll to the 2nd item, which is showing the first item.
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:1 inSection:0];
+        [self snapItemToCenterAtIndexPath:indexPath animated:NO];
+    });
+
+    self.isViewIntialized = YES;
+}
+
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - UICollectionViewDataSource
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
     return 1;
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
     return [self.portals count];
 }
 
-- (PortalCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (PortalCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
     PortalCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseCell forIndexPath:indexPath];
     CategoryMemberModel *portal = self.portals[indexPath.row];
 
     // Configure the cell
     cell.titleLabel.text = portal.title;
 
-    if (indexPath.row >= self.portalImages.count) {
+    if (portal.backgroundImage) {
+        cell.portalImageView.image = portal.backgroundImage;
+    } else {
         [cell.loadingIndicator startAnimating];
 
         [[DataManager sharedManager] getPageThumbnailWithPageId:portal.pageId completionBlock:^(id responseObject) {
@@ -174,15 +180,11 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
             [cell.layer addAnimation:transition forKey:nil];
 
             cell.portalImageView.image = thumbnailImage;
+            portal.backgroundImage = thumbnailImage;
 
             [cell.loadingIndicator stopAnimating];
             [cell.loadingIndicator removeFromSuperview];
-            
-            [self.portalImages addObject:thumbnailImage];
         }];
-    } else {
-        UIImage *thumbnailImage = [self.portalImages objectAtIndex:indexPath.row];
-        cell.portalImageView.image = thumbnailImage;
     }
 
     // Add rounded corners and shadow
@@ -242,9 +244,30 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 
 #pragma mark - UIScrollViewDelegate
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    //NSLog(@"Decelerating working");
+
+    CGFloat currentOffset = scrollView.contentOffset.x;
+    //NSLog(@"[DEBUG] Current PortalCollection offset: %.3f", currentOffset);
+
+    CGFloat contentOffsetWhenFullyScrolledRight = 1502.5;
+    CGFloat contentOffsetWhenFullyscrolledLeft = 72.5;
+
+    if (currentOffset > contentOffsetWhenFullyScrolledRight) {
+
+        // user is scrolling to the right from the last item to the 'fake' item 1.
+        // reposition offset to show the 'real' item 1 at the left-hand end of the collection view
+
+        scrollView.contentOffset = (CGPoint){contentOffsetWhenFullyscrolledLeft, 0};
+
+    } else if ((currentOffset < contentOffsetWhenFullyscrolledLeft) && self.isViewIntialized) {
+
+        // user is scrolling to the left from the first item to the fake 'item N'.
+        // reposition offset to show the 'real' item N at the right end end of the collection view
+
+        scrollView.contentOffset = (CGPoint){contentOffsetWhenFullyScrolledRight, 0};
+
+    }
 }
 
 #pragma mark - Helpers
