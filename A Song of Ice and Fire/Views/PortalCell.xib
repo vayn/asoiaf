@@ -29,6 +29,7 @@
                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Pep-Sa-GJy" userLabel="Loading Indicator">
                         <rect key="frame" x="65" y="90" width="20" height="20"/>
                         <animations/>
+                        <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </activityIndicatorView>
                 </subviews>
                 <animations/>
