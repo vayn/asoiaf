@@ -55,26 +55,62 @@
     }
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return self.members.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     CategoryMemberModel *member = self.members[indexPath.row];
+
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+
     cell.textLabel.text = member.title;
+
+    cell.imageView.image = [UIImage imageNamed:@"Placeholder"];
+
+    if (member.backgroundImage) {
+        cell.imageView.image = member.backgroundImage;
+    } else {
+        [[DataManager sharedManager] getPageThumbnailWithPageId:member.pageId completionBlock:^(id responseObject) {
+            NSData *imageData = (NSData *)responseObject;
+
+            if (imageData) {
+                UIImage *thumbnail = [UIImage imageWithData:imageData];
+
+                CGSize thumbnailSize = CGSizeMake(100, 76);
+
+                UIGraphicsBeginImageContextWithOptions(thumbnailSize, NO, 0);
+                CGRect imageRect = CGRectMake(0, 0, thumbnailSize.width, thumbnailSize.height);
+                [thumbnail drawInRect:imageRect];
+                member.backgroundImage = UIGraphicsGetImageFromCurrentImageContext();
+                UIGraphicsEndImageContext();
+
+                CATransition *transition = [CATransition animation];
+                transition.duration = 1.0;
+                transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+                transition.type = kCATransitionFade;
+                [cell.layer addAnimation:transition forKey:nil];
+
+                cell.imageView.image = member.backgroundImage;
+            }
+        }];
+    }
+
     return cell;
 }
 
