@@ -131,9 +131,9 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
     dispatch_once(&onceToken, ^{
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:1 inSection:0];
         [self snapItemToCenterAtIndexPath:indexPath animated:NO];
-    });
 
-    self.isViewIntialized = YES;
+        self.isViewIntialized = YES;
+    });
 }
 
 - (void)didReceiveMemoryWarning
