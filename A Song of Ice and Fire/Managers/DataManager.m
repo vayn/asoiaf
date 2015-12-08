@@ -206,8 +206,9 @@
     }
 
     if (sourceURL) {
-        NSData *imageData = [NSData dataWithContentsOfURL:sourceURL options:0 error:nil];
-        completionBlock(imageData);
+        [DataManager processImageDataWithURL:sourceURL andBlock:^(NSData *imageData) {
+            completionBlock(imageData);
+        }];
     } else {
         NSString *URL = [NSString stringWithFormat:@"%@/api.php?action=query&pageids=%@&prop=pageimages&format=json&pithumbsize=300",
                          self.siteURL, [pageId stringValue]];
@@ -221,8 +222,9 @@
                       NSString *thumbnailSource = thumbnail[@"source"];
                       NSURL *sourceURL = [NSURL URLWithString:thumbnailSource];
 
-                      NSData *imageData = [NSData dataWithContentsOfURL:sourceURL options:0 error:nil];
-                      completionBlock(imageData);
+                      [DataManager processImageDataWithURL:sourceURL andBlock:^(NSData *imageData) {
+                          completionBlock(imageData);
+                      }];
                   }
               } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
                   NSLog(@"Error: %@", error);
@@ -332,6 +334,21 @@
           } failure:^(NSURLSessionDataTask *task, NSError *error) {
               NSLog(@"%s Error: %@", __FUNCTION__, error);
           }];
+}
+
+#pragma mark - Helpers
+
++ (void)processImageDataWithURL:(NSURL *)url andBlock:(void (^)(NSData *imageData))processImage
+{
+    dispatch_queue_t callerQueue = dispatch_get_main_queue();
+    dispatch_queue_t downloadQueue = dispatch_queue_create("li.hezhi.thumbnailprocessqueue", NULL);
+    dispatch_async(downloadQueue, ^{
+        NSData *imageData = [NSData dataWithContentsOfURL:url options:0 error:nil];
+
+        dispatch_async(callerQueue, ^{
+            processImage(imageData);
+        });
+    });
 }
 
 @end
