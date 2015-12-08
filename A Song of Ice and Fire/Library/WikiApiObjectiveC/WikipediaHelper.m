@@ -117,13 +117,6 @@
 
 - (NSString *)cleanHTMLPage:(NSString *)htmlSrc
 {
-    NSString *pattern = @"<h2><span class=\"mw-headline\" id=\".E5.BC.95.E7.94.A8.E4.B8.8E.E6.B3.A8.E9.87.8A";
-    NSRange range = [htmlSrc rangeOfString:pattern];
-
-    if (range.location != NSNotFound) {
-        htmlSrc = [htmlSrc substringToIndex:range.location];
-    }
-
     NSMutableArray *cleanedHtmlSrcList = [[NSMutableArray alloc] init];
 
     IGHTMLDocument* node = [[IGHTMLDocument alloc] initWithHTMLString:htmlSrc error:nil];
