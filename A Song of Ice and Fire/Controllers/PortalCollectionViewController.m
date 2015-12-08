@@ -91,9 +91,13 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
         [workingArray addObject:cm];
     }
 
-    // Grab references to the first and last items
-    // They're typed as id so you don't need to worry about what kind
-    // of objects the original array is holding
+    /* *
+     *
+     * Grab references to the first and last items
+     * They're typed as id so you don't need to worry about what kind
+     * of objects the original array is holding
+     *
+     */
     id firstItem = [workingArray firstObject];
     id lastItem = [workingArray lastObject];
 
@@ -250,6 +254,14 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
     CGFloat currentOffset = scrollView.contentOffset.x;
     //NSLog(@"[DEBUG] Current PortalCollection offset: %.3f", currentOffset);
 
+    /* *
+     *
+     * Keynote:
+     *
+     * Find the position of disappeared half left/right cell, which is
+     * kItemSizeWidth / 2
+     *
+     */
     CGFloat contentOffsetWhenFullyScrolledRight = 1502.5;
     CGFloat contentOffsetWhenFullyscrolledLeft = 72.5;
 
