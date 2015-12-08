@@ -17,6 +17,7 @@ typedef void (^ManagerCompletionBlock)(id responseObject);
 @interface DataManager : NSObject
 
 + (instancetype)sharedManager;
++ (void)processImageDataWithURL:(NSURL *)url andBlock:(void (^)(NSData *imageData))processImage;
 
 - (void)getFeaturedQuotes:(ManagerCompletionBlock)completionBlock;
 - (void)getCategories:(ManagerCompletionBlock)completionBlock;
