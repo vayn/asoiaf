@@ -46,42 +46,42 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 
 - (void)setupPortals
 {
-    NSArray *rawPortals = @[@{@"pageid": @303,
+    NSArray *rawPortals = @[@{@"pageid": @5480,
+                              @"link": @"Category:人物",
+                              @"title": @"人物介绍"
+                              },
+                            @{@"pageid": @46711,
+                              @"link": @"Category:贵族家族",
+                              @"title": @"各大家族"
+                              },
+                            @{@"pageid": @5481,
+                              @"link": @"Category:历史",
+                              @"title": @"七国历史"
+                              },
+                            @{@"pageid": @5483,
+                              @"link": @"Category:文化",
+                              @"title": @"文化风俗"
+                              },
+                            @{@"pageid": @5482,
+                              @"link": @"Category:维斯特洛地点",
+                              @"title": @"地理信息"
+                              },
+                            @{@"pageid": @5484,
+                              @"link": @"Category:剧集",
+                              @"title": @"剧集相关"
+                            },
+                            @{@"pageid": @2780,
+                              @"link": @"Category:理论推测",
+                              @"title": @"理论推测"
+                              },
+                            @{@"pageid": @303,
                               @"link": @"Category:书籍",
                               @"title": @"分卷介绍"
                               },
                             @{@"pageid": @46724,
                               @"link": @"Category:冰与火之歌章节",
                               @"title": @"章节梗概"
-                              },
-                            @{@"pageid": @5480,
-                              @"link": @"Category:人物",
-                              @"title": @"人物介绍"
-                              },
-                            @{@"pageid": @46711,
-                                 @"link": @"Category:贵族家族",
-                                 @"title": @"各大家族"
-                            },
-                            @{@"pageid": @5481,
-                                 @"link": @"Category:历史",
-                                 @"title": @"七国历史"
-                            },
-                            @{@"pageid": @5483,
-                                 @"link": @"Category:文化",
-                                 @"title": @"文化风俗"
-                            },
-                            @{@"pageid": @5482,
-                                 @"link": @"Category:维斯特洛地点",
-                                 @"title": @"地理信息"
-                            },
-                            @{@"pageid": @5484,
-                                 @"link": @"Category:剧集",
-                                 @"title": @"剧集相关"
-                            },
-                            @{@"pageid": @2780,
-                                @"link": @"Category:理论推测",
-                                @"title": @"理论推测"
-                            }];
+                              }];
      NSMutableArray *workingArray = [@[] mutableCopy];
 
     for (NSDictionary *portal in rawPortals) {
