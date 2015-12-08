@@ -318,6 +318,9 @@
 			isa = PBXGroup;
 			children = (
 				F334D0131BEE74330074734D /* MainController */,
+				F334D0121BEE74270074734D /* CarrouselController */,
+				F334D0141BEE743C0074734D /* PortalCollectionController */,
+				F3BE13921BF270D600CC5159 /* KnowTipTableController */,
 				F334D0151BEE74480074734D /* SlideMenuController */,
 				F3152B481BF44BEF0048D69E /* WikiViewController */,
 			);
@@ -354,6 +357,7 @@
 			isa = PBXGroup;
 			children = (
 				F34685041C03544F00C7C56D /* MainView */,
+				F37B44861BEE88BF00764D92 /* PortalCollection */,
 				F334CFF61BEE73FC0074734D /* SlideMenuViewController.xib */,
 				F3152B461BF44BD00048D69E /* WikiViewController.xib */,
 			);
@@ -407,9 +411,6 @@
 			children = (
 				F334CFE01BEE73FC0074734D /* MainViewController.h */,
 				F334CFE11BEE73FC0074734D /* MainViewController.m */,
-				F334D0121BEE74270074734D /* CarrouselController */,
-				F334D0141BEE743C0074734D /* PortalCollectionController */,
-				F3BE13921BF270D600CC5159 /* KnowTipTableController */,
 			);
 			name = MainController;
 			sourceTree = "<group>";
@@ -487,7 +488,6 @@
 			children = (
 				F334CFF31BEE73FC0074734D /* MainViewController.xib */,
 				F3BE13931BF2711100CC5159 /* KnowTipTableViewController.xib */,
-				F37B44861BEE88BF00764D92 /* PortalCollection */,
 			);
 			name = MainView;
 			sourceTree = "<group>";
