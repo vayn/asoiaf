@@ -42,7 +42,7 @@
 		F346A59E1C084E9700B4F97E /* WexinTimelineActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = F346A59D1C084E9700B4F97E /* WexinTimelineActivity.m */; };
 		F34DCA391C0BD38E00979CA7 /* CAPSPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = F34DCA381C0BD38E00979CA7 /* CAPSPageMenu.m */; };
 		F34DCA3D1C0BD4C700979CA7 /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F34DCA3C1C0BD4C700979CA7 /* CategoryViewController.m */; };
-		F36500B21C1864D20094339D /* PortalNavigationAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = F36500B11C1864D20094339D /* PortalNavigationAnimation.m */; };
+		F36500B21C1864D20094339D /* PortalNavigationTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = F36500B11C1864D20094339D /* PortalNavigationTransition.m */; };
 		F37B448F1BEE8AB400764D92 /* PortalCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F37B448D1BEE8AB400764D92 /* PortalCollectionHeaderView.m */; };
 		F37B44921BEE8AFD00764D92 /* PortalCollectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F37B44911BEE8AFD00764D92 /* PortalCollectionHeaderView.xib */; };
 		F39290D51C0E887900A7BD2C /* CategoryMemberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F39290D41C0E887900A7BD2C /* CategoryMemberModel.m */; };
@@ -151,8 +151,8 @@
 		F34DCA381C0BD38E00979CA7 /* CAPSPageMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPSPageMenu.m; sourceTree = "<group>"; };
 		F34DCA3B1C0BD4C700979CA7 /* CategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryViewController.h; sourceTree = "<group>"; };
 		F34DCA3C1C0BD4C700979CA7 /* CategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryViewController.m; sourceTree = "<group>"; };
-		F36500B01C1864D20094339D /* PortalNavigationAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalNavigationAnimation.h; sourceTree = "<group>"; };
-		F36500B11C1864D20094339D /* PortalNavigationAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalNavigationAnimation.m; sourceTree = "<group>"; };
+		F36500B01C1864D20094339D /* PortalNavigationTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalNavigationTransition.h; sourceTree = "<group>"; };
+		F36500B11C1864D20094339D /* PortalNavigationTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalNavigationTransition.m; sourceTree = "<group>"; };
 		F37B448C1BEE8AB400764D92 /* PortalCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalCollectionHeaderView.h; sourceTree = "<group>"; };
 		F37B448D1BEE8AB400764D92 /* PortalCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalCollectionHeaderView.m; sourceTree = "<group>"; };
 		F37B44911BEE8AFD00764D92 /* PortalCollectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PortalCollectionHeaderView.xib; sourceTree = "<group>"; };
@@ -427,7 +427,7 @@
 				F37B448D1BEE8AB400764D92 /* PortalCollectionHeaderView.m */,
 				F334CFE61BEE73FC0074734D /* PortalCollectionViewController.h */,
 				F334CFE71BEE73FC0074734D /* PortalCollectionViewController.m */,
-				F36500A91C183A620094339D /* NavigationAnimation */,
+				F36500A91C183A620094339D /* NavigationTransition */,
 			);
 			name = PortalCollectionController;
 			sourceTree = "<group>";
@@ -551,13 +551,13 @@
 			name = CategoryController;
 			sourceTree = "<group>";
 		};
-		F36500A91C183A620094339D /* NavigationAnimation */ = {
+		F36500A91C183A620094339D /* NavigationTransition */ = {
 			isa = PBXGroup;
 			children = (
-				F36500B01C1864D20094339D /* PortalNavigationAnimation.h */,
-				F36500B11C1864D20094339D /* PortalNavigationAnimation.m */,
+				F36500B01C1864D20094339D /* PortalNavigationTransition.h */,
+				F36500B11C1864D20094339D /* PortalNavigationTransition.m */,
 			);
-			name = NavigationAnimation;
+			name = NavigationTransition;
 			sourceTree = "<group>";
 		};
 		F37B44861BEE88BF00764D92 /* PortalCollection */ = {
@@ -879,7 +879,7 @@
 				F334D0111BEE73FC0074734D /* WikipediaHelper.m in Sources */,
 				F346A59B1C084B0700B4F97E /* ShareActivity.m in Sources */,
 				F3EF0B941C10409500B73DA7 /* CategoryMembersModel.m in Sources */,
-				F36500B21C1864D20094339D /* PortalNavigationAnimation.m in Sources */,
+				F36500B21C1864D20094339D /* PortalNavigationTransition.m in Sources */,
 				F334D0061BEE73FC0074734D /* SlideMenuViewController.m in Sources */,
 				F3EF0BE51C10ED0F00B73DA7 /* UIView+MJExtension.m in Sources */,
 				F3EF0BE21C10ED0F00B73DA7 /* MJRefreshConst.m in Sources */,

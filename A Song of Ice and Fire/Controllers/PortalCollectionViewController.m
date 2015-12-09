@@ -12,7 +12,7 @@
 #import "PortalCell.h"
 #import "PortalCollectionHeaderView.h"
 #import "PortalLayout.h"
-#import "PortalNavigationAnimation.h"
+#import "PortalNavigationTransition.h"
 
 #import "CategoryViewController.h"
 
@@ -26,7 +26,7 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 
 @property (nonatomic, strong) NSArray<CategoryMemberModel *> *portals;
 @property (nonatomic, assign) BOOL isViewIntialized;
-@property (nonatomic, strong) PortalNavigationAnimation *portalNavigationAnimation;
+@property (nonatomic, strong) PortalNavigationTransition *portalNavigationAnimation;
 
 @end
 
