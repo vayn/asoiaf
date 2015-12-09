@@ -12,6 +12,7 @@
 #import "PortalCell.h"
 #import "PortalCollectionHeaderView.h"
 #import "PortalLayout.h"
+#import "PortalNavigationAnimation.h"
 
 #import "CategoryViewController.h"
 
@@ -21,10 +22,11 @@
 static NSString * const reuseCell = @"PortalCell";
 static NSString * const reuseHeader = @"PortalCollectionHeaderView";
                  
-@interface PortalCollectionViewController ()
+@interface PortalCollectionViewController () <UINavigationControllerDelegate>
 
 @property (nonatomic, strong) NSArray<CategoryMemberModel *> *portals;
 @property (nonatomic, assign) BOOL isViewIntialized;
+@property (nonatomic, strong) PortalNavigationAnimation *portalNavigationAnimation;
 
 @end
 
@@ -38,6 +40,8 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
     if (self) {
         self.collectionView.scrollEnabled = YES;
         self.collectionView.showsHorizontalScrollIndicator = NO;
+
+        self.portalNavigationAnimation = [[PortalNavigationAnimation alloc] init];
 
         [self setupPortals];
     }
@@ -118,8 +122,6 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 
     UINib *headerNib = [UINib nibWithNibName:@"PortalCollectionHeaderView" bundle:nil];
     [self.collectionView registerNib:headerNib forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reuseHeader];
-
-    [self setupPortals];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -134,6 +136,8 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 
         self.isViewIntialized = YES;
     });
+
+    self.navigationController.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -239,7 +243,7 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 
         CategoryViewController *categoryVC = [[CategoryViewController alloc] init];
         categoryVC.category = portal;
-        
+
         [self.navigationController pushViewController:categoryVC animated:YES];
     } else {
         [self snapItemToCenterAtIndexPath:indexPath animated:YES];
@@ -280,6 +284,17 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
         scrollView.contentOffset = (CGPoint){contentOffsetWhenFullyScrolledRight, 0};
 
     }
+}
+
+#pragma mark - UINavigationControllerDelegate
+
+- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
+                                  animationControllerForOperation:(UINavigationControllerOperation)operation
+                                               fromViewController:(UIViewController *)fromVC
+                                                 toViewController:(UIViewController *)toVC
+{
+    self.portalNavigationAnimation.isReversed = (operation == UINavigationControllerOperationPop);
+    return self.portalNavigationAnimation;
 }
 
 #pragma mark - Helpers
