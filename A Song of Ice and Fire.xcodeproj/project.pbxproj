@@ -320,6 +320,7 @@
 				F334D0131BEE74330074734D /* MainController */,
 				F334D0121BEE74270074734D /* CarrouselController */,
 				F334D0141BEE743C0074734D /* PortalCollectionController */,
+				F34DCA3A1C0BD45300979CA7 /* CategoryController */,
 				F3BE13921BF270D600CC5159 /* KnowTipTableController */,
 				F334D0151BEE74480074734D /* SlideMenuController */,
 				F3152B481BF44BEF0048D69E /* WikiViewController */,
@@ -428,7 +429,6 @@
 				F37B448D1BEE8AB400764D92 /* PortalCollectionHeaderView.m */,
 				F334CFE61BEE73FC0074734D /* PortalCollectionViewController.h */,
 				F334CFE71BEE73FC0074734D /* PortalCollectionViewController.m */,
-				F34DCA3A1C0BD45300979CA7 /* CategoryController */,
 			);
 			name = PortalCollectionController;
 			sourceTree = "<group>";
