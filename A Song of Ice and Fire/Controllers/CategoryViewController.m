@@ -76,6 +76,12 @@
     [self.view addSubview:_pageMenu.view];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.navigationController.delegate = self.originalDelegate;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
