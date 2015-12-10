@@ -23,16 +23,19 @@
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
 {
-    return 1.5;
+    return 0.5;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
 {
     UIView *containerView = [transitionContext containerView];
+
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+
     UIView *toView = toVC.view;
     UIView *fromView = fromVC.view;
+
     CGFloat direction = self.isReversed ? -1 : 1;
     CGFloat factor = -0.005;
 
@@ -48,7 +51,8 @@
 
     containerView.transform = CGAffineTransformMakeTranslation(direction * containerView.frame.size.width / 2, 0);
     toView.layer.transform = viewToTransform;
-    [containerView addSubview:toView];
+
+    [containerView insertSubview:toView belowSubview:fromView];
 
     [UIView animateWithDuration:[self transitionDuration:transitionContext]
                      animations:^{
@@ -68,7 +72,7 @@
                              [fromView removeFromSuperview];
                          }
 
-                         [transitionContext completeTransition:finished];
+                         [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
                      }];
 }
 
