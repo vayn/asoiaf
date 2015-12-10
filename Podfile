@@ -5,7 +5,7 @@ inhibit_all_warnings!
 
 target 'A Song of Ice and Fire' do
     pod 'SDCycleScrollView', '~> 1.3'
-    pod 'AFNetworking', '~> 3.0.0-beta.2'
+    pod 'AFNetworking', '~> 3.0.0-beta.3'
     pod "IGHTMLQuery", '~> 0.8.4'
     pod 'RegexKitLite-NoWarning'
     pod 'YFStartView'

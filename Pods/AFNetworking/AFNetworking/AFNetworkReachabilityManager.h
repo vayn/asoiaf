@@ -24,14 +24,6 @@
 #if !TARGET_OS_WATCH
 #import <SystemConfiguration/SystemConfiguration.h>
 
-#ifndef NS_DESIGNATED_INITIALIZER
-#if __has_attribute(objc_designated_initializer)
-#define NS_DESIGNATED_INITIALIZER __attribute__((objc_designated_initializer))
-#else
-#define NS_DESIGNATED_INITIALIZER
-#endif
-#endif
-
 typedef NS_ENUM(NSInteger, AFNetworkReachabilityStatus) {
     AFNetworkReachabilityStatusUnknown          = -1,
     AFNetworkReachabilityStatusNotReachable     = 0,
@@ -100,7 +92,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Creates and returns a network reachability manager for the socket address.
 
- @param address The socket address (`sockaddr_in`) used to evaluate network reachability.
+ @param address The socket address (`sockaddr_in6`) used to evaluate network reachability.
 
  @return An initialized network reachability manager, actively monitoring the specified socket address.
  */

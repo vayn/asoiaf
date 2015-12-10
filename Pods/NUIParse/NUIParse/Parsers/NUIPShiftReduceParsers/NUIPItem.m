@@ -76,14 +76,9 @@
     return [c autorelease];
 }
 
-- (BOOL)isItem
-{
-    return YES;
-}
-
 - (BOOL)isEqual:(id)object
 {
-    return [object isItem] && ((NUIPItem *)object)->position == position && ((NUIPItem *)object)->rule == rule;
+    return [object isKindOfClass:[NUIPItem class]] && [self isEqualToItem:object];
 }
 
 - (BOOL)isEqualToItem:(NUIPItem *)item
@@ -115,15 +110,6 @@
         [desc appendString:@"•"];
     }
     return desc;
-}
-
-@end
-
-@implementation NSObject (NUIPIsItem)
-
-- (BOOL)isItem
-{
-    return NO;
 }
 
 @end

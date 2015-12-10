@@ -1,18 +1,18 @@
 PODS:
-  - AFNetworking (3.0.0-beta.2):
-    - AFNetworking/NSURLSession (= 3.0.0-beta.2)
-    - AFNetworking/Reachability (= 3.0.0-beta.2)
-    - AFNetworking/Security (= 3.0.0-beta.2)
-    - AFNetworking/Serialization (= 3.0.0-beta.2)
-    - AFNetworking/UIKit (= 3.0.0-beta.2)
-  - AFNetworking/NSURLSession (3.0.0-beta.2):
+  - AFNetworking (3.0.0-beta.3):
+    - AFNetworking/NSURLSession (= 3.0.0-beta.3)
+    - AFNetworking/Reachability (= 3.0.0-beta.3)
+    - AFNetworking/Security (= 3.0.0-beta.3)
+    - AFNetworking/Serialization (= 3.0.0-beta.3)
+    - AFNetworking/UIKit (= 3.0.0-beta.3)
+  - AFNetworking/NSURLSession (3.0.0-beta.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.0.0-beta.2)
-  - AFNetworking/Security (3.0.0-beta.2)
-  - AFNetworking/Serialization (3.0.0-beta.2)
-  - AFNetworking/UIKit (3.0.0-beta.2):
+  - AFNetworking/Reachability (3.0.0-beta.3)
+  - AFNetworking/Security (3.0.0-beta.3)
+  - AFNetworking/Serialization (3.0.0-beta.3)
+  - AFNetworking/UIKit (3.0.0-beta.3):
     - AFNetworking/NSURLSession
   - CocoaLumberjack (1.9.2):
     - CocoaLumberjack/Extensions (= 1.9.2)
@@ -30,14 +30,14 @@ PODS:
     - CSSSelectorConverter (>= 1.2.0)
   - JTSImageViewController (1.5.1)
   - MBProgressHUD (0.9.1)
-  - NUIParse (1.2.1)
+  - NUIParse (1.3)
   - RegexKitLite-NoWarning (1.1.0)
   - SDCycleScrollView (1.3)
   - UIImageViewAligned (0.0.1)
   - YFStartView (0.0.1)
 
 DEPENDENCIES:
-  - AFNetworking (~> 3.0.0-beta.2)
+  - AFNetworking (~> 3.0.0-beta.3)
   - DZNEmptyDataSet (~> 1.7.2)
   - FLAnimatedImage (~> 1.0.8)
   - IGHTMLQuery (~> 0.8.4)
@@ -49,7 +49,7 @@ DEPENDENCIES:
   - YFStartView
 
 SPEC CHECKSUMS:
-  AFNetworking: e3639f8310904c9888ddf03a2fa585633594a6e3
+  AFNetworking: 4bbf9c2993fe416e02093128f3be1bfe20c6e847
   CocoaLumberjack: 628fca2e88ef06f7cf6817309aa405f325d9a6fa
   CSSSelectorConverter: 0fda7454165e40e668dd297b44cdb1c341cd53ae
   DZNEmptyDataSet: 0ec00bfc230d7450997b60c127afdd0b9f24f3b6
@@ -57,7 +57,7 @@ SPEC CHECKSUMS:
   IGHTMLQuery: 6176bcb88ad36f80ee984dbfde5592bb3ccc921f
   JTSImageViewController: 1f8ce1cc93dab0d0af8e53badeea7528560cfec9
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
-  NUIParse: 9b6d5a6b782dc654ac6c846d623885080306f07f
+  NUIParse: 2e3885ba7807477266396292626bd387d34c2338
   RegexKitLite-NoWarning: 365d208f8187997e33d9de8baeddfc00728596d8
   SDCycleScrollView: 90e43636fcc8e6a7f74e8b64d87418a8e96549b4
   UIImageViewAligned: 73030dd085400e1ae7641203b5cc1546fa0495a8

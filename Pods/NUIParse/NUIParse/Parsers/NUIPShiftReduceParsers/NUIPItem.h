@@ -28,9 +28,3 @@
 - (BOOL)isEqualToItem:(NUIPItem *)item;
 
 @end
-
-@interface NSObject (NUIPIsItem)
-
-- (BOOL)isItem;
-
-@end
