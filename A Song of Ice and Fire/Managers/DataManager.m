@@ -73,6 +73,7 @@
 
     [_manager GET:URL
        parameters:nil
+         progress:nil
           success:^(NSURLSessionTask *task, id responseObject) {
               NSString *wikitext = responseObject[@"expandtemplates"][@"wikitext"];
               wikitext = [wikitext stringByReplacingOccurrencesOfString: @"<br>" withString: @"\n"];
@@ -109,6 +110,7 @@
 
     [_manager GET:URL
        parameters:nil
+         progress:nil
           success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
               NSString *wikitext = responseObject[@"expandtemplates"][@"wikitext"];
               NSMutableArray *options = [@[] mutableCopy];
@@ -143,6 +145,7 @@
 
     [_manager GET:URL
        parameters:nil
+         progress:nil
           success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
               NSArray *categoryMembersArray = responseObject[@"query"][@"categorymembers"];
               NSMutableArray *portals = [@[] mutableCopy];
@@ -214,6 +217,7 @@
                          self.siteURL, [pageId stringValue]];
         [_manager GET:URL
            parameters:nil
+             progress:nil
               success:^(NSURLSessionDataTask *task, id responseObject) {
                   NSDictionary *page = responseObject[@"query"][@"pages"][[pageId stringValue]];
                   NSDictionary *thumbnail = [page objectForKey:@"thumbnail"];
@@ -238,6 +242,7 @@
     NSString *URL = [NSString stringWithFormat:@"%@/api.php?action=query&list=random&rnlimit=1&format=json", self.siteURL];
     [_manager GET:URL
        parameters:nil
+         progress:nil
           success:^(NSURLSessionDataTask *task, id responseObject) {
               NSArray *blacklist = @[@"File:", @"Category:", @"Talk:", @"User:", @"MediaWiki:", @"Template:"];
               BOOL isOnBlackList = NO;
@@ -272,6 +277,7 @@
 
     [_manager GET:URL
        parameters:parameters
+         progress:nil
           success:^(NSURLSessionDataTask *task, id responseObject) {
               NSString *cmcontinue = responseObject[@"continue"][@"cmcontinue"];
               NSMutableArray<CategoryMemberModel *> *membersArray = [@[] mutableCopy];
@@ -296,6 +302,7 @@
 
     [_manager GET:URL
        parameters:nil
+         progress:nil
           success:^(NSURLSessionDataTask *task, id responseObject) {
               NSMutableArray *members = [@[] mutableCopy];
 
@@ -320,6 +327,7 @@
 
     [_manager GET:URL
        parameters:parameters
+         progress:nil
           success:^(NSURLSessionDataTask *task, id responseObject) {
               NSString *cmcontinue = responseObject[@"continue"][@"cmcontinue"];
               NSMutableArray<CategoryMemberModel *> *membersArray = [@[] mutableCopy];

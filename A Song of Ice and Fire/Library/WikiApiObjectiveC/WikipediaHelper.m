@@ -79,7 +79,7 @@
         return responseCached;
     }];
 
-    [manager GET:url parameters:nil success:^(NSURLSessionTask *task, id responseObject) {
+    [manager GET:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         NSArray *htmlTemp = [[[responseObject objectForKey:@"query"] objectForKey:@"pages"] allValues];
         fetchedArticle = [[[[htmlTemp objectAtIndex:0] objectForKey:@"revisions"] objectAtIndex:0] objectForKey:@"*"];
 
