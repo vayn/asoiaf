@@ -6,8 +6,15 @@
 //  Copyright © 2015年 HeZhi Corp. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface PortalNavigationInteraction : NSObject
+@interface PortalNavigationInteraction : UIPercentDrivenInteractiveTransition <UIViewControllerInteractiveTransitioning>
+
+@property (nonatomic, strong) UINavigationController *navigationController;
+
+@property (nonatomic, assign) BOOL shouldCompleteTransition;
+@property (nonatomic, assign) BOOL transitionInProgress;
+
+- (void)attachToViewController:(UIViewController *)vc;
 
 @end
