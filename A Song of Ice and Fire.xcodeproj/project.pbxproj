@@ -43,6 +43,7 @@
 		F34DCA391C0BD38E00979CA7 /* CAPSPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = F34DCA381C0BD38E00979CA7 /* CAPSPageMenu.m */; };
 		F34DCA3D1C0BD4C700979CA7 /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F34DCA3C1C0BD4C700979CA7 /* CategoryViewController.m */; };
 		F36500B21C1864D20094339D /* PortalNavigationTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = F36500B11C1864D20094339D /* PortalNavigationTransition.m */; };
+		F36500B51C1871E30094339D /* PortalNavigationInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = F36500B41C1871E30094339D /* PortalNavigationInteraction.m */; };
 		F37B448F1BEE8AB400764D92 /* PortalCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F37B448D1BEE8AB400764D92 /* PortalCollectionHeaderView.m */; };
 		F37B44921BEE8AFD00764D92 /* PortalCollectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F37B44911BEE8AFD00764D92 /* PortalCollectionHeaderView.xib */; };
 		F39290D51C0E887900A7BD2C /* CategoryMemberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F39290D41C0E887900A7BD2C /* CategoryMemberModel.m */; };
@@ -153,6 +154,8 @@
 		F34DCA3C1C0BD4C700979CA7 /* CategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryViewController.m; sourceTree = "<group>"; };
 		F36500B01C1864D20094339D /* PortalNavigationTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalNavigationTransition.h; sourceTree = "<group>"; };
 		F36500B11C1864D20094339D /* PortalNavigationTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalNavigationTransition.m; sourceTree = "<group>"; };
+		F36500B31C1871E30094339D /* PortalNavigationInteraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalNavigationInteraction.h; sourceTree = "<group>"; };
+		F36500B41C1871E30094339D /* PortalNavigationInteraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalNavigationInteraction.m; sourceTree = "<group>"; };
 		F37B448C1BEE8AB400764D92 /* PortalCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalCollectionHeaderView.h; sourceTree = "<group>"; };
 		F37B448D1BEE8AB400764D92 /* PortalCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalCollectionHeaderView.m; sourceTree = "<group>"; };
 		F37B44911BEE8AFD00764D92 /* PortalCollectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PortalCollectionHeaderView.xib; sourceTree = "<group>"; };
@@ -556,6 +559,8 @@
 			children = (
 				F36500B01C1864D20094339D /* PortalNavigationTransition.h */,
 				F36500B11C1864D20094339D /* PortalNavigationTransition.m */,
+				F36500B31C1871E30094339D /* PortalNavigationInteraction.h */,
+				F36500B41C1871E30094339D /* PortalNavigationInteraction.m */,
 			);
 			name = NavigationTransition;
 			sourceTree = "<group>";
@@ -900,6 +905,7 @@
 				F3EF0BEB1C11754F00B73DA7 /* MJRefreshAutoSpinnerFooter.m in Sources */,
 				F3EF0BD41C10ED0F00B73DA7 /* MJRefreshBackFooter.m in Sources */,
 				F334D0011BEE73FC0074734D /* CarrouselViewController.m in Sources */,
+				F36500B51C1871E30094339D /* PortalNavigationInteraction.m in Sources */,
 				F37B448F1BEE8AB400764D92 /* PortalCollectionHeaderView.m in Sources */,
 				F3BD1DF11BF8D8AE00B6DA69 /* UIImage+ImageEffects.m in Sources */,
 				F3EF0BE81C10EED100B73DA7 /* MJRefreshSpinnerHeader.m in Sources */,
