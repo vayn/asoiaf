@@ -100,7 +100,7 @@
     
     NSString *formatedHtmlSrc = [htmlSrc stringByReplacingOccurrencesOfString:@"/wiki/" withString:wikiString];
     formatedHtmlSrc = [formatedHtmlSrc stringByReplacingOccurrencesOfString:ahrefWikiString withString:ahrefWikiStringReplacement];
-    formatedHtmlSrc = [formatedHtmlSrc stringByReplacingOccurrencesOfString:@"class=\"editsection\"" withString:@"style=\"visibility: hidden\""];
+    formatedHtmlSrc = [formatedHtmlSrc stringByReplacingOccurrencesOfString:@"class=\"mw-editsection\"" withString:@"style=\"visibility: hidden\""];
 
     // Clean the html page
     formatedHtmlSrc = [self cleanHTMLPage:formatedHtmlSrc];
@@ -125,7 +125,8 @@
     // There are some bugs in IGHTMLQuery on iOS (works fine on OSX),
     // so we use try-catch block to prevent app crashing.
     @try {
-        [[contents queryWithXPath:@"//table[@class='infobox']"] remove];
+        // Delete caption image
+        [[contents queryWithXPath:@"//table[@class='infobox']//caption"] remove];
     }
     @catch (NSException *exception) {
         NSLog( @"Name: %@", exception.name);
@@ -133,7 +134,6 @@
     }
 
     @try {
-        [[contents queryWithXPath:@"//span[@class='mw-editsection']"] remove];
         [[contents queryWithXPath:@"//table[@style='margin: 0px 0px 5px 0px; border: 1px solid #aaa; background:#fbfbfb;']"] remove];
     }
     @catch (NSException *exception) {
