@@ -19,7 +19,9 @@
 
 - (void)restoreDefaultNavigationBar
 {
-    [self.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    [self.navigationBar setBackgroundImage:[[UINavigationBar appearance] backgroundImageForBarMetrics:UIBarMetricsDefault]
+                             forBarMetrics:UIBarMetricsDefault];
+    [self.navigationBar setShadowImage:[[UINavigationBar appearance] shadowImage]];
 }
 
 @end
