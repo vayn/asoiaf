@@ -364,6 +364,8 @@ UIGestureRecognizerDelegate
 
 - (void)homeButtonPressed:(id)sender
 {
+    [self.navigationController restoreDefaultNavigationBar];
+
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
