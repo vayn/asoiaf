@@ -14,5 +14,6 @@ target 'A Song of Ice and Fire' do
     pod 'MBProgressHUD', '~> 0.9.1'
     pod 'FLAnimatedImage', '~> 1.0.8'
     pod 'DZNEmptyDataSet', '~> 1.7.2'
+    pod 'GTScrollNavigationBar', '~> 0.4'
 end
 

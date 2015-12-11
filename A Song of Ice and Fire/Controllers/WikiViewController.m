@@ -17,6 +17,7 @@
 
 #import "JTSImageViewController.h"
 #import "OpenShareHeader.h"
+#import "GTScrollNavigationBar.h"
 
 static NSInteger const kTitleLabelHeight = 58;
 static NSInteger const kBlurViewOffset = 85;
@@ -89,6 +90,14 @@ UIGestureRecognizerDelegate
 
     // Start fetch article with page title
     [self.wikiHelper fetchArticle:self.title];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    [self.navigationController setValue:[GTScrollNavigationBar new] forKey:@"navigationBar"];
+    self.navigationController.scrollNavigationBar.scrollView = self.webView.scrollView;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -323,6 +332,11 @@ UIGestureRecognizerDelegate
     }
 
     [self.parallaxHeaderView layoutWebHeaderViewForScrollViewOffset:scrollView.contentOffset];
+}
+
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
+{
+    [self.navigationController.scrollNavigationBar resetToDefaultPositionWithAnimation:NO];
 }
 
 #pragma mark - UIGestureRecognizerDelegate

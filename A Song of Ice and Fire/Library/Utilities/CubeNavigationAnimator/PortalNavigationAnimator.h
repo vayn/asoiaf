@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PortalNavigationTransition : NSObject <UIViewControllerAnimatedTransitioning>
+@interface PortalNavigationAnimator : NSObject <UIViewControllerAnimatedTransitioning>
 
 @property (nonatomic, assign) BOOL isReversed;
 

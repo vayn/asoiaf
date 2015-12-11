@@ -14,6 +14,4 @@
 
 @property (nonatomic, strong) CategoryMemberModel *category;
 
-@property (nonatomic, strong) id<UINavigationControllerDelegate> originalDelegate;
-
 @end

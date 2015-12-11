@@ -6,9 +6,9 @@
 //  Copyright © 2015年 HeZhi Corp. All rights reserved.
 //
 
-#import "PortalNavigationTransition.h"
+#import "PortalNavigationAnimator.h"
 
-@implementation PortalNavigationTransition
+@implementation PortalNavigationAnimator
 
 - (instancetype)init
 {
