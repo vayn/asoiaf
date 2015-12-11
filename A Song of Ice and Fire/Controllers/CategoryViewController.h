@@ -13,7 +13,6 @@
 @interface CategoryViewController : UIViewController
 
 @property (nonatomic, strong) CategoryMemberModel *category;
-
-@property (nonatomic, strong) id<UINavigationControllerDelegate> originalDelegate;
+@property (nonatomic, strong) id<UINavigationControllerDelegate> normalNavDelegate;
 
 @end

@@ -12,9 +12,7 @@
 #import "PortalCell.h"
 #import "PortalCollectionHeaderView.h"
 #import "PortalLayout.h"
-
-#import "PortalNavigationTransition.h"
-#import "PortalNavigationInteraction.h"
+#import "PortalNavigationDelegate.h"
 
 #import "CategoryViewController.h"
 
@@ -24,15 +22,11 @@
 static NSString * const reuseCell = @"PortalCell";
 static NSString * const reuseHeader = @"PortalCollectionHeaderView";
                  
-@interface PortalCollectionViewController () <UINavigationControllerDelegate>
+@interface PortalCollectionViewController ()
 
 @property (nonatomic, strong) NSArray<CategoryMemberModel *> *portals;
 @property (nonatomic, assign) BOOL isViewIntialized;
-
-@property (nonatomic, strong) id<UINavigationControllerDelegate> originalDelegate;
-
-@property (nonatomic, strong) PortalNavigationTransition *portalNavigationTransition;
-@property (nonatomic, strong) PortalNavigationInteraction *portalNavigationInteraction;
+@property (nonatomic, strong) PortalNavigationDelegate *navDelegate;
 
 @end
 
@@ -47,8 +41,7 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
         self.collectionView.scrollEnabled = YES;
         self.collectionView.showsHorizontalScrollIndicator = NO;
 
-        self.portalNavigationTransition = [[PortalNavigationTransition alloc] init];
-        self.portalNavigationInteraction = [[PortalNavigationInteraction alloc] init];
+        self.navDelegate = [[PortalNavigationDelegate alloc] init];
 
         [self setupPortals];
     }
@@ -143,14 +136,6 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 
         self.isViewIntialized = YES;
     });
-
-    self.originalDelegate = self.navigationController.delegate;
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    self.navigationController.delegate = self.originalDelegate;
 }
 
 - (void)didReceiveMemoryWarning
@@ -250,14 +235,17 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSIndexPath *centralIndexPath = [self centralIndexPath];
-    self.navigationController.delegate = self;
 
     if (centralIndexPath && (centralIndexPath == indexPath)) {
         CategoryMemberModel *portal =  self.portals[indexPath.row];
 
         CategoryViewController *categoryVC = [[CategoryViewController alloc] init];
         categoryVC.category = portal;
-        categoryVC.originalDelegate = self.originalDelegate;
+
+        // Save navigation controller delegate of parent controller to CategoryViewController
+        categoryVC.normalNavDelegate = self.navigationController.delegate;
+        // Set navigation controller delegate to the custom delegate
+        self.navigationController.delegate = self.navDelegate;
 
         [self.navigationController pushViewController:categoryVC animated:YES];
     } else {
@@ -299,28 +287,6 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
         scrollView.contentOffset = (CGPoint){contentOffsetWhenFullyScrolledRight, 0};
 
     }
-}
-
-#pragma mark - UINavigationControllerDelegate
-
-- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
-                                  animationControllerForOperation:(UINavigationControllerOperation)operation
-                                               fromViewController:(UIViewController *)fromVC
-                                                 toViewController:(UIViewController *)toVC
-{
-    if (operation == UINavigationControllerOperationPush) {
-        [self.portalNavigationInteraction attachToViewController:toVC];
-    }
-
-    self.portalNavigationTransition.isReversed = (operation == UINavigationControllerOperationPop);
-
-    return self.portalNavigationTransition;
-}
-
-- (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
-                         interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController
-{
-    return self.portalNavigationInteraction.transitionInProgress ? self.portalNavigationInteraction : nil;
 }
 
 #pragma mark - Helpers

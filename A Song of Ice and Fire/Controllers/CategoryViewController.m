@@ -79,7 +79,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    self.navigationController.delegate = self.originalDelegate;
+    self.navigationController.delegate = self.normalNavDelegate;
 }
 
 - (void)didReceiveMemoryWarning
