@@ -26,7 +26,6 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 
 @property (nonatomic, strong) NSArray<CategoryMemberModel *> *portals;
 @property (nonatomic, assign) BOOL isViewIntialized;
-@property (nonatomic, strong) PortalNavigationDelegate *navDelegate;
 
 @end
 
@@ -40,8 +39,6 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
     if (self) {
         self.collectionView.scrollEnabled = YES;
         self.collectionView.showsHorizontalScrollIndicator = NO;
-
-        self.navDelegate = [[PortalNavigationDelegate alloc] init];
 
         [self setupPortals];
     }
@@ -241,11 +238,6 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 
         CategoryViewController *categoryVC = [[CategoryViewController alloc] init];
         categoryVC.category = portal;
-
-        // Save navigation controller delegate of parent controller to CategoryViewController
-        categoryVC.normalNavDelegate = self.navigationController.delegate;
-        // Set navigation controller delegate to the custom delegate
-        self.navigationController.delegate = self.navDelegate;
 
         [self.navigationController pushViewController:categoryVC animated:YES];
     } else {

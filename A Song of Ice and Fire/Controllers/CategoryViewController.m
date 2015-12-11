@@ -74,9 +74,6 @@
                                                         frame:CGRectMake(0.0, 62.0, self.view.frame.size.width, self.view.frame.size.height)
                                                       options:parameters];
     [self.view addSubview:_pageMenu.view];
-
-    // Reset navigation controller delegate
-    self.navigationController.delegate = self.normalNavDelegate;
 }
 
 - (void)didReceiveMemoryWarning
