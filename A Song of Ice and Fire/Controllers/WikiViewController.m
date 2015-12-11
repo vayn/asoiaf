@@ -15,8 +15,6 @@
 #import "Spinner.h"
 #import "ShareActivity.h"
 
-#import "UINavigationController+TransparentNavigationBar.h"
-
 #import "JTSImageViewController.h"
 #import "OpenShareHeader.h"
 
@@ -96,15 +94,11 @@ UIGestureRecognizerDelegate
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
-    [self.navigationController setTransparentNavigationBar];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-
-    [self.navigationController restoreDefaultNavigationBar];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -364,8 +358,6 @@ UIGestureRecognizerDelegate
 
 - (void)homeButtonPressed:(id)sender
 {
-    [self.navigationController restoreDefaultNavigationBar];
-
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
