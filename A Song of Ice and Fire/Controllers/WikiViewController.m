@@ -15,6 +15,8 @@
 #import "Spinner.h"
 #import "ShareActivity.h"
 
+#import "UINavigationController+TransparentNavigationBar.h"
+
 #import "JTSImageViewController.h"
 #import "OpenShareHeader.h"
 
@@ -89,6 +91,20 @@ UIGestureRecognizerDelegate
 
     // Start fetch article with page title
     [self.wikiHelper fetchArticle:self.title];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    [self.navigationController setTransparentNavigationBar];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+
+    [self.navigationController restoreDefaultNavigationBar];
 }
 
 - (void)didReceiveMemoryWarning {
