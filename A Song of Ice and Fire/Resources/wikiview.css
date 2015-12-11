@@ -3197,3 +3197,8 @@ body ::-moz-selection {
     text-align: center;
     font-size: 9px;
 }
+
+/* Disable context menu in UIWebView */
+* {
+    -webkit-touch-callout: none;
+}
