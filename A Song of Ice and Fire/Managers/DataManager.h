@@ -10,6 +10,11 @@
 
 @class CategoryMembersModel;
 
+typedef NS_ENUM(NSUInteger, CategoryMemberType) {
+    CMCategoryType,
+    CMPageType,
+};
+
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^ManagerCompletionBlock)(id responseObject);
@@ -25,14 +30,18 @@ typedef void (^ManagerCompletionBlock)(id responseObject);
 - (void)getKnowTip:(ManagerCompletionBlock)completionBlock;
 - (void)getRandomTitle:(void (^)(NSString *title))completionBlock;
 
-- (void)getPagesUsingGeneratorAPIWithCategory:(NSString *)categoryLink completionBlock:(void (^)(NSArray *members))completionBlock;
+- (void)getCategoryMember:(NSString *)categoryLink
+               memberType:(CategoryMemberType)memberType
+               parameters:(nullable NSDictionary *)parameters
+          completionBlock:(void (^)(CategoryMembersModel *))completionBlock;
 
 - (void)getPagesWithCategory:(NSString *)categoryLink
                   parameters:(nullable NSDictionary *)parameters
-             completionBlock:(void (^)(CategoryMembersModel *members))completionBlock;
+             completionBlock:(void (^)(CategoryMembersModel *members))completionBlock DEPRECATED_ATTRIBUTE;
+
 - (void)getSubCategoriesWithCategory:(NSString *)categoryLink
                           parameters:(nullable NSDictionary *)parameters
-                     completionBlock:(void (^)(CategoryMembersModel *))completionBlock;
+                     completionBlock:(void (^)(CategoryMembersModel *))completionBlock DEPRECATED_ATTRIBUTE;
 @end
 
 NS_ASSUME_NONNULL_END

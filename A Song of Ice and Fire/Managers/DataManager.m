@@ -267,12 +267,29 @@
           }];
 }
 
-- (void)getPagesWithCategory:(NSString *)categoryLink
-                  parameters:(nullable NSDictionary *)parameters
-             completionBlock:(void (^)(CategoryMembersModel *))completionBlock
+- (void)getCategoryMember:(NSString *)categoryLink
+               memberType:(CategoryMemberType)memberType
+               parameters:(nullable NSDictionary *)parameters
+          completionBlock:(void (^)(CategoryMembersModel *))completionBlock
 {
-    NSString *API = [NSString stringWithFormat:@"%@/api.php?action=query&list=categorymembers&cmtitle=%@&cmnamespace=0&format=json&continue",
-                     self.siteURL, categoryLink];
+    NSString *API = nil;
+
+    switch (memberType) {
+        case CMPageType:
+            API = [NSString stringWithFormat:
+                   @"%@/api.php?action=query&list=categorymembers&cmtitle=%@&cmnamespace=0&format=json&continue",
+                   self.siteURL, categoryLink];
+            break;
+        case CMCategoryType:
+            API = [NSString stringWithFormat:
+                   @"%@/api.php?action=query&list=categorymembers&cmtype=subcat&cmtitle=%@&format=json&continue",
+                   self.siteURL, categoryLink];
+            break;
+
+        default:
+            break;
+    }
+
     NSString *URL = [API stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 
     [_manager GET:URL
@@ -289,59 +306,27 @@
 
               CategoryMembersModel *members = [[CategoryMembersModel alloc] initWithMembers:[membersArray copy] cmcontinue:cmcontinue];
               completionBlock(members);
+
+              dispatch_async(dispatch_get_main_queue(), ^{
+                  [[NSNotificationCenter defaultCenter] postNotificationName:@"getCategoryMember" object:nil];
+              });
           } failure:^(NSURLSessionDataTask *task, NSError *error) {
               NSLog(@"%s Error: %@", __FUNCTION__, error);
           }];
 }
 
-- (void)getPagesUsingGeneratorAPIWithCategory:(NSString *)categoryLink completionBlock:(void (^)(NSArray *members))completionBlock
+- (void)getPagesWithCategory:(NSString *)categoryLink
+                  parameters:(nullable NSDictionary *)parameters
+             completionBlock:(void (^)(CategoryMembersModel *))completionBlock
 {
-    NSString *API = [NSString stringWithFormat:@"%@/api.php?action=query&generator=categorymembers&gcmtitle=%@&prop=categories&cllimit=max&gcmlimit=max&format=json",
-                     self.siteURL, categoryLink];
-    NSString *URL = [API stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-
-    [_manager GET:URL
-       parameters:nil
-         progress:nil
-          success:^(NSURLSessionDataTask *task, id responseObject) {
-              NSMutableArray *members = [@[] mutableCopy];
-
-              for (NSDictionary *categoryMember in responseObject[@"query"][@"categorymembers"]) {
-                  [members addObject:[[CategoryMemberModel alloc] initWithTitle:categoryMember[@"title"]
-                                                                      pageId:categoryMember[@"pageid"]]];
-              }
-
-              completionBlock([members copy]);
-          } failure:^(NSURLSessionDataTask *task, NSError *error) {
-              NSLog(@"%s Error: %@", __FUNCTION__, error);
-          }];
+    return [self getCategoryMember:categoryLink memberType:CMPageType parameters:parameters completionBlock:completionBlock];
 }
 
 - (void)getSubCategoriesWithCategory:(NSString *)categoryLink
                           parameters:(nullable NSDictionary *)parameters
                      completionBlock:(void (^)(CategoryMembersModel *))completionBlock
 {
-    NSString *API = [NSString stringWithFormat:@"%@/api.php?action=query&list=categorymembers&cmtype=subcat&cmtitle=%@&format=json&continue",
-                     self.siteURL, categoryLink];
-    NSString *URL = [API stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-
-    [_manager GET:URL
-       parameters:parameters
-         progress:nil
-          success:^(NSURLSessionDataTask *task, id responseObject) {
-              NSString *cmcontinue = responseObject[@"continue"][@"cmcontinue"];
-              NSMutableArray<CategoryMemberModel *> *membersArray = [@[] mutableCopy];
-
-              for (NSDictionary *categoryMember in responseObject[@"query"][@"categorymembers"]) {
-                  [membersArray addObject:[[CategoryMemberModel alloc] initWithTitle:categoryMember[@"title"]
-                                                                         pageId:categoryMember[@"pageid"]]];
-              }
-
-              CategoryMembersModel *members = [[CategoryMembersModel alloc] initWithMembers:[membersArray copy] cmcontinue:cmcontinue];
-              completionBlock(members);
-          } failure:^(NSURLSessionDataTask *task, NSError *error) {
-              NSLog(@"%s Error: %@", __FUNCTION__, error);
-          }];
+    return [self getCategoryMember:categoryLink memberType:CMCategoryType parameters:parameters completionBlock:completionBlock];
 }
 
 #pragma mark - Helpers

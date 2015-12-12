@@ -28,9 +28,8 @@
 {
     [super setParentCategory:parentCategory];
 
-    [[DataManager sharedManager] getSubCategoriesWithCategory:parentCategory.link
-                                                   parameters:nil
-                                              completionBlock:^(CategoryMembersModel *members) {
+    [[DataManager sharedManager]
+     getCategoryMember:parentCategory.link memberType:CMCategoryType parameters:nil completionBlock:^(CategoryMembersModel *members) {
         self.members = members.members;
 
         if (members.cmcontinue) {
@@ -55,7 +54,7 @@
                     parameters:(NSDictionary *)parameters
                completionBlock:(void (^)(CategoryMembersModel * _Nonnull))completionBlock
 {
-    [[DataManager sharedManager] getSubCategoriesWithCategory:categoryLink parameters:parameters completionBlock:completionBlock];
+    [[DataManager sharedManager] getCategoryMember:categoryLink memberType:CMCategoryType parameters:parameters completionBlock:completionBlock];
 }
 
 
