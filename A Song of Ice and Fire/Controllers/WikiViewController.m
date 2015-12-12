@@ -19,6 +19,7 @@
 #import "OpenShareHeader.h"
 #import "GTScrollNavigationBar.h"
 
+static NSInteger const kHeaderHeight = 223;
 static NSInteger const kTitleLabelHeight = 58;
 static NSInteger const kBlurViewOffset = 85;
                  
@@ -41,7 +42,6 @@ UIGestureRecognizerDelegate
 @property (nonatomic, strong) Spinner *cubeSpinner;
 
 @property (nonatomic, strong) WikipediaHelper *wikiHelper;
-@property (nonatomic, assign) CGFloat originalHeight;
 
 @end
 
@@ -148,12 +148,10 @@ UIGestureRecognizerDelegate
 
 - (void)setupParallaxHeaderView
 {
-    self.imageView = [[UIImageViewAligned alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 223)];
+    self.imageView = [[UIImageViewAligned alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kHeaderHeight)];
     self.imageView.contentMode = UIViewContentModeScaleAspectFill;
 
-    self.originalHeight = self.imageView.frame.size.height;
-
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, self.originalHeight - 80, self.imageView.frame.size.width - 30, 60)];
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, kHeaderHeight - 80, self.imageView.frame.size.width - 30, 60)];
 
     self.titleLabel.text = self.title;
     self.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:21.0];
@@ -168,7 +166,7 @@ UIGestureRecognizerDelegate
     [self.imageView addSubview:self.titleLabel];
 
     self.blurView = [[GradientView alloc] initWithFrame:CGRectMake(0, -kBlurViewOffset,
-                                                                   self.view.frame.size.width, self.originalHeight + kBlurViewOffset)
+                                                                   self.view.frame.size.width, kHeaderHeight + kBlurViewOffset)
                                                    type:TransparentGradientTwiceType];
     
     [self.imageView addSubview:self.blurView];
@@ -178,10 +176,10 @@ UIGestureRecognizerDelegate
                                                                            forSize:CGSizeMake(self.view.frame.size.width, 223)];
     self.parallaxHeaderView.delegate = self;
 
-    // We set _parallaxHeaderView's origin.y as -20, and _imageView is subview of it,
-    // so we should set _webBrowerView's origin.y is -20 smaller than it of _imageView.
+    // ParallaxHeaderView's origin.y as -20 in ParallaxHeaderView class,
+    // so we should set self.webBrowerView's origin.y is -20 smaller than it.
     CGRect f = self.webBrowserView.frame;
-    f.origin.y = self.imageView.frame.size.height - 20;
+    f.origin.y = kHeaderHeight - 20;
     self.webBrowserView.frame = f;
     
     [self.webView.scrollView addSubview:self.parallaxHeaderView];
@@ -319,11 +317,11 @@ UIGestureRecognizerDelegate
     CGFloat incrementY = scrollView.contentOffset.y;
     if (incrementY < 0) {
         // 不断设置 titleLabel 以保证 frame 正确
-        self.titleLabel.frame = CGRectMake(15, self.originalHeight - 80 - incrementY, self.view.frame.size.width - 30, 60);
+        self.titleLabel.frame = CGRectMake(15, kHeaderHeight - 80 - incrementY, self.view.frame.size.width - 30, 60);
 
         // 不断添加删除 blurView.layer.sublayers![0] 以保证 frame 正确
         self.blurView.frame = CGRectMake(0, -kBlurViewOffset - incrementY,
-                                         self.view.frame.size.width, self.originalHeight + kBlurViewOffset);
+                                         self.view.frame.size.width, kHeaderHeight + kBlurViewOffset);
         [self.blurView.layer.sublayers[0] removeFromSuperlayer];
         [self.blurView insertTwiceTransparentGradient];
 

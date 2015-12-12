@@ -11,7 +11,7 @@
 #import "OpenShareHeader.h"
 #import "MBProgressHUD.h"
 
-static CGFloat const kHUD_SHOW_TIME = 2.18;
+static CGFloat const kHUDShowtime = 2.18;
 
 @protocol BaseActivityDelegate <NSObject>
 

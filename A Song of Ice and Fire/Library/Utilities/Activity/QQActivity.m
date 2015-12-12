@@ -37,10 +37,10 @@
 {
     [OpenShare shareToQQFriends:message Success:^(OSMessage *message) {
         MBProgressHUD *hud = [self messageHUD:_successMessage];
-        [hud hide:YES afterDelay:kHUD_SHOW_TIME];
+        [hud hide:YES afterDelay:kHUDShowtime];
     } Fail:^(OSMessage *message, NSError *error) {
         MBProgressHUD *hud = [self messageHUD:_failureMessage];
-        [hud hide:YES afterDelay:kHUD_SHOW_TIME];
+        [hud hide:YES afterDelay:kHUDShowtime];
     }];
 }
 
