@@ -6,6 +6,8 @@
 //  Copyright © 2015年 HeZhi Corp. All rights reserved.
 //
 
+#import <WebKit/WebKit.h>
+
 #import "WikiViewController.h"
 
 #import "WikipediaHelper.h"
@@ -14,6 +16,8 @@
 #import "UIImageViewAligned.h"
 #import "Spinner.h"
 #import "ShareActivity.h"
+
+#import "WKWebView+SynchronousEvaluateJavaScript.h"
 
 #import "JTSImageViewController.h"
 #import "OpenShareHeader.h"
@@ -25,13 +29,13 @@ static NSInteger const kBlurViewOffset = 85;
 @interface WikiViewController ()
 <
 WikipediaHelperDelegate,
-UIWebViewDelegate,
+WKNavigationDelegate,
 UIScrollViewDelegate,
 ParallaxHeaderViewDelegate,
 UIGestureRecognizerDelegate
 >
 
-@property (nonatomic, weak) IBOutlet UIWebView *webView;
+@property (nonatomic, strong) WKWebView *webView;
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIImageViewAligned *imageView;
@@ -77,7 +81,22 @@ UIGestureRecognizerDelegate
 {
     [super viewDidLoad];
 
-    self.webView.delegate = self;
+    NSString *jScript = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
+
+    WKUserScript *wkUScript = [[WKUserScript alloc] initWithSource:jScript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+    WKUserContentController *wkUController = [[WKUserContentController alloc] init];
+    [wkUController addUserScript:wkUScript];
+
+    WKWebViewConfiguration *wkWebConfig = [[WKWebViewConfiguration alloc] init];
+    wkWebConfig.userContentController = wkUController;
+
+    self.webView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:wkWebConfig];
+
+    self.webView.navigationDelegate = self;
+    self.view = self.webView;
+
+    [self.navigationController setValue:[GTScrollNavigationBar new] forKey:@"navigationBar"];
+    self.navigationController.scrollNavigationBar.scrollView = self.webView.scrollView;
     self.webView.scrollView.delegate = self;
     self.webBrowserView = [[self.webView.scrollView subviews] objectAtIndex:0];
 
@@ -92,14 +111,6 @@ UIGestureRecognizerDelegate
     [self.wikiHelper fetchArticle:self.title];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-
-    [self.navigationController setValue:[GTScrollNavigationBar new] forKey:@"navigationBar"];
-    self.navigationController.scrollNavigationBar.scrollView = self.webView.scrollView;
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -109,8 +120,7 @@ UIGestureRecognizerDelegate
 
 - (void)resetView
 {
-
-    [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML = \"\";"];
+    [self.webView evaluateJavaScript:@"document.body.innerHTML = \"\";" completionHandler:nil];
     [self.webView.scrollView setContentOffset:CGPointMake(0, -self.webView.scrollView.contentInset.top) animated:NO];
 
     self.imageView.image = nil;
@@ -201,8 +211,9 @@ UIGestureRecognizerDelegate
 -(void)handleSingleTap:(UITapGestureRecognizer *)sender
 {
     CGPoint pt = [sender locationInView:self.webView];
-    NSString *imgURL = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).src", pt.x, pt.y];
-    NSString *imageSource = [self.webView stringByEvaluatingJavaScriptFromString:imgURL];
+    NSString *imgUrlScript = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).src", pt.x, pt.y];
+    NSString *imageSource = [self.webView stringByEvaluatingJavaScriptFromString:imgUrlScript];
+
     if (imageSource.length > 0) {
         // Create image info
         JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
@@ -277,14 +288,16 @@ UIGestureRecognizerDelegate
     [self.webView loadHTMLString:htmlPage baseURL:nil];
 }
 
-#pragma mark - UIWebViewDelegate
+#pragma mark - WKNavigationDelegate
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction
+decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
+    NSURLRequest *request = navigationAction.request;
     NSString *url = [[request URL] absoluteString];
     NSString *prefix = @"http://asoiaf.huiji.wiki/wiki/";
 
-    if (navigationType == UIWebViewNavigationTypeLinkClicked && [url hasPrefix:@"http"]) {
+    if ((navigationAction.navigationType == WKNavigationTypeLinkActivated) && [url hasPrefix:@"http"]) {
         // Check if the clicked link is a image or not
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\.(jpg|gif|png)"
                                                                                options:NSRegularExpressionCaseInsensitive
@@ -293,21 +306,23 @@ UIGestureRecognizerDelegate
 
         // All internal links except IMAGE could create new wiki view controller
         if ([url hasPrefix:prefix] && !match) {
+            NSLog(@"Here");
             WikiViewController *nextWikiVC = [[WikiViewController alloc] init];
 
             NSString *title = [[url substringFromIndex:[prefix length]] stringByRemovingPercentEncoding];
             nextWikiVC.title = title;
 
             [self.navigationController pushViewController:nextWikiVC animated:YES];
+
+            decisionHandler(WKNavigationActionPolicyCancel);
         }
-        return NO;
     }
 
-    return YES;
+    decisionHandler(WKNavigationActionPolicyAllow);
 }
 
-/* Disable UIWebView horizontal scrolling */
-- (void)webViewDidFinishLoad:(UIWebView *)webView
+// Disable UIWebView horizontal scrolling
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
 {
     [webView.scrollView setContentSize: CGSizeMake(webView.frame.size.width, webView.scrollView.contentSize.height)];
 }
