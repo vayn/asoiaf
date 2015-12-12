@@ -27,8 +27,9 @@
 {
     [super setParentCategory:parentCategory];
 
-    [[DataManager sharedManager] getPagesWithCategory:parentCategory.link parameters:nil completionBlock:^(CategoryMembersModel *members) {
-        self.members = members.members;
+    [[DataManager sharedManager]
+     getCategoryMember:parentCategory.link memberType:CMPageType parameters:nil completionBlock:^(CategoryMembersModel *members) {
+         self.members = members.members;
 
         if (members.cmcontinue) {
             [self.nextContinue addObject:members.cmcontinue];
@@ -104,7 +105,7 @@
 
 - (void)getMembersWithCategory:(NSString *)categoryLink parameters:(NSDictionary *)parameters completionBlock:(void (^)(CategoryMembersModel * _Nonnull))completionBlock
 {
-    [[DataManager sharedManager] getPagesWithCategory:categoryLink parameters:parameters completionBlock:completionBlock];
+    [[DataManager sharedManager] getCategoryMember:categoryLink memberType:CMPageType parameters:parameters completionBlock:completionBlock];
 }
 
 @end
