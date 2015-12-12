@@ -46,7 +46,6 @@ UIGestureRecognizerDelegate
 @property (nonatomic, strong) Spinner *cubeSpinner;
 
 @property (nonatomic, strong) WikipediaHelper *wikiHelper;
-@property (nonatomic, assign) CGFloat originalHeight;
 
 @end
 
@@ -164,9 +163,7 @@ UIGestureRecognizerDelegate
     self.imageView = [[UIImageViewAligned alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kHeaderHeight)];
     self.imageView.contentMode = UIViewContentModeScaleAspectFill;
 
-    self.originalHeight = self.imageView.frame.size.height;
-
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, self.originalHeight - 80, self.imageView.frame.size.width - 30, 60)];
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, kHeaderHeight - 80, self.imageView.frame.size.width - 30, 60)];
 
     self.titleLabel.text = self.title;
     self.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:21.0];
@@ -181,7 +178,7 @@ UIGestureRecognizerDelegate
     [self.imageView addSubview:self.titleLabel];
 
     self.blurView = [[GradientView alloc] initWithFrame:CGRectMake(0, -kBlurViewOffset,
-                                                                   self.view.frame.size.width, self.originalHeight + kBlurViewOffset)
+                                                                   self.view.frame.size.width, kHeaderHeight + kBlurViewOffset)
                                                    type:TransparentGradientTwiceType];
     
     [self.imageView addSubview:self.blurView];
@@ -195,7 +192,7 @@ UIGestureRecognizerDelegate
     // ParallaxHeaderView's origin.y as -20 in ParallaxHeaderView class,
     // so we should set self.webBrowerView's origin.y is -20 smaller than it.
     CGRect f = self.webBrowserView.frame;
-    f.origin.y -= 20;
+    f.origin.y = kHeaderHeight - 20;
     self.webBrowserView.frame = f;
 
     [self.webView.scrollView addSubview:self.parallaxHeaderView];
@@ -348,11 +345,11 @@ decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
     CGFloat incrementY = scrollView.contentOffset.y;
     if (incrementY < 0) {
         // 不断设置 titleLabel 以保证 frame 正确
-        self.titleLabel.frame = CGRectMake(15, self.originalHeight - 80 - incrementY, self.view.frame.size.width - 30, 60);
+        self.titleLabel.frame = CGRectMake(15, kHeaderHeight - 80 - incrementY, self.view.frame.size.width - 30, 60);
 
         // 不断添加删除 blurView.layer.sublayers![0] 以保证 frame 正确
         self.blurView.frame = CGRectMake(0, -kBlurViewOffset - incrementY,
-                                         self.view.frame.size.width, self.originalHeight + kBlurViewOffset);
+                                         self.view.frame.size.width, kHeaderHeight + kBlurViewOffset);
         [self.blurView.layer.sublayers[0] removeFromSuperlayer];
         [self.blurView insertTwiceTransparentGradient];
 
