@@ -7,18 +7,31 @@
 //
 
 #import "CMBaseTableViewController.h"
+#import "EmptyDataSetDelegate.h"
 #import "Spinner.h"
 
-#import "UIColor+Hexadecimal.h"
-#import "UIScrollView+EmptyDataSet.h"
+@interface CMBaseTableViewController ()
 
-@interface CMBaseTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
-
-@property (nonatomic, getter=isLoading) BOOL loading;
+@property (nonatomic, strong) EmptyDataSetDelegate *emptyDataSetDelegate;
 
 @end
 
 @implementation CMBaseTableViewController
+
+- (instancetype)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+    if (self) {
+        _emptyDataSetDelegate = [[EmptyDataSetDelegate alloc] init];
+
+        [[NSNotificationCenter defaultCenter]
+         addObserverForName:@"getCategoryMember" object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+             _emptyDataSetDelegate.loading = NO;
+             [self.tableView reloadData];
+        }];
+    }
+    return self;
+}
 
 - (void)setParentCategory:(CategoryMemberModel *)parentCategory
 {
@@ -38,11 +51,17 @@
     self.tableView.tableFooterView = [UIView new];
 
     // Pull to refresh setting
-    [self setupRefresh];
+    [self setupPullToRefresh];
 
     // Show empty datasets whenever the view has no content to display
-    self.tableView.emptyDataSetSource = self;
-    self.tableView.emptyDataSetDelegate = self;
+    self.tableView.emptyDataSetSource = self.emptyDataSetDelegate;
+    self.tableView.emptyDataSetDelegate = self.emptyDataSetDelegate;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -65,7 +84,11 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    if (self.emptyDataSetDelegate.isLoading) {
+        return 0;
+    } else {
+        return 1;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -91,14 +114,14 @@
  */
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ((indexPath.row == self.members.count-1) && self.isHeaderRefreshing) {
+    if ((indexPath.row == self.members.count - 1) && self.isHeaderRefreshing) {
         [self.tableView.mj_footer resetNoMoreData];
     }
 }
 
 #pragma mark - Private methods
 
-- (void)setupRefresh
+- (void)setupPullToRefresh
 {
     /* *
      * 下拉加载上一页
@@ -197,120 +220,6 @@
     [footer setTitle:@"已经到达最后一页" forState:MJRefreshStateNoMoreData];
 
     self.tableView.mj_footer = footer;
-}
-
-#pragma mark - DZNEmptyDataSetSource Methods
-
-- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView
-{
-    NSMutableDictionary *attributes = [NSMutableDictionary new];
-
-    NSString *text = @"暂无内容";
-    UIFont *font = [UIFont systemFontOfSize:20.0];
-    UIColor *textColor = [UIColor colorWithHex:@"808080"];
-
-    [attributes setObject:font forKey:NSFontAttributeName];
-    [attributes setObject:textColor forKey:NSForegroundColorAttributeName];
-    
-    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
-}
-
-- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView
-{
-
-    NSMutableDictionary *attributes = [NSMutableDictionary new];
-
-    NSString *text = @"你已到达阴影之地";
-    UIFont *font = [UIFont systemFontOfSize:15.0];
-    UIColor *textColor = [UIColor colorWithHex:@"989898"];
-
-    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
-    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
-    paragraph.alignment = NSTextAlignmentCenter;
-
-    [attributes setObject:font forKey:NSFontAttributeName];
-    [attributes setObject:textColor forKey:NSForegroundColorAttributeName];
-    [attributes setObject:paragraph forKey:NSParagraphStyleAttributeName];
-
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text attributes:attributes];
-
-    return attributedString;
-}
-
-- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView
-{
-    NSString *imageName = @"placeholder_emptydataset";
-
-    return [UIImage imageNamed:imageName];
-}
-
-- (CAAnimation *)imageAnimationForEmptyDataSet:(UIScrollView *)scrollView
-{
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform"];
-    animation.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
-    animation.toValue = [NSValue valueWithCATransform3D: CATransform3DMakeRotation(M_PI_2, 0.0, 0.0, 1.0) ];
-    animation.duration = 0.25;
-    animation.cumulative = YES;
-    animation.repeatCount = MAXFLOAT;
-    
-    return animation;
-}
-
-- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView
-{
-    return [UIColor colorWithHex:@"f2f2f2"];
-}
-
-- (CGFloat)verticalOffsetForEmptyDataSet:(UIScrollView *)scrollView
-{
-    return -48.0;
-}
-
-- (CGFloat)spaceHeightForEmptyDataSet:(UIScrollView *)scrollView
-{
-    return 0.0;
-}
-
-#pragma mark - DZNEmptyDataSetDelegate Methods
-
-
-
-- (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView
-{
-    return YES;
-}
-
-- (BOOL)emptyDataSetShouldAllowTouch:(UIScrollView *)scrollView
-{
-    return YES;
-}
-
-- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView
-{
-    return YES;
-}
-
-- (BOOL)emptyDataSetShouldAnimateImageView:(UIScrollView *)scrollView
-{
-    return self.isLoading;
-}
-
-- (void)emptyDataSet:(UIScrollView *)scrollView didTapView:(UIView *)view
-{
-    self.loading = YES;
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.loading = NO;
-    });
-}
-
-- (void)emptyDataSet:(UIScrollView *)scrollView didTapButton:(UIButton *)button
-{
-    self.loading = YES;
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.loading = NO;
-    });
 }
 
 @end
