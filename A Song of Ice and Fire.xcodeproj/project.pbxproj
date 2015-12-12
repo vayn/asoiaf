@@ -86,6 +86,7 @@
 		F3EF0BE51C10ED0F00B73DA7 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EF0BD21C10ED0F00B73DA7 /* UIView+MJExtension.m */; };
 		F3EF0BE81C10EED100B73DA7 /* MJRefreshSpinnerHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EF0BE71C10EED100B73DA7 /* MJRefreshSpinnerHeader.m */; };
 		F3EF0BEB1C11754F00B73DA7 /* MJRefreshAutoSpinnerFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EF0BEA1C11754F00B73DA7 /* MJRefreshAutoSpinnerFooter.m */; };
+		F3F545BE1C1CAD1900FF612E /* EmptyDataSetDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F545BD1C1CAD1900FF612E /* EmptyDataSetDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -239,6 +240,8 @@
 		F3EF0BE71C10EED100B73DA7 /* MJRefreshSpinnerHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshSpinnerHeader.m; sourceTree = "<group>"; };
 		F3EF0BE91C11754F00B73DA7 /* MJRefreshAutoSpinnerFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshAutoSpinnerFooter.h; sourceTree = "<group>"; };
 		F3EF0BEA1C11754F00B73DA7 /* MJRefreshAutoSpinnerFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshAutoSpinnerFooter.m; sourceTree = "<group>"; };
+		F3F545BC1C1CAD1900FF612E /* EmptyDataSetDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyDataSetDelegate.h; sourceTree = "<group>"; };
+		F3F545BD1C1CAD1900FF612E /* EmptyDataSetDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyDataSetDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -641,6 +644,8 @@
 		F3EF0BA31C10DBB200B73DA7 /* CMTable */ = {
 			isa = PBXGroup;
 			children = (
+				F3F545BC1C1CAD1900FF612E /* EmptyDataSetDelegate.h */,
+				F3F545BD1C1CAD1900FF612E /* EmptyDataSetDelegate.m */,
 				F3EF0B951C10CDBE00B73DA7 /* CMBaseTableViewController.h */,
 				F3EF0B961C10CDBE00B73DA7 /* CMBaseTableViewController.m */,
 				F34684FD1C022FBC00C7C56D /* PageTable */,
@@ -903,6 +908,7 @@
 				F39290D81C0E9DE600A7BD2C /* Models.m in Sources */,
 				F3EF0BE31C10ED0F00B73DA7 /* UIScrollView+MJExtension.m in Sources */,
 				F34684F11BFF5A4500C7C56D /* OpenShare+QQ.m in Sources */,
+				F3F545BE1C1CAD1900FF612E /* EmptyDataSetDelegate.m in Sources */,
 				F3EF0B9B1C10CEB200B73DA7 /* PageTable.m in Sources */,
 				F3AE09C21C1B5BE900E8A214 /* PortalNavigationDelegate.m in Sources */,
 				F3BE138C1BF26F5E00CC5159 /* KnowTipModel.m in Sources */,
