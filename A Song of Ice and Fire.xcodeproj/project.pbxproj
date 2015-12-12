@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0D4180EA429213F95B793FB0 /* libPods-A Song of Ice and Fire.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D49F2874779F1899D2E5ADF6 /* libPods-A Song of Ice and Fire.a */; };
 		F3152B441BF44B870048D69E /* WikiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3152B421BF44B870048D69E /* WikiViewController.m */; };
-		F3152B471BF44BD00048D69E /* WikiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3152B461BF44BD00048D69E /* WikiViewController.xib */; };
 		F32A11151C1B7CAF0061C266 /* WKWebView+SynchronousEvaluateJavaScript.m in Sources */ = {isa = PBXBuildFile; fileRef = F32A11141C1B7CAF0061C266 /* WKWebView+SynchronousEvaluateJavaScript.m */; };
 		F334CFCC1BEE73420074734D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F334CFCB1BEE73420074734D /* main.m */; };
 		F334CFD61BEE73420074734D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F334CFD41BEE73420074734D /* LaunchScreen.storyboard */; };
@@ -95,7 +94,6 @@
 		E9FD70A58E3803C69D210489 /* Pods-A Song of Ice and Fire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-A Song of Ice and Fire.debug.xcconfig"; path = "Pods/Target Support Files/Pods-A Song of Ice and Fire/Pods-A Song of Ice and Fire.debug.xcconfig"; sourceTree = "<group>"; };
 		F3152B411BF44B870048D69E /* WikiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WikiViewController.h; sourceTree = "<group>"; };
 		F3152B421BF44B870048D69E /* WikiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WikiViewController.m; sourceTree = "<group>"; };
-		F3152B461BF44BD00048D69E /* WikiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WikiViewController.xib; path = "A Song of Ice and Fire/Views/WikiViewController.xib"; sourceTree = SOURCE_ROOT; };
 		F32A11131C1B7CAF0061C266 /* WKWebView+SynchronousEvaluateJavaScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WKWebView+SynchronousEvaluateJavaScript.h"; sourceTree = "<group>"; };
 		F32A11141C1B7CAF0061C266 /* WKWebView+SynchronousEvaluateJavaScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+SynchronousEvaluateJavaScript.m"; sourceTree = "<group>"; };
 		F334CFC71BEE73420074734D /* 冰火中文维基.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "冰火中文维基.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -372,7 +370,6 @@
 				F34685041C03544F00C7C56D /* MainView */,
 				F37B44861BEE88BF00764D92 /* PortalCollection */,
 				F334CFF61BEE73FC0074734D /* SlideMenuViewController.xib */,
-				F3152B461BF44BD00048D69E /* WikiViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -815,7 +812,6 @@
 				F3EF0BE11C10ED0F00B73DA7 /* MJRefresh.bundle in Resources */,
 				F334D00A1BEE73FC0074734D /* MainViewController.xib in Resources */,
 				F3BE13941BF2711100CC5159 /* KnowTipTableViewController.xib in Resources */,
-				F3152B471BF44BD00048D69E /* WikiViewController.xib in Resources */,
 				F334D00D1BEE73FC0074734D /* SlideMenuViewController.xib in Resources */,
 				F37B44921BEE8AFD00764D92 /* PortalCollectionHeaderView.xib in Resources */,
 				F334D00E1BEE73FC0074734D /* Assets.xcassets in Resources */,

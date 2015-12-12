@@ -23,9 +23,10 @@
 #import "OpenShareHeader.h"
 #import "GTScrollNavigationBar.h"
 
+static NSInteger const kHeaderHeight = 223;
 static NSInteger const kTitleLabelHeight = 58;
 static NSInteger const kBlurViewOffset = 85;
-                 
+
 @interface WikiViewController ()
 <
 WikipediaHelperDelegate,
@@ -81,31 +82,16 @@ UIGestureRecognizerDelegate
 {
     [super viewDidLoad];
 
-    NSString *jScript = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
+    [self setupWebView];
 
-    WKUserScript *wkUScript = [[WKUserScript alloc] initWithSource:jScript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
-    WKUserContentController *wkUController = [[WKUserContentController alloc] init];
-    [wkUController addUserScript:wkUScript];
-
-    WKWebViewConfiguration *wkWebConfig = [[WKWebViewConfiguration alloc] init];
-    wkWebConfig.userContentController = wkUController;
-
-    self.webView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:wkWebConfig];
-
-    self.webView.navigationDelegate = self;
-    self.view = self.webView;
-
-    [self.navigationController setValue:[GTScrollNavigationBar new] forKey:@"navigationBar"];
-    self.navigationController.scrollNavigationBar.scrollView = self.webView.scrollView;
-    self.webView.scrollView.delegate = self;
     self.webBrowserView = [[self.webView.scrollView subviews] objectAtIndex:0];
+
+    [self setupParallaxHeaderView];
+    [self setupGestures];
 
     self.cubeSpinner.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2);
     [self.view addSubview:self.cubeSpinner];
     [self.cubeSpinner startAnimating];
-
-    [self setupParallaxHeaderView];
-    [self setupGestures];
 
     // Start fetch article with page title
     [self.wikiHelper fetchArticle:self.title];
@@ -118,13 +104,30 @@ UIGestureRecognizerDelegate
 
 #pragma mark - Setup Views
 
-- (void)resetView
+- (void)setupWebView
 {
-    [self.webView evaluateJavaScript:@"document.body.innerHTML = \"\";" completionHandler:nil];
-    [self.webView.scrollView setContentOffset:CGPointMake(0, -self.webView.scrollView.contentInset.top) animated:NO];
+    NSString *jScript = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport');\
+    meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
 
-    self.imageView.image = nil;
-    [self.titleLabel removeFromSuperview];
+    WKUserScript *wkUScript = [[WKUserScript alloc] initWithSource:jScript
+                                                     injectionTime:WKUserScriptInjectionTimeAtDocumentEnd
+                                                  forMainFrameOnly:YES];
+    WKUserContentController *wkUController = [[WKUserContentController alloc] init];
+    [wkUController addUserScript:wkUScript];
+
+    WKWebViewConfiguration *wkWebConfig = [[WKWebViewConfiguration alloc] init];
+    wkWebConfig.userContentController = wkUController;
+
+    self.webView = [[WKWebView alloc] initWithFrame:self.view.bounds configuration:wkWebConfig];
+    self.webView.navigationDelegate = self;
+    [self.view addSubview:self.webView];
+
+    [self.webView setAutoresizingMask: UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+    [self.view setAutoresizingMask: UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+
+    [self.navigationController setValue:[GTScrollNavigationBar new] forKey:@"navigationBar"];
+    self.navigationController.scrollNavigationBar.scrollView = self.webView.scrollView;
+    self.webView.scrollView.delegate = self;
 }
 
 - (void)setupHeaderView
@@ -158,7 +161,7 @@ UIGestureRecognizerDelegate
 
 - (void)setupParallaxHeaderView
 {
-    self.imageView = [[UIImageViewAligned alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 223)];
+    self.imageView = [[UIImageViewAligned alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kHeaderHeight)];
     self.imageView.contentMode = UIViewContentModeScaleAspectFill;
 
     self.originalHeight = self.imageView.frame.size.height;
@@ -185,18 +188,29 @@ UIGestureRecognizerDelegate
     [self.imageView bringSubviewToFront:self.titleLabel];
 
     self.parallaxHeaderView = [ParallaxHeaderView parallaxWebHeaderViewWithSubView:self.imageView
-                                                                           forSize:CGSizeMake(self.view.frame.size.width, 223)];
+                                                                           forSize:CGSizeMake(self.view.frame.size.width, kHeaderHeight)];
     self.parallaxHeaderView.delegate = self;
+    self.parallaxHeaderView.alpha = 0.5;
 
-    // We set _parallaxHeaderView's origin.y as -20, and _imageView is subview of it,
-    // so we should set _webBrowerView's origin.y is -20 smaller than it of _imageView.
+    // ParallaxHeaderView's origin.y as -20 in ParallaxHeaderView class,
+    // so we should set self.webBrowerView's origin.y is -20 smaller than it.
     CGRect f = self.webBrowserView.frame;
-    f.origin.y = self.imageView.frame.size.height - 20;
+    f.origin.y -= 20;
     self.webBrowserView.frame = f;
-    
+
     [self.webView.scrollView addSubview:self.parallaxHeaderView];
 }
 
+#pragma mark - Reset View
+
+- (void)resetView
+{
+    [self.webView evaluateJavaScript:@"document.body.innerHTML = \"\";" completionHandler:nil];
+    [self.webView.scrollView setContentOffset:CGPointMake(0, -self.webView.scrollView.contentInset.top) animated:NO];
+
+    self.imageView.image = nil;
+    [self.titleLabel removeFromSuperview];
+}
 
 #pragma mark - Setup Gestures
 
