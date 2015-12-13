@@ -27,7 +27,7 @@
 {
     [super setParentCategory:parentCategory];
 
-    [[DataManager sharedManager]
+    [[CategoryManager sharedManager]
      getCategoryMember:parentCategory.link memberType:CMPageType parameters:nil completionBlock:^(CategoryMembersModel *members) {
          self.members = members.members;
 
@@ -70,7 +70,7 @@
     if (member.backgroundImage) {
         cell.imageView.image = member.backgroundImage;
     } else {
-        [[DataManager sharedManager] getPageThumbnailWithPageId:member.pageId completionBlock:^(id responseObject) {
+        [[ImageManager sharedManager] getPageThumbnailWithPageId:member.pageId completionBlock:^(id responseObject) {
             NSData *imageData = (NSData *)responseObject;
 
             if (imageData) {
@@ -121,9 +121,14 @@
 
 #pragma mark - CMBaseTableDelegate
 
-- (void)getMembersWithCategory:(NSString *)categoryLink parameters:(NSDictionary *)parameters completionBlock:(void (^)(CategoryMembersModel * _Nonnull))completionBlock
+- (void)getMembersWithCategory:(NSString *)categoryLink
+                    parameters:(NSDictionary *)parameters
+               completionBlock:(void (^)(CategoryMembersModel * _Nonnull))completionBlock
 {
-    [[DataManager sharedManager] getCategoryMember:categoryLink memberType:CMPageType parameters:parameters completionBlock:completionBlock];
+    [[CategoryManager sharedManager] getCategoryMember:categoryLink
+                                            memberType:CMPageType
+                                            parameters:parameters
+                                       completionBlock:completionBlock];
 }
 
 @end

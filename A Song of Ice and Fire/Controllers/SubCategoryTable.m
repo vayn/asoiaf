@@ -28,7 +28,7 @@
 {
     [super setParentCategory:parentCategory];
 
-    [[DataManager sharedManager]
+    [[CategoryManager sharedManager]
      getCategoryMember:parentCategory.link memberType:CMCategoryType parameters:nil completionBlock:^(CategoryMembersModel *members) {
         self.members = members.members;
 
@@ -50,13 +50,7 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)getMembersWithCategory:(NSString *)categoryLink
-                    parameters:(NSDictionary *)parameters
-               completionBlock:(void (^)(CategoryMembersModel * _Nonnull))completionBlock
-{
-    [[DataManager sharedManager] getCategoryMember:categoryLink memberType:CMCategoryType parameters:parameters completionBlock:completionBlock];
-}
-
+#pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -66,6 +60,18 @@
     subCategoryVC.category = member;
 
     [self.parentVC.navigationController pushViewController:subCategoryVC animated:YES];
+}
+
+#pragma mark - CMBaseTableDelegate
+
+- (void)getMembersWithCategory:(NSString *)categoryLink
+                    parameters:(NSDictionary *)parameters
+               completionBlock:(void (^)(CategoryMembersModel * _Nonnull))completionBlock
+{
+    [[CategoryManager sharedManager] getCategoryMember:categoryLink
+                                            memberType:CMCategoryType
+                                            parameters:parameters
+                                       completionBlock:completionBlock];
 }
 
 @end
