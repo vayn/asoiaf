@@ -57,7 +57,7 @@
 
     UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
 
-    // Transitioning animation of content transform
+    // Transitioning animation of content transition
     CATransition *transition = [CATransition animation];
     transition.duration = 1.0;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
