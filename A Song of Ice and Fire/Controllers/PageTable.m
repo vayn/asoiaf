@@ -79,9 +79,13 @@
                 CGSize thumbnailSize = CGSizeMake(35, 23);
 
                 UIGraphicsBeginImageContext(thumbnailSize);
+
                 CGRect imageRect = CGRectMake(0, 0, thumbnailSize.width, thumbnailSize.height);
+                [[UIBezierPath bezierPathWithRoundedRect:imageRect cornerRadius:1.5] addClip];
+
                 [thumbnail drawInRect:imageRect];
                 member.backgroundImage = UIGraphicsGetImageFromCurrentImageContext();
+
                 UIGraphicsEndImageContext();
 
                 cell.imageView.image = member.backgroundImage;
@@ -94,25 +98,10 @@
 
 - (void)cellImageViewLayerConfig:(UITableViewCell *)cell
 {
-    // Add rounded corners and shadow
-    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:cell.imageView.bounds
-                                                   byRoundingCorners:UIRectCornerAllCorners
-                                                         cornerRadii:CGSizeMake(1.5, 1.5)];
-
-    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-    maskLayer.frame = cell.imageView.bounds;
-    maskLayer.path = maskPath.CGPath;
-
-    cell.imageView.layer.borderWidth = 0.0;
-    cell.imageView.layer.borderColor = [UIColor clearColor].CGColor;
-    cell.imageView.layer.mask = maskLayer;
-    cell.imageView.layer.masksToBounds = YES;
-
     cell.imageView.layer.shadowColor = [UIColor blackColor].CGColor;
     cell.imageView.layer.shadowOpacity = 0.4;
     cell.imageView.layer.shadowRadius = 1.5;
     cell.imageView.layer.shadowOffset = CGSizeZero;
-    cell.imageView.layer.shadowPath = maskPath.CGPath;
 
     cell.imageView.layer.shouldRasterize = YES;
     cell.imageView.layer.rasterizationScale = [UIScreen mainScreen].scale;
