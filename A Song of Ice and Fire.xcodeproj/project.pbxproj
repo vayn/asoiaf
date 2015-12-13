@@ -661,12 +661,11 @@
 		F3EF0BA31C10DBB200B73DA7 /* CMTable */ = {
 			isa = PBXGroup;
 			children = (
-				F3F545BC1C1CAD1900FF612E /* EmptyDataSetDelegate.h */,
-				F3F545BD1C1CAD1900FF612E /* EmptyDataSetDelegate.m */,
 				F3EF0B951C10CDBE00B73DA7 /* CMBaseTableViewController.h */,
 				F3EF0B961C10CDBE00B73DA7 /* CMBaseTableViewController.m */,
 				F34684FD1C022FBC00C7C56D /* PageTable */,
 				F39290E01C0ED91B00A7BD2C /* SubCategoryTable */,
+				F3F545CF1C1D6D9E00FF612E /* EmptyDataSetDelegate */,
 			);
 			name = CMTable;
 			sourceTree = "<group>";
@@ -781,6 +780,15 @@
 				F3F545C91C1D524F00FF612E /* ImageManager.m */,
 			);
 			name = Managers;
+			sourceTree = "<group>";
+		};
+		F3F545CF1C1D6D9E00FF612E /* EmptyDataSetDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				F3F545BC1C1CAD1900FF612E /* EmptyDataSetDelegate.h */,
+				F3F545BD1C1CAD1900FF612E /* EmptyDataSetDelegate.m */,
+			);
+			name = EmptyDataSetDelegate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
