@@ -106,6 +106,7 @@
     cell.imageView.layer.borderWidth = 0.0;
     cell.imageView.layer.borderColor = [UIColor clearColor].CGColor;
     cell.imageView.layer.mask = maskLayer;
+    cell.imageView.layer.masksToBounds = YES;
 
     cell.imageView.layer.shadowColor = [UIColor blackColor].CGColor;
     cell.imageView.layer.shadowOpacity = 0.4;
@@ -115,8 +116,6 @@
 
     cell.imageView.layer.shouldRasterize = YES;
     cell.imageView.layer.rasterizationScale = [UIScreen mainScreen].scale;
-
-    cell.imageView.layer.masksToBounds = YES;
 }
 
 #pragma mark - UITableViewDelegate
