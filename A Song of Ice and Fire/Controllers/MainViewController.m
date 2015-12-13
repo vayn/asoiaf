@@ -241,7 +241,7 @@ static CGFloat const kOverlayAlphaEnd = 0.7;
                                  self.featuredQuoteView.frame.size.height/2);
     [cubeSpinner startAnimating];
 
-    [[DataManager sharedManager] getFeaturedQuotes:^(NSArray *featuredQuotes) {
+    [[MainManager sharedManager] getFeaturedQuotes:^(NSArray *featuredQuotes) {
         FeaturedQuoteModel *featuredQuote = [featuredQuotes randomObject];
         self.quoteLabel.text = featuredQuote.quote;
         self.authorLabel.text = [NSString stringWithFormat:@"——%@", featuredQuote.author];

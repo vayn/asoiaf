@@ -31,7 +31,7 @@
         _tips = [@[] mutableCopy];
         _wikiVCDict = [@{} mutableCopy];
         
-        [[DataManager sharedManager] getKnowTip:^(id responseObject) {
+        [[MainManager sharedManager] getKnowTip:^(id responseObject) {
             NSString *bigTipString = [(NSArray *) responseObject randomObject];
             NSString *pattern = @"^\\*(.*?)……（\\[{2}(.*?)\\|";
 

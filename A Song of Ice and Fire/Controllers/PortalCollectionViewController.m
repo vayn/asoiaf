@@ -166,7 +166,7 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
     } else {
         [cell.loadingIndicator startAnimating];
 
-        [[DataManager sharedManager] getPageThumbnailWithPageId:portal.pageId completionBlock:^(id responseObject) {
+        [[ImageManager sharedManager] getPortalThumbnailWithPageId:portal.pageId completionBlock:^(id responseObject) {
             NSData *imageData = (NSData *)responseObject;
             UIImage *thumbnailImage;
 
