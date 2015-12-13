@@ -28,7 +28,11 @@ static NSString * const kCellIdentifier = @"Cell";
 
         [[NSNotificationCenter defaultCenter]
          addObserverForName:@"getCategoryMember" object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
-             _emptyDataSetDelegate.loading = NO;
+
+             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 500 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
+                 _emptyDataSetDelegate.loading = NO;
+             });
+
              [self.tableView reloadData];
         }];
     }
