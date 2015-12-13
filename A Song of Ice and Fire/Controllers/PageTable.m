@@ -116,7 +116,13 @@
     WikiViewController *wikiVC = [[WikiViewController alloc] init];
     wikiVC.title = member.title;
 
-    [self.parentVC.navigationController pushViewController:wikiVC animated:YES];
+    UINavigationController *navigationVC = [[UINavigationController alloc] initWithRootViewController:wikiVC];
+    wikiVC.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"home_button"]
+                                                                                style:UIBarButtonItemStylePlain
+                                                                               target:self
+                                                                               action:@selector(homeButtonPressed:)];
+
+    [self.parentVC.navigationController presentViewController:navigationVC animated:YES completion:nil];
 }
 
 #pragma mark - CMBaseTableDelegate
@@ -129,6 +135,13 @@
                                             memberType:CMPageType
                                             parameters:parameters
                                        completionBlock:completionBlock];
+}
+
+#pragma mark - Controller Actions
+
+- (void)homeButtonPressed:(id)sender
+{
+    [self.parentVC.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
