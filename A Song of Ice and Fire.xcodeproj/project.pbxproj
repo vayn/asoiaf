@@ -92,6 +92,7 @@
 		F3F545C71C1D518700FF612E /* CategoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F545C61C1D518700FF612E /* CategoryManager.m */; };
 		F3F545CA1C1D524F00FF612E /* ImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F545C91C1D524F00FF612E /* ImageManager.m */; };
 		F3F545CE1C1D574A00FF612E /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F545CD1C1D574A00FF612E /* DataManager.m */; };
+		F3F545D11C1D783B00FF612E /* knight_spinner@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = F3F545D01C1D783B00FF612E /* knight_spinner@2x.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -256,6 +257,7 @@
 		F3F545C91C1D524F00FF612E /* ImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageManager.m; sourceTree = "<group>"; };
 		F3F545CC1C1D574A00FF612E /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		F3F545CD1C1D574A00FF612E /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
+		F3F545D01C1D783B00FF612E /* knight_spinner@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "knight_spinner@2x.gif"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -473,10 +475,11 @@
 		F33C82D41BF7D045005A0908 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F33C82D51BF7D045005A0908 /* wikiview.css */,
-				F3EF0B8A1C1028BF00B73DA7 /* wikiview-min.css */,
 				F34684F61C02176D00C7C56D /* cubic_spinner.gif */,
 				F3EF0BA41C10E28B00B73DA7 /* knight_spinner.gif */,
+				F3F545D01C1D783B00FF612E /* knight_spinner@2x.gif */,
+				F33C82D51BF7D045005A0908 /* wikiview.css */,
+				F3EF0B8A1C1028BF00B73DA7 /* wikiview-min.css */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -856,6 +859,7 @@
 				F334CFD61BEE73420074734D /* LaunchScreen.storyboard in Resources */,
 				F3EF0BE11C10ED0F00B73DA7 /* MJRefresh.bundle in Resources */,
 				F334D00A1BEE73FC0074734D /* MainViewController.xib in Resources */,
+				F3F545D11C1D783B00FF612E /* knight_spinner@2x.gif in Resources */,
 				F3BE13941BF2711100CC5159 /* KnowTipTableViewController.xib in Resources */,
 				F3152B471BF44BD00048D69E /* WikiViewController.xib in Resources */,
 				F334D00D1BEE73FC0074734D /* SlideMenuViewController.xib in Resources */,
