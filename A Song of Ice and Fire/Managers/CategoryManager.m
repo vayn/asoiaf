@@ -78,15 +78,19 @@
 
     switch (memberType) {
         case CMPageType:
-            Api = [BaseManager getAbsoluteUrl:@"api.php?action=query&list=categorymembers&cmtitle=%@&cmnamespace=0&format=json&continue"];
+            Api = [NSString stringWithFormat:@"api.php?action=query&list=categorymembers&cmtitle=%@&cmnamespace=0&format=json&continue",
+                   categoryLink];
             break;
         case CMCategoryType:
-            Api = [BaseManager getAbsoluteUrl:@"api.php?action=query&list=categorymembers&cmtype=subcat&cmtitle=%@&format=json&continue"];
+            Api = [NSString stringWithFormat:@"api.php?action=query&list=categorymembers&cmtype=subcat&cmtitle=%@&format=json&continue",
+                   categoryLink];
             break;
 
         default:
             break;
     }
+
+    Api = [BaseManager getAbsoluteUrl:Api];
 
     [self.manager GET:Api parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *cmcontinue = responseObject[@"continue"][@"cmcontinue"];
