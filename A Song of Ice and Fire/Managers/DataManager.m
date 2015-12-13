@@ -97,7 +97,7 @@
                   [[NSNotificationCenter defaultCenter] postNotificationName:@"getFeaturedQuotes" object:nil];
               });
           } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
-              NSLog(@"Error: %@", error);
+              NSLog(@"%s: %@", __FUNCTION__, error);
           }
     ];
 }
@@ -133,7 +133,7 @@
                   [[NSNotificationCenter defaultCenter] postNotificationName:@"getKnowTip" object:nil];
               });
           } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
-              NSLog(@"Error: %@", error);
+              NSLog(@"%s: %@", __FUNCTION__, error);
           }];
 }
 
@@ -170,7 +170,7 @@
                   [[NSNotificationCenter defaultCenter] postNotificationName:@"getPortals" object:nil];
               });
           } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
-              NSLog(@"Error: %@", error);
+              NSLog(@"%s: %@", __FUNCTION__, error);
           }];
 }
 
@@ -224,14 +224,20 @@
 
                   if (thumbnail != nil) {
                       NSString *thumbnailSource = thumbnail[@"source"];
-                      NSURL *sourceURL = [NSURL URLWithString:thumbnailSource];
+                      NSString *noPortraitUrl = @"http://cdn.huijiwiki.com/asoiaf/uploads/f/f3/No_Portrait.jpg";
 
-                      [DataManager processImageDataWithURL:sourceURL andBlock:^(NSData *imageData) {
-                          completionBlock(imageData);
-                      }];
+                      if ([thumbnailSource isEqualToString:noPortraitUrl]) {
+                          completionBlock(nil);
+                      } else {
+                          NSURL *sourceURL = [NSURL URLWithString:thumbnailSource];
+
+                          [DataManager processImageDataWithURL:sourceURL andBlock:^(NSData *imageData) {
+                              completionBlock(imageData);
+                          }];
+                      }
                   }
               } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
-                  NSLog(@"Error: %@", error);
+                  NSLog(@"%s: %@", __FUNCTION__, error);
               }];
     }
 
@@ -263,7 +269,7 @@
                   completionBlock(title);
               }
           } failure:^(NSURLSessionDataTask *task, NSError *error) {
-              NSLog(@"getRandomPage Error: %@", error);
+              NSLog(@"%s: %@", __FUNCTION__, error);
           }];
 }
 
@@ -311,7 +317,7 @@
                   [[NSNotificationCenter defaultCenter] postNotificationName:@"getCategoryMember" object:nil];
               });
           } failure:^(NSURLSessionDataTask *task, NSError *error) {
-              NSLog(@"%s Error: %@", __FUNCTION__, error);
+              NSLog(@"%s: %@", __FUNCTION__, error);
           }];
 }
 
