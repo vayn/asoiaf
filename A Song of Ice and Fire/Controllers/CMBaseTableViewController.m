@@ -10,6 +10,8 @@
 #import "EmptyDataSetDelegate.h"
 #import "Spinner.h"
 
+static NSString * const kCellIdentifier = @"Cell";
+
 @interface CMBaseTableViewController ()
 
 @property (nonatomic, strong) EmptyDataSetDelegate *emptyDataSetDelegate;
@@ -45,7 +47,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kCellIdentifier];
 
     // Remove empty cells
     self.tableView.tableFooterView = [UIView new];
@@ -100,7 +102,13 @@
 {
     CategoryMemberModel *member = self.members[indexPath.row];
 
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier forIndexPath:indexPath];
+
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.textLabel.textColor = [UIColor darkGrayColor];
+    }
 
     cell.textLabel.text = member.title;
 
