@@ -206,7 +206,6 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 
     cell.layer.shadowColor = [UIColor blackColor].CGColor;
     cell.layer.shadowOffset = CGSizeMake(0, 1.0);
-    cell.layer.shadowRadius = 2.0;
     cell.layer.shadowOpacity = 1.0;
     cell.layer.shadowPath = maskPath.CGPath;
     cell.layer.masksToBounds = NO;
