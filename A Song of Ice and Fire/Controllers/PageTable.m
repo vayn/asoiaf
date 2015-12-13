@@ -53,10 +53,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
     CategoryMemberModel *member = self.members[indexPath.row];
 
-    cell.imageView.image = [UIImage imageNamed:@"placeholder_default"];
+    UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+
+    // Transitioning animation of content transform
+    CATransition *transition = [CATransition animation];
+    transition.duration = 1.0;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionFade;
+    [cell.layer addAnimation:transition forKey:nil];
+
+    cell.imageView.image = [UIImage imageNamed:@"placeholder_unknown"];
+    [self cellImageViewLayerConfig:cell];
 
     if (member.backgroundImage) {
         cell.imageView.image = member.backgroundImage;
@@ -67,19 +76,13 @@
             if (imageData) {
                 UIImage *thumbnail = [UIImage imageWithData:imageData];
 
-                CGSize thumbnailSize = CGSizeMake(100, 76);
+                CGSize thumbnailSize = CGSizeMake(35, 23);
 
-                UIGraphicsBeginImageContextWithOptions(thumbnailSize, NO, 0);
+                UIGraphicsBeginImageContext(thumbnailSize);
                 CGRect imageRect = CGRectMake(0, 0, thumbnailSize.width, thumbnailSize.height);
                 [thumbnail drawInRect:imageRect];
                 member.backgroundImage = UIGraphicsGetImageFromCurrentImageContext();
                 UIGraphicsEndImageContext();
-
-                CATransition *transition = [CATransition animation];
-                transition.duration = 1.0;
-                transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-                transition.type = kCATransitionFade;
-                [cell.layer addAnimation:transition forKey:nil];
 
                 cell.imageView.image = member.backgroundImage;
             }
@@ -87,6 +90,33 @@
     }
 
     return cell;
+}
+
+- (void)cellImageViewLayerConfig:(UITableViewCell *)cell
+{
+    // Add rounded corners and shadow
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:cell.imageView.bounds
+                                                   byRoundingCorners:UIRectCornerAllCorners
+                                                         cornerRadii:CGSizeMake(1.5, 1.5)];
+
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = cell.imageView.bounds;
+    maskLayer.path = maskPath.CGPath;
+
+    cell.imageView.layer.borderWidth = 0.0;
+    cell.imageView.layer.borderColor = [UIColor clearColor].CGColor;
+    cell.imageView.layer.mask = maskLayer;
+
+    cell.imageView.layer.shadowColor = [UIColor blackColor].CGColor;
+    cell.imageView.layer.shadowOpacity = 0.4;
+    cell.imageView.layer.shadowRadius = 1.5;
+    cell.imageView.layer.shadowOffset = CGSizeZero;
+    cell.imageView.layer.shadowPath = maskPath.CGPath;
+
+    cell.imageView.layer.shouldRasterize = YES;
+    cell.imageView.layer.rasterizationScale = [UIScreen mainScreen].scale;
+
+    cell.imageView.layer.masksToBounds = YES;
 }
 
 #pragma mark - UITableViewDelegate
