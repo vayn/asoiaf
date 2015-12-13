@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -31,7 +31,6 @@
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WcL-Rt-6GY" userLabel="Carrousel View">
                                     <rect key="frame" x="0.0" y="14" width="375" height="165"/>
-                                    <animations/>
                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="165" id="ntM-FB-9Pj"/>
@@ -42,14 +41,12 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="“" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Wy-yy-d0V" userLabel="Left Quotation Label">
                                             <rect key="frame" x="0.0" y="0.0" width="27" height="42"/>
-                                            <animations/>
                                             <fontDescription key="fontDescription" name="Baskerville-SemiBold" family="Baskerville" pointSize="36"/>
                                             <color key="textColor" red="0.56470588235294117" green="0.56470588235294117" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" layoutMarginsFollowReadableWidth="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="hq2-df-mJr" userLabel="Quote Label">
                                             <rect key="frame" x="25" y="13" width="320" height="40"/>
-                                            <animations/>
                                             <string key="text">总主教大人曾对我说，因为我们有罪，所以我们受苦。假如这是真的，艾德大人，请告诉我……为何在你们这些王公贵族的权力游戏里面，永远是无辜的人受苦最多？	</string>
                                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -58,21 +55,18 @@
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="”" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwu-Vz-zuO" userLabel="Rigth Quotation Label">
                                             <rect key="frame" x="339" y="43" width="21" height="42"/>
-                                            <animations/>
                                             <fontDescription key="fontDescription" name="Baskerville-SemiBold" family="Baskerville" pointSize="36"/>
                                             <color key="textColor" red="0.56470588235294117" green="0.56470588235294117" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" layoutMarginsFollowReadableWidth="YES" text="—— 瓦里斯" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eOT-NK-rFX" userLabel="Author Label">
                                             <rect key="frame" x="211" y="54" width="120" height="24"/>
-                                            <animations/>
                                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="10"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                             <color key="shadowColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
                                     </subviews>
-                                    <animations/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="91" id="3oI-hS-WOf"/>
@@ -80,16 +74,13 @@
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eU7-b6-TeO" userLabel="Portal Collection View" customClass="UICollectionView">
                                     <rect key="frame" x="0.0" y="310" width="375" height="220"/>
-                                    <animations/>
                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mv9-Ce-Zns" userLabel="Know Tip View">
                                     <rect key="frame" x="8" y="545" width="359" height="348"/>
-                                    <animations/>
                                     <color key="backgroundColor" red="1" green="0.95512270470000005" blue="0.63212683319999996" alpha="1" colorSpace="calibratedRGB"/>
                                 </view>
                             </subviews>
-                            <animations/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="WcL-Rt-6GY" firstAttribute="centerX" secondItem="u5D-N6-RDk" secondAttribute="centerX" id="3qN-Ex-iWs"/>
@@ -128,7 +119,6 @@
                             </variation>
                         </view>
                     </subviews>
-                    <animations/>
                     <constraints>
                         <constraint firstItem="tFZ-KN-enT" firstAttribute="leading" secondItem="xAR-Ci-Dpy" secondAttribute="leading" id="Gjl-yr-S6v"/>
                         <constraint firstAttribute="bottom" secondItem="tFZ-KN-enT" secondAttribute="bottom" id="Kbk-6M-Mdm"/>
@@ -138,7 +128,6 @@
                     </constraints>
                 </scrollView>
             </subviews>
-            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="xAR-Ci-Dpy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="35T-t2-aDi"/>

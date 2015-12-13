@@ -37,9 +37,9 @@
     [OpenShare connectWeixinWithAppId:@"wx3e08e658d87ad516"];
 
     YFStartView *startView = [YFStartView startView];
-    startView.randomImages = [NSMutableArray arrayWithObjects:@"Launch Background", nil];
+    startView.randomImages = [NSMutableArray arrayWithObjects:@"launch_background", nil];
     startView.logoPosition = LogoPositionCenter;
-    startView.logoImage = [UIImage imageNamed:@"Launch Logo"];
+    startView.logoImage = [UIImage imageNamed:@"launch_logo"];
 
     [startView configYFStartView];
 

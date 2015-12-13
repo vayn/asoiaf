@@ -56,7 +56,7 @@
     UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
     CategoryMemberModel *member = self.members[indexPath.row];
 
-    cell.imageView.image = [UIImage imageNamed:@"Placeholder"];
+    cell.imageView.image = [UIImage imageNamed:@"placeholder_default"];
 
     if (member.backgroundImage) {
         cell.imageView.image = member.backgroundImage;
