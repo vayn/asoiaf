@@ -17,7 +17,7 @@ typedef NS_ENUM(NSUInteger, CategoryMemberType) {
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^ManagerCompletionBlock)(id responseObject);
+typedef void (^ManagerCompletionBlock)(__nullable id responseObject);
 
 @interface DataManager : NSObject
 
@@ -32,7 +32,7 @@ typedef void (^ManagerCompletionBlock)(id responseObject);
 
 - (void)getCategoryMember:(NSString *)categoryLink
                memberType:(CategoryMemberType)memberType
-               parameters:(nullable NSDictionary *)parameters
+               parameters:(NSDictionary * _Nullable)parameters
           completionBlock:(void (^)(CategoryMembersModel *))completionBlock;
 
 - (void)getPagesWithCategory:(NSString *)categoryLink
