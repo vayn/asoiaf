@@ -3193,12 +3193,17 @@ body ::-moz-selection {
  *
  */
 
+/* Disable long press menu in UIWebView */
+* {
+    -webkit-touch-callout: none;
+}
+
 #copyright {
     text-align: center;
     font-size: 9px;
 }
 
-/* Disable context menu in UIWebView */
-* {
-    -webkit-touch-callout: none;
+.mw-collapsible {
+    display: none;
+    visibility: hidden;
 }
