@@ -104,4 +104,36 @@
     }];
 }
 
+- (void)getRandomImage:(void (^)(UIImage *image))completionBlock
+{
+    NSString *Api = [BaseManager getAbsoluteUrl:NSStringMultiline(api.php?action=query&generator=random&grnnamespace=6
+                                                                  &prop=imageinfo&iiprop=url&format=json&rawcontinue)];
+
+    [self.manager GET:Api parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSArray *pages = [[[responseObject objectForKey:@"query"] objectForKey:@"pages"] allValues];
+        NSArray *imageInfo = [[pages objectAtIndex:0] objectForKey:@"imageinfo"];
+
+        if (!imageInfo) {
+            [self getRandomImage:completionBlock];
+        } else {
+            NSString *url = [[imageInfo firstObject] objectForKey:@"url"];
+            NSString *imageName = [[url componentsSeparatedByString:@"/"] lastObject];
+
+            NSLog(@"%@", url);
+            NSLog(@"%@", imageName);
+
+            NSString *imageThumb = [NSString stringWithFormat:@"http://cdn.huijiwiki.com/asoiaf/thumb.php?f=%@&width=300", imageName];
+            NSURL *imageUrl = [NSURL URLWithString:imageThumb];
+
+            [BaseManager processImageDataWithURL:imageUrl andBlock:^(NSData * _Nonnull imageData) {
+                UIImage *image = [UIImage imageWithData:imageData];
+                completionBlock(image);
+            }];
+        }
+
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%s: %@", __FUNCTION__, error);
+    }];
+}
+
 @end

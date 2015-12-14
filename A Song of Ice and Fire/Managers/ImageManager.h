@@ -12,8 +12,10 @@
 
 + (instancetype)sharedManager;
 
-- (void)getPageThumbnailWithPageId:(NSNumber *)pageId completionBlock:(ManagerCompletionBlock)completionBlock;
 - (void)getPortalThumbnailWithPageId:(NSNumber *)pageId completionBlock:(ManagerCompletionBlock)completionBlock;
+- (void)getPageThumbnailWithPageId:(NSNumber *)pageId completionBlock:(ManagerCompletionBlock)completionBlock;
 - (void)getPageThumbnailWithPageId:(NSNumber *)pageId thumbWidth:(NSNumber *)thumbWidth completionBlock:(ManagerCompletionBlock)completionBlock;
+
+- (void)getRandomImage:(void (^)(UIImage *image))completionBlock;
 
 @end
