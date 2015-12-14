@@ -43,6 +43,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    [self setupTableHeaderView];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 68, 0);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -142,6 +150,20 @@
 - (void)homeButtonPressed:(id)sender
 {
     [self.parentVC.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Private methods
+
+- (void)setupTableHeaderView
+{
+    CGRect headerFrame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y - 20,
+                                    self.tableView.frame.size.width, 180);
+    UIView *headerView = [[UIView alloc] initWithFrame:headerFrame];
+    UIView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"h1"]];
+    imageView.frame = headerFrame;
+    [headerView addSubview:imageView];
+
+    self.tableView.tableHeaderView = headerView;
 }
 
 @end
