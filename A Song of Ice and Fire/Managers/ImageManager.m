@@ -119,9 +119,6 @@
             NSString *url = [[imageInfo firstObject] objectForKey:@"url"];
             NSString *imageName = [[url componentsSeparatedByString:@"/"] lastObject];
 
-            NSLog(@"%@", url);
-            NSLog(@"%@", imageName);
-
             NSString *imageThumb = [NSString stringWithFormat:@"http://cdn.huijiwiki.com/asoiaf/thumb.php?f=%@&width=300", imageName];
             NSURL *imageUrl = [NSURL URLWithString:imageThumb];
 
