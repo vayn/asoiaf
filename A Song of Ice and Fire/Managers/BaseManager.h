@@ -14,6 +14,8 @@
 
 @class CategoryMembersModel;
 
+#define NSStringMultiline(...) @#__VA_ARGS__
+
 NS_ASSUME_NONNULL_BEGIN
 
 static NSString * const kSiteUrl = @"http://asoiaf.huiji.wiki";
