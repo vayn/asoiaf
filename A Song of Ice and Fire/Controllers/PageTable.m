@@ -7,6 +7,8 @@
 //
 
 #import "PageTable.h"
+#import "GradientView.h"
+#import "DataManager.h"
 
 @interface PageTable () <CMBaseTableDelegate>
 
@@ -157,11 +159,31 @@
 - (void)setupTableHeaderView
 {
     CGRect headerFrame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y - 20,
-                                    self.tableView.frame.size.width, 180);
+                                    self.tableView.frame.size.width, 90);
     UIView *headerView = [[UIView alloc] initWithFrame:headerFrame];
-    UIView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"h1"]];
-    imageView.frame = headerFrame;
-    [headerView addSubview:imageView];
+
+    UIColor *patternColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_greyfloral"]];
+    headerView.backgroundColor = patternColor;
+
+    GradientView *blurView = [[GradientView alloc] initWithFrame:headerFrame type:TransparentGradientType];
+    blurView.alpha = 0.718;
+
+    [headerView addSubview:blurView];
+
+    CGRect titleFrame = CGRectMake(15, headerFrame.origin.y + 15, headerFrame.size.width - 15, 60);
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:titleFrame];
+    titleLabel.text = self.parentVC.title;
+    titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:21.0];
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.shadowColor = [UIColor blackColor];
+    titleLabel.shadowOffset = CGSizeMake(0, 1);
+    titleLabel.textAlignment = UIControlContentHorizontalAlignmentLeft|UIControlContentVerticalAlignmentBottom;
+    titleLabel.numberOfLines = 0;
+    titleLabel.adjustsFontSizeToFitWidth = YES;
+    titleLabel.minimumScaleFactor = 0.5;
+
+    [headerView addSubview:titleLabel];
+    [headerView bringSubviewToFront:titleLabel];
 
     self.tableView.tableHeaderView = headerView;
 }
