@@ -8,6 +8,7 @@
 
 #import "WikiViewController.h"
 
+#import "DataManager.h"
 #import "WikipediaHelper.h"
 #import "ParallaxHeaderView.h"
 #import "GradientView.h"
@@ -230,10 +231,13 @@ UIGestureRecognizerDelegate
             NSData *imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: urlMainImage]];
             UIImage *image = [UIImage imageWithData:imageData];
 
-            /**
+            /* *
+             *
              * Check for imageView before dispatching to the main thread.
+             *
              * This avoids the main queue dispatch if the network request took a long time and
              * the imageView is no longer there for one reason or another.
+             *
              */
             if (!self.imageView) return;
 
@@ -243,28 +247,10 @@ UIGestureRecognizerDelegate
             });
         });
     } else {
-        /**
-         * When use ParallaxHeaderView, we don't need to reset header view
-         *
-         * // Reset subviews of self.webView if there is no image in the wiki page
-         *
-         * // Remove UIImageView
-         * [self.imageView removeFromSuperview];
-         *
-         * CGRect titleFrame = self.titleLabel.frame;
-         * titleFrame.origin.y = 0;
-         * self.titleLabel.frame = titleFrame;
-         *
-         * [self.webView.scrollView addSubview:self.titleLabel];
-         *
-         * // Restore UIWebBrowserView's position
-         * [UIView animateWithDuration:1.0 animations:^{
-         *     CGRect f = self.webBrowserView.frame;
-         *     f.origin.y = TITLE_LABEL_HEIGHT;
-         *     self.webBrowserView.frame = f;
-         * }];
-         *
-         */
+        [[ImageManager sharedManager] getRandomImage:^(UIImage *image) {
+            if (!self.imageView) return;
+            self.imageView.image = image;
+        }];
     }
 
     // When the article is loaded, hide and remove spinner from self.view
