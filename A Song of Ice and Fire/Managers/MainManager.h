@@ -15,5 +15,6 @@
 - (void)getFeaturedQuotes:(ManagerCompletionBlock)completionBlock;
 - (void)getKnowTip:(ManagerCompletionBlock)completionBlock;
 - (void)getRandomTitle:(void (^)(NSString *title))completionBlock;
+- (void)getWikiEntry:(NSString *)title completionBlock:(void (^)(NSString *wikiEntry))completionBlock;
 
 @end
