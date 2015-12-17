@@ -221,7 +221,7 @@
     blurView.alpha = 0.618;
     [headerView addSubview:blurView];
 
-    CGRect titleFrame = CGRectMake(15, (headerFrame.origin.y / 2 + 10), headerFrame.size.width - 15, 60);
+    CGRect titleFrame = CGRectMake(0, 0, headerFrame.size.width, 60);
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:titleFrame];
     titleLabel.text = self.parentVC.title;
     titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:21.0];
@@ -232,6 +232,8 @@
     titleLabel.numberOfLines = 0;
     titleLabel.adjustsFontSizeToFitWidth = YES;
     titleLabel.minimumScaleFactor = 0.5;
+    titleLabel.center = headerView.center;
+    titleLabel.frame = CGRectOffset(titleLabel.frame, 15, 0);
 
     [headerView addSubview:titleLabel];
     [headerView bringSubviewToFront:titleLabel];
