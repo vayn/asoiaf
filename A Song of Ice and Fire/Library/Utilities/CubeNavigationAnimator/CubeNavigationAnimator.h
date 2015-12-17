@@ -1,5 +1,5 @@
 //
-//  PortalNavigationAnimation.h
+//  CubeNavigationAnimation.h
 //  A Song of Ice and Fire
 //
 //  Created by Vicent Tsai on 15/12/9.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PortalNavigationAnimator : NSObject <UIViewControllerAnimatedTransitioning>
+@interface CubeNavigationAnimator : NSObject <UIViewControllerAnimatedTransitioning>
 
 @property (nonatomic, assign) BOOL isReversed;
 

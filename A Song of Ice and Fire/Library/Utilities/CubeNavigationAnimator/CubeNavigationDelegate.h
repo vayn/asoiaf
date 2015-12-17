@@ -1,5 +1,5 @@
 //
-//  PortalNavigationDelegate.h
+//  CubeNavigationDelegate.h
 //  A Song of Ice and Fire
 //
 //  Created by Vicent Tsai on 15/12/12.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PortalNavigationDelegate : NSObject <UINavigationControllerDelegate>
+@interface CubeNavigationDelegate : NSObject <UINavigationControllerDelegate>
 
 @end

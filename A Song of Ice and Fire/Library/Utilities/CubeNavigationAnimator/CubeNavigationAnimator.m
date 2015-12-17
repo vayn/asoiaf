@@ -1,14 +1,14 @@
 //
-//  PortalNavigationAnimation.m
+//  CubeNavigationAnimation.m
 //  A Song of Ice and Fire
 //
 //  Created by Vicent Tsai on 15/12/9.
 //  Copyright © 2015年 HeZhi Corp. All rights reserved.
 //
 
-#import "PortalNavigationAnimator.h"
+#import "CubeNavigationAnimator.h"
 
-@implementation PortalNavigationAnimator
+@implementation CubeNavigationAnimator
 
 - (instancetype)init
 {

@@ -1,5 +1,5 @@
 //
-//  PortalNavigationInteraction.h
+//  CubeNavigationInteraction.h
 //  A Song of Ice and Fire
 //
 //  Created by Vicent Tsai on 15/12/9.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PortalNavigationInteraction : UIPercentDrivenInteractiveTransition <UIViewControllerInteractiveTransitioning>
+@interface CubeNavigationInteraction : UIPercentDrivenInteractiveTransition <UIViewControllerInteractiveTransitioning>
 
 @property (nonatomic, strong) UINavigationController *navigationController;
 

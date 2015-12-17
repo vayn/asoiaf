@@ -1,31 +1,31 @@
 //
-//  PortalNavigationDelegate.m
+//  CubeNavigationDelegate.m
 //  A Song of Ice and Fire
 //
 //  Created by Vicent Tsai on 15/12/12.
 //  Copyright © 2015年 HeZhi Corp. All rights reserved.
 //
 
-#import "PortalNavigationDelegate.h"
+#import "CubeNavigationDelegate.h"
 
-#import "PortalNavigationAnimator.h"
-#import "PortalNavigationInteraction.h"
+#import "CubeNavigationAnimator.h"
+#import "CubeNavigationInteraction.h"
 
-@interface PortalNavigationDelegate ()
+@interface CubeNavigationDelegate ()
 
-@property (nonatomic, strong) PortalNavigationAnimator *portalNavigationAnimator;
-@property (nonatomic, strong) PortalNavigationInteraction *portalNavigationInteraction;
+@property (nonatomic, strong) CubeNavigationAnimator *portalNavigationAnimator;
+@property (nonatomic, strong) CubeNavigationInteraction *portalNavigationInteraction;
 
 @end
 
-@implementation PortalNavigationDelegate
+@implementation CubeNavigationDelegate
 
 - (instancetype)init
 {
     self = [super init];
     if (self) {
-        self.portalNavigationAnimator = [[PortalNavigationAnimator alloc] init];
-        self.portalNavigationInteraction = [[PortalNavigationInteraction alloc] init];
+        self.portalNavigationAnimator = [[CubeNavigationAnimator alloc] init];
+        self.portalNavigationInteraction = [[CubeNavigationInteraction alloc] init];
     }
     return self;
 }
