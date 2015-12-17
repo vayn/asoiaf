@@ -14,6 +14,7 @@
 #import "DataManager.h"
 
 #import "MJRefresh.h"
+#import "EmptyDataSetDelegate.h"
 
 @class CategoryMemberModel;
 
@@ -31,6 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CMBaseTableViewController : UITableViewController
 
 @property (nonatomic, weak) id<CMBaseTableDelegate> delegate;
+@property (nonatomic, strong) EmptyDataSetDelegate *emptyDataSetDelegate;
+
 
 @property (nonatomic, strong) CategoryMemberModel *parentCategory;
 

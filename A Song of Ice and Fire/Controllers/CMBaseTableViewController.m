@@ -7,14 +7,11 @@
 //
 
 #import "CMBaseTableViewController.h"
-#import "EmptyDataSetDelegate.h"
 #import "Spinner.h"
 
 static NSString * const kCellIdentifier = @"Cell";
 
 @interface CMBaseTableViewController ()
-
-@property (nonatomic, strong) EmptyDataSetDelegate *emptyDataSetDelegate;
 
 @end
 
@@ -58,12 +55,6 @@ static NSString * const kCellIdentifier = @"Cell";
     // Show empty datasets whenever the view has no content to display
     self.tableView.emptyDataSetSource = self.emptyDataSetDelegate;
     self.tableView.emptyDataSetDelegate = self.emptyDataSetDelegate;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-
 }
 
 - (void)viewWillDisappear:(BOOL)animated
