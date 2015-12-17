@@ -43,12 +43,6 @@
     }];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-    [self setupTableHeaderView];
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -135,6 +129,18 @@
     [self.parentVC.navigationController presentViewController:navigationVC animated:YES completion:nil];
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == ((NSIndexPath *)[tableView.indexPathsForVisibleRows lastObject]).row) {
+        if (self.emptyDataSetDelegate.isLoading) {
+            self.tableView.tableHeaderView = nil;
+        } else {
+            [self setupTableHeaderView];
+        }
+
+    }
+}
+
 #pragma mark - CMBaseTableDelegate
 
 - (void)getMembersWithCategory:(NSString *)categoryLink
@@ -158,9 +164,18 @@
 
 - (void)setupTableHeaderView
 {
-    CGRect headerFrame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y - 20,
+    CGRect headerFrame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y - 25,
                                     self.tableView.frame.size.width, 90);
     UIView *headerView = [[UIView alloc] initWithFrame:headerFrame];
+    headerView.clipsToBounds = YES;
+
+    /*
+    UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:headerFrame];
+    backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+    backgroundImageView.clipsToBounds = YES;
+    backgroundImageView.image = self.headerBackgroundImage;
+    [headerView addSubview:backgroundImageView];
+     */
 
     UIColor *patternColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_greyfloral"]];
     headerView.backgroundColor = patternColor;
@@ -170,7 +185,7 @@
 
     [headerView addSubview:blurView];
 
-    CGRect titleFrame = CGRectMake(15, headerFrame.origin.y + 15, headerFrame.size.width - 15, 60);
+    CGRect titleFrame = CGRectMake(15, headerFrame.origin.y, headerFrame.size.width - 15, 60);
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:titleFrame];
     titleLabel.text = self.parentVC.title;
     titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:21.0];
