@@ -35,6 +35,7 @@
 		F34684F71C02176D00C7C56D /* cubic_spinner.gif in Resources */ = {isa = PBXBuildFile; fileRef = F34684F61C02176D00C7C56D /* cubic_spinner.gif */; };
 		F34DCA391C0BD38E00979CA7 /* CAPSPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = F34DCA381C0BD38E00979CA7 /* CAPSPageMenu.m */; };
 		F34DCA3D1C0BD4C700979CA7 /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F34DCA3C1C0BD4C700979CA7 /* CategoryViewController.m */; };
+		F36A907A1C22D7C2003C2F93 /* PortalTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = F36A90791C22D7C2003C2F93 /* PortalTypes.m */; };
 		F37B448F1BEE8AB400764D92 /* PortalCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F37B448D1BEE8AB400764D92 /* PortalCollectionHeaderView.m */; };
 		F37B44921BEE8AFD00764D92 /* PortalCollectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F37B44911BEE8AFD00764D92 /* PortalCollectionHeaderView.xib */; };
 		F39290D51C0E887900A7BD2C /* CategoryMemberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F39290D41C0E887900A7BD2C /* CategoryMemberModel.m */; };
@@ -48,9 +49,9 @@
 		F3AE09BD1C1B5BE900E8A214 /* UIColor+Hexadecimal.m in Sources */ = {isa = PBXBuildFile; fileRef = F3AE09A21C1B5BE900E8A214 /* UIColor+Hexadecimal.m */; };
 		F3AE09BE1C1B5BE900E8A214 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = F3AE09A41C1B5BE900E8A214 /* UIImage+ImageEffects.m */; };
 		F3AE09C01C1B5BE900E8A214 /* UINavigationController+TransparentNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F3AE09A81C1B5BE900E8A214 /* UINavigationController+TransparentNavigationBar.m */; };
-		F3AE09C11C1B5BE900E8A214 /* PortalNavigationAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = F3AE09AB1C1B5BE900E8A214 /* PortalNavigationAnimator.m */; };
-		F3AE09C21C1B5BE900E8A214 /* PortalNavigationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F3AE09AD1C1B5BE900E8A214 /* PortalNavigationDelegate.m */; };
-		F3AE09C31C1B5BE900E8A214 /* PortalNavigationInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = F3AE09AF1C1B5BE900E8A214 /* PortalNavigationInteraction.m */; };
+		F3AE09C11C1B5BE900E8A214 /* CubeNavigationAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = F3AE09AB1C1B5BE900E8A214 /* CubeNavigationAnimator.m */; };
+		F3AE09C21C1B5BE900E8A214 /* CubeNavigationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F3AE09AD1C1B5BE900E8A214 /* CubeNavigationDelegate.m */; };
+		F3AE09C31C1B5BE900E8A214 /* CubeNavigationInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = F3AE09AF1C1B5BE900E8A214 /* CubeNavigationInteraction.m */; };
 		F3AE09C41C1B5BE900E8A214 /* UIParallelogramButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F3AE09B31C1B5BE900E8A214 /* UIParallelogramButton.m */; };
 		F3AE09C51C1B5BE900E8A214 /* Spinner.m in Sources */ = {isa = PBXBuildFile; fileRef = F3AE09B61C1B5BE900E8A214 /* Spinner.m */; };
 		F3BD1DF51BF8D8C300B6DA69 /* ParallaxHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F3BD1DF41BF8D8C300B6DA69 /* ParallaxHeaderView.m */; };
@@ -147,6 +148,8 @@
 		F34DCA381C0BD38E00979CA7 /* CAPSPageMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPSPageMenu.m; sourceTree = "<group>"; };
 		F34DCA3B1C0BD4C700979CA7 /* CategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryViewController.h; sourceTree = "<group>"; };
 		F34DCA3C1C0BD4C700979CA7 /* CategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryViewController.m; sourceTree = "<group>"; };
+		F36A90781C22D7C2003C2F93 /* PortalTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalTypes.h; sourceTree = "<group>"; };
+		F36A90791C22D7C2003C2F93 /* PortalTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalTypes.m; sourceTree = "<group>"; };
 		F37B448C1BEE8AB400764D92 /* PortalCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalCollectionHeaderView.h; sourceTree = "<group>"; };
 		F37B448D1BEE8AB400764D92 /* PortalCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalCollectionHeaderView.m; sourceTree = "<group>"; };
 		F37B44911BEE8AFD00764D92 /* PortalCollectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PortalCollectionHeaderView.xib; sourceTree = "<group>"; };
@@ -172,12 +175,12 @@
 		F3AE09A41C1B5BE900E8A214 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		F3AE09A71C1B5BE900E8A214 /* UINavigationController+TransparentNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+TransparentNavigationBar.h"; sourceTree = "<group>"; };
 		F3AE09A81C1B5BE900E8A214 /* UINavigationController+TransparentNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+TransparentNavigationBar.m"; sourceTree = "<group>"; };
-		F3AE09AA1C1B5BE900E8A214 /* PortalNavigationAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalNavigationAnimator.h; sourceTree = "<group>"; };
-		F3AE09AB1C1B5BE900E8A214 /* PortalNavigationAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalNavigationAnimator.m; sourceTree = "<group>"; };
-		F3AE09AC1C1B5BE900E8A214 /* PortalNavigationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalNavigationDelegate.h; sourceTree = "<group>"; };
-		F3AE09AD1C1B5BE900E8A214 /* PortalNavigationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalNavigationDelegate.m; sourceTree = "<group>"; };
-		F3AE09AE1C1B5BE900E8A214 /* PortalNavigationInteraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalNavigationInteraction.h; sourceTree = "<group>"; };
-		F3AE09AF1C1B5BE900E8A214 /* PortalNavigationInteraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalNavigationInteraction.m; sourceTree = "<group>"; };
+		F3AE09AA1C1B5BE900E8A214 /* CubeNavigationAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CubeNavigationAnimator.h; sourceTree = "<group>"; };
+		F3AE09AB1C1B5BE900E8A214 /* CubeNavigationAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CubeNavigationAnimator.m; sourceTree = "<group>"; };
+		F3AE09AC1C1B5BE900E8A214 /* CubeNavigationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CubeNavigationDelegate.h; sourceTree = "<group>"; };
+		F3AE09AD1C1B5BE900E8A214 /* CubeNavigationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CubeNavigationDelegate.m; sourceTree = "<group>"; };
+		F3AE09AE1C1B5BE900E8A214 /* CubeNavigationInteraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CubeNavigationInteraction.h; sourceTree = "<group>"; };
+		F3AE09AF1C1B5BE900E8A214 /* CubeNavigationInteraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CubeNavigationInteraction.m; sourceTree = "<group>"; };
 		F3AE09B21C1B5BE900E8A214 /* UIParallelogramButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIParallelogramButton.h; sourceTree = "<group>"; };
 		F3AE09B31C1B5BE900E8A214 /* UIParallelogramButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIParallelogramButton.m; sourceTree = "<group>"; };
 		F3AE09B51C1B5BE900E8A214 /* Spinner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spinner.h; sourceTree = "<group>"; };
@@ -451,6 +454,8 @@
 		F334D0141BEE743C0074734D /* PortalCollectionController */ = {
 			isa = PBXGroup;
 			children = (
+				F36A90781C22D7C2003C2F93 /* PortalTypes.h */,
+				F36A90791C22D7C2003C2F93 /* PortalTypes.m */,
 				F3C8AAC81C13C54C0080C138 /* PortalLayout.h */,
 				F3C8AAC91C13C54C0080C138 /* PortalLayout.m */,
 				F334CFE21BEE73FC0074734D /* PortalCell.h */,
@@ -597,12 +602,12 @@
 		F3AE09A91C1B5BE900E8A214 /* CubeNavigationAnimator */ = {
 			isa = PBXGroup;
 			children = (
-				F3AE09AA1C1B5BE900E8A214 /* PortalNavigationAnimator.h */,
-				F3AE09AB1C1B5BE900E8A214 /* PortalNavigationAnimator.m */,
-				F3AE09AC1C1B5BE900E8A214 /* PortalNavigationDelegate.h */,
-				F3AE09AD1C1B5BE900E8A214 /* PortalNavigationDelegate.m */,
-				F3AE09AE1C1B5BE900E8A214 /* PortalNavigationInteraction.h */,
-				F3AE09AF1C1B5BE900E8A214 /* PortalNavigationInteraction.m */,
+				F3AE09AA1C1B5BE900E8A214 /* CubeNavigationAnimator.h */,
+				F3AE09AB1C1B5BE900E8A214 /* CubeNavigationAnimator.m */,
+				F3AE09AC1C1B5BE900E8A214 /* CubeNavigationDelegate.h */,
+				F3AE09AD1C1B5BE900E8A214 /* CubeNavigationDelegate.m */,
+				F3AE09AE1C1B5BE900E8A214 /* CubeNavigationInteraction.h */,
+				F3AE09AF1C1B5BE900E8A214 /* CubeNavigationInteraction.m */,
 			);
 			path = CubeNavigationAnimator;
 			sourceTree = "<group>";
@@ -946,6 +951,7 @@
 				F34684F51BFF5A4500C7C56D /* OpenShare.m in Sources */,
 				F3EF0BDC1C10ED0F00B73DA7 /* MJRefreshBackNormalFooter.m in Sources */,
 				F3152B441BF44B870048D69E /* WikiViewController.m in Sources */,
+				F36A907A1C22D7C2003C2F93 /* PortalTypes.m in Sources */,
 				F34DCA3D1C0BD4C700979CA7 /* CategoryViewController.m in Sources */,
 				F3AE09B71C1B5BE900E8A214 /* BaseActivity.m in Sources */,
 				F3F545CE1C1D574A00FF612E /* DataManager.m in Sources */,
@@ -959,7 +965,7 @@
 				F3F545BE1C1CAD1900FF612E /* EmptyDataSetDelegate.m in Sources */,
 				F3EF0B9B1C10CEB200B73DA7 /* PageTable.m in Sources */,
 				F3F545C11C1D457200FF612E /* BaseManager.m in Sources */,
-				F3AE09C21C1B5BE900E8A214 /* PortalNavigationDelegate.m in Sources */,
+				F3AE09C21C1B5BE900E8A214 /* CubeNavigationDelegate.m in Sources */,
 				F3BE138C1BF26F5E00CC5159 /* KnowTipModel.m in Sources */,
 				F3EF0BA21C10D9B600B73DA7 /* SubCategoryTable.m in Sources */,
 				F34684F31BFF5A4500C7C56D /* OpenShare+Weibo.m in Sources */,
@@ -983,8 +989,8 @@
 				F3EF0BDF1C10ED0F00B73DA7 /* MJRefreshNormalHeader.m in Sources */,
 				F3EF0BDA1C10ED0F00B73DA7 /* MJRefreshAutoStateFooter.m in Sources */,
 				F3EF0BD81C10ED0F00B73DA7 /* MJRefreshAutoGifFooter.m in Sources */,
-				F3AE09C11C1B5BE900E8A214 /* PortalNavigationAnimator.m in Sources */,
-				F3AE09C31C1B5BE900E8A214 /* PortalNavigationInteraction.m in Sources */,
+				F3AE09C11C1B5BE900E8A214 /* CubeNavigationAnimator.m in Sources */,
+				F3AE09C31C1B5BE900E8A214 /* CubeNavigationInteraction.m in Sources */,
 				F3AE09B81C1B5BE900E8A214 /* QQActivity.m in Sources */,
 				F3EF0BEB1C11754F00B73DA7 /* MJRefreshAutoSpinnerFooter.m in Sources */,
 				F3EF0BD41C10ED0F00B73DA7 /* MJRefreshBackFooter.m in Sources */,
