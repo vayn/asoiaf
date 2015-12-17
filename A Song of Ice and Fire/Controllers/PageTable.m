@@ -164,28 +164,64 @@
 
 - (void)setupTableHeaderView
 {
-    CGRect headerFrame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y - 25,
+    CGRect headerFrame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y - 40,
                                     self.tableView.frame.size.width, 90);
     UIView *headerView = [[UIView alloc] initWithFrame:headerFrame];
     headerView.clipsToBounds = YES;
 
-    /*
-    UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:headerFrame];
-    backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
-    backgroundImageView.clipsToBounds = YES;
-    backgroundImageView.image = self.headerBackgroundImage;
-    [headerView addSubview:backgroundImageView];
-     */
+    UIImage *backgroundImage = nil;
 
-    UIColor *patternColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_greyfloral"]];
-    headerView.backgroundColor = patternColor;
+    switch (self.parentVC.portalType) {
+        case PortalChapterType:
+        case PortalBookType: {
+            backgroundImage = [UIImage imageNamed:@"portal_book_header"];
+            break;
+        }
+        case PortalCharacterType: {
+            backgroundImage = [UIImage imageNamed:@"portal_character_header"];
+            break;
+        }
+        case PortalHouseType: {
+            backgroundImage = [UIImage imageNamed:@"portal_house_bg"];
+            break;
+        }
+        case PortalHistoryType: {
+            backgroundImage = [UIImage imageNamed:@"portal_history_bg"];
+            break;
+        }
+        case PortalCultureType: {
+            backgroundImage = [UIImage imageNamed:@"portal_culture_bg"];
+            break;
+        }
+        case PortalGeoType: {
+            backgroundImage = [UIImage imageNamed:@"portal_geo_bg"];
+            break;
+        }
+        case PortalTVType: {
+            backgroundImage = [UIImage imageNamed:@"portal_tv_bg"];
+            break;
+        }
+        case PortalInferenceType: {
+            break;
+        }
+    }
+
+    if (backgroundImage) {
+        UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:headerFrame];
+        backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+        backgroundImageView.image = backgroundImage;
+        backgroundImageView.clipsToBounds = YES;
+        [headerView addSubview:backgroundImageView];
+    } else {
+        UIColor *patternColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_greyfloral"]];
+        headerView.backgroundColor = patternColor;
+    }
 
     GradientView *blurView = [[GradientView alloc] initWithFrame:headerFrame type:TransparentGradientType];
-    blurView.alpha = 0.718;
-
+    blurView.alpha = 0.618;
     [headerView addSubview:blurView];
 
-    CGRect titleFrame = CGRectMake(15, headerFrame.origin.y, headerFrame.size.width - 15, 60);
+    CGRect titleFrame = CGRectMake(15, (headerFrame.origin.y / 2 + 10), headerFrame.size.width - 15, 60);
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:titleFrame];
     titleLabel.text = self.parentVC.title;
     titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:21.0];

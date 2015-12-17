@@ -58,6 +58,7 @@
 
     CategoryViewController *subCategoryVC = [[CategoryViewController alloc] init];
     subCategoryVC.category = member;
+    subCategoryVC.portalType = self.parentVC.portalType;
 
     [self.parentVC.navigationController pushViewController:subCategoryVC animated:YES];
 }

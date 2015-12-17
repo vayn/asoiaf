@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PortalTypes.h"
 
 @class CategoryMemberModel;
 
 @interface CategoryViewController : UIViewController
 
 @property (nonatomic, strong) CategoryMemberModel *category;
+@property (nonatomic, assign) PortalType portalType;
 
 @end

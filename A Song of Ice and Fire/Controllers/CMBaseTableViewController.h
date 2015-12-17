@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+#import "CategoryViewController.h"
 #import "WikiViewController.h"
+#import "PortalTypes.h"
 
 #import "Models.h"
 #import "DataManager.h"
@@ -34,7 +36,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) id<CMBaseTableDelegate> delegate;
 @property (nonatomic, strong) EmptyDataSetDelegate *emptyDataSetDelegate;
 
-
 @property (nonatomic, strong) CategoryMemberModel *parentCategory;
 
 @property (nonatomic, strong) NSMutableArray *previousContinue;
@@ -43,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSArray<CategoryMemberModel *> *members;
 @property (nonatomic, assign) BOOL isHeaderRefreshing;
 
-@property (nonatomic, strong) UIViewController *parentVC;
+@property (nonatomic, strong) CategoryViewController *parentVC;
 
 @end
 

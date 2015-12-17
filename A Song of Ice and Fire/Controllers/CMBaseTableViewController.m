@@ -174,7 +174,7 @@ static NSString * const kCellIdentifier = @"Cell";
     /* *
      * 上拉加载下一页
      */
-     MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+     MJRefreshAutoSpinnerFooter *footer = [MJRefreshAutoSpinnerFooter footerWithRefreshingBlock:^{
         self.isHeaderRefreshing = NO;
 
         if (self.nextContinue.count > 0) {
@@ -210,8 +210,9 @@ static NSString * const kCellIdentifier = @"Cell";
         }
     }];
 
-    // 设置文字
-    [footer setTitle:@"上拉加载下一页" forState:MJRefreshStateIdle];
+    [footer setSpinner:[Spinner knightSpinner] forState:MJRefreshStateRefreshing];
+
+    [footer setTitle:@"点击或上拉加载下一页" forState:MJRefreshStateIdle];
     [footer setTitle:@"已经到达最后一页" forState:MJRefreshStateNoMoreData];
 
     self.tableView.mj_footer = footer;

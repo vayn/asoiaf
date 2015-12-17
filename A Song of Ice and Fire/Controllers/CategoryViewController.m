@@ -42,12 +42,12 @@
     PageTable *pageTable = [[PageTable alloc] initWithStyle:UITableViewStylePlain];
     pageTable.title = @"页面";
     pageTable.parentCategory = _category;
-    pageTable.parentVC = (UIViewController *)self;
+    pageTable.parentVC = (CategoryViewController *)self;
 
     SubCategoryTable *subCategoryTable = [[SubCategoryTable alloc] initWithStyle:UITableViewStylePlain];
     subCategoryTable.title = @"子分类";
     subCategoryTable.parentCategory = _category;
-    subCategoryTable.parentVC = (UIViewController *)self;
+    subCategoryTable.parentVC = (CategoryViewController *)self;
 
     NSArray *controllerArray = @[pageTable, subCategoryTable];
 
