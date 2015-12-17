@@ -114,8 +114,8 @@
 
 - (void)getWikiEntry:(NSString *)title completionBlock:(void (^)(NSString *wikiEntry))completionBlock
 {
-    NSString *Api = [BaseManager getAbsoluteUrl:NSStringMultiline(api.php?action=query&prop=revisions
-                                                                  &rvprop=content&rvparse&format=json&redirects)];
+    NSString *Api = [BaseManager getAbsoluteUrl:NSStringMultiline(api.php?action=query&prop=revisions&
+                                                                  rvprop=content&rvparse&format=json&redirects)];
     NSDictionary *paramters = @{@"titles": title};
 
     [self.manager GET:Api parameters:paramters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
