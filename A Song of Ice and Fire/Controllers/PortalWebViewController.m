@@ -17,7 +17,6 @@
 @interface PortalWebViewController () <UIScrollViewDelegate>
 
 @property (nonatomic, strong) Spinner *cubeSpinner;
-@property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, strong) UIView *statusBackgroundView;
 
 @end
@@ -36,6 +35,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.cubeSpinner.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2);
+    [self.view addSubview:self.cubeSpinner];
+    [self.cubeSpinner startAnimating];
 
     [self setupWebView];
     [self setupStatusBar];
@@ -64,9 +67,9 @@
 
 - (void)setupWebView
 {
-    self.webView = [[WKWebView alloc] initWithFrame:self.view.frame];
-    self.webView.scrollView.delegate = self;
-    self.webView.scrollView.bounces = NO;
+    WKWebView *webView = [[WKWebView alloc] initWithFrame:self.view.frame];
+    webView.scrollView.delegate = self;
+    webView.scrollView.bounces = NO;
 
     // Main bundle
     NSBundle *mainBundle = [NSBundle mainBundle];
@@ -89,10 +92,6 @@
 
     NSString *link = [self.category.link stringByReplacingOccurrencesOfString:@"Category" withString:@"Portal"];
 
-    self.cubeSpinner.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2);
-    [self.view addSubview:self.cubeSpinner];
-    [self.cubeSpinner startAnimating];
-
     [[MainManager sharedManager]getWikiEntry:link completionBlock:^(NSString *wikiEntry) {
         [portalTemplate replaceOccurrencesOfString:@"[[[content]]]"
                                         withString:wikiEntry
@@ -103,8 +102,8 @@
         [self.cubeSpinner setHidden:YES];
         [self.cubeSpinner removeFromSuperview];
 
-        [self.webView loadHTMLString:portalTemplate baseURL:[NSURL fileURLWithPath:cssPath]];
-        [self.view addSubview:self.webView];
+        [webView loadHTMLString:portalTemplate baseURL:[NSURL fileURLWithPath:cssPath]];
+        [self.view addSubview:webView];
     }];
 }
 
