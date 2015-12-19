@@ -345,8 +345,7 @@
 			children = (
 				F3205DEF1C2593400020983E /* portal_template.html */,
 			);
-			name = html;
-			path = Resources/html;
+			path = html;
 			sourceTree = "<group>";
 		};
 		F3205DF61C259D620020983E /* PortalWebViewController */ = {
@@ -387,7 +386,6 @@
 				F334CFF91BEE73FC0074734D /* Library */,
 				F334CFCA1BEE73420074734D /* Supporting Files */,
 				F33C82D41BF7D045005A0908 /* Resources */,
-				F3205DEE1C2593400020983E /* html */,
 			);
 			path = "A Song of Ice and Fire";
 			sourceTree = "<group>";
@@ -543,6 +541,7 @@
 				F3205DDD1C2591D40020983E /* css */,
 				F3205DE01C2591D40020983E /* image */,
 				F3205DE41C2591D40020983E /* js */,
+				F3205DEE1C2593400020983E /* html */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
