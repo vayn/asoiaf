@@ -14,8 +14,9 @@
 #import "Spinner.h"
 #import "UINavigationController+TransparentNavigationBar.h"
 
-@interface PortalWebViewController () <UIScrollViewDelegate>
+@interface PortalWebViewController ()
 
+@property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, strong) Spinner *cubeSpinner;
 @property (nonatomic, strong) UIView *statusBackgroundView;
 
@@ -67,9 +68,13 @@
 
 - (void)setupWebView
 {
-    WKWebView *webView = [[WKWebView alloc] initWithFrame:self.view.frame];
-    webView.scrollView.delegate = self;
-    webView.scrollView.bounces = NO;
+    self.webView = [[WKWebView alloc] initWithFrame:self.view.frame];
+    //self.webView.scrollView.delegate = self;
+    self.webView.scrollView.bounces = NO;
+    [self.webView.scrollView addObserver:self
+                              forKeyPath:@"contentOffset"
+                                 options:NSKeyValueObservingOptionNew
+                                 context:nil];
 
     // Main bundle
     NSBundle *mainBundle = [NSBundle mainBundle];
@@ -102,8 +107,8 @@
         [self.cubeSpinner setHidden:YES];
         [self.cubeSpinner removeFromSuperview];
 
-        [webView loadHTMLString:portalTemplate baseURL:[NSURL fileURLWithPath:cssPath]];
-        [self.view addSubview:webView];
+        [self.webView loadHTMLString:portalTemplate baseURL:[NSURL fileURLWithPath:cssPath]];
+        [self.view addSubview:self.webView];
     }];
 }
 
@@ -116,11 +121,13 @@
     self.statusBackgroundView.alpha = 0.0;
 }
 
-#pragma mark - UIScrollView Delegate
+#pragma mark - KVO
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
 {
-    CGPoint offset = scrollView.contentOffset;
+    if (![@"contentOffset" isEqualToString:keyPath])return;
+
+    CGPoint offset = self.webView.scrollView.contentOffset;
     UIStatusBarStyle barStyle = (UIStatusBarStyle)self.navigationController.navigationBar.barStyle;
 
     if (offset.y >= 270 && barStyle == UIStatusBarStyleLightContent) {
@@ -134,6 +141,11 @@
         self.statusBackgroundView.alpha = 0.0;
         [self.statusBackgroundView removeFromSuperview];
     }
+}
+
+- (void)dealloc
+{
+    [self.webView.scrollView removeObserver:self forKeyPath:@"contentOffset"];
 }
 
 @end
