@@ -9,11 +9,10 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "PortalCollectionViewController.h"
-#import "PortalCell.h"
 #import "PortalCollectionHeaderView.h"
 #import "PortalLayout.h"
-#import "CubeNavigationDelegate.h"
-#import "PortalTypes.h"
+#import "PortalCell.h"
+#import "PortalWebViewController.h"
 
 #import "CategoryViewController.h"
 
@@ -22,12 +21,11 @@
 
 static NSString * const reuseCell = @"PortalCell";
 static NSString * const reuseHeader = @"PortalCollectionHeaderView";
-                 
+
 @interface PortalCollectionViewController ()
 
-@property (nonatomic, strong) NSMutableArray<CategoryMemberModel *> *portals;
-@property (nonatomic, strong) NSMutableArray<NSDictionary *> *rawPortals;
-@property (nonatomic, assign) BOOL isViewIntialized;
+@property (nonatomic, strong) NSArray<CategoryMemberModel *> *portals;
+@property (nonatomic, getter=isIntialized) BOOL intialized;
 
 @end
 
@@ -47,55 +45,64 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
     return self;
 }
 
+#pragma mark - Setup data source
+
 - (void)setupPortals
 {
-    NSArray *rawPortals = @[@{@"pageid": @5480,
-                          @"link": @"Category:人物",
-                          @"title": @"人物介绍",
-                          @"type": [NSNumber numberWithInteger:PortalCharacterType],
-                          },
-                        @{@"pageid": @46711,
-                          @"link": @"Category:贵族家族",
-                          @"title": @"各大家族",
-                          @"type": [NSNumber numberWithInteger:PortalHouseType],
-                          },
-                        @{@"pageid": @5481,
-                          @"link": @"Category:历史",
-                          @"title": @"七国历史",
-                          @"type": [NSNumber numberWithInteger:PortalHistoryType],
-                          },
-                        @{@"pageid": @5483,
-                          @"link": @"Category:文化",
-                          @"title": @"文化风俗",
-                          @"type": [NSNumber numberWithInteger:PortalCultureType],
-                          },
-                        @{@"pageid": @5482,
-                          @"link": @"Category:维斯特洛地点",
-                          @"title": @"地理信息",
-                          @"type": [NSNumber numberWithInteger:PortalGeoType],
-                          },
-                        @{@"pageid": @5484,
-                          @"link": @"Category:剧集",
-                          @"title": @"剧集相关",
-                          @"type": [NSNumber numberWithInteger:PortalTVType],
-                        },
-                        @{@"pageid": @2780,
-                          @"link": @"Category:理论推测",
-                          @"title": @"理论推测",
-                          @"type": [NSNumber numberWithInteger:PortalInferenceType],
-                          },
-                        @{@"pageid": @303,
-                          @"link": @"Category:书籍",
-                          @"title": @"分卷介绍",
-                          @"type": [NSNumber numberWithInteger:PortalBookType],
-                          },
-                        @{@"pageid": @46724,
-                          @"link": @"Category:冰与火之歌章节",
-                          @"title": @"章节梗概",
-                          @"type": [NSNumber numberWithInteger:PortalChapterType],
-                          }];
+    NSArray *rawPortals = @[@{@"pageid": @46720,
+                              @"link": @"Portal:历史",
+                              @"title": @"七国历史",
+                              @"portrait": [UIImage imageNamed:@"portal_portrait_history"],
+                              },
+                            @{@"pageid": @46722,
+                              @"link": @"Portal:文化",
+                              @"title": @"文化风俗",
+                              @"portrait": [UIImage imageNamed:@"portal_portrait_culture"],
+                              },
+                            @{@"pageid": @46721,
+                              @"link": @"Portal:地理",
+                              @"title": @"地理信息",
+                              @"portrait": [UIImage imageNamed:@"portal_portrait_geo"],
+                              },
+                            @{@"pageid": @46732,
+                              @"link": @"Portal:电视剧",
+                              @"title": @"剧集相关",
+                              @"portrait": [UIImage imageNamed:@"portal_portrait_tv"],
+                              },
+                            @{@"pageid": @2780,
+                              @"link": @"理论推测",
+                              @"title": @"理论推测",
+                              @"portrait": [UIImage imageNamed:@"portal_portrait_inference"],
+                              },
+                            @{@"pageid": @46710,
+                              @"link": @"Portal:书",
+                              @"title": @"分卷介绍",
+                              @"portrait": [UIImage imageNamed:@"portal_portrait_book"],
+                              },
+                            @{@"pageid": @46724,
+                              @"link": @"Portal:章节",
+                              @"title": @"章节梗概",
+                              @"portrait": [UIImage imageNamed:@"portal_portrait_chapter"],
+                              },
+                            @{@"pageid": @46719,
+                              @"link": @"Portal:人物",
+                              @"title": @"人物介绍",
+                              @"portrait": [UIImage imageNamed:@"portal_portrait_character"],
+                              },
+                            @{@"pageid": @46711,
+                              @"link": @"Portal:家族",
+                              @"title": @"各大家族",
+                              @"portrait": [UIImage imageNamed:@"portal_portrait_house"],
+                              }];
+    NSMutableArray *workingArray = [@[] mutableCopy];
 
-    _rawPortals = [rawPortals mutableCopy];
+    for (NSDictionary *portal in rawPortals) {
+        CategoryMemberModel *cm = [[CategoryMemberModel alloc] initWithTitle:portal[@"title"]
+                                                                        link:portal[@"link"]
+                                                                      pageId:portal[@"pageid"]];
+        cm.backgroundImage = portal[@"portrait"];
+        [workingArray addObject:cm];
+    }
 
     /* *
      *
@@ -104,24 +111,19 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
      * of objects the original array is holding
      *
      */
-    id firstItem = [rawPortals firstObject];
-    id lastItem = [rawPortals lastObject];
+    id firstItem = [workingArray firstObject];
+    id lastItem = [workingArray lastObject];
 
     // Add the copy of the last item to the beginning
-    [_rawPortals insertObject:lastItem atIndex:0];
+    [workingArray insertObject:lastItem atIndex:0];
 
     // Add the copy of the first item to the end
-    [_rawPortals addObject:firstItem];
+    [workingArray addObject:firstItem];
 
-    _portals = [@[] mutableCopy];
-
-    for (NSDictionary *portal in _rawPortals) {
-        CategoryMemberModel *cm = [[CategoryMemberModel alloc] initWithTitle:portal[@"title"]
-                                                                        link:portal[@"link"]
-                                                                      pageId:portal[@"pageid"]];
-        [_portals addObject:cm];
-    }
+    _portals = [workingArray copy];
 }
+
+#pragma mark - View Manager
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -143,7 +145,7 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:1 inSection:0];
         [self snapItemToCenterAtIndexPath:indexPath animated:NO];
 
-        self.isViewIntialized = YES;
+        self.intialized = YES;
     });
 }
 
@@ -178,28 +180,16 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
     } else {
         [cell.loadingIndicator startAnimating];
 
-        [[ImageManager sharedManager] getPortalThumbnailWithPageId:portal.pageId completionBlock:^(id responseObject) {
-            NSData *imageData = (NSData *)responseObject;
-            UIImage *thumbnailImage;
+        CATransition *transition = [CATransition animation];
+        transition.duration = 1.0;
+        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        transition.type = kCATransitionFade;
+        [cell.layer addAnimation:transition forKey:nil];
 
-            if (imageData) {
-                thumbnailImage = [UIImage imageWithData:imageData];
-            } else {
-                thumbnailImage = [UIImage imageNamed:@"placeholder_emptydataset"];
-            }
+        cell.portalImageView.image = portal.backgroundImage;
 
-            CATransition *transition = [CATransition animation];
-            transition.duration = 1.0;
-            transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-            transition.type = kCATransitionFade;
-            [cell.layer addAnimation:transition forKey:nil];
-
-            cell.portalImageView.image = thumbnailImage;
-            portal.backgroundImage = thumbnailImage;
-
-            [cell.loadingIndicator stopAnimating];
-            [cell.loadingIndicator removeFromSuperview];
-        }];
+        [cell.loadingIndicator stopAnimating];
+        [cell.loadingIndicator removeFromSuperview];
     }
 
     // Add rounded corners and shadow
@@ -245,11 +235,10 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
     NSIndexPath *centralIndexPath = [self centralIndexPath];
 
     if (centralIndexPath && (centralIndexPath == indexPath)) {
-        CategoryViewController *categoryVC = [[CategoryViewController alloc] init];
-        categoryVC.category = self.portals[indexPath.row];
-        categoryVC.portalType = (PortalType)[self.rawPortals[indexPath.row][@"type"] integerValue];
+        CategoryMemberModel *category = self.portals[indexPath.row];
+        PortalWebViewController *webVC = [[PortalWebViewController alloc] initWithCategory:category];
 
-        [self.navigationController pushViewController:categoryVC animated:YES];
+        [self.navigationController pushViewController:webVC animated:YES];
     } else {
         [self snapItemToCenterAtIndexPath:indexPath animated:YES];
     }
@@ -281,7 +270,7 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 
         scrollView.contentOffset = (CGPoint){contentOffsetWhenFullyscrolledLeft, 0};
 
-    } else if ((currentOffset < contentOffsetWhenFullyscrolledLeft) && self.isViewIntialized) {
+    } else if ((currentOffset < contentOffsetWhenFullyscrolledLeft) && self.isIntialized) {
 
         // user is scrolling to the left from the first item to the fake 'item N'.
         // reposition offset to show the 'real' item N at the right end end of the collection view
@@ -311,7 +300,7 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
     UICollectionView *cv = self.collectionView;
 
     CGFloat collectionViewWidth = CGRectGetWidth(cv.bounds);
-
+    
     UICollectionViewCell *cell = [cv cellForItemAtIndexPath:indexPath];
     CGPoint offset = CGPointMake(cell.center.x - collectionViewWidth / 2, 0);
     [cv setContentOffset:offset animated:animated];
