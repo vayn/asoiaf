@@ -10,4 +10,6 @@
 
 @interface WKWebView (SynchronousEvaluateJavaScript)
 
+- (NSString *)stringByEvaluatingJavaScriptFromString:(NSString *)script;
+
 @end

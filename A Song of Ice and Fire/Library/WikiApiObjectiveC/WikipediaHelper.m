@@ -7,7 +7,9 @@
 //
 
 #import "WikipediaHelper.h"
-#import "AFNetworking.h"
+#import "DataManager.h"
+
+/* Pods */
 #import "IGHTMLQuery.h"
 
 @interface WikipediaHelper ()
@@ -56,37 +58,8 @@
 
 - (void)fetchArticle:(NSString *)name
 {
-    NSString *str = [[NSString alloc] initWithFormat:@"%@/api.php?action=query&prop=revisions&titles=%@&rvprop=content&rvparse&format=json&redirects", apiUrl, name];
-    NSString *url = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-
-    [manager setDataTaskWillCacheResponseBlock:^NSCachedURLResponse * _Nonnull(NSURLSession * _Nonnull session, NSURLSessionDataTask * _Nonnull dataTask, NSCachedURLResponse * _Nonnull proposedResponse) {
-        NSCachedURLResponse * responseCached;
-        NSHTTPURLResponse * httpResponse = (NSHTTPURLResponse *)[proposedResponse response];
-        if (dataTask.originalRequest.cachePolicy == NSURLRequestUseProtocolCachePolicy) {
-            NSDictionary *headers = httpResponse.allHeaderFields;
-            NSString * cacheControl = [headers valueForKey:@"Cache-Control"];
-            NSString * expires = [headers valueForKey:@"Expires"];
-            if (cacheControl == nil && expires == nil) {
-                NSLog(@"Server does not provide expiration information and use are using NSURLRequestUseProtocolCachePolicy");
-                responseCached = [[NSCachedURLResponse alloc] initWithResponse:dataTask.response
-                                                                          data:proposedResponse.data
-                                                                      userInfo:@{ @"response": dataTask.response, @"proposed": proposedResponse.data }
-                                                                 storagePolicy:NSURLCacheStorageAllowed];
-            }
-        }
-        return responseCached;
-    }];
-
-    [manager GET:url parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        NSArray *htmlTemp = [[[responseObject objectForKey:@"query"] objectForKey:@"pages"] allValues];
-        fetchedArticle = [[[[htmlTemp objectAtIndex:0] objectForKey:@"revisions"] objectAtIndex:0] objectForKey:@"*"];
-
-        [delegate dataLoaded:[self formatHTMLPage:fetchedArticle] withUrlMainImage:[self getUrlOfMainImage:fetchedArticle]];
-    } failure:^(NSURLSessionTask *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        [delegate dataLoaded:@"请联网后重新打开应用" withUrlMainImage:@"test"];
+    [[MainManager sharedManager] getWikiEntry:name completionBlock:^(NSString *wikiEntry) {
+        [delegate dataLoaded:[self formatHTMLPage:wikiEntry] withUrlMainImage:[self getUrlOfMainImage:wikiEntry]];
     }];
 }
 
@@ -106,8 +79,12 @@
     formatedHtmlSrc = [self cleanHTMLPage:formatedHtmlSrc];
 
     // Wrap html in DIV
-    formatedHtmlSrc = [NSString stringWithFormat:
-    @"<div id='wiki-outer-body'><div id='wiki-body' class='container'><div id='content'>%@</div></div></div>", formatedHtmlSrc];
+    formatedHtmlSrc = [NSString stringWithFormat:NSStringMultiline(
+                        <div id="wiki-outer-body" style="margin-top:20px">
+                           <div id="wiki-body" class="container">
+                               <div id="content">%@</div>
+                           </div>
+                       </div>), formatedHtmlSrc];
 
     // Add CSS style
     formatedHtmlSrc = [self.wikicss stringByAppendingString:formatedHtmlSrc];
@@ -163,7 +140,8 @@
 {
     
     // Otherwise images have an incorrect url
-    NSString *formatedHtmlSrc = [htmlSrc stringByReplacingOccurrencesOfString:@"//upload.wikimedia.org" withString:@"http://upload.wikimedia.org"];
+    NSString *formatedHtmlSrc = [htmlSrc stringByReplacingOccurrencesOfString:@"//upload.wikimedia.org"
+                                                                   withString:@"http://upload.wikimedia.org"];
     
     if([htmlSrc isEqualToString:@""])
         return htmlSrc;

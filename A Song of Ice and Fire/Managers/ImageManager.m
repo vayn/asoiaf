@@ -23,59 +23,12 @@
     return sharedManager;
 }
 
-- (void)getPageThumbnailWithPageId:(NSNumber *)pageId completionBlock:(ManagerCompletionBlock)completionBlock
+- (void)getPageThumbnailWithPageId:(NSNumber *)pageId completionBlock:(ImageManagerBlock)completionBlock
 {
     return [self getPageThumbnailWithPageId:pageId thumbWidth:@300 completionBlock:completionBlock];
 }
 
-- (void)getPortalThumbnailWithPageId:(NSNumber *)pageId completionBlock:(ManagerCompletionBlock)completionBlock
-{
-    NSURLComponents *components = [NSURLComponents componentsWithString:@"http://cdn.huijiwiki.com/asoiaf/thumb.php"];
-
-    NSString *portalThumbName = nil;
-
-    switch ([pageId integerValue]) {
-        case 46724: { // 章节梗概
-            portalThumbName = @"LordOfLightProtectUs_JZee.jpg";
-            break;
-        }
-
-        case 5480: { // 人物介绍
-            portalThumbName = @"Katherine_Dinger_CLannister.jpg";
-            break;
-        }
-
-        case 46711: { // 各大家族
-            portalThumbName = @"Iron_Throne_by_thegryph.jpg";
-            break;
-        }
-
-        case 5483: { // 文化风俗
-            portalThumbName = @"Faith_by_thegryph.jpg";
-            break;
-        }
-
-        case 2780: { // 理论推测
-            portalThumbName = @"Morgaine_le_Fee_Rhaego_TargaryenIIII.jpg";
-            break;
-        }
-
-        default:
-            break;
-    }
-
-    if (portalThumbName) {
-        NSURLQueryItem *f = [NSURLQueryItem queryItemWithName:@"f" value:portalThumbName];
-        NSURLQueryItem *width = [NSURLQueryItem queryItemWithName:@"width" value:@"300"];
-        [components setQueryItems:@[f, width]];
-
-        [BaseManager processImageDataWithURL:[components URL] andBlock:^(NSData *imageData) {
-            completionBlock(imageData);
-        }];
-    }
-}
-
-- (void)getPageThumbnailWithPageId:(NSNumber *)pageId thumbWidth:(NSNumber *)thumbWidth completionBlock:(ManagerCompletionBlock)completionBlock
+- (void)getPageThumbnailWithPageId:(NSNumber *)pageId thumbWidth:(NSNumber *)thumbWidth completionBlock:(ImageManagerBlock)completionBlock
 {
     NSString *Api = [NSString stringWithFormat:@"api.php?action=query&pageids=%@&prop=pageimages&format=json&pithumbsize=%@",
                      [pageId stringValue], [thumbWidth stringValue]];

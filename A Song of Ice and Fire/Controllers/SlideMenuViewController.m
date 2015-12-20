@@ -8,6 +8,8 @@
 
 #import "SlideMenuViewController.h"
 #import "DataManager.h"
+#import "PortalTypes.h"
+#import "CategoryViewController.h"
 #import "WikiViewController.h"
 
 @interface SlideMenuViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
@@ -16,8 +18,10 @@
 @property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UIButton *logoButton;
 
-@property (nonatomic, strong) NSArray *categoryArray;
 @property (nonatomic, strong) NSString *randomTitle;
+
+@property (nonatomic, strong) NSMutableArray<CategoryMemberModel *> *CMembers;
+@property (nonatomic, strong) NSMutableArray<NSDictionary *> *rawCMembers;
 
 @end
 
@@ -27,7 +31,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.categoryArray = @[@"关于"];
+        [self setupCMembers];
     }
     return self;
 }
@@ -72,17 +76,28 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.categoryArray count];
+    return [self.CMembers count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"myTableViewCell" forIndexPath:indexPath];
 
-    NSString *categoryArray = self.categoryArray[indexPath.row];
-    cell.textLabel.text = categoryArray;
+    CategoryMemberModel *category = self.CMembers[indexPath.row];
+    cell.textLabel.text = category.title;
 
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.myTableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    CategoryViewController *categoryVC = [[CategoryViewController alloc] init];
+    categoryVC.category = self.CMembers[indexPath.row];
+    categoryVC.portalType = (PortalType)[self.rawCMembers[indexPath.row][@"type"] integerValue];
+
+    [self.navigationController pushViewController:categoryVC animated:YES];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -100,11 +115,6 @@
     [footer addSubview:label];
 
     return footer;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [self.myTableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -134,6 +144,66 @@
             wikiVC.title = title;
             [self.navigationController pushViewController:wikiVC animated:YES];
         }];
+    }
+}
+
+#pragma mark - Initializer
+
+- (void)setupCMembers
+{
+    NSArray *rawCMembers = @[@{@"pageid": @5480,
+                              @"link": @"Category:人物",
+                              @"title": @"人物介绍",
+                              @"type": [NSNumber numberWithInteger:PortalCharacterType],
+                              },
+                            @{@"pageid": @46711,
+                              @"link": @"Category:贵族家族",
+                              @"title": @"各大家族",
+                              @"type": [NSNumber numberWithInteger:PortalHouseType],
+                              },
+                            @{@"pageid": @5481,
+                              @"link": @"Category:历史",
+                              @"title": @"七国历史",
+                              @"type": [NSNumber numberWithInteger:PortalHistoryType],
+                              },
+                            @{@"pageid": @5483,
+                              @"link": @"Category:文化",
+                              @"title": @"文化风俗",
+                              @"type": [NSNumber numberWithInteger:PortalCultureType],
+                              },
+                            @{@"pageid": @5482,
+                              @"link": @"Category:维斯特洛地点",
+                              @"title": @"地理信息",
+                              @"type": [NSNumber numberWithInteger:PortalGeoType],
+                              },
+                            @{@"pageid": @5484,
+                              @"link": @"Category:剧集",
+                              @"title": @"剧集相关",
+                              @"type": [NSNumber numberWithInteger:PortalTVType],
+                              },
+                            @{@"pageid": @2780,
+                              @"link": @"Category:理论推测",
+                              @"title": @"理论推测",
+                              @"type": [NSNumber numberWithInteger:PortalInferenceType],
+                              },
+                            @{@"pageid": @303,
+                              @"link": @"Category:书籍",
+                              @"title": @"分卷介绍",
+                              @"type": [NSNumber numberWithInteger:PortalBookType],
+                              },
+                            @{@"pageid": @46724,
+                              @"link": @"Category:冰与火之歌章节",
+                              @"title": @"章节梗概",
+                              @"type": [NSNumber numberWithInteger:PortalChapterType],
+                              }];
+
+    _CMembers = [@[] mutableCopy];
+
+    for (NSDictionary *portal in rawCMembers) {
+        CategoryMemberModel *cm = [[CategoryMemberModel alloc] initWithTitle:portal[@"title"]
+                                                                        link:portal[@"link"]
+                                                                      pageId:portal[@"pageid"]];
+        [_CMembers addObject:cm];
     }
 }
 

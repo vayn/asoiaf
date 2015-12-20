@@ -10,6 +10,16 @@
 		0D4180EA429213F95B793FB0 /* libPods-A Song of Ice and Fire.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D49F2874779F1899D2E5ADF6 /* libPods-A Song of Ice and Fire.a */; };
 		F3152B441BF44B870048D69E /* WikiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3152B421BF44B870048D69E /* WikiViewController.m */; };
 		F3152B471BF44BD00048D69E /* WikiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3152B461BF44BD00048D69E /* WikiViewController.xib */; };
+		F3205DE71C2591D40020983E /* wikiview-min.css in Resources */ = {isa = PBXBuildFile; fileRef = F3205DDE1C2591D40020983E /* wikiview-min.css */; };
+		F3205DE81C2591D40020983E /* wikiview.css in Resources */ = {isa = PBXBuildFile; fileRef = F3205DDF1C2591D40020983E /* wikiview.css */; };
+		F3205DE91C2591D40020983E /* cubic_spinner.gif in Resources */ = {isa = PBXBuildFile; fileRef = F3205DE11C2591D40020983E /* cubic_spinner.gif */; };
+		F3205DEA1C2591D40020983E /* knight_spinner.gif in Resources */ = {isa = PBXBuildFile; fileRef = F3205DE21C2591D40020983E /* knight_spinner.gif */; };
+		F3205DEB1C2591D40020983E /* knight_spinner@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = F3205DE31C2591D40020983E /* knight_spinner@2x.gif */; };
+		F3205DEC1C2591D40020983E /* jquery.js in Resources */ = {isa = PBXBuildFile; fileRef = F3205DE51C2591D40020983E /* jquery.js */; };
+		F3205DED1C2591D40020983E /* portal.js in Resources */ = {isa = PBXBuildFile; fileRef = F3205DE61C2591D40020983E /* portal.js */; };
+		F3205DF01C2593400020983E /* portal_template.html in Resources */ = {isa = PBXBuildFile; fileRef = F3205DEF1C2593400020983E /* portal_template.html */; };
+		F3205DF41C259D5B0020983E /* PortalWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3205DF21C259D5B0020983E /* PortalWebViewController.m */; };
+		F3205DF81C259D940020983E /* PortalWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3205DF71C259D940020983E /* PortalWebViewController.xib */; };
 		F32A11151C1B7CAF0061C266 /* WKWebView+SynchronousEvaluateJavaScript.m in Sources */ = {isa = PBXBuildFile; fileRef = F32A11141C1B7CAF0061C266 /* WKWebView+SynchronousEvaluateJavaScript.m */; };
 		F334CFCC1BEE73420074734D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F334CFCB1BEE73420074734D /* main.m */; };
 		F334CFD61BEE73420074734D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F334CFD41BEE73420074734D /* LaunchScreen.storyboard */; };
@@ -25,14 +35,12 @@
 		F334D00E1BEE73FC0074734D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F334CFF71BEE73FC0074734D /* Assets.xcassets */; };
 		F334D00F1BEE73FC0074734D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F334CFF81BEE73FC0074734D /* AppDelegate.m */; };
 		F334D0111BEE73FC0074734D /* WikipediaHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F334CFFF1BEE73FC0074734D /* WikipediaHelper.m */; };
-		F33C82D61BF7D045005A0908 /* wikiview.css in Resources */ = {isa = PBXBuildFile; fileRef = F33C82D51BF7D045005A0908 /* wikiview.css */; };
 		F34684F01BFF5A4500C7C56D /* OpenShare+Alipay.m in Sources */ = {isa = PBXBuildFile; fileRef = F34684E41BFF5A4500C7C56D /* OpenShare+Alipay.m */; };
 		F34684F11BFF5A4500C7C56D /* OpenShare+QQ.m in Sources */ = {isa = PBXBuildFile; fileRef = F34684E61BFF5A4500C7C56D /* OpenShare+QQ.m */; };
 		F34684F21BFF5A4500C7C56D /* OpenShare+Renren.m in Sources */ = {isa = PBXBuildFile; fileRef = F34684E81BFF5A4500C7C56D /* OpenShare+Renren.m */; };
 		F34684F31BFF5A4500C7C56D /* OpenShare+Weibo.m in Sources */ = {isa = PBXBuildFile; fileRef = F34684EA1BFF5A4500C7C56D /* OpenShare+Weibo.m */; };
 		F34684F41BFF5A4500C7C56D /* OpenShare+Weixin.m in Sources */ = {isa = PBXBuildFile; fileRef = F34684EC1BFF5A4500C7C56D /* OpenShare+Weixin.m */; };
 		F34684F51BFF5A4500C7C56D /* OpenShare.m in Sources */ = {isa = PBXBuildFile; fileRef = F34684EE1BFF5A4500C7C56D /* OpenShare.m */; };
-		F34684F71C02176D00C7C56D /* cubic_spinner.gif in Resources */ = {isa = PBXBuildFile; fileRef = F34684F61C02176D00C7C56D /* cubic_spinner.gif */; };
 		F34DCA391C0BD38E00979CA7 /* CAPSPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = F34DCA381C0BD38E00979CA7 /* CAPSPageMenu.m */; };
 		F34DCA3D1C0BD4C700979CA7 /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F34DCA3C1C0BD4C700979CA7 /* CategoryViewController.m */; };
 		F36A907A1C22D7C2003C2F93 /* PortalTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = F36A90791C22D7C2003C2F93 /* PortalTypes.m */; };
@@ -60,12 +68,10 @@
 		F3BE13901BF270CF00CC5159 /* KnowTipTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3BE138E1BF270CF00CC5159 /* KnowTipTableViewController.m */; };
 		F3BE13941BF2711100CC5159 /* KnowTipTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3BE13931BF2711100CC5159 /* KnowTipTableViewController.xib */; };
 		F3C8AACA1C13C54C0080C138 /* PortalLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F3C8AAC91C13C54C0080C138 /* PortalLayout.m */; };
-		F3EF0B8B1C1028BF00B73DA7 /* wikiview-min.css in Resources */ = {isa = PBXBuildFile; fileRef = F3EF0B8A1C1028BF00B73DA7 /* wikiview-min.css */; };
 		F3EF0B941C10409500B73DA7 /* CategoryMembersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EF0B931C10409500B73DA7 /* CategoryMembersModel.m */; };
 		F3EF0B971C10CDBE00B73DA7 /* CMBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EF0B961C10CDBE00B73DA7 /* CMBaseTableViewController.m */; };
 		F3EF0B9B1C10CEB200B73DA7 /* PageTable.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EF0B991C10CEB200B73DA7 /* PageTable.m */; };
 		F3EF0BA21C10D9B600B73DA7 /* SubCategoryTable.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EF0BA11C10D9B600B73DA7 /* SubCategoryTable.m */; };
-		F3EF0BA51C10E28B00B73DA7 /* knight_spinner.gif in Resources */ = {isa = PBXBuildFile; fileRef = F3EF0BA41C10E28B00B73DA7 /* knight_spinner.gif */; };
 		F3EF0BD31C10ED0F00B73DA7 /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EF0BA91C10ED0F00B73DA7 /* MJRefreshAutoFooter.m */; };
 		F3EF0BD41C10ED0F00B73DA7 /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EF0BAB1C10ED0F00B73DA7 /* MJRefreshBackFooter.m */; };
 		F3EF0BD51C10ED0F00B73DA7 /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EF0BAD1C10ED0F00B73DA7 /* MJRefreshComponent.m */; };
@@ -93,7 +99,6 @@
 		F3F545C71C1D518700FF612E /* CategoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F545C61C1D518700FF612E /* CategoryManager.m */; };
 		F3F545CA1C1D524F00FF612E /* ImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F545C91C1D524F00FF612E /* ImageManager.m */; };
 		F3F545CE1C1D574A00FF612E /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F545CD1C1D574A00FF612E /* DataManager.m */; };
-		F3F545D11C1D783B00FF612E /* knight_spinner@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = F3F545D01C1D783B00FF612E /* knight_spinner@2x.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,6 +108,17 @@
 		F3152B411BF44B870048D69E /* WikiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WikiViewController.h; sourceTree = "<group>"; };
 		F3152B421BF44B870048D69E /* WikiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WikiViewController.m; sourceTree = "<group>"; };
 		F3152B461BF44BD00048D69E /* WikiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WikiViewController.xib; path = "A Song of Ice and Fire/Views/WikiViewController.xib"; sourceTree = SOURCE_ROOT; };
+		F3205DDE1C2591D40020983E /* wikiview-min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "wikiview-min.css"; sourceTree = "<group>"; };
+		F3205DDF1C2591D40020983E /* wikiview.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = wikiview.css; sourceTree = "<group>"; };
+		F3205DE11C2591D40020983E /* cubic_spinner.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = cubic_spinner.gif; sourceTree = "<group>"; };
+		F3205DE21C2591D40020983E /* knight_spinner.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = knight_spinner.gif; sourceTree = "<group>"; };
+		F3205DE31C2591D40020983E /* knight_spinner@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "knight_spinner@2x.gif"; sourceTree = "<group>"; };
+		F3205DE51C2591D40020983E /* jquery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.js; sourceTree = "<group>"; };
+		F3205DE61C2591D40020983E /* portal.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = portal.js; sourceTree = "<group>"; };
+		F3205DEF1C2593400020983E /* portal_template.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = portal_template.html; sourceTree = "<group>"; };
+		F3205DF11C259D5B0020983E /* PortalWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalWebViewController.h; sourceTree = "<group>"; };
+		F3205DF21C259D5B0020983E /* PortalWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalWebViewController.m; sourceTree = "<group>"; };
+		F3205DF71C259D940020983E /* PortalWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PortalWebViewController.xib; path = "A Song of Ice and Fire/Views/PortalWebViewController.xib"; sourceTree = SOURCE_ROOT; };
 		F32A11131C1B7CAF0061C266 /* WKWebView+SynchronousEvaluateJavaScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WKWebView+SynchronousEvaluateJavaScript.h"; sourceTree = "<group>"; };
 		F32A11141C1B7CAF0061C266 /* WKWebView+SynchronousEvaluateJavaScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+SynchronousEvaluateJavaScript.m"; sourceTree = "<group>"; };
 		F334CFC71BEE73420074734D /* 冰火中文维基.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "冰火中文维基.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,7 +145,6 @@
 		F334CFFE1BEE73FC0074734D /* WikipediaHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WikipediaHelper.h; sourceTree = "<group>"; };
 		F334CFFF1BEE73FC0074734D /* WikipediaHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WikipediaHelper.m; sourceTree = "<group>"; };
 		F334D0001BEE73FC0074734D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		F33C82D51BF7D045005A0908 /* wikiview.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = wikiview.css; sourceTree = "<group>"; };
 		F34684E31BFF5A4500C7C56D /* OpenShare+Alipay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OpenShare+Alipay.h"; sourceTree = "<group>"; };
 		F34684E41BFF5A4500C7C56D /* OpenShare+Alipay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OpenShare+Alipay.m"; sourceTree = "<group>"; };
 		F34684E51BFF5A4500C7C56D /* OpenShare+QQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OpenShare+QQ.h"; sourceTree = "<group>"; };
@@ -143,7 +158,6 @@
 		F34684ED1BFF5A4500C7C56D /* OpenShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenShare.h; sourceTree = "<group>"; };
 		F34684EE1BFF5A4500C7C56D /* OpenShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenShare.m; sourceTree = "<group>"; };
 		F34684EF1BFF5A4500C7C56D /* OpenShareHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenShareHeader.h; sourceTree = "<group>"; };
-		F34684F61C02176D00C7C56D /* cubic_spinner.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = cubic_spinner.gif; sourceTree = "<group>"; };
 		F34DCA371C0BD38E00979CA7 /* CAPSPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPSPageMenu.h; sourceTree = "<group>"; };
 		F34DCA381C0BD38E00979CA7 /* CAPSPageMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPSPageMenu.m; sourceTree = "<group>"; };
 		F34DCA3B1C0BD4C700979CA7 /* CategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryViewController.h; sourceTree = "<group>"; };
@@ -196,7 +210,6 @@
 		F3BE13931BF2711100CC5159 /* KnowTipTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KnowTipTableViewController.xib; path = "A Song of Ice and Fire/Views/KnowTipTableViewController.xib"; sourceTree = SOURCE_ROOT; };
 		F3C8AAC81C13C54C0080C138 /* PortalLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalLayout.h; sourceTree = "<group>"; };
 		F3C8AAC91C13C54C0080C138 /* PortalLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalLayout.m; sourceTree = "<group>"; };
-		F3EF0B8A1C1028BF00B73DA7 /* wikiview-min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "wikiview-min.css"; sourceTree = "<group>"; };
 		F3EF0B921C10409500B73DA7 /* CategoryMembersModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryMembersModel.h; sourceTree = "<group>"; };
 		F3EF0B931C10409500B73DA7 /* CategoryMembersModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryMembersModel.m; sourceTree = "<group>"; };
 		F3EF0B951C10CDBE00B73DA7 /* CMBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMBaseTableViewController.h; sourceTree = "<group>"; };
@@ -205,7 +218,6 @@
 		F3EF0B991C10CEB200B73DA7 /* PageTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageTable.m; sourceTree = "<group>"; };
 		F3EF0BA01C10D9B600B73DA7 /* SubCategoryTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubCategoryTable.h; sourceTree = "<group>"; };
 		F3EF0BA11C10D9B600B73DA7 /* SubCategoryTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubCategoryTable.m; sourceTree = "<group>"; };
-		F3EF0BA41C10E28B00B73DA7 /* knight_spinner.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = knight_spinner.gif; sourceTree = "<group>"; };
 		F3EF0BA81C10ED0F00B73DA7 /* MJRefreshAutoFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshAutoFooter.h; sourceTree = "<group>"; };
 		F3EF0BA91C10ED0F00B73DA7 /* MJRefreshAutoFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshAutoFooter.m; sourceTree = "<group>"; };
 		F3EF0BAA1C10ED0F00B73DA7 /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
@@ -260,7 +272,6 @@
 		F3F545C91C1D524F00FF612E /* ImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageManager.m; sourceTree = "<group>"; };
 		F3F545CC1C1D574A00FF612E /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		F3F545CD1C1D574A00FF612E /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
-		F3F545D01C1D783B00FF612E /* knight_spinner@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "knight_spinner@2x.gif"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -299,6 +310,51 @@
 				F3152B421BF44B870048D69E /* WikiViewController.m */,
 			);
 			name = WikiViewController;
+			sourceTree = "<group>";
+		};
+		F3205DDD1C2591D40020983E /* css */ = {
+			isa = PBXGroup;
+			children = (
+				F3205DDE1C2591D40020983E /* wikiview-min.css */,
+				F3205DDF1C2591D40020983E /* wikiview.css */,
+			);
+			path = css;
+			sourceTree = "<group>";
+		};
+		F3205DE01C2591D40020983E /* image */ = {
+			isa = PBXGroup;
+			children = (
+				F3205DE11C2591D40020983E /* cubic_spinner.gif */,
+				F3205DE21C2591D40020983E /* knight_spinner.gif */,
+				F3205DE31C2591D40020983E /* knight_spinner@2x.gif */,
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
+		F3205DE41C2591D40020983E /* js */ = {
+			isa = PBXGroup;
+			children = (
+				F3205DE51C2591D40020983E /* jquery.js */,
+				F3205DE61C2591D40020983E /* portal.js */,
+			);
+			path = js;
+			sourceTree = "<group>";
+		};
+		F3205DEE1C2593400020983E /* html */ = {
+			isa = PBXGroup;
+			children = (
+				F3205DEF1C2593400020983E /* portal_template.html */,
+			);
+			path = html;
+			sourceTree = "<group>";
+		};
+		F3205DF61C259D620020983E /* PortalWebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F3205DF11C259D5B0020983E /* PortalWebViewController.h */,
+				F3205DF21C259D5B0020983E /* PortalWebViewController.m */,
+			);
+			name = PortalWebViewController;
 			sourceTree = "<group>";
 		};
 		F334CFBE1BEE73420074734D = {
@@ -352,6 +408,7 @@
 				F334D0131BEE74330074734D /* MainController */,
 				F334D0121BEE74270074734D /* CarrouselController */,
 				F334D0141BEE743C0074734D /* PortalCollectionController */,
+				F3205DF61C259D620020983E /* PortalWebViewController */,
 				F34DCA3A1C0BD45300979CA7 /* CategoryController */,
 				F3BE13921BF270D600CC5159 /* KnowTipTableController */,
 				F334D0151BEE74480074734D /* SlideMenuController */,
@@ -393,6 +450,7 @@
 			children = (
 				F34685041C03544F00C7C56D /* MainView */,
 				F37B44861BEE88BF00764D92 /* PortalCollection */,
+				F3205DF71C259D940020983E /* PortalWebViewController.xib */,
 				F334CFF61BEE73FC0074734D /* SlideMenuViewController.xib */,
 				F3152B461BF44BD00048D69E /* WikiViewController.xib */,
 			);
@@ -480,11 +538,10 @@
 		F33C82D41BF7D045005A0908 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F34684F61C02176D00C7C56D /* cubic_spinner.gif */,
-				F3EF0BA41C10E28B00B73DA7 /* knight_spinner.gif */,
-				F3F545D01C1D783B00FF612E /* knight_spinner@2x.gif */,
-				F33C82D51BF7D045005A0908 /* wikiview.css */,
-				F3EF0B8A1C1028BF00B73DA7 /* wikiview-min.css */,
+				F3205DDD1C2591D40020983E /* css */,
+				F3205DE01C2591D40020983E /* image */,
+				F3205DE41C2591D40020983E /* js */,
+				F3205DEE1C2593400020983E /* html */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -860,19 +917,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3EF0BA51C10E28B00B73DA7 /* knight_spinner.gif in Resources */,
+				F3205DEC1C2591D40020983E /* jquery.js in Resources */,
+				F3205DE91C2591D40020983E /* cubic_spinner.gif in Resources */,
+				F3205DED1C2591D40020983E /* portal.js in Resources */,
 				F334CFD61BEE73420074734D /* LaunchScreen.storyboard in Resources */,
+				F3205DF01C2593400020983E /* portal_template.html in Resources */,
+				F3205DE81C2591D40020983E /* wikiview.css in Resources */,
 				F3EF0BE11C10ED0F00B73DA7 /* MJRefresh.bundle in Resources */,
+				F3205DEA1C2591D40020983E /* knight_spinner.gif in Resources */,
 				F334D00A1BEE73FC0074734D /* MainViewController.xib in Resources */,
-				F3F545D11C1D783B00FF612E /* knight_spinner@2x.gif in Resources */,
 				F3BE13941BF2711100CC5159 /* KnowTipTableViewController.xib in Resources */,
 				F3152B471BF44BD00048D69E /* WikiViewController.xib in Resources */,
 				F334D00D1BEE73FC0074734D /* SlideMenuViewController.xib in Resources */,
 				F37B44921BEE8AFD00764D92 /* PortalCollectionHeaderView.xib in Resources */,
+				F3205DF81C259D940020983E /* PortalWebViewController.xib in Resources */,
 				F334D00E1BEE73FC0074734D /* Assets.xcassets in Resources */,
-				F3EF0B8B1C1028BF00B73DA7 /* wikiview-min.css in Resources */,
-				F34684F71C02176D00C7C56D /* cubic_spinner.gif in Resources */,
-				F33C82D61BF7D045005A0908 /* wikiview.css in Resources */,
+				F3205DE71C2591D40020983E /* wikiview-min.css in Resources */,
+				F3205DEB1C2591D40020983E /* knight_spinner@2x.gif in Resources */,
 				F334D00B1BEE73FC0074734D /* PortalCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -960,6 +1021,7 @@
 				F34684F21BFF5A4500C7C56D /* OpenShare+Renren.m in Sources */,
 				F3BE13901BF270CF00CC5159 /* KnowTipTableViewController.m in Sources */,
 				F39290D81C0E9DE600A7BD2C /* Models.m in Sources */,
+				F3205DF41C259D5B0020983E /* PortalWebViewController.m in Sources */,
 				F3EF0BE31C10ED0F00B73DA7 /* UIScrollView+MJExtension.m in Sources */,
 				F34684F11BFF5A4500C7C56D /* OpenShare+QQ.m in Sources */,
 				F3F545BE1C1CAD1900FF612E /* EmptyDataSetDelegate.m in Sources */,

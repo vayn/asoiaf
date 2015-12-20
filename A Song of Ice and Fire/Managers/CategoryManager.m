@@ -72,7 +72,7 @@
 - (void)getCategoryMember:(NSString *)categoryLink
                memberType:(CategoryMemberType)memberType
                parameters:(nullable NSDictionary *)parameters
-          completionBlock:(void (^)(CategoryMembersModel *))completionBlock
+          completionBlock:(void (^)(CategoryMembersModel *models))completionBlock
 {
     NSString *Api = nil;
 

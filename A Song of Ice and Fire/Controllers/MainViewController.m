@@ -67,6 +67,14 @@ static CGFloat const kOverlayAlphaEnd = 0.7;
     return self;
 }
 
+- (void)dealloc
+{
+    // Remove the observers explicitly
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - View Manager
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -79,9 +87,9 @@ static CGFloat const kOverlayAlphaEnd = 0.7;
 
     [self setupGestures];
 
-    // Test if the network is disconnected
+    // Monitoring the network
     [[NSNotificationCenter defaultCenter]
-     addObserverForName:@"ERR_INTERNET_DISCONNECTED"
+     addObserverForName:ERR_INTERNET_DISCONNECTED
                  object:nil
                  queue:nil
             usingBlock:^(NSNotification * _Nonnull note) {
@@ -94,6 +102,9 @@ static CGFloat const kOverlayAlphaEnd = 0.7;
                 [alert addAction:defaultAction];
                 [self presentViewController:alert animated:YES completion:nil];
     }];
+
+    // Fix scrollToTop
+    [self disableScrollsToTopPropertyOnAllSubviewsOf:self.scrollView];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -379,6 +390,17 @@ static CGFloat const kOverlayAlphaEnd = 0.7;
             !CGRectContainsPoint(self.slideMenuViewController.view.frame, location)) {
             [self moveMenuToOriginalPosition];
         }
+    }
+}
+
+#pragma mark - Helper
+
+- (void) disableScrollsToTopPropertyOnAllSubviewsOf:(UIView *)view {
+    for (UIView *subview in view.subviews) {
+        if ([subview isKindOfClass:[UIScrollView class]]) {
+            ((UIScrollView *)subview).scrollsToTop = NO;
+        }
+        [self disableScrollsToTopPropertyOnAllSubviewsOf:subview];
     }
 }
 

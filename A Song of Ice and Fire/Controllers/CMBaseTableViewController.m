@@ -41,6 +41,13 @@ static NSString * const kCellIdentifier = @"Cell";
     _previousContinue = [@[] mutableCopy];
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - View Manager
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
