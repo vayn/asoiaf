@@ -14,8 +14,6 @@
 #import "PortalCell.h"
 #import "PortalWebViewController.h"
 
-#import "CategoryViewController.h"
-
 #import "DataManager.h"
 #import "Models.h"
 
@@ -24,7 +22,7 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 
 @interface PortalCollectionViewController ()
 
-@property (nonatomic, strong) NSArray<CategoryMemberModel *> *portals;
+@property (nonatomic, strong) NSArray<PortalModel *> *portals;
 @property (nonatomic, getter=isIntialized) BOOL intialized;
 
 @end
@@ -49,60 +47,54 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
 
 - (void)setupPortals
 {
-    NSArray *rawPortals = @[@{@"pageid": @46720,
-                              @"link": @"Portal:历史",
-                              @"title": @"七国历史",
-                              @"portrait": [UIImage imageNamed:@"portal_portrait_history"],
-                              },
-                            @{@"pageid": @46722,
-                              @"link": @"Portal:文化",
-                              @"title": @"文化风俗",
-                              @"portrait": [UIImage imageNamed:@"portal_portrait_culture"],
-                              },
-                            @{@"pageid": @46721,
-                              @"link": @"Portal:地理",
-                              @"title": @"地理信息",
-                              @"portrait": [UIImage imageNamed:@"portal_portrait_geo"],
-                              },
-                            @{@"pageid": @46732,
-                              @"link": @"Portal:电视剧",
-                              @"title": @"剧集相关",
-                              @"portrait": [UIImage imageNamed:@"portal_portrait_tv"],
-                              },
-                            @{@"pageid": @2780,
-                              @"link": @"理论推测",
-                              @"title": @"理论推测",
-                              @"portrait": [UIImage imageNamed:@"portal_portrait_inference"],
-                              },
-                            @{@"pageid": @46710,
-                              @"link": @"Portal:书",
-                              @"title": @"分卷介绍",
-                              @"portrait": [UIImage imageNamed:@"portal_portrait_book"],
-                              },
-                            @{@"pageid": @46724,
-                              @"link": @"Portal:章节",
-                              @"title": @"章节梗概",
-                              @"portrait": [UIImage imageNamed:@"portal_portrait_chapter"],
-                              },
-                            @{@"pageid": @46719,
-                              @"link": @"Portal:人物",
-                              @"title": @"人物介绍",
-                              @"portrait": [UIImage imageNamed:@"portal_portrait_character"],
-                              },
-                            @{@"pageid": @46711,
-                              @"link": @"Portal:家族",
-                              @"title": @"各大家族",
-                              @"portrait": [UIImage imageNamed:@"portal_portrait_house"],
-                              }];
-    NSMutableArray *workingArray = [@[] mutableCopy];
+    NSArray *rawPortals = @[[[PortalModel alloc] initWithTitle:@"七国历史"
+                                                          link:@"Portal:历史"
+                                                        pageId:@46720
+                                               backgroundImage:[UIImage imageNamed:@"portal_portrait_history"]
+                                                    portalType:PortalHistoryType],
+                            [[PortalModel alloc] initWithTitle:@"文化风俗"
+                                                          link:@"Portal:文化"
+                                                        pageId:@46722
+                                               backgroundImage:[UIImage imageNamed:@"portal_portrait_culture"]
+                                                    portalType:PortalCultureType],
+                            [[PortalModel alloc] initWithTitle:@"地理信息"
+                                                          link:@"Portal:地理"
+                                                        pageId:@46721
+                                               backgroundImage:[UIImage imageNamed:@"portal_portrait_geo"]
+                                                    portalType:PortalGeoType],
+                            [[PortalModel alloc] initWithTitle:@"剧集相关"
+                                                          link:@"Portal:电视剧"
+                                                        pageId:@46732
+                                               backgroundImage:[UIImage imageNamed:@"portal_portrait_tv"]
+                                                    portalType:PortalTVType],
+                            [[PortalModel alloc] initWithTitle:@"理论推测"
+                                                          link:@"理论推测"
+                                                        pageId:@2780
+                                               backgroundImage:[UIImage imageNamed:@"portal_portrait_inference"]
+                                                    portalType:PortalInferenceType],
+                            [[PortalModel alloc] initWithTitle:@"分卷介绍"
+                                                          link:@"Portal:书"
+                                                        pageId:@46710
+                                               backgroundImage:[UIImage imageNamed:@"portal_portrait_book"]
+                                                    portalType:PortalBookType],
+                            [[PortalModel alloc] initWithTitle:@"章节梗概"
+                                                          link:@"Portal:章节"
+                                                        pageId:@46724
+                                               backgroundImage:[UIImage imageNamed:@"portal_portrait_chapter"]
+                                                    portalType:PortalChapterType],
+                            [[PortalModel alloc] initWithTitle:@"人物介绍"
+                                                          link:@"Portal:人物"
+                                                        pageId:@46719
+                                               backgroundImage:[UIImage imageNamed:@"portal_portrait_character"]
+                                                    portalType:PortalCharacterType],
+                            [[PortalModel alloc] initWithTitle:@"各大家族"
+                                                          link:@"Portal:家族"
+                                                        pageId:@46711
+                                               backgroundImage:[UIImage imageNamed:@"portal_portrait_house"]
+                                                    portalType:PortalHouseType]
+                            ];
 
-    for (NSDictionary *portal in rawPortals) {
-        CategoryMemberModel *cm = [[CategoryMemberModel alloc] initWithTitle:portal[@"title"]
-                                                                        link:portal[@"link"]
-                                                                      pageId:portal[@"pageid"]];
-        cm.backgroundImage = portal[@"portrait"];
-        [workingArray addObject:cm];
-    }
+    NSMutableArray *workingArray = [rawPortals mutableCopy];
 
     /* *
      *
@@ -175,22 +167,13 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
     // Configure the cell
     cell.titleLabel.text = portal.title;
 
-    if (portal.backgroundImage) {
-        cell.portalImageView.image = portal.backgroundImage;
-    } else {
-        [cell.loadingIndicator startAnimating];
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.618;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionFade;
+    [cell.layer addAnimation:transition forKey:nil];
 
-        CATransition *transition = [CATransition animation];
-        transition.duration = 1.0;
-        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-        transition.type = kCATransitionFade;
-        [cell.layer addAnimation:transition forKey:nil];
-
-        cell.portalImageView.image = portal.backgroundImage;
-
-        [cell.loadingIndicator stopAnimating];
-        [cell.loadingIndicator removeFromSuperview];
-    }
+    cell.portalImageView.image = portal.backgroundImage;
 
     // Add rounded corners and shadow
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:cell.contentView.bounds
@@ -235,8 +218,8 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
     NSIndexPath *centralIndexPath = [self centralIndexPath];
 
     if (centralIndexPath && (centralIndexPath == indexPath)) {
-        CategoryMemberModel *category = self.portals[indexPath.row];
-        PortalWebViewController *webVC = [[PortalWebViewController alloc] initWithCategory:category];
+        PortalModel *portal = self.portals[indexPath.row];
+        PortalWebViewController *webVC = [[PortalWebViewController alloc] initWithPortal:portal];
 
         [self.navigationController pushViewController:webVC animated:YES];
     } else {

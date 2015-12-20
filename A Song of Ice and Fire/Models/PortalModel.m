@@ -10,4 +10,17 @@
 
 @implementation PortalModel
 
+- (instancetype)initWithTitle:(NSString *)aTitle
+                         link:(NSString *)aLink
+                       pageId:(NSNumber *)aPageId
+              backgroundImage:(UIImage *)aImage
+                   portalType:(PortalType)aPortalType
+{
+    self = [super initWithTitle:aTitle link:aLink pageId:aPageId backgroundImage:aImage];
+    if (self) {
+        _portalType = aPortalType;
+    }
+    return self;
+}
+
 @end

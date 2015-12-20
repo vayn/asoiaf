@@ -20,5 +20,6 @@
 - (instancetype)initWithTitle:(NSString *)aTitle;
 - (instancetype)initWithTitle:(NSString *)aTitle pageId:(NSNumber *)aPageId;
 - (instancetype)initWithTitle:(NSString *)aTitle link:(NSString *)aLink pageId:(NSNumber *)aPageId;
+- (instancetype)initWithTitle:(NSString *)aTitle link:(NSString *)aLink pageId:(NSNumber *)aPageId backgroundImage:(UIImage *)backgroundImage;
 
 @end

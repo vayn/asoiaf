@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableArray *nextContinue;
 
 @property (nonatomic, strong) NSArray<CategoryMemberModel *> *members;
-@property (nonatomic, assign) BOOL isHeaderRefreshing;
+@property (nonatomic, getter=isHeaderRefreshing) BOOL headerRefreshing;
 
 @property (nonatomic, strong) CategoryViewController *parentVC;
 

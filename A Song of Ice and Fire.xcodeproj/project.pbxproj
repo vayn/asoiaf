@@ -68,6 +68,7 @@
 		F3BE13901BF270CF00CC5159 /* KnowTipTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3BE138E1BF270CF00CC5159 /* KnowTipTableViewController.m */; };
 		F3BE13941BF2711100CC5159 /* KnowTipTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3BE13931BF2711100CC5159 /* KnowTipTableViewController.xib */; };
 		F3C8AACA1C13C54C0080C138 /* PortalLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F3C8AAC91C13C54C0080C138 /* PortalLayout.m */; };
+		F3E5C9D31C26F79D004C42ED /* PortalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E5C9D21C26F79D004C42ED /* PortalModel.m */; };
 		F3EF0B941C10409500B73DA7 /* CategoryMembersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EF0B931C10409500B73DA7 /* CategoryMembersModel.m */; };
 		F3EF0B971C10CDBE00B73DA7 /* CMBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EF0B961C10CDBE00B73DA7 /* CMBaseTableViewController.m */; };
 		F3EF0B9B1C10CEB200B73DA7 /* PageTable.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EF0B991C10CEB200B73DA7 /* PageTable.m */; };
@@ -210,6 +211,8 @@
 		F3BE13931BF2711100CC5159 /* KnowTipTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KnowTipTableViewController.xib; path = "A Song of Ice and Fire/Views/KnowTipTableViewController.xib"; sourceTree = SOURCE_ROOT; };
 		F3C8AAC81C13C54C0080C138 /* PortalLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalLayout.h; sourceTree = "<group>"; };
 		F3C8AAC91C13C54C0080C138 /* PortalLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalLayout.m; sourceTree = "<group>"; };
+		F3E5C9D11C26F79D004C42ED /* PortalModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalModel.h; sourceTree = "<group>"; };
+		F3E5C9D21C26F79D004C42ED /* PortalModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalModel.m; sourceTree = "<group>"; };
 		F3EF0B921C10409500B73DA7 /* CategoryMembersModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryMembersModel.h; sourceTree = "<group>"; };
 		F3EF0B931C10409500B73DA7 /* CategoryMembersModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryMembersModel.m; sourceTree = "<group>"; };
 		F3EF0B951C10CDBE00B73DA7 /* CMBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMBaseTableViewController.h; sourceTree = "<group>"; };
@@ -409,9 +412,9 @@
 				F334D0121BEE74270074734D /* CarrouselController */,
 				F334D0141BEE743C0074734D /* PortalCollectionController */,
 				F3205DF61C259D620020983E /* PortalWebViewController */,
-				F34DCA3A1C0BD45300979CA7 /* CategoryController */,
 				F3BE13921BF270D600CC5159 /* KnowTipTableController */,
 				F334D0151BEE74480074734D /* SlideMenuController */,
+				F34DCA3A1C0BD45300979CA7 /* CategoryController */,
 				F3152B481BF44BEF0048D69E /* WikiViewController */,
 			);
 			path = Controllers;
@@ -430,6 +433,8 @@
 				F39290D41C0E887900A7BD2C /* CategoryMemberModel.m */,
 				F3EF0B921C10409500B73DA7 /* CategoryMembersModel.h */,
 				F3EF0B931C10409500B73DA7 /* CategoryMembersModel.m */,
+				F3E5C9D11C26F79D004C42ED /* PortalModel.h */,
+				F3E5C9D21C26F79D004C42ED /* PortalModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1042,6 +1047,7 @@
 				F3BD1DF91BF8E71600B6DA69 /* GradientView.m in Sources */,
 				F3EF0BDB1C10ED0F00B73DA7 /* MJRefreshBackGifFooter.m in Sources */,
 				F3EF0BD31C10ED0F00B73DA7 /* MJRefreshAutoFooter.m in Sources */,
+				F3E5C9D31C26F79D004C42ED /* PortalModel.m in Sources */,
 				F334D0051BEE73FC0074734D /* PortalCollectionViewController.m in Sources */,
 				F3EF0BD51C10ED0F00B73DA7 /* MJRefreshComponent.m in Sources */,
 				F3EF0BDD1C10ED0F00B73DA7 /* MJRefreshBackStateFooter.m in Sources */,

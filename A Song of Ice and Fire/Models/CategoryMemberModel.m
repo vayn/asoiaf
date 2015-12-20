@@ -20,8 +20,13 @@
     return [self initWithTitle:aTitle link:nil pageId:aPageId];
 }
 
-// Designated Intializer
 - (instancetype)initWithTitle:(NSString *)aTitle link:(NSString *)aLink pageId:(NSNumber *)aPageId
+{
+    return [self initWithTitle:aTitle link:aLink pageId:aPageId backgroundImage:nil];
+}
+
+// Designated Intializer
+- (instancetype)initWithTitle:(NSString *)aTitle link:(NSString *)aLink pageId:(NSNumber *)aPageId backgroundImage:(UIImage *)aImage
 {
     self = [super init];
 
@@ -40,6 +45,7 @@
         }
 
         _pageId = aPageId;
+        _backgroundImage = aImage;
     }
 
     return self;

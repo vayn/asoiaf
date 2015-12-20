@@ -133,7 +133,7 @@ static NSString * const kCellIdentifier = @"Cell";
      * 下拉加载上一页
      */
     MJRefreshSpinnerHeader *header = [MJRefreshSpinnerHeader headerWithRefreshingBlock:^{
-        self.isHeaderRefreshing = YES;
+        self.headerRefreshing = YES;
 
         NSDictionary *parameters;
 
@@ -182,7 +182,7 @@ static NSString * const kCellIdentifier = @"Cell";
      * 上拉加载下一页
      */
      MJRefreshAutoSpinnerFooter *footer = [MJRefreshAutoSpinnerFooter footerWithRefreshingBlock:^{
-        self.isHeaderRefreshing = NO;
+        self.headerRefreshing = NO;
 
         if (self.nextContinue.count > 0) {
             NSString *continueString = [self.nextContinue lastObject];

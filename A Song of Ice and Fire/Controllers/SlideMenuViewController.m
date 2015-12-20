@@ -7,10 +7,12 @@
 //
 
 #import "SlideMenuViewController.h"
-#import "DataManager.h"
-#import "PortalTypes.h"
 #import "CategoryViewController.h"
 #import "WikiViewController.h"
+
+#import "PortalTypes.h"
+#import "DataManager.h"
+#import "Models.h"
 
 @interface SlideMenuViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
@@ -21,11 +23,13 @@
 @property (nonatomic, strong) NSString *randomTitle;
 
 @property (nonatomic, strong) NSMutableArray<CategoryMemberModel *> *CMembers;
-@property (nonatomic, strong) NSMutableArray<NSDictionary *> *rawCMembers;
+@property (nonatomic, strong) NSArray<NSDictionary *> *rawCMembers;
 
 @end
 
 @implementation SlideMenuViewController
+
+#pragma mark - Initializer
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,6 +39,67 @@
     }
     return self;
 }
+
+- (void)setupCMembers
+{
+    _rawCMembers = @[@{@"pageid": @5480,
+                       @"link": @"Category:人物",
+                       @"title": @"人物介绍",
+                       @"type": [NSNumber numberWithInteger:PortalCharacterType],
+                       },
+                     @{@"pageid": @46711,
+                       @"link": @"Category:贵族家族",
+                       @"title": @"各大家族",
+                       @"type": [NSNumber numberWithInteger:PortalHouseType],
+                       },
+                     @{@"pageid": @5481,
+                       @"link": @"Category:历史",
+                       @"title": @"七国历史",
+                       @"type": [NSNumber numberWithInteger:PortalHistoryType],
+                       },
+                     @{@"pageid": @5483,
+                       @"link": @"Category:文化",
+                       @"title": @"文化风俗",
+                       @"type": [NSNumber numberWithInteger:PortalCultureType],
+                       },
+                     @{@"pageid": @5482,
+                       @"link": @"Category:维斯特洛地点",
+                       @"title": @"地理信息",
+                       @"type": [NSNumber numberWithInteger:PortalGeoType],
+                       },
+                     @{@"pageid": @5484,
+                       @"link": @"Category:剧集",
+                       @"title": @"剧集相关",
+                       @"type": [NSNumber numberWithInteger:PortalTVType],
+                       },
+                     @{@"pageid": @2780,
+                       @"link": @"Category:理论推测",
+                       @"title": @"理论推测",
+                       @"type": [NSNumber numberWithInteger:PortalInferenceType],
+                       },
+                     @{@"pageid": @303,
+                       @"link": @"Category:书籍",
+                       @"title": @"分卷介绍",
+                       @"type": [NSNumber numberWithInteger:PortalBookType],
+                       },
+                     @{@"pageid": @46724,
+                       @"link": @"Category:冰与火之歌章节",
+                       @"title": @"章节梗概",
+                       @"type": [NSNumber numberWithInteger:PortalChapterType],
+                       }
+                     ];
+
+    _CMembers = [@[] mutableCopy];
+
+    for (NSDictionary *portal in _rawCMembers) {
+        CategoryMemberModel *cm = [[CategoryMemberModel alloc] initWithTitle:portal[@"title"]
+                                                                        link:portal[@"link"]
+                                                                      pageId:portal[@"pageid"]];
+        [_CMembers addObject:cm];
+    }
+}
+
+#pragma mark - View Manager
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -144,66 +209,6 @@
             wikiVC.title = title;
             [self.navigationController pushViewController:wikiVC animated:YES];
         }];
-    }
-}
-
-#pragma mark - Initializer
-
-- (void)setupCMembers
-{
-    NSArray *rawCMembers = @[@{@"pageid": @5480,
-                              @"link": @"Category:人物",
-                              @"title": @"人物介绍",
-                              @"type": [NSNumber numberWithInteger:PortalCharacterType],
-                              },
-                            @{@"pageid": @46711,
-                              @"link": @"Category:贵族家族",
-                              @"title": @"各大家族",
-                              @"type": [NSNumber numberWithInteger:PortalHouseType],
-                              },
-                            @{@"pageid": @5481,
-                              @"link": @"Category:历史",
-                              @"title": @"七国历史",
-                              @"type": [NSNumber numberWithInteger:PortalHistoryType],
-                              },
-                            @{@"pageid": @5483,
-                              @"link": @"Category:文化",
-                              @"title": @"文化风俗",
-                              @"type": [NSNumber numberWithInteger:PortalCultureType],
-                              },
-                            @{@"pageid": @5482,
-                              @"link": @"Category:维斯特洛地点",
-                              @"title": @"地理信息",
-                              @"type": [NSNumber numberWithInteger:PortalGeoType],
-                              },
-                            @{@"pageid": @5484,
-                              @"link": @"Category:剧集",
-                              @"title": @"剧集相关",
-                              @"type": [NSNumber numberWithInteger:PortalTVType],
-                              },
-                            @{@"pageid": @2780,
-                              @"link": @"Category:理论推测",
-                              @"title": @"理论推测",
-                              @"type": [NSNumber numberWithInteger:PortalInferenceType],
-                              },
-                            @{@"pageid": @303,
-                              @"link": @"Category:书籍",
-                              @"title": @"分卷介绍",
-                              @"type": [NSNumber numberWithInteger:PortalBookType],
-                              },
-                            @{@"pageid": @46724,
-                              @"link": @"Category:冰与火之歌章节",
-                              @"title": @"章节梗概",
-                              @"type": [NSNumber numberWithInteger:PortalChapterType],
-                              }];
-
-    _CMembers = [@[] mutableCopy];
-
-    for (NSDictionary *portal in rawCMembers) {
-        CategoryMemberModel *cm = [[CategoryMemberModel alloc] initWithTitle:portal[@"title"]
-                                                                        link:portal[@"link"]
-                                                                      pageId:portal[@"pageid"]];
-        [_CMembers addObject:cm];
     }
 }
 

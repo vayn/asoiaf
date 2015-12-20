@@ -32,11 +32,11 @@
 
 @implementation PortalWebViewController
 
-- (instancetype)initWithCategory:(CategoryMemberModel *)category
+- (instancetype)initWithPortal:(PortalModel *)portal;
 {
     self = [super init];
     if (self) {
-        _category = category;
+        _portal = portal;
         _cubeSpinner = [Spinner cubeSpinner];
     }
     return self;
@@ -111,9 +111,7 @@
                                        options:NSLiteralSearch
                                          range:NSMakeRange(0, portalTemplate.length)];
 
-    NSString *link = self.category.link;
-
-    [[MainManager sharedManager] getWikiEntry:link completionBlock:^(NSString *wikiEntry) {
+    [[MainManager sharedManager] getWikiEntry:self.portal.link completionBlock:^(NSString *wikiEntry) {
         NSString *formattedWikiEntry = [self formatHtml:wikiEntry];
 
         [portalTemplate replaceOccurrencesOfString:@"[[[content]]]"

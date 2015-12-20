@@ -11,6 +11,7 @@
 #import "KnowTipModel.h"
 #import "CategoryMemberModel.h"
 #import "CategoryMembersModel.h"
+#import "PortalModel.h"
 
 @interface Models : NSObject
 
