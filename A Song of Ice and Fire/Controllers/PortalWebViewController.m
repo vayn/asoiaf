@@ -121,9 +121,11 @@
                                            options:NSLiteralSearch
                                              range:NSMakeRange(0, portalTemplate.length)];
 
-        [self.cubeSpinner stopAnimating];
-        [self.cubeSpinner setHidden:YES];
-        [self.cubeSpinner removeFromSuperview];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.cubeSpinner stopAnimating];
+            [self.cubeSpinner setHidden:YES];
+            [self.cubeSpinner removeFromSuperview];
+        });
 
         [self.webView loadHTMLString:portalTemplate baseURL:[NSURL fileURLWithPath:cssPath]];
         [self.view addSubview:self.webView];
