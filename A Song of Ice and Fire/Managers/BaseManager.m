@@ -24,6 +24,8 @@
 
     if (self) {
         _manager = [AFHTTPSessionManager manager];
+        _manager.requestSerializer.timeoutInterval = INTERNET_TIMEOUT;
+        [_manager.requestSerializer setCachePolicy:NSURLRequestReturnCacheDataElseLoad];
 
         [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
             //NSLog(@"Reachability: %@", AFStringFromNetworkReachabilityStatus(status));

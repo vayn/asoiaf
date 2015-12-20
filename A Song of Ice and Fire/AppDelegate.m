@@ -43,6 +43,14 @@
 
     [startView configYFStartView];
 
+    // Create a 4MB in-memory, 32MB disk cache
+    NSURLCache *cache = [[NSURLCache alloc] initWithMemoryCapacity:4*1024*1024
+                                                      diskCapacity:32*1024*1024
+                                                          diskPath:@"app_cache"];
+
+    // Set the shared cache to our new instance
+    [NSURLCache setSharedURLCache:cache];
+
     return YES;
 }
 
@@ -76,6 +84,11 @@
     } else {
         return NO;
     }
+}
+
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
+{
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
 }
 
 @end
