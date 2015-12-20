@@ -111,9 +111,9 @@
                                        options:NSLiteralSearch
                                          range:NSMakeRange(0, portalTemplate.length)];
 
-    NSString *link = [self.category.link stringByReplacingOccurrencesOfString:@"Category" withString:@"Portal"];
+    NSString *link = self.category.link;
 
-    [[MainManager sharedManager]getWikiEntry:link completionBlock:^(NSString *wikiEntry) {
+    [[MainManager sharedManager] getWikiEntry:link completionBlock:^(NSString *wikiEntry) {
         NSString *formattedWikiEntry = [self formatHtml:wikiEntry];
 
         [portalTemplate replaceOccurrencesOfString:@"[[[content]]]"

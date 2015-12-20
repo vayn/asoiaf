@@ -7,7 +7,9 @@
 //
 
 #import "WikipediaHelper.h"
-#import "AFNetworking.h"
+#import "DataManager.h"
+
+/* Pods */
 #import "IGHTMLQuery.h"
 
 @interface WikipediaHelper ()
