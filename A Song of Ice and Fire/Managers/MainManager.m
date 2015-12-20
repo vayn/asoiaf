@@ -87,7 +87,8 @@
 - (void)getRandomTitle:(void (^)(NSString *title))completionBlock
 {
     NSString *Api = [BaseManager getAbsoluteUrl:@"api.php?action=query&list=random&rnlimit=1&format=json"];
-
+    Api = [Api stringByAppendingString:[NSString stringWithFormat:@"&%f", CFAbsoluteTimeGetCurrent()]];
+    
     [self.manager GET:Api parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSArray *blacklist = @[@"File:", @"Category:", @"Talk:", @"User:", @"MediaWiki:", @"Template:"];
         BOOL isOnBlackList = NO;

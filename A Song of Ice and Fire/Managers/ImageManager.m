@@ -61,6 +61,7 @@
 {
     NSString *Api = [BaseManager getAbsoluteUrl:NSStringMultiline(api.php?action=query&generator=random&grnnamespace=6
                                                                   &prop=imageinfo&iiprop=url&format=json&rawcontinue)];
+    Api = [Api stringByAppendingString:[NSString stringWithFormat:@"&%f", CFAbsoluteTimeGetCurrent()]];
 
     [self.manager GET:Api parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSArray *pages = [[[responseObject objectForKey:@"query"] objectForKey:@"pages"] allValues];
