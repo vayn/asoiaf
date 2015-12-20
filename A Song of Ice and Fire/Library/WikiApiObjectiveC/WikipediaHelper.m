@@ -79,8 +79,12 @@
     formatedHtmlSrc = [self cleanHTMLPage:formatedHtmlSrc];
 
     // Wrap html in DIV
-    formatedHtmlSrc = [NSString stringWithFormat:
-    @"<div id='wiki-outer-body'><div id='wiki-body' class='container'><div id='content'>%@</div></div></div>", formatedHtmlSrc];
+    formatedHtmlSrc = [NSString stringWithFormat:NSStringMultiline(
+                        <div id="wiki-outer-body" style="margin-top:20px">
+                           <div id="wiki-body" class="container">
+                               <div id="content">%@</div>
+                           </div>
+                       </div>), formatedHtmlSrc];
 
     // Add CSS style
     formatedHtmlSrc = [self.wikicss stringByAppendingString:formatedHtmlSrc];
@@ -136,7 +140,8 @@
 {
     
     // Otherwise images have an incorrect url
-    NSString *formatedHtmlSrc = [htmlSrc stringByReplacingOccurrencesOfString:@"//upload.wikimedia.org" withString:@"http://upload.wikimedia.org"];
+    NSString *formatedHtmlSrc = [htmlSrc stringByReplacingOccurrencesOfString:@"//upload.wikimedia.org"
+                                                                   withString:@"http://upload.wikimedia.org"];
     
     if([htmlSrc isEqualToString:@""])
         return htmlSrc;
