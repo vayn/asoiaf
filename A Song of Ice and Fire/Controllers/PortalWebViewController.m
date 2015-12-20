@@ -14,10 +14,13 @@
 
 #import "DataManager.h"
 #import "Spinner.h"
+
+/* Custom Category */
 #import "UINavigationController+TransparentNavigationBar.h"
+#import "WKWebView+SynchronousEvaluateJavaScript.h"
 
 /* Pods */
-#import "IGHTMLQuery.h"
+#import "JTSImageViewController.h"
 
 @interface PortalWebViewController () <WKNavigationDelegate>
 
@@ -53,6 +56,7 @@
 
     [self setupWebView];
     [self setupStatusBar];
+    [self setupGestures];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -201,6 +205,40 @@ decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 - (void)homeButtonPressed:(id)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Setup Gestures
+
+- (void)setupGestures
+{
+    UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+    singleTap.cancelsTouchesInView = NO;
+
+    [self.webView addGestureRecognizer:singleTap];
+}
+
+-(void)handleSingleTap:(UITapGestureRecognizer *)sender
+{
+    CGPoint pt = [sender locationInView:self.webView];
+    NSString *imgSrcScript = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).src", pt.x, pt.y];
+    NSString *imageSource = [self.webView stringByEvaluatingJavaScriptFromString:imgSrcScript];
+    if (imageSource.length > 0) {
+        // Create image info
+        JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
+        imageInfo.imageURL = [NSURL URLWithString:imageSource];
+
+        imageInfo.referenceRect = self.webView.frame;
+        imageInfo.referenceView = self.webView.superview;
+
+        // Setup view controller
+        JTSImageViewController *imageViewer = [[JTSImageViewController alloc]
+                                               initWithImageInfo:imageInfo
+                                               mode:JTSImageViewControllerMode_Image
+                                               backgroundStyle:JTSImageViewControllerBackgroundOption_Scaled];
+
+        // Present the view controller.
+        [imageViewer showFromViewController:self transition:JTSImageViewControllerTransition_FromOriginalPosition];
+    }
 }
 
 #pragma mark - Helper
