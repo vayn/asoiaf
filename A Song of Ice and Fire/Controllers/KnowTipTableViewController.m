@@ -18,7 +18,6 @@
 @interface KnowTipTableViewController ()
 
 @property (nonatomic, strong) NSMutableArray *tips;
-@property (nonatomic, strong) NSMutableDictionary *wikiVCDict;
 
 @end
 
@@ -29,8 +28,7 @@
     self = [super init];
     if (self) {
         _tips = [@[] mutableCopy];
-        _wikiVCDict = [@{} mutableCopy];
-        
+
         [[MainManager sharedManager] getKnowTip:^(id responseObject) {
             NSString *bigTipString = [(NSArray *) responseObject randomObject];
             NSString *pattern = @"^\\*(.*?)……（\\[{2}(.*?)\\|";
@@ -131,14 +129,8 @@
 {
     KnowTipModel *tipModel = self.tips[indexPath.row];
 
-    WikiViewController *wikiVC = [self.wikiVCDict objectForKey:tipModel.title];
-
-    if (!wikiVC) {
-        wikiVC = [[WikiViewController alloc] init];
-        wikiVC.title = tipModel.title;
-
-        [self.wikiVCDict setObject:wikiVC forKey:tipModel.title];
-    }
+    WikiViewController *wikiVC = [[WikiViewController alloc] init];
+    wikiVC.title = tipModel.title;
 
     [self.navigationController pushViewController:wikiVC animated:YES];
 }
