@@ -9,12 +9,17 @@
 #import <WebKit/WebKit.h>
 
 #import "PortalWebViewController.h"
+#import "WikiViewController.h"
 #import "CategoryMemberModel.h"
+
 #import "DataManager.h"
 #import "Spinner.h"
 #import "UINavigationController+TransparentNavigationBar.h"
 
-@interface PortalWebViewController ()
+/* Pods */
+#import "IGHTMLQuery.h"
+
+@interface PortalWebViewController () <WKNavigationDelegate>
 
 @property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, strong) Spinner *cubeSpinner;
@@ -34,8 +39,13 @@
     return self;
 }
 
+#pragma mark - View Manager
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    // 避免进入其他页面再返回时 self.webView.scrollView 自动调整 contentInset 而出现难看的空白
+    self.automaticallyAdjustsScrollViewInsets = NO;
 
     self.cubeSpinner.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2);
     [self.view addSubview:self.cubeSpinner];
@@ -69,7 +79,9 @@
 - (void)setupWebView
 {
     self.webView = [[WKWebView alloc] initWithFrame:self.view.frame];
-    //self.webView.scrollView.delegate = self;
+    self.webView.navigationDelegate = self;
+    self.webView.alpha = 0.0;
+
     self.webView.scrollView.bounces = NO;
     [self.webView.scrollView addObserver:self
                               forKeyPath:@"contentOffset"
@@ -98,8 +110,10 @@
     NSString *link = [self.category.link stringByReplacingOccurrencesOfString:@"Category" withString:@"Portal"];
 
     [[MainManager sharedManager]getWikiEntry:link completionBlock:^(NSString *wikiEntry) {
+        NSString *formattedWikiEntry = [self formatHtml:wikiEntry];
+
         [portalTemplate replaceOccurrencesOfString:@"[[[content]]]"
-                                        withString:wikiEntry
+                                        withString:formattedWikiEntry
                                            options:NSLiteralSearch
                                              range:NSMakeRange(0, portalTemplate.length)];
 
@@ -109,6 +123,9 @@
 
         [self.webView loadHTMLString:portalTemplate baseURL:[NSURL fileURLWithPath:cssPath]];
         [self.view addSubview:self.webView];
+        [UIView animateWithDuration:1.2 animations:^{
+            self.webView.alpha = 1.0;
+        }];
     }];
 }
 
@@ -142,6 +159,67 @@
         [self.statusBackgroundView removeFromSuperview];
     }
 }
+
+#pragma mark - WKNavigationDelegate
+
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction
+decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
+{
+    NSURLRequest *request = navigationAction.request;
+    NSString *url = [[request URL] absoluteString];
+    NSString *prefix = @"http://asoiaf.huiji.wiki/wiki/";
+
+    if ((navigationAction.navigationType == WKNavigationTypeLinkActivated)) {
+        // Check if the clicked link is a image or not
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\.(jpg|gif|png)"
+                                                                               options:NSRegularExpressionCaseInsensitive
+                                                                                 error:nil];
+        NSTextCheckingResult *match = [regex firstMatchInString:url options:0 range:NSMakeRange(0, [url length])];
+
+        // All internal links except IMAGE could create new wiki view controller
+        if ([url hasPrefix:prefix] && !match) {
+            WikiViewController *wikiVC = [[WikiViewController alloc] init];
+            NSString *title = [[url substringFromIndex:[prefix length]] stringByRemovingPercentEncoding];
+            wikiVC.title = title;
+            wikiVC.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"home_button"]
+                                                                                        style:UIBarButtonItemStylePlain
+                                                                                       target:self
+                                                                                       action:@selector(homeButtonPressed:)];
+
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:wikiVC];
+            [self presentViewController:nav animated:YES completion:nil];
+        }
+
+        decisionHandler(WKNavigationActionPolicyCancel);
+    }
+
+    decisionHandler(WKNavigationActionPolicyAllow);
+}
+
+#pragma mark - Controller Actions
+
+- (void)homeButtonPressed:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Helper
+
+- (NSString *)formatHtml:(NSString *)html
+{
+    NSString *baseUrl = @"http://asoiaf.huiji.wiki";
+    NSString *wikiString = [NSString stringWithFormat:@"%@/wiki/", baseUrl];
+    NSString *ahrefWikiString = [NSString stringWithFormat:@"<a href=\"%@/wiki\"", baseUrl];
+    NSString *ahrefWikiStringReplacement = [NSString stringWithFormat:@"<a target=\"blank\" href=\"%@/wiki\"", baseUrl];
+    
+    NSString *formatedHtml = [html stringByReplacingOccurrencesOfString:@"/wiki/" withString:wikiString];
+    formatedHtml = [formatedHtml stringByReplacingOccurrencesOfString:ahrefWikiString withString:ahrefWikiStringReplacement];
+    formatedHtml = [formatedHtml stringByReplacingOccurrencesOfString:@"class=\"mw-editsection\"" withString:@"style=\"visibility: hidden\""];
+
+    return formatedHtml;
+}
+
+#pragma mark - Deinit
 
 - (void)dealloc
 {
