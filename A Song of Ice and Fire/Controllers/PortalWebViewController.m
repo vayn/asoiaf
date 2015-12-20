@@ -112,12 +112,18 @@
                                          range:NSMakeRange(0, portalTemplate.length)];
 
     [[MainManager sharedManager] getWikiEntry:self.portal.link completionBlock:^(NSString *wikiEntry) {
+        
         NSString *formattedWikiEntry = [self formatHtml:wikiEntry];
 
         [portalTemplate replaceOccurrencesOfString:@"[[[content]]]"
                                         withString:formattedWikiEntry
                                            options:NSLiteralSearch
                                              range:NSMakeRange(0, portalTemplate.length)];
+        [self.webView loadHTMLString:portalTemplate baseURL:[NSURL fileURLWithPath:cssPath]];
+        [self.view addSubview:self.webView];
+        [UIView animateWithDuration:1.2 animations:^{
+            self.webView.alpha = 1.0;
+        }];
 
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.cubeSpinner stopAnimating];
@@ -125,11 +131,6 @@
             [self.cubeSpinner removeFromSuperview];
         });
 
-        [self.webView loadHTMLString:portalTemplate baseURL:[NSURL fileURLWithPath:cssPath]];
-        [self.view addSubview:self.webView];
-        [UIView animateWithDuration:1.2 animations:^{
-            self.webView.alpha = 1.0;
-        }];
     }];
 }
 
