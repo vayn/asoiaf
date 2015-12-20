@@ -89,7 +89,7 @@ static CGFloat const kOverlayAlphaEnd = 0.7;
 
     // Monitoring the network
     [[NSNotificationCenter defaultCenter]
-     addObserverForName:@"ERR_INTERNET_DISCONNECTED"
+     addObserverForName:ERR_INTERNET_DISCONNECTED
                  object:nil
                  queue:nil
             usingBlock:^(NSNotification * _Nonnull note) {

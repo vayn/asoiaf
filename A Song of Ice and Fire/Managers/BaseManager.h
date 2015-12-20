@@ -15,6 +15,7 @@
 @class CategoryMembersModel;
 
 #define NSStringMultiline(...) @#__VA_ARGS__
+#define ERR_INTERNET_DISCONNECTED @"ERR_INTERNET_DISCONNECTED"
 
 NS_ASSUME_NONNULL_BEGIN
 

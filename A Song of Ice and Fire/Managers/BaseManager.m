@@ -8,8 +8,6 @@
 
 #import "BaseManager.h"
 
-#define ERR_INTERNET_DISCONNECTED @"ERR_INTERNET_DISCONNECTED"
-
 @implementation BaseManager
 
 - (instancetype)init
