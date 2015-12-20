@@ -67,6 +67,14 @@ static CGFloat const kOverlayAlphaEnd = 0.7;
     return self;
 }
 
+- (void)dealloc
+{
+    // Remove the observers explicitly
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - View Manager
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
