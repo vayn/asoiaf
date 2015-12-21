@@ -150,6 +150,7 @@
 
     CategoryMemberModel *category = self.CMembers[indexPath.row];
     cell.textLabel.text = category.title;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;
 }
