@@ -98,6 +98,12 @@
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.textLabel.numberOfLines = 0;
 
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.618;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionFade;
+    [cell.layer addAnimation:transition forKey:nil];
+
     return cell;
 }
 

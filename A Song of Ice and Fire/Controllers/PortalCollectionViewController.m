@@ -279,12 +279,6 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
     
     UICollectionViewCell *cell = [cv cellForItemAtIndexPath:indexPath];
 
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.618;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionFade;
-    [cell.layer addAnimation:transition forKey:nil];
-
     CGPoint offset = CGPointMake(cell.center.x - collectionViewWidth / 2, 0);
     [cv setContentOffset:offset animated:animated];
 }
