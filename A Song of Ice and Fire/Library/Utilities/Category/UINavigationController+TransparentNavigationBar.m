@@ -19,9 +19,8 @@ static void *OriginalTintColor;
     [self.navigationBar setTranslucent:YES];
     [self.navigationBar setShadowImage:[UIImage new]];
 
-    UIColor *tintColor = objc_getAssociatedObject(self, &OriginalTintColor);
-    if (tintColor == nil) {
-        tintColor = self.navigationBar.tintColor;
+    UIColor *tintColor = self.navigationBar.tintColor;
+    if (objc_getAssociatedObject(self, &OriginalTintColor) == nil) {
         objc_setAssociatedObject(self, &OriginalTintColor, tintColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     [self.navigationBar setTintColor: [UIColor clearColor]];
@@ -33,7 +32,7 @@ static void *OriginalTintColor;
                              forBarMetrics:UIBarMetricsDefault];
     [self.navigationBar setShadowImage:[[UINavigationBar appearance] shadowImage]];
 
-    [self.navigationBar setTintColor:objc_getAssociatedObject(self, OriginalTintColor)];
+    [self.navigationBar setTintColor:objc_getAssociatedObject(self, &OriginalTintColor)];
 }
 
 @end
