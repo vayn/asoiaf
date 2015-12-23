@@ -7,16 +7,22 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
+#import "MainViewController.h"
+
+/* Category */
 #import "NSArray+Random.h"
 
-#import "MainViewController.h"
+/* Controlers */
 #import "SlideMenuViewController.h"
 #import "CarrouselViewController.h"
 #import "portalCollectionViewController.h"
 #import "KnowTipTableViewController.h"
 
+/* Data Source */
 #import "DataManager.h"
 #import "Models.h"
+
+/* UI */
 #import "Spinner.h"
 
 static CGFloat const kSlideTiming = 0.25;
@@ -61,7 +67,7 @@ static CGFloat const kOverlayAlphaEnd = 0.7;
 
     if (self) {
         UINavigationItem *navItem = self.navigationItem;
-        UIBarButtonItem *bbi = [[UIBarButtonItem alloc] initWithTitle:@"\u2630"
+        UIBarButtonItem *bbi = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"hamburger_menu"]
                                                                 style:UIBarButtonItemStylePlain
                                                                target:self
                                                                action:@selector(btnMoveMenuRight:)];
@@ -86,6 +92,7 @@ static CGFloat const kOverlayAlphaEnd = 0.7;
 
     [self setupOverlayView];
     [self setupCarrouselView];
+    [self setupSiteInfoView];
     [self setupFeaturedQuoteLabel];
     [self setupPortalView];
     [self setupKnowTipView];
@@ -244,6 +251,52 @@ static CGFloat const kOverlayAlphaEnd = 0.7;
     [self didMoveToParentViewController:self.carrouselViewController];
 }
 
+- (void)setupSiteInfoView
+{
+    UIFont *font = [UIFont fontWithName:@"Futura-Medium" size:14];
+
+    // Define general attributes for the entire text
+    NSDictionary *attribs = @{
+                              NSForegroundColorAttributeName: self.articleInfoLabel.textColor,
+                              NSFontAttributeName: font,
+                              };
+
+    [[MainManager sharedManager] getSiteInfo:^(SiteInfoModel *siteInfo) {
+        NSString *articleData = [NSString stringWithFormat:@"%.1fK", [siteInfo.articles integerValue] / 1000.0];
+        NSString *editData = [NSString stringWithFormat:@"%.1fK", [siteInfo.edits integerValue] / 1000.0];
+        NSString *imageData = [NSString stringWithFormat:@"%.1fK", [siteInfo.images integerValue] / 1000.0];
+
+        NSString *articleString = [NSString stringWithFormat:@"%@页面", articleData];
+        NSString *editString = [NSString stringWithFormat:@"%@编辑", editData];
+        NSString *imageString = [NSString stringWithFormat:@"%@图片", imageData];
+
+        NSMutableAttributedString *articleInfo =
+        [[NSMutableAttributedString alloc] initWithString:articleString attributes:attribs];
+
+        NSMutableAttributedString *editInfo =
+        [[NSMutableAttributedString alloc] initWithString:editString attributes:attribs];
+
+        NSMutableAttributedString *imageInfo =
+        [[NSMutableAttributedString alloc] initWithString:imageString attributes:attribs];
+
+        [articleInfo addAttribute:NSFontAttributeName
+                            value:[UIFont fontWithName:font.fontName size:14]
+                            range:NSMakeRange(0, articleData.length)];
+
+        [editInfo addAttribute:NSFontAttributeName
+                            value:[UIFont fontWithName:font.fontName size:14]
+                            range:NSMakeRange(0, editData.length)];
+
+        [imageInfo addAttribute:NSFontAttributeName
+                            value:[UIFont fontWithName:font.fontName size:14]
+                            range:NSMakeRange(0, imageData.length)];
+
+        self.articleInfoLabel.attributedText = articleInfo;
+        self.editInfoLabel.attributedText = editInfo;
+        self.imageInfoLabel.attributedText = imageInfo;
+    }];
+}
+
 - (void)setupFeaturedQuoteLabel
 {
     [self.quoteLabel setHidden:YES];
@@ -253,7 +306,7 @@ static CGFloat const kOverlayAlphaEnd = 0.7;
     Spinner *cubeSpinner = [Spinner cubeSpinner];
 
     [self.featuredQuoteView addSubview:cubeSpinner];
-    cubeSpinner.center = CGPointMake(self.featuredQuoteView.frame.size.width/2,
+    cubeSpinner.center = CGPointMake(self.view.frame.size.width/2,
                                  self.featuredQuoteView.frame.size.height/2);
     [cubeSpinner startAnimating];
 
