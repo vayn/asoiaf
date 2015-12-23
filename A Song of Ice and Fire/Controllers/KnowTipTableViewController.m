@@ -89,6 +89,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tableViewCell" forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     KnowTipModel *tipModel = self.tips[indexPath.row];
     cell.textLabel.text = tipModel.tip;
@@ -139,6 +140,48 @@
     wikiVC.title = tipModel.title;
 
     [self.navigationController pushViewController:wikiVC animated:YES];
+}
+
+-(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [self AddShineAnimationToView:cell];
+    return indexPath;
+}
+
+#pragma mark - Helper
+
+- (void)AddShineAnimationToView:(UIView *)aView
+{
+    UIView *whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, aView.frame.size.width, aView.frame.size.height)];
+    [whiteView setBackgroundColor:[UIColor whiteColor]];
+    [whiteView setUserInteractionEnabled:NO];
+    [aView addSubview:whiteView];
+
+    CALayer *maskLayer = [CALayer layer];
+
+    // Mask image ends with 0.15 opacity on both sides. Set the background color of the layer
+    // to the same value so the layer can extend the mask image.
+    maskLayer.backgroundColor = [[UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.0f] CGColor];
+    maskLayer.contents = (id)[[UIImage imageNamed:@"mask_shine"] CGImage];
+
+    // Center the mask image on twice the width of the text layer, so it starts to the left
+    // of the text layer and moves to its right when we translate it by width.
+    maskLayer.contentsGravity = kCAGravityCenter;
+    maskLayer.frame = CGRectMake(-whiteView.frame.size.width - 10,
+                                 0.0f,
+                                 whiteView.frame.size.width * 2,
+                                 whiteView.frame.size.height);
+
+    // Animate the mask layer's horizontal position
+    CABasicAnimation *maskAnim = [CABasicAnimation animationWithKeyPath:@"position.x"];
+    maskAnim.byValue = [NSNumber numberWithFloat:self.view.frame.size.width * 9];
+    //maskAnim.repeatCount = HUGE_VALF;
+    maskAnim.repeatCount = 0;
+    maskAnim.duration = 2.0f;
+    [maskLayer addAnimation:maskAnim forKey:@"shineAnim"];
+    
+    whiteView.layer.mask = maskLayer;
 }
 
 @end
