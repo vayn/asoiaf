@@ -23,6 +23,59 @@
     return sharedManager;
 }
 
+- (void)getSiteInfo:(ManagerCompletionBlock)completionBlock
+{
+    NSString *Api = [BaseManager getAbsoluteUrl:@"api.php?action=query&meta=siteinfo&siprop=statistics&format=json"];
+
+    [self.manager GET:Api parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSDictionary *statistics = responseObject[@"query"][@"statistics"];
+        SiteInfoModel *siteInfoModel = [[SiteInfoModel alloc] init];
+
+        siteInfoModel.pages = statistics[@"pages"];
+        siteInfoModel.articles = statistics[@"articles"];
+        siteInfoModel.edits = statistics[@"edits"];
+        siteInfoModel.images = statistics[@"images"];
+        siteInfoModel.users = statistics[@"users"];
+        siteInfoModel.activeUsers = statistics[@"activeusers"];
+        siteInfoModel.admins = statistics[@"admins"];
+
+        completionBlock(siteInfoModel);
+
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%s: %@", __FUNCTION__, error);
+    }];
+}
+
+- (void)getRandomTitle:(void (^)(NSString *title))completionBlock
+{
+    NSString *Api = [BaseManager getAbsoluteUrl:@"api.php?action=query&list=random&rnlimit=1&format=json"];
+    Api = [Api stringByAppendingString:[NSString stringWithFormat:@"&%f", CFAbsoluteTimeGetCurrent()]];
+
+    [self.manager GET:Api parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSArray *blacklist = @[@"File:", @"Category:", @"Talk:", @"User:", @"MediaWiki:", @"Template:"];
+        BOOL isOnBlackList = NO;
+
+        NSDictionary *random = responseObject[@"query"][@"random"][0];
+        NSString *title = random[@"title"];
+
+        for (NSString *prefix in blacklist) {
+            if ([title hasPrefix:prefix]) {
+                isOnBlackList = YES;
+                break;
+            }
+        }
+
+        if (isOnBlackList) {
+            [self getRandomTitle:completionBlock];
+        } else {
+            completionBlock(title);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"%s: %@", __FUNCTION__, error);
+    }];
+}
+
 - (void)getFeaturedQuotes:(ManagerCompletionBlock)completionBlock
 {
     NSString *Api = [BaseManager getAbsoluteUrl:@"api.php?action=expandtemplates&text={{Featured Quote}}&prop=wikitext&format=json"];
@@ -80,35 +133,6 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"getKnowTip" object:nil];
         });
     } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
-        NSLog(@"%s: %@", __FUNCTION__, error);
-    }];
-}
-
-- (void)getRandomTitle:(void (^)(NSString *title))completionBlock
-{
-    NSString *Api = [BaseManager getAbsoluteUrl:@"api.php?action=query&list=random&rnlimit=1&format=json"];
-    Api = [Api stringByAppendingString:[NSString stringWithFormat:@"&%f", CFAbsoluteTimeGetCurrent()]];
-    
-    [self.manager GET:Api parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSArray *blacklist = @[@"File:", @"Category:", @"Talk:", @"User:", @"MediaWiki:", @"Template:"];
-        BOOL isOnBlackList = NO;
-
-        NSDictionary *random = responseObject[@"query"][@"random"][0];
-        NSString *title = random[@"title"];
-
-        for (NSString *prefix in blacklist) {
-            if ([title hasPrefix:prefix]) {
-                isOnBlackList = YES;
-                break;
-            }
-        }
-
-        if (isOnBlackList) {
-            [self getRandomTitle:completionBlock];
-        } else {
-            completionBlock(title);
-        }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%s: %@", __FUNCTION__, error);
     }];
 }

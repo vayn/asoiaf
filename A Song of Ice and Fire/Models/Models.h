@@ -12,6 +12,7 @@
 #import "CategoryMemberModel.h"
 #import "CategoryMembersModel.h"
 #import "PortalModel.h"
+#import "SiteInfoModel.h"
 
 @interface Models : NSObject
 

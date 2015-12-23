@@ -12,9 +12,10 @@
 
 + (instancetype)sharedManager;
 
+- (void)getSiteInfo:(void (^)(SiteInfoModel *model))completionBlock;
+- (void)getRandomTitle:(void (^)(NSString *title))completionBlock;
 - (void)getFeaturedQuotes:(ManagerCompletionBlock)completionBlock;
 - (void)getKnowTip:(ManagerCompletionBlock)completionBlock;
-- (void)getRandomTitle:(void (^)(NSString *title))completionBlock;
 - (void)getWikiEntry:(NSString *)title completionBlock:(void (^)(NSString *wikiEntry))completionBlock;
 
 @end

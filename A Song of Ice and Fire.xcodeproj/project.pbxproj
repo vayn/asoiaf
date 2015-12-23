@@ -21,6 +21,7 @@
 		F3205DF41C259D5B0020983E /* PortalWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3205DF21C259D5B0020983E /* PortalWebViewController.m */; };
 		F3205DF81C259D940020983E /* PortalWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3205DF71C259D940020983E /* PortalWebViewController.xib */; };
 		F32A11151C1B7CAF0061C266 /* WKWebView+SynchronousEvaluateJavaScript.m in Sources */ = {isa = PBXBuildFile; fileRef = F32A11141C1B7CAF0061C266 /* WKWebView+SynchronousEvaluateJavaScript.m */; };
+		F32CF7101C2A49110044344D /* SiteInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F32CF70F1C2A49110044344D /* SiteInfoModel.m */; };
 		F334CFCC1BEE73420074734D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F334CFCB1BEE73420074734D /* main.m */; };
 		F334CFD61BEE73420074734D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F334CFD41BEE73420074734D /* LaunchScreen.storyboard */; };
 		F334D0011BEE73FC0074734D /* CarrouselViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F334CFDF1BEE73FC0074734D /* CarrouselViewController.m */; };
@@ -122,6 +123,8 @@
 		F3205DF71C259D940020983E /* PortalWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PortalWebViewController.xib; path = "A Song of Ice and Fire/Views/PortalWebViewController.xib"; sourceTree = SOURCE_ROOT; };
 		F32A11131C1B7CAF0061C266 /* WKWebView+SynchronousEvaluateJavaScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WKWebView+SynchronousEvaluateJavaScript.h"; sourceTree = "<group>"; };
 		F32A11141C1B7CAF0061C266 /* WKWebView+SynchronousEvaluateJavaScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+SynchronousEvaluateJavaScript.m"; sourceTree = "<group>"; };
+		F32CF70E1C2A49110044344D /* SiteInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteInfoModel.h; sourceTree = "<group>"; };
+		F32CF70F1C2A49110044344D /* SiteInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteInfoModel.m; sourceTree = "<group>"; };
 		F334CFC71BEE73420074734D /* 冰火中文维基.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "冰火中文维基.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F334CFCB1BEE73420074734D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F334CFD51BEE73420074734D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -435,6 +438,8 @@
 				F3EF0B931C10409500B73DA7 /* CategoryMembersModel.m */,
 				F3E5C9D11C26F79D004C42ED /* PortalModel.h */,
 				F3E5C9D21C26F79D004C42ED /* PortalModel.m */,
+				F32CF70E1C2A49110044344D /* SiteInfoModel.h */,
+				F32CF70F1C2A49110044344D /* SiteInfoModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1001,6 +1006,7 @@
 				F3AE09C01C1B5BE900E8A214 /* UINavigationController+TransparentNavigationBar.m in Sources */,
 				F3F545CA1C1D524F00FF612E /* ImageManager.m in Sources */,
 				F3F545C71C1D518700FF612E /* CategoryManager.m in Sources */,
+				F32CF7101C2A49110044344D /* SiteInfoModel.m in Sources */,
 				F3F545C41C1D46C000FF612E /* MainManager.m in Sources */,
 				F3EF0BDE1C10ED0F00B73DA7 /* MJRefreshGifHeader.m in Sources */,
 				F3BD1DF51BF8D8C300B6DA69 /* ParallaxHeaderView.m in Sources */,
