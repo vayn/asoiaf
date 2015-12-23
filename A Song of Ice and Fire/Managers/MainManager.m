@@ -23,7 +23,7 @@
     return sharedManager;
 }
 
-- (void)getSiteInfo:(ManagerCompletionBlock)completionBlock
+- (void)getSiteInfo:(void (^)(SiteInfoModel *model))completionBlock;
 {
     NSString *Api = [BaseManager getAbsoluteUrl:@"api.php?action=query&meta=siteinfo&siprop=statistics&format=json"];
 
