@@ -9,13 +9,17 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController">
             <connections>
+                <outlet property="articleInfoLabel" destination="TfI-mf-kRu" id="ZQq-nY-l4o"/>
                 <outlet property="authorLabel" destination="eOT-NK-rFX" id="vcA-0H-KsT"/>
                 <outlet property="containerView" destination="tFZ-KN-enT" id="SuV-VQ-d14"/>
+                <outlet property="editInfoLabel" destination="WtD-8K-VKo" id="gse-5b-6q3"/>
                 <outlet property="featuredQuoteView" destination="u5D-N6-RDk" id="k9z-zF-gF5"/>
+                <outlet property="imageInfoLabel" destination="nco-8e-dmu" id="qBY-pG-eZJ"/>
                 <outlet property="knowTipView" destination="Mv9-Ce-Zns" id="cjU-gL-7LZ"/>
                 <outlet property="portalView" destination="eU7-b6-TeO" id="LD8-68-9H6"/>
                 <outlet property="quoteLabel" destination="hq2-df-mJr" id="fYL-Ov-vX8"/>
                 <outlet property="scrollView" destination="xAR-Ci-Dpy" id="mLe-nv-ltv"/>
+                <outlet property="siteInfoView" destination="YLx-Dd-bhj" id="aGp-C2-Er6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="EMD-2p-MLH"/>
             </connections>
         </placeholder>
@@ -99,13 +103,13 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YLx-Dd-bhj" userLabel="Site Info View">
                                     <rect key="frame" x="0.0" y="179" width="375" height="33"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TfI-mf-kRu" userLabel="Article Label">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TfI-mf-kRu" userLabel="Article Info Label">
                                             <rect key="frame" x="0.0" y="0.0" width="125" height="33"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WtD-8K-VKo" userLabel="Edit Label">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WtD-8K-VKo" userLabel="Edit Info Label">
                                             <rect key="frame" x="125" y="0.0" width="125" height="33"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="125" id="Atm-Pt-w1Z"/>
@@ -114,7 +118,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nco-8e-dmu" userLabel="Image Label">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nco-8e-dmu" userLabel="Image Info Label">
                                             <rect key="frame" x="250" y="0.0" width="125" height="33"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -199,7 +203,7 @@
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-111.5" y="202"/>
+            <point key="canvasLocation" x="83.5" y="201"/>
         </view>
     </objects>
 </document>

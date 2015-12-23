@@ -28,6 +28,11 @@ static CGFloat const kOverlayAlphaEnd = 0.7;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
+@property (weak, nonatomic) IBOutlet UIView *siteInfoView;
+@property (weak, nonatomic) IBOutlet UILabel *articleInfoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *editInfoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *imageInfoLabel;
+
 @property (weak, nonatomic) IBOutlet UIView *featuredQuoteView;
 @property (weak, nonatomic) IBOutlet UILabel *quoteLabel;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
