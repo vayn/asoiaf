@@ -50,7 +50,8 @@
     // 避免进入其他页面再返回时 self.webView.scrollView 自动调整 contentInset 而出现难看的空白
     self.automaticallyAdjustsScrollViewInsets = NO;
 
-    self.cubeSpinner.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2);
+    self.cubeSpinner.center = CGPointMake([[UIScreen mainScreen] bounds].size.width / 2,
+                                          [[UIScreen mainScreen] bounds].size.height / 2);
     [self.view addSubview:self.cubeSpinner];
     [self.cubeSpinner startAnimating];
 

@@ -16,12 +16,18 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EgC-TV-MDJ">
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EgC-TV-MDJ">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                 </webView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="EgC-TV-MDJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="5Xm-dr-w82"/>
+                <constraint firstAttribute="bottom" secondItem="EgC-TV-MDJ" secondAttribute="bottom" id="axE-lt-dUf"/>
+                <constraint firstItem="EgC-TV-MDJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eOP-fK-8M3"/>
+                <constraint firstAttribute="trailing" secondItem="EgC-TV-MDJ" secondAttribute="trailing" id="pIN-Am-ooE"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="42.5" y="361.5"/>
         </view>
