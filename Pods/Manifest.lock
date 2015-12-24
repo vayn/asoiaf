@@ -23,6 +23,7 @@ PODS:
     - CocoaLumberjack (~> 1.9.0)
     - NUIParse
   - DZNEmptyDataSet (1.7.3)
+  - FDFullscreenPopGesture (1.1)
   - FLAnimatedImage (1.0.10)
   - GTScrollNavigationBar (0.4)
   - IGHTMLQuery (0.8.4):
@@ -40,6 +41,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 3.0.4)
   - DZNEmptyDataSet (~> 1.7.2)
+  - FDFullscreenPopGesture (~> 1.1)
   - FLAnimatedImage (~> 1.0.8)
   - GTScrollNavigationBar (~> 0.4)
   - IGHTMLQuery (~> 0.8.4)
@@ -55,6 +57,7 @@ SPEC CHECKSUMS:
   CocoaLumberjack: 628fca2e88ef06f7cf6817309aa405f325d9a6fa
   CSSSelectorConverter: 0fda7454165e40e668dd297b44cdb1c341cd53ae
   DZNEmptyDataSet: dd7cca17c1d07dfa78956859b1e70a52505678ef
+  FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   FLAnimatedImage: e16a1e1cef08e4c509b47e4acbe3923f65c16135
   GTScrollNavigationBar: 17e80b99c4250c92c82f31cd5e052a99422c2195
   IGHTMLQuery: 6176bcb88ad36f80ee984dbfde5592bb3ccc921f

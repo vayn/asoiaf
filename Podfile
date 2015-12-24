@@ -15,5 +15,6 @@ target 'A Song of Ice and Fire' do
     pod 'FLAnimatedImage', '~> 1.0.8'
     pod 'DZNEmptyDataSet', '~> 1.7.2'
     pod 'GTScrollNavigationBar', '~> 0.4'
+    pod 'FDFullscreenPopGesture', '~> 1.1'
 end
 
