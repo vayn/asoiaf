@@ -204,13 +204,10 @@ static CGFloat const kOverlayAlphaEnd = 0.7;
     if (self.slideMenuViewController == nil) {
         self.slideMenuViewController = [[SlideMenuViewController alloc] initWithNibName:@"SlideMenuViewController" bundle:nil];
 
-        [self.view addSubview:self.slideMenuViewController.view];
-
-        // Stop scrolling when slide menu slides out
-        self.scrollView.scrollEnabled = NO;
-
-        [self addChildViewController:self.slideMenuViewController];
-        [self.slideMenuViewController didMoveToParentViewController:self];
+        CGRect frame = self.slideMenuViewController.view.frame;
+        frame.size.width = [UIScreen mainScreen].bounds.size.width / 2;
+        frame.size.height = [UIScreen mainScreen].bounds.size.height;
+        self.slideMenuViewController.view.frame = frame;
 
         self.slideMenuViewController.view.frame = CGRectOffset(self.slideMenuViewController.view.frame,
                                                                -self.slideMenuViewController.view.frame.size.width, 0);
@@ -219,6 +216,14 @@ static CGFloat const kOverlayAlphaEnd = 0.7;
         self.overlayAlphaSpeed = fabs(kOverlayAlphaBegan - kOverlayAlphaEnd) / slideMenuWidth;
 
         [self setupSlideMenuGestures:self.slideMenuViewController.view];
+
+        [self.view addSubview:self.slideMenuViewController.view];
+
+        // Stop scrolling when slide menu slides out
+        self.scrollView.scrollEnabled = NO;
+
+        [self addChildViewController:self.slideMenuViewController];
+        [self.slideMenuViewController didMoveToParentViewController:self];
     }
 
     self.showingSlideMenu = YES;
