@@ -22,7 +22,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     MainViewController *mainViewController = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
-    mainViewController.title = @"Home";
+    mainViewController.title = @"冰与火之歌";
 
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
     //navController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor orangeColor]};
