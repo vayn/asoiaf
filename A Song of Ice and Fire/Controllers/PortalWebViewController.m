@@ -87,6 +87,11 @@
     self.webView.navigationDelegate = self;
     self.webView.alpha = 0.0;
 
+    CGRect frame = self.view.frame;
+    frame.size.width = [UIScreen mainScreen].bounds.size.width;
+    frame.size.height = [UIScreen mainScreen].bounds.size.height;
+    self.webView.frame = frame;
+
     self.webView.scrollView.bounces = NO;
     [self.webView.scrollView addObserver:self
                               forKeyPath:@"contentOffset"
