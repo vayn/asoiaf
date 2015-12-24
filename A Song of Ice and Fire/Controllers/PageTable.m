@@ -46,7 +46,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 28, 0);
 }
 
 - (void)didReceiveMemoryWarning {

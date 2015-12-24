@@ -258,7 +258,7 @@ static CGFloat const kOverlayAlphaEnd = 0.7;
 
 - (void)setupSiteInfoView
 {
-    UIFont *font = [UIFont fontWithName:@"Futura-Medium" size:14];
+    UIFont *font = [UIFont fontWithName:@"Futura-Medium" size:10];
 
     // Define general attributes for the entire text
     NSDictionary *attribs = @{
