@@ -16,7 +16,6 @@
 #import "Spinner.h"
 
 /* Custom Category */
-#import "UINavigationController+TransparentNavigationBar.h"
 #import "WKWebView+SynchronousEvaluateJavaScript.h"
 
 /* Pods */
@@ -64,21 +63,31 @@
 {
     [super viewWillAppear:animated];
 
-    [self.navigationController setTransparentNavigationBar];
-    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
 
-    [self.navigationController restoreDefaultNavigationBar];
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+/* 设置 status bar 颜色 */
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    CGPoint offset = self.webView.scrollView.contentOffset;
+
+    if (offset.y < 270) {
+        return UIStatusBarStyleLightContent;
+    } else {
+        return UIStatusBarStyleDefault;
+    }
 }
 
 - (void)setupWebView
