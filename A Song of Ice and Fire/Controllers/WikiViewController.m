@@ -166,8 +166,8 @@ UIGestureRecognizerDelegate
 
     [self.imageView addSubview:self.titleLabel];
 
-    self.blurView = [[GradientView alloc] initWithFrame:CGRectMake(0, -kBlurViewOffset,
-                                                                   self.view.frame.size.width, kHeaderHeight + kBlurViewOffset)
+    self.blurView = [[GradientView alloc] initWithFrame:
+                     CGRectMake(0, -kBlurViewOffset, self.view.frame.size.width, kHeaderHeight + kBlurViewOffset)
                                                    type:TransparentGradientTwiceType];
     
     [self.imageView addSubview:self.blurView];
