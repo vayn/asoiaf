@@ -1,18 +1,18 @@
 PODS:
-  - AFNetworking (3.0.0-beta.3):
-    - AFNetworking/NSURLSession (= 3.0.0-beta.3)
-    - AFNetworking/Reachability (= 3.0.0-beta.3)
-    - AFNetworking/Security (= 3.0.0-beta.3)
-    - AFNetworking/Serialization (= 3.0.0-beta.3)
-    - AFNetworking/UIKit (= 3.0.0-beta.3)
-  - AFNetworking/NSURLSession (3.0.0-beta.3):
+  - AFNetworking (3.0.4):
+    - AFNetworking/NSURLSession (= 3.0.4)
+    - AFNetworking/Reachability (= 3.0.4)
+    - AFNetworking/Security (= 3.0.4)
+    - AFNetworking/Serialization (= 3.0.4)
+    - AFNetworking/UIKit (= 3.0.4)
+  - AFNetworking/NSURLSession (3.0.4):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.0.0-beta.3)
-  - AFNetworking/Security (3.0.0-beta.3)
-  - AFNetworking/Serialization (3.0.0-beta.3)
-  - AFNetworking/UIKit (3.0.0-beta.3):
+  - AFNetworking/Reachability (3.0.4)
+  - AFNetworking/Security (3.0.4)
+  - AFNetworking/Serialization (3.0.4)
+  - AFNetworking/UIKit (3.0.4):
     - AFNetworking/NSURLSession
   - CocoaLumberjack (1.9.2):
     - CocoaLumberjack/Extensions (= 1.9.2)
@@ -22,15 +22,15 @@ PODS:
   - CSSSelectorConverter (1.2.1):
     - CocoaLumberjack (~> 1.9.0)
     - NUIParse
-  - DZNEmptyDataSet (1.7.2)
-  - FLAnimatedImage (1.0.8)
+  - DZNEmptyDataSet (1.7.3)
+  - FLAnimatedImage (1.0.10)
   - GTScrollNavigationBar (0.4)
   - IGHTMLQuery (0.8.4):
     - IGHTMLQuery/Core (= 0.8.4)
   - IGHTMLQuery/Core (0.8.4):
     - CSSSelectorConverter (>= 1.2.0)
   - JTSImageViewController (1.5.1)
-  - MBProgressHUD (0.9.1)
+  - MBProgressHUD (0.9.2)
   - NUIParse (1.3)
   - RegexKitLite-NoWarning (1.1.0)
   - SDCycleScrollView (1.3)
@@ -51,15 +51,15 @@ DEPENDENCIES:
   - YFStartView
 
 SPEC CHECKSUMS:
-  AFNetworking: 4bbf9c2993fe416e02093128f3be1bfe20c6e847
+  AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   CocoaLumberjack: 628fca2e88ef06f7cf6817309aa405f325d9a6fa
   CSSSelectorConverter: 0fda7454165e40e668dd297b44cdb1c341cd53ae
-  DZNEmptyDataSet: 0ec00bfc230d7450997b60c127afdd0b9f24f3b6
-  FLAnimatedImage: f9422f796135aff80d8c00b2afc48015bb746e24
+  DZNEmptyDataSet: dd7cca17c1d07dfa78956859b1e70a52505678ef
+  FLAnimatedImage: e16a1e1cef08e4c509b47e4acbe3923f65c16135
   GTScrollNavigationBar: 17e80b99c4250c92c82f31cd5e052a99422c2195
   IGHTMLQuery: 6176bcb88ad36f80ee984dbfde5592bb3ccc921f
   JTSImageViewController: 1f8ce1cc93dab0d0af8e53badeea7528560cfec9
-  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   NUIParse: 2e3885ba7807477266396292626bd387d34c2338
   RegexKitLite-NoWarning: 365d208f8187997e33d9de8baeddfc00728596d8
   SDCycleScrollView: 90e43636fcc8e6a7f74e8b64d87418a8e96549b4
