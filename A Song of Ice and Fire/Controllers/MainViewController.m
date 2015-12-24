@@ -26,6 +26,9 @@
 #import "Spinner.h"
 
 static CGFloat const kSlideTiming = 0.25;
+static CGFloat const kSlideClosingAnimationSpringDamping = 1.0f;
+static CGFloat const kSlideClosingAnimationSpringInitialVelocity = 0.5f;
+               
 static CGFloat const kOverlayAlphaBegan = 0.0;
 static CGFloat const kOverlayAlphaEnd = 0.7;
                
@@ -153,7 +156,11 @@ static CGFloat const kOverlayAlphaEnd = 0.7;
 {
     UIView *childView = [self getSlideMenuView];
 
-    [UIView animateWithDuration:kSlideTiming delay:0 options:UIViewAnimationOptionBeginFromCurrentState
+    [UIView animateWithDuration:kSlideTiming
+                          delay:0
+         usingSpringWithDamping:kSlideClosingAnimationSpringDamping
+          initialSpringVelocity:kSlideClosingAnimationSpringInitialVelocity
+                        options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          childView.frame = CGRectOffset(childView.frame, -childView.frame.size.width, 0);
                          self.overlayView.alpha = kOverlayAlphaBegan;
@@ -169,7 +176,9 @@ static CGFloat const kOverlayAlphaEnd = 0.7;
 {
     UIView *childView = [self getSlideMenuView];
 
-    [UIView animateWithDuration:kSlideTiming delay:0 options:UIViewAnimationOptionBeginFromCurrentState
+    [UIView animateWithDuration:kSlideTiming
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
                          childView.frame = CGRectMake(0, 0,
                                                       childView.frame.size.width, childView.frame.size.height);
