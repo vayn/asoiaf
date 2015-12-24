@@ -38,7 +38,7 @@ PODS:
   - YFStartView (0.0.1)
 
 DEPENDENCIES:
-  - AFNetworking (~> 3.0.0-beta.3)
+  - AFNetworking (~> 3.0.4)
   - DZNEmptyDataSet (~> 1.7.2)
   - FLAnimatedImage (~> 1.0.8)
   - GTScrollNavigationBar (~> 0.4)
