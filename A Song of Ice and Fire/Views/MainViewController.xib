@@ -82,7 +82,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u5D-N6-RDk" userLabel="Featured Quote View">
-                                    <rect key="frame" x="8" y="231" width="359" height="91"/>
+                                    <rect key="frame" x="8" y="219" width="359" height="91"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="“" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Wy-yy-d0V" userLabel="Left Quotation Label">
                                             <rect key="frame" x="0.0" y="0.0" width="27" height="42"/>
@@ -159,7 +159,7 @@
                                 <constraint firstItem="u5D-N6-RDk" firstAttribute="leading" secondItem="eU7-b6-TeO" secondAttribute="leading" id="Do7-i0-0rA"/>
                                 <constraint firstItem="WcL-Rt-6GY" firstAttribute="top" secondItem="tFZ-KN-enT" secondAttribute="top" constant="14" id="LXe-KZ-mek"/>
                                 <constraint firstItem="u5D-N6-RDk" firstAttribute="leading" secondItem="tFZ-KN-enT" secondAttribute="leadingMargin" id="MsJ-Zi-osH"/>
-                                <constraint firstItem="eU7-b6-TeO" firstAttribute="top" secondItem="u5D-N6-RDk" secondAttribute="bottom" constant="8" id="PAR-1g-xEJ"/>
+                                <constraint firstItem="eU7-b6-TeO" firstAttribute="top" secondItem="u5D-N6-RDk" secondAttribute="bottom" constant="20" id="PAR-1g-xEJ"/>
                                 <constraint firstItem="Mv9-Ce-Zns" firstAttribute="top" secondItem="eU7-b6-TeO" secondAttribute="bottom" constant="15" id="Q9f-ad-dWD"/>
                                 <constraint firstItem="WcL-Rt-6GY" firstAttribute="leading" secondItem="tFZ-KN-enT" secondAttribute="leading" id="Rq0-5m-hjb"/>
                                 <constraint firstAttribute="bottom" secondItem="WcL-Rt-6GY" secondAttribute="bottom" constant="761" id="TuY-v3-MzN"/>
@@ -181,8 +181,8 @@
                                 <constraint firstItem="u5D-N6-RDk" firstAttribute="leading" secondItem="tFZ-KN-enT" secondAttribute="leading" constant="8" id="oia-LC-Z94"/>
                                 <constraint firstItem="eU7-b6-TeO" firstAttribute="leading" secondItem="tFZ-KN-enT" secondAttribute="leading" id="qca-hV-xxt"/>
                                 <constraint firstItem="u5D-N6-RDk" firstAttribute="leading" secondItem="tFZ-KN-enT" secondAttribute="leadingMargin" id="r5M-J8-eMA"/>
-                                <constraint firstItem="u5D-N6-RDk" firstAttribute="top" secondItem="YLx-Dd-bhj" secondAttribute="bottom" constant="32" id="ti1-eI-dMs"/>
-                                <constraint firstItem="u5D-N6-RDk" firstAttribute="top" secondItem="WcL-Rt-6GY" secondAttribute="bottom" constant="52" id="udE-H7-1p0"/>
+                                <constraint firstItem="u5D-N6-RDk" firstAttribute="top" secondItem="YLx-Dd-bhj" secondAttribute="bottom" constant="20" id="ti1-eI-dMs"/>
+                                <constraint firstItem="u5D-N6-RDk" firstAttribute="top" secondItem="WcL-Rt-6GY" secondAttribute="bottom" constant="40" id="udE-H7-1p0"/>
                                 <constraint firstItem="WcL-Rt-6GY" firstAttribute="centerX" secondItem="eU7-b6-TeO" secondAttribute="centerX" id="zbQ-m8-oOj"/>
                             </constraints>
                             <variation key="default">
