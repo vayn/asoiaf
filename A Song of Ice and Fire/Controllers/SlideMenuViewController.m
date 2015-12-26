@@ -9,12 +9,14 @@
 #import "SlideMenuViewController.h"
 #import "CategoryViewController.h"
 #import "WikiViewController.h"
+#import "SearchTableViewController.h"
 
 #import "PortalTypes.h"
 #import "DataManager.h"
 #import "Models.h"
 
-@interface SlideMenuViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
+@interface SlideMenuViewController ()
+<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *myTableView;
 @property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
@@ -190,9 +192,10 @@
 
 #pragma mark - UISearchBar Delegate
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
-    NSLog(@"%@", searchBar.text);
+    SearchTableViewController *searchTableVC = [[SearchTableViewController alloc] init];
+    [self presentViewController:searchTableVC animated:YES completion:nil];
 }
 
 #pragma mark - logoButton methods

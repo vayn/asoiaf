@@ -44,6 +44,8 @@
 		F34684F51BFF5A4500C7C56D /* OpenShare.m in Sources */ = {isa = PBXBuildFile; fileRef = F34684EE1BFF5A4500C7C56D /* OpenShare.m */; };
 		F34DCA391C0BD38E00979CA7 /* CAPSPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = F34DCA381C0BD38E00979CA7 /* CAPSPageMenu.m */; };
 		F34DCA3D1C0BD4C700979CA7 /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F34DCA3C1C0BD4C700979CA7 /* CategoryViewController.m */; };
+		F35E9EE81C2F1730004524DA /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F35E9EE61C2F1730004524DA /* SearchTableViewController.m */; };
+		F35E9EEB1C2F1754004524DA /* SearchTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F35E9EEA1C2F1754004524DA /* SearchTableViewController.xib */; };
 		F36A907A1C22D7C2003C2F93 /* PortalTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = F36A90791C22D7C2003C2F93 /* PortalTypes.m */; };
 		F37B448F1BEE8AB400764D92 /* PortalCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F37B448D1BEE8AB400764D92 /* PortalCollectionHeaderView.m */; };
 		F37B44921BEE8AFD00764D92 /* PortalCollectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F37B44911BEE8AFD00764D92 /* PortalCollectionHeaderView.xib */; };
@@ -166,6 +168,9 @@
 		F34DCA381C0BD38E00979CA7 /* CAPSPageMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPSPageMenu.m; sourceTree = "<group>"; };
 		F34DCA3B1C0BD4C700979CA7 /* CategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryViewController.h; sourceTree = "<group>"; };
 		F34DCA3C1C0BD4C700979CA7 /* CategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryViewController.m; sourceTree = "<group>"; };
+		F35E9EE51C2F1730004524DA /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewController.h; sourceTree = "<group>"; };
+		F35E9EE61C2F1730004524DA /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewController.m; sourceTree = "<group>"; };
+		F35E9EEA1C2F1754004524DA /* SearchTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchTableViewController.xib; path = "A Song of Ice and Fire/Views/SearchTableViewController.xib"; sourceTree = SOURCE_ROOT; };
 		F36A90781C22D7C2003C2F93 /* PortalTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalTypes.h; sourceTree = "<group>"; };
 		F36A90791C22D7C2003C2F93 /* PortalTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalTypes.m; sourceTree = "<group>"; };
 		F37B448C1BEE8AB400764D92 /* PortalCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalCollectionHeaderView.h; sourceTree = "<group>"; };
@@ -419,6 +424,7 @@
 				F334D0151BEE74480074734D /* SlideMenuController */,
 				F34DCA3A1C0BD45300979CA7 /* CategoryController */,
 				F3152B481BF44BEF0048D69E /* WikiViewController */,
+				F35E9EEC1C2F177B004524DA /* SearchTableController */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -462,6 +468,7 @@
 				F37B44861BEE88BF00764D92 /* PortalCollection */,
 				F3205DF71C259D940020983E /* PortalWebViewController.xib */,
 				F334CFF61BEE73FC0074734D /* SlideMenuViewController.xib */,
+				F35E9EEA1C2F1754004524DA /* SearchTableViewController.xib */,
 				F3152B461BF44BD00048D69E /* WikiViewController.xib */,
 			);
 			path = Views;
@@ -612,6 +619,15 @@
 				F3EF0BA31C10DBB200B73DA7 /* CMTable */,
 			);
 			name = CategoryController;
+			sourceTree = "<group>";
+		};
+		F35E9EEC1C2F177B004524DA /* SearchTableController */ = {
+			isa = PBXGroup;
+			children = (
+				F35E9EE51C2F1730004524DA /* SearchTableViewController.h */,
+				F35E9EE61C2F1730004524DA /* SearchTableViewController.m */,
+			);
+			name = SearchTableController;
 			sourceTree = "<group>";
 		};
 		F37B44861BEE88BF00764D92 /* PortalCollection */ = {
@@ -942,6 +958,7 @@
 				F37B44921BEE8AFD00764D92 /* PortalCollectionHeaderView.xib in Resources */,
 				F3205DF81C259D940020983E /* PortalWebViewController.xib in Resources */,
 				F334D00E1BEE73FC0074734D /* Assets.xcassets in Resources */,
+				F35E9EEB1C2F1754004524DA /* SearchTableViewController.xib in Resources */,
 				F3205DE71C2591D40020983E /* wikiview-min.css in Resources */,
 				F3205DEB1C2591D40020983E /* knight_spinner@2x.gif in Resources */,
 				F334D00B1BEE73FC0074734D /* PortalCell.xib in Resources */,
@@ -1014,6 +1031,7 @@
 				F3AE09BC1C1B5BE900E8A214 /* NSArray+Random.m in Sources */,
 				F32A11151C1B7CAF0061C266 /* WKWebView+SynchronousEvaluateJavaScript.m in Sources */,
 				F3AE09BB1C1B5BE900E8A214 /* WexinTimelineActivity.m in Sources */,
+				F35E9EE81C2F1730004524DA /* SearchTableViewController.m in Sources */,
 				F3EF0BE41C10ED0F00B73DA7 /* UIScrollView+MJRefresh.m in Sources */,
 				F39290D51C0E887900A7BD2C /* CategoryMemberModel.m in Sources */,
 				F334D00F1BEE73FC0074734D /* AppDelegate.m in Sources */,
