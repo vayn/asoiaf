@@ -194,6 +194,7 @@
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
+    [searchBar resignFirstResponder];
     SearchTableViewController *searchTableVC = [[SearchTableViewController alloc] init];
     [self presentViewController:searchTableVC animated:YES completion:nil];
 }
