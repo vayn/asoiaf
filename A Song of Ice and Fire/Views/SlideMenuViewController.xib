@@ -10,7 +10,6 @@
                 <outlet property="logoButton" destination="Rce-RR-WxR" id="QDr-KW-fWs"/>
                 <outlet property="myTableView" destination="isL-ZY-Fub" id="ayG-Gg-cIR"/>
                 <outlet property="searchBar" destination="61i-ns-waM" id="koU-pV-eZL"/>
-                <outlet property="searchDisplayController" destination="vM5-dh-SHZ" id="gZ1-Wc-JTu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -71,14 +70,6 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="418.5" y="-79.5"/>
         </view>
-        <searchDisplayController id="vM5-dh-SHZ">
-            <connections>
-                <outlet property="delegate" destination="-1" id="Z6b-jc-FIn"/>
-                <outlet property="searchContentsController" destination="-1" id="hZf-gw-BlF"/>
-                <outlet property="searchResultsDataSource" destination="-1" id="b8G-GY-502"/>
-                <outlet property="searchResultsDelegate" destination="-1" id="QdA-5x-lVN"/>
-            </connections>
-        </searchDisplayController>
     </objects>
     <resources>
         <image name="huiji_white_logo" width="393" height="124"/>
