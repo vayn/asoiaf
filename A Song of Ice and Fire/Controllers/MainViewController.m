@@ -320,8 +320,8 @@ static CGFloat const kOverlayAlphaEnd = 0.7;
     Spinner *cubeSpinner = [Spinner cubeSpinner];
 
     [self.featuredQuoteView addSubview:cubeSpinner];
-    cubeSpinner.center = CGPointMake(self.view.frame.size.width/2,
-                                 self.featuredQuoteView.frame.size.height/2);
+    cubeSpinner.center = CGPointMake([UIScreen mainScreen].bounds.size.width / 2,
+                                     self.featuredQuoteView.frame.size.height / 2);
     [cubeSpinner startAnimating];
 
     [[MainManager sharedManager] getFeaturedQuotes:^(NSArray *featuredQuotes) {
@@ -467,7 +467,8 @@ static CGFloat const kOverlayAlphaEnd = 0.7;
 
 #pragma mark - Helper
 
-- (void) disableScrollsToTopPropertyOnAllSubviewsOf:(UIView *)view {
+- (void) disableScrollsToTopPropertyOnAllSubviewsOf:(UIView *)view
+{
     for (UIView *subview in view.subviews) {
         if ([subview isKindOfClass:[UIScrollView class]]) {
             ((UIScrollView *)subview).scrollsToTop = NO;
