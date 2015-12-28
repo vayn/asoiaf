@@ -18,6 +18,6 @@
 - (void)getKnowTip:(ManagerCompletionBlock)completionBlock;
 - (void)getWikiEntry:(NSString *)title completionBlock:(void (^)(NSString *wikiEntry))completionBlock;
 
-- (void)searchWikiEntry:(NSString *)term completionBlock:(void (^)(NSArray *searchResult))completionBlock;
+- (void)searchWikiEntry:(NSString *)term completionBlock:(void (^)(NSArray *searchResults))completionBlock;
 
 @end

@@ -157,7 +157,7 @@
     }];
 }
 
-- (void)searchWikiEntry:(NSString *)term completionBlock:(void (^)(NSArray *searchResult))completionBlock;
+- (void)searchWikiEntry:(NSString *)term completionBlock:(void (^)(NSArray *searchResults))completionBlock;
 {
     if (!term || [term isEqualToString:@""]) {
         completionBlock(@[]);
@@ -170,8 +170,8 @@
 
     [self.manager GET:Api parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
 
-        NSArray *searchResult = [[responseObject objectForKey:@"query"] objectForKey:@"search"];
-        completionBlock(searchResult);
+        NSArray *searchResults = [[responseObject objectForKey:@"query"] objectForKey:@"search"];
+        completionBlock(searchResults);
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
 
