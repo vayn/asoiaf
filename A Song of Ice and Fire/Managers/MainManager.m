@@ -159,7 +159,7 @@
 
 - (void)searchWikiEntry:(NSString *)term completionBlock:(void (^)(NSArray *searchResults))completionBlock;
 {
-    if (!term || [term isEqualToString:@""]) {
+    if (!term || term.length == 0) {
         completionBlock(@[]);
         return;
     }
