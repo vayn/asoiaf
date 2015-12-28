@@ -157,4 +157,28 @@
     }];
 }
 
+- (void)searchWikiEntry:(NSString *)term completionBlock:(void (^)(NSArray *searchResult))completionBlock;
+{
+    if (!term || [term isEqualToString:@""]) {
+        completionBlock(@[]);
+        return;
+    }
+
+    NSString *Api = [BaseManager getAbsoluteUrl:NSStringMultiline(api.php?action=query&list=search&srprop=snippet&
+                                                                  srlimit=10&format=json&continue)];
+    NSDictionary *parameters = @{@"srsearch": term};
+
+    [self.manager GET:Api parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+
+        NSArray *searchResult = [[responseObject objectForKey:@"query"] objectForKey:@"search"];
+        completionBlock(searchResult);
+
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+
+        NSLog(@"%s: %@", __FUNCTION__, error);
+
+    }];
+
+}
+
 @end
