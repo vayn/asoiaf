@@ -35,6 +35,11 @@ static NSString * const kCellIdentifier = @"Cell";
     return self;
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
