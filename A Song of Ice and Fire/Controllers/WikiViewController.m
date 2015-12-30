@@ -100,6 +100,7 @@ UIGestureRecognizerDelegate
 
     [self.navigationController setValue:[GTScrollNavigationBar new] forKey:@"navigationBar"];
     self.navigationController.scrollNavigationBar.scrollView = self.webView.scrollView;
+    self.navigationController.navigationBar.tintColor = [UIColor lightGrayColor];
 }
 
 - (void)didReceiveMemoryWarning {
