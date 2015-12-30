@@ -178,7 +178,7 @@
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor lightGrayColor];
     label.font = [UIFont fontWithName:@"HelveticaNeue" size:9.0];
-    label.text = @"Vayn♥诚意制作";
+    label.text = [Utilities appNameAndVersionNumberDisplayString];
     label.textAlignment = NSTextAlignmentCenter;
     [footer addSubview:label];
 
