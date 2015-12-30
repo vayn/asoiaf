@@ -10,6 +10,7 @@
 #import "WikiViewController.h"
 
 #import "DataManager.h"
+#import "UIColor+Hexadecimal.h"
 
 static NSString * const kCellIdentifier = @"Cell";
 
@@ -18,6 +19,7 @@ static NSString * const kCellIdentifier = @"Cell";
 
 @property (nonatomic, strong) UISearchController *searchController;
 @property (nonatomic, strong) NSMutableArray *searchResults;
+@property (nonatomic, strong) UIActivityIndicatorView *loadingIndicator;
 
 @end
 
@@ -28,6 +30,14 @@ static NSString * const kCellIdentifier = @"Cell";
     self = [super init];
     if (self) {
         _searchResults = [@[] mutableCopy];
+
+
+        CGRect loadingIndicatorFrame = CGRectMake([UIScreen mainScreen].bounds.size.width / 2,
+                                                  [UIScreen mainScreen].bounds.size.height / 2,
+                                                  20, 20);
+        _loadingIndicator = [[UIActivityIndicatorView alloc] initWithFrame:loadingIndicatorFrame];
+        _loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+        _loadingIndicator.hidesWhenStopped = YES;
     }
     return self;
 }
@@ -48,10 +58,15 @@ static NSString * const kCellIdentifier = @"Cell";
     self.searchController.dimsBackgroundDuringPresentation = NO;
 
     self.searchController.searchBar.delegate = self;
+    self.searchController.searchBar.placeholder = @"搜索";
+    [self.searchController.searchBar setValue:@"取消" forKey:@"_cancelButtonText"];
     [self.searchController.searchBar sizeToFit];
 
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.definesPresentationContext = YES;
+
+    [self.view addSubview:self.loadingIndicator];
+    //[self.loadingIndicator stopAnimating];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -119,6 +134,28 @@ static NSString * const kCellIdentifier = @"Cell";
     [self.searchController presentViewController:nav animated:YES completion:nil];
 }
 
+#pragma mark - Table view delegate
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+    headerView.backgroundColor = [UIColor colorWithHex:@"#f7f7f7"];
+
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectOffset(headerView.frame, 10, 2)];
+    label.font = [UIFont systemFontOfSize:13];
+    label.text = [self tableView:tableView titleForHeaderInSection:section];
+    label.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+    [headerView addSubview:label];
+
+    return headerView;
+
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return @"搜索结果";
+}
+
 #pragma mark - UISearchResultsUpdating
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController
@@ -136,7 +173,7 @@ static NSString * const kCellIdentifier = @"Cell";
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-
+    [self.loadingIndicator startAnimating];
     [self.searchResults removeAllObjects];
 
     NSString *searchTerm = searchBar.text;
@@ -147,6 +184,7 @@ static NSString * const kCellIdentifier = @"Cell";
 
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
+            [self.loadingIndicator stopAnimating];
         });
 
     }];
