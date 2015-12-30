@@ -6,13 +6,14 @@
 //  Copyright © 2015年 HeZhi Corp. All rights reserved.
 //
 
-#import <QuartzCore/QuartzCore.h>
+@import MessageUI;
+@import QuartzCore;
 #import "MainViewController.h"
 
 /* Category */
 #import "NSArray+Random.h"
 
-/* Controlers */
+/* Controller */
 #import "SlideMenuViewController.h"
 #import "CarrouselViewController.h"
 #import "portalCollectionViewController.h"
@@ -25,6 +26,9 @@
 /* UI */
 #import "Spinner.h"
 
+/* Pod */
+#import "MBProgressHUD.h"
+
 static CGFloat const kSlideTiming = 0.25;
 static CGFloat const kSlideClosingAnimationSpringDamping = 1.0f;
 static CGFloat const kSlideClosingAnimationSpringInitialVelocity = 0.5f;
@@ -32,7 +36,7 @@ static CGFloat const kSlideClosingAnimationSpringInitialVelocity = 0.5f;
 static CGFloat const kOverlayAlphaBegan = 0.0;
 static CGFloat const kOverlayAlphaEnd = 0.7;
                
-@interface MainViewController () <UIGestureRecognizerDelegate>
+@interface MainViewController () <UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -47,6 +51,7 @@ static CGFloat const kOverlayAlphaEnd = 0.7;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UIView *portalView;
 @property (weak, nonatomic) IBOutlet UIView *knowTipView;
+@property (weak, nonatomic) IBOutlet UILabel *footerLabel;
 
 @property (nonatomic, strong) CarrouselViewController *carrouselViewController;
 @property (nonatomic, strong) PortalCollectionViewController *portalCollectionViewController;
@@ -99,6 +104,7 @@ static CGFloat const kOverlayAlphaEnd = 0.7;
     [self setupFeaturedQuoteLabel];
     [self setupPortalView];
     [self setupKnowTipView];
+    [self setupFooterLabel];
 
     [self setupGestures];
 
@@ -369,12 +375,14 @@ static CGFloat const kOverlayAlphaEnd = 0.7;
     [self didMoveToParentViewController:self.knowTipTableViewController];
 }
 
-- (void)hideLoadingActivity
+- (void)setupFooterLabel
 {
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                              action:@selector(userTappedOnFooter:)];
+    [self.footerLabel addGestureRecognizer:gesture];
 }
 
-#pragma mark - Swipe Gesture Setup/Actions
-#pragma mark - setup
+#pragma mark - Gesture Setup/Actions
 
 - (void)setupGestures
 {
@@ -463,6 +471,53 @@ static CGFloat const kOverlayAlphaEnd = 0.7;
             [self moveMenuToOriginalPosition];
         }
     }
+}
+
+- (void)userTappedOnFooter:(UIGestureRecognizer *)sender
+{
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
+        mailer.mailComposeDelegate = self;
+
+        [mailer setSubject:@""];
+        [mailer setMessageBody:@"" isHTML:NO];
+        [mailer setToRecipients:@[@"vayn@vayn.de"]];
+
+        [self presentViewController:mailer animated:YES completion:nil];
+    }
+}
+
+#pragma mark - MFMailComposeViewControllerDelegate
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError *)error
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.removeFromSuperViewOnHide = YES;
+
+    switch (result) {
+        case MFMailComposeResultSent: {
+            hud.labelText = @"邮件已发送";
+            break;
+        }
+        case MFMailComposeResultSaved: {
+            hud.labelText = @"邮件草稿已保存";
+            break;
+        }
+        case MFMailComposeResultCancelled: {
+            hud.labelText = @"已取消发送邮件";
+            break;
+        }
+        case MFMailComposeResultFailed: {
+            hud.labelText = @"写邮件时发生错误";
+            break;
+        }
+    }
+
+    [hud hide:YES afterDelay:1.0];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Helper

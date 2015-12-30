@@ -14,6 +14,7 @@
                 <outlet property="containerView" destination="tFZ-KN-enT" id="SuV-VQ-d14"/>
                 <outlet property="editInfoLabel" destination="WtD-8K-VKo" id="gse-5b-6q3"/>
                 <outlet property="featuredQuoteView" destination="u5D-N6-RDk" id="k9z-zF-gF5"/>
+                <outlet property="footerLabel" destination="3FP-zG-4Is" id="NQl-fs-ggG"/>
                 <outlet property="imageInfoLabel" destination="nco-8e-dmu" id="qBY-pG-eZJ"/>
                 <outlet property="knowTipView" destination="Mv9-Ce-Zns" id="cjU-gL-7LZ"/>
                 <outlet property="portalView" destination="eU7-b6-TeO" id="LD8-68-9H6"/>
@@ -140,10 +141,45 @@
                                     <rect key="frame" x="8" y="565" width="359" height="348"/>
                                     <color key="backgroundColor" red="1" green="0.95512270470000005" blue="0.63212683319999996" alpha="1" colorSpace="calibratedRGB"/>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vayn - 2015 冬" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3FP-zG-4Is" userLabel="Footer Label">
-                                    <rect key="frame" x="0.0" y="927" width="375" height="13"/>
-                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="10"/>
-                                    <color key="textColor" red="0.84000157828282829" green="0.84000157828282829" blue="0.84000157828282829" alpha="1" colorSpace="calibratedRGB"/>
+                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3FP-zG-4Is" userLabel="Footer Label">
+                                    <rect key="frame" x="0.0" y="918" width="375" height="22"/>
+                                    <attributedString key="attributedText">
+                                        <fragment content="炼金士">
+                                            <attributes>
+                                                <color key="NSColor" red="0.84000157828282829" green="0.84000157828282829" blue="0.84000157828282829" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="10" name="PingFangSC-Regular"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content="Vayn &amp; ">
+                                            <attributes>
+                                                <color key="NSColor" red="0.84000157828282829" green="0.84000157828282829" blue="0.84000157828282829" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="10" name="Futura-Medium"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content="♥">
+                                            <attributes>
+                                                <color key="NSColor" red="0.84000157828282829" green="0.84000157828282829" blue="0.84000157828282829" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="10" name="HiraginoSans-W3"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content=" 2015 ">
+                                            <attributes>
+                                                <color key="NSColor" red="0.84000157828282829" green="0.84000157828282829" blue="0.84000157828282829" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="10" name="Futura-Medium"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content="冬">
+                                            <attributes>
+                                                <color key="NSColor" red="0.84000157828282829" green="0.84000157828282829" blue="0.84000157828282829" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="10" name="PingFangSC-Regular"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -151,12 +187,15 @@
                             <constraints>
                                 <constraint firstItem="WcL-Rt-6GY" firstAttribute="centerX" secondItem="u5D-N6-RDk" secondAttribute="centerX" id="3qN-Ex-iWs"/>
                                 <constraint firstAttribute="trailing" secondItem="WcL-Rt-6GY" secondAttribute="trailing" id="49u-eS-RZy"/>
+                                <constraint firstItem="3FP-zG-4Is" firstAttribute="leading" secondItem="eU7-b6-TeO" secondAttribute="leading" id="4Xo-4g-1SR"/>
                                 <constraint firstItem="WcL-Rt-6GY" firstAttribute="leading" secondItem="tFZ-KN-enT" secondAttribute="leading" id="4sK-lM-ILh"/>
                                 <constraint firstAttribute="trailing" secondItem="WcL-Rt-6GY" secondAttribute="trailing" id="6GW-EH-vAc"/>
+                                <constraint firstAttribute="bottom" secondItem="3FP-zG-4Is" secondAttribute="bottom" id="7ra-74-1I5"/>
                                 <constraint firstItem="u5D-N6-RDk" firstAttribute="leading" secondItem="Mv9-Ce-Zns" secondAttribute="leading" id="8aT-Sa-5GY"/>
                                 <constraint firstItem="WcL-Rt-6GY" firstAttribute="top" secondItem="tFZ-KN-enT" secondAttribute="top" constant="14" id="9F3-Xd-lb8"/>
                                 <constraint firstAttribute="trailing" secondItem="YLx-Dd-bhj" secondAttribute="trailing" id="Aee-yB-Lk0"/>
                                 <constraint firstItem="u5D-N6-RDk" firstAttribute="leading" secondItem="eU7-b6-TeO" secondAttribute="leading" id="Do7-i0-0rA"/>
+                                <constraint firstItem="3FP-zG-4Is" firstAttribute="trailing" secondItem="eU7-b6-TeO" secondAttribute="trailing" id="IZN-Au-TDn"/>
                                 <constraint firstItem="WcL-Rt-6GY" firstAttribute="top" secondItem="tFZ-KN-enT" secondAttribute="top" constant="14" id="LXe-KZ-mek"/>
                                 <constraint firstItem="u5D-N6-RDk" firstAttribute="leading" secondItem="tFZ-KN-enT" secondAttribute="leadingMargin" id="MsJ-Zi-osH"/>
                                 <constraint firstItem="eU7-b6-TeO" firstAttribute="top" secondItem="u5D-N6-RDk" secondAttribute="bottom" constant="20" id="PAR-1g-xEJ"/>
@@ -165,14 +204,12 @@
                                 <constraint firstAttribute="bottom" secondItem="WcL-Rt-6GY" secondAttribute="bottom" constant="761" id="TuY-v3-MzN"/>
                                 <constraint firstItem="WcL-Rt-6GY" firstAttribute="centerX" secondItem="tFZ-KN-enT" secondAttribute="centerX" id="UYq-zW-QlC"/>
                                 <constraint firstAttribute="bottom" secondItem="Mv9-Ce-Zns" secondAttribute="bottom" constant="27" id="YMZ-9d-6yr"/>
-                                <constraint firstAttribute="bottom" secondItem="3FP-zG-4Is" secondAttribute="bottom" id="ZNx-D0-gZN"/>
-                                <constraint firstItem="3FP-zG-4Is" firstAttribute="leading" secondItem="tFZ-KN-enT" secondAttribute="leading" id="ZwY-7G-sz4"/>
                                 <constraint firstItem="WcL-Rt-6GY" firstAttribute="top" secondItem="tFZ-KN-enT" secondAttribute="top" constant="14" id="aH2-Fn-tl9"/>
                                 <constraint firstAttribute="trailing" secondItem="u5D-N6-RDk" secondAttribute="trailing" constant="8" id="cTR-hb-xbE"/>
                                 <constraint firstAttribute="trailing" secondItem="WcL-Rt-6GY" secondAttribute="trailing" id="eVp-4P-wEJ"/>
-                                <constraint firstAttribute="trailing" secondItem="3FP-zG-4Is" secondAttribute="trailing" id="eqB-oL-FBn"/>
                                 <constraint firstItem="YLx-Dd-bhj" firstAttribute="leading" secondItem="tFZ-KN-enT" secondAttribute="leading" id="f65-LU-rdB"/>
                                 <constraint firstItem="WcL-Rt-6GY" firstAttribute="leading" secondItem="tFZ-KN-enT" secondAttribute="leading" id="gDc-CM-3s7"/>
+                                <constraint firstItem="3FP-zG-4Is" firstAttribute="top" secondItem="Mv9-Ce-Zns" secondAttribute="bottom" constant="5" id="hQW-YE-TIK"/>
                                 <constraint firstItem="WcL-Rt-6GY" firstAttribute="centerX" secondItem="Mv9-Ce-Zns" secondAttribute="centerX" id="kY2-yP-Imi"/>
                                 <constraint firstAttribute="bottom" secondItem="eU7-b6-TeO" secondAttribute="bottom" constant="390" id="m2U-U9-LpO"/>
                                 <constraint firstItem="YLx-Dd-bhj" firstAttribute="top" secondItem="WcL-Rt-6GY" secondAttribute="bottom" id="mn4-yg-7MK"/>
