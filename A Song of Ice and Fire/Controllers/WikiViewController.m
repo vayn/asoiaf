@@ -7,6 +7,7 @@
 //
 
 #import "WikiViewController.h"
+@import SafariServices;
 
 #import "DataManager.h"
 #import "WikipediaHelper.h"
@@ -283,6 +284,10 @@ UIGestureRecognizerDelegate
             nextWikiVC.title = title;
 
             [self.navigationController pushViewController:nextWikiVC animated:YES];
+        }
+        else if (!match) {
+            SFSafariViewController *safariVC = [[SFSafariViewController alloc] initWithURL:[request URL] entersReaderIfAvailable:YES];
+            [self presentViewController:safariVC animated:YES completion:nil];
         }
         return NO;
     }
