@@ -19,7 +19,9 @@ static NSString * const kCellIdentifier = @"Cell";
 
 @property (nonatomic, strong) UISearchController *searchController;
 @property (nonatomic, strong) NSMutableArray *searchResults;
+
 @property (nonatomic, strong) UIActivityIndicatorView *loadingIndicator;
+@property (nonatomic, strong) UILabel *noResultsLabel;
 
 @end
 
@@ -30,14 +32,6 @@ static NSString * const kCellIdentifier = @"Cell";
     self = [super init];
     if (self) {
         _searchResults = [@[] mutableCopy];
-
-
-        CGRect loadingIndicatorFrame = CGRectMake([UIScreen mainScreen].bounds.size.width / 2,
-                                                  [UIScreen mainScreen].bounds.size.height / 2,
-                                                  20, 20);
-        _loadingIndicator = [[UIActivityIndicatorView alloc] initWithFrame:loadingIndicatorFrame];
-        _loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-        _loadingIndicator.hidesWhenStopped = YES;
     }
     return self;
 }
@@ -65,8 +59,10 @@ static NSString * const kCellIdentifier = @"Cell";
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.definesPresentationContext = YES;
 
+    [self setupLoadingIndicator];
     [self.view addSubview:self.loadingIndicator];
-    //[self.loadingIndicator stopAnimating];
+
+    [self setupNoResultsLabel];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -163,9 +159,11 @@ static NSString * const kCellIdentifier = @"Cell";
     if (searchController.searchBar.text.length == 0) {
         [self.searchResults removeAllObjects];
 
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
+        if ([self.tableView.subviews containsObject:self.noResultsLabel]) {
+            [self.noResultsLabel removeFromSuperview];
+        }
+
+        [self.tableView reloadData];
     }
 }
 
@@ -180,10 +178,15 @@ static NSString * const kCellIdentifier = @"Cell";
 
     [[MainManager sharedManager] searchWikiEntry:searchTerm completionBlock:^(NSArray *searchResults) {
 
-        _searchResults = [searchResults mutableCopy];
+        self.searchResults = [searchResults mutableCopy];
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
+            if (self.searchResults.count > 0) {
+                [self.tableView reloadData];
+            } else {
+                [self.tableView addSubview:self.noResultsLabel];
+            }
+
             [self.loadingIndicator stopAnimating];
         });
 
@@ -200,6 +203,27 @@ static NSString * const kCellIdentifier = @"Cell";
 - (void)homeButtonPressed:(id)sender
 {
     [self.searchController dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Custom Views
+
+- (void)setupLoadingIndicator
+{
+    CGRect loadingIndicatorFrame = CGRectMake([UIScreen mainScreen].bounds.size.width / 2,
+                                              [UIScreen mainScreen].bounds.size.height / 2,
+                                              20, 20);
+    _loadingIndicator = [[UIActivityIndicatorView alloc] initWithFrame:loadingIndicatorFrame];
+    _loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    _loadingIndicator.hidesWhenStopped = YES;
+}
+
+- (void)setupNoResultsLabel
+{
+    CGRect labelFrame = CGRectMake(0, 122, self.tableView.bounds.size.width, 20);
+    _noResultsLabel = [[UILabel alloc] initWithFrame:labelFrame];
+    _noResultsLabel.textAlignment = NSTextAlignmentCenter;
+    _noResultsLabel.textColor = [UIColor colorWithHex:@"#cccccc"];
+    _noResultsLabel.text = @"没有结果";
 }
 
 @end
