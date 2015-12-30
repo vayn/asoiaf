@@ -47,6 +47,7 @@
 		F35E9EE81C2F1730004524DA /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F35E9EE61C2F1730004524DA /* SearchTableViewController.m */; };
 		F35E9EEB1C2F1754004524DA /* SearchTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F35E9EEA1C2F1754004524DA /* SearchTableViewController.xib */; };
 		F36A907A1C22D7C2003C2F93 /* PortalTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = F36A90791C22D7C2003C2F93 /* PortalTypes.m */; };
+		F370BF881C341BF000BC2962 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F370BF871C341BF000BC2962 /* Utilities.m */; };
 		F37B448F1BEE8AB400764D92 /* PortalCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F37B448D1BEE8AB400764D92 /* PortalCollectionHeaderView.m */; };
 		F37B44921BEE8AFD00764D92 /* PortalCollectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F37B44911BEE8AFD00764D92 /* PortalCollectionHeaderView.xib */; };
 		F39290D51C0E887900A7BD2C /* CategoryMemberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F39290D41C0E887900A7BD2C /* CategoryMemberModel.m */; };
@@ -173,6 +174,9 @@
 		F35E9EEA1C2F1754004524DA /* SearchTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchTableViewController.xib; path = "A Song of Ice and Fire/Views/SearchTableViewController.xib"; sourceTree = SOURCE_ROOT; };
 		F36A90781C22D7C2003C2F93 /* PortalTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalTypes.h; sourceTree = "<group>"; };
 		F36A90791C22D7C2003C2F93 /* PortalTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalTypes.m; sourceTree = "<group>"; };
+		F370BF861C341BF000BC2962 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		F370BF871C341BF000BC2962 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		F370BF891C341E7200BC2962 /* UtilitiesHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UtilitiesHeader.pch; path = ../UtilitiesHeader.pch; sourceTree = "<group>"; };
 		F37B448C1BEE8AB400764D92 /* PortalCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortalCollectionHeaderView.h; sourceTree = "<group>"; };
 		F37B448D1BEE8AB400764D92 /* PortalCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalCollectionHeaderView.m; sourceTree = "<group>"; };
 		F37B44911BEE8AFD00764D92 /* PortalCollectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PortalCollectionHeaderView.xib; sourceTree = "<group>"; };
@@ -406,6 +410,7 @@
 			children = (
 				F334D0001BEE73FC0074734D /* AppDelegate.h */,
 				F334CFF81BEE73FC0074734D /* AppDelegate.m */,
+				F370BF891C341E7200BC2962 /* UtilitiesHeader.pch */,
 				F334CFD41BEE73420074734D /* LaunchScreen.storyboard */,
 				F334CFD71BEE73420074734D /* Info.plist */,
 				F334CFCB1BEE73420074734D /* main.m */,
@@ -491,6 +496,8 @@
 		F334CFFA1BEE73FC0074734D /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				F370BF861C341BF000BC2962 /* Utilities.h */,
+				F370BF871C341BF000BC2962 /* Utilities.m */,
 				F3AE09931C1B5BE900E8A214 /* Activity */,
 				F3AE099E1C1B5BE900E8A214 /* Category */,
 				F3AE09A91C1B5BE900E8A214 /* CubeNavigationAnimator */,
@@ -1081,6 +1088,7 @@
 				F3EF0BDF1C10ED0F00B73DA7 /* MJRefreshNormalHeader.m in Sources */,
 				F3EF0BDA1C10ED0F00B73DA7 /* MJRefreshAutoStateFooter.m in Sources */,
 				F3EF0BD81C10ED0F00B73DA7 /* MJRefreshAutoGifFooter.m in Sources */,
+				F370BF881C341BF000BC2962 /* Utilities.m in Sources */,
 				F3AE09C11C1B5BE900E8A214 /* CubeNavigationAnimator.m in Sources */,
 				F3AE09C31C1B5BE900E8A214 /* CubeNavigationInteraction.m in Sources */,
 				F3AE09B81C1B5BE900E8A214 /* QQActivity.m in Sources */,
@@ -1139,6 +1147,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/UtilitiesHeader.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1180,6 +1189,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/UtilitiesHeader.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

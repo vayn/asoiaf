@@ -1,0 +1,16 @@
+//
+//  UtilitiesHeader.pch
+//  A Song of Ice and Fire
+//
+//  Created by Vicent Tsai on 15/12/30.
+//  Copyright © 2015年 HeZhi Corp. All rights reserved.
+//
+
+#ifndef UtilitiesHeader_pch
+#define UtilitiesHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#import "Utilities.h"
+
+#endif /* UtilitiesHeader_pch */
