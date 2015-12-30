@@ -103,6 +103,13 @@ UIGestureRecognizerDelegate
     self.navigationController.navigationBar.tintColor = [UIColor lightGrayColor];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+
+    [self.navigationController.scrollNavigationBar resetToDefaultPositionWithAnimation:NO];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
