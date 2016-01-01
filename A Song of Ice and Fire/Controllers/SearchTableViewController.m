@@ -119,8 +119,7 @@ static NSString * const kCellIdentifier = @"Cell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *title = self.searchResults[indexPath.row][@"title"];
-    WikiViewController *wikiVC = [[WikiViewController alloc] init];
-    wikiVC.title = title;
+    WikiViewController *wikiVC = [[WikiViewController alloc] initWithTitle:title andLink:title];
     wikiVC.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"home_button"]
                                                                                 style:UIBarButtonItemStylePlain
                                                                                target:self

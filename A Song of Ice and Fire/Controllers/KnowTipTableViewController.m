@@ -43,7 +43,7 @@
                                     enumerationOptions:RKLRegexEnumerationNoOptions
                                             usingBlock:^(NSInteger captureCount, NSString *const __unsafe_unretained *capturedStrings, const NSRange *capturedRanges, volatile BOOL *const stop) {
                                                 [_tips addObject:[[KnowTipModel alloc] initWithTip:capturedStrings[1]
-                                                                                             title:capturedStrings[2]]];
+                                                                                              link:capturedStrings[2]]];
                                             }];
             }
 
@@ -135,9 +135,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     KnowTipModel *tipModel = self.tips[indexPath.row];
-
-    WikiViewController *wikiVC = [[WikiViewController alloc] init];
-    wikiVC.title = tipModel.title;
+    WikiViewController *wikiVC = [[WikiViewController alloc] initWithTitle:tipModel.link andLink:tipModel.link];
 
     [self.navigationController pushViewController:wikiVC animated:YES];
 }
