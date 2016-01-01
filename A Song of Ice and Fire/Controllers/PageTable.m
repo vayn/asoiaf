@@ -225,6 +225,7 @@ static CGFloat const kThumbnailWidth = 40.0;
 
     if (iconImage) {
         NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
+        attachment.bounds = CGRectMake(0, -1, iconImage.size.width, iconImage.size.height);
         attachment.image = iconImage;
 
         NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:attachment];
