@@ -11,8 +11,8 @@
 @interface KnowTipModel : NSObject
 
 @property (nonatomic, strong) NSString *tip;
-@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *link;
 
-- (instancetype)initWithTip:(NSString *)tip title:(NSString *)title;
+- (instancetype)initWithTip:(NSString *)tip link:(NSString *)link;
 
 @end
