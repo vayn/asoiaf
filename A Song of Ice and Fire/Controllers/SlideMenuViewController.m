@@ -15,6 +15,8 @@
 #import "DataManager.h"
 #import "Models.h"
 
+#import "UIImage+Decorate.h"
+
 @interface SlideMenuViewController ()
 <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
@@ -48,46 +50,55 @@
                        @"link": @"Category:人物",
                        @"title": @"人物介绍",
                        @"type": [NSNumber numberWithInteger:PortalCharacterType],
+                       @"icon": [UIImage imageNamed:@"slide_icon_character"],
                        },
                      @{@"pageid": @46711,
                        @"link": @"Category:贵族家族",
                        @"title": @"各大家族",
                        @"type": [NSNumber numberWithInteger:PortalHouseType],
+                       @"icon": [UIImage imageNamed:@"slide_icon_house"],
                        },
                      @{@"pageid": @5481,
                        @"link": @"Category:历史",
                        @"title": @"七国历史",
                        @"type": [NSNumber numberWithInteger:PortalHistoryType],
+                       @"icon": [UIImage imageNamed:@"slide_icon_history"],
                        },
                      @{@"pageid": @5483,
                        @"link": @"Category:文化",
                        @"title": @"文化风俗",
                        @"type": [NSNumber numberWithInteger:PortalCultureType],
+                       @"icon": [UIImage imageNamed:@"slide_icon_culture"],
                        },
                      @{@"pageid": @5482,
                        @"link": @"Category:维斯特洛地点",
                        @"title": @"地理信息",
                        @"type": [NSNumber numberWithInteger:PortalGeoType],
+                       @"icon": [UIImage imageNamed:@"slide_icon_geo"],
                        },
                      @{@"pageid": @5484,
                        @"link": @"Category:剧集",
                        @"title": @"剧集相关",
                        @"type": [NSNumber numberWithInteger:PortalTVType],
+                       @"icon": [UIImage imageNamed:@"slide_icon_tv_black"],
                        },
                      @{@"pageid": @2780,
                        @"link": @"Category:理论推测",
                        @"title": @"理论推测",
-                       @"type": [NSNumber numberWithInteger:PortalInferenceType],
+                       @"type": [NSNumber numberWithInteger:PortalTheoryType],
+                       @"icon": [UIImage imageNamed:@"slide_icon_theory"],
                        },
                      @{@"pageid": @303,
                        @"link": @"Category:书籍",
                        @"title": @"分卷介绍",
                        @"type": [NSNumber numberWithInteger:PortalBookType],
+                       @"icon": [UIImage imageNamed:@"slide_icon_book"],
                        },
                      @{@"pageid": @46724,
                        @"link": @"Category:冰与火之歌章节",
                        @"title": @"章节梗概",
                        @"type": [NSNumber numberWithInteger:PortalChapterType],
+                       @"icon": [UIImage imageNamed:@"slide_icon_chapter"],
                        }
                      ];
 
@@ -149,8 +160,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"myTableViewCell" forIndexPath:indexPath];
-
     CategoryMemberModel *category = self.CMembers[indexPath.row];
+    UIImage *iconImage = self.rawCMembers[indexPath.row][@"icon"];
+
+    if (iconImage) {
+        CGFloat targetWidth = 25.0;
+        cell.imageView.image = [iconImage makeThumbnailOfWidth:targetWidth];
+    }
+
     cell.textLabel.text = category.title;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
