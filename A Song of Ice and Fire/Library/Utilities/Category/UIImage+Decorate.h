@@ -11,6 +11,9 @@
 @interface UIImage (Decorate)
 
 - (UIImage *)makeThumbnailOfSize:(CGSize)size;
+- (UIImage *)makeThumbnailOfWidth:(CGFloat)targetWidth;
+- (UIImage *)makeThumbnailOfHeight:(CGFloat)targetHeight;
+
 - (UIImage *)makeRoundCornerOfRadius:(CGFloat)radius;
 
 @end

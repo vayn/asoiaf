@@ -22,6 +22,24 @@
     return newImage;
 }
 
+- (UIImage *)makeThumbnailOfWidth:(CGFloat)targetWidth
+{
+    CGFloat scaleFactor = targetWidth / self.size.width;
+    CGFloat targetHeight = self.size.height * scaleFactor;
+    CGSize targetSize = CGSizeMake(targetWidth, targetHeight);
+
+    return [self makeThumbnailOfSize:targetSize];
+}
+
+- (UIImage *)makeThumbnailOfHeight:(CGFloat)targetHeight
+{
+    CGFloat scaleFactor = targetHeight / self.size.height;
+    CGFloat targetWidth = self.size.width * scaleFactor;
+    CGSize targetSize = CGSizeMake(targetWidth, targetHeight);
+
+    return [self makeThumbnailOfSize:targetSize];
+}
+
 - (UIImage *)makeRoundCornerOfRadius:(CGFloat)radius
 {
     UIGraphicsBeginImageContextWithOptions(self.size, NO, 0);
