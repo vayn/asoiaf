@@ -15,6 +15,8 @@
 #import "DataManager.h"
 #import "Models.h"
 
+#import "UIImage+Decorate.h"
+
 @interface SlideMenuViewController ()
 <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
@@ -73,6 +75,7 @@
                        @"link": @"Category:剧集",
                        @"title": @"剧集相关",
                        @"type": [NSNumber numberWithInteger:PortalTVType],
+                       @"icon": [UIImage imageNamed:@"slide_icon_tv_black"],
                        },
                      @{@"pageid": @2780,
                        @"link": @"Category:理论推测",
@@ -149,8 +152,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"myTableViewCell" forIndexPath:indexPath];
-
     CategoryMemberModel *category = self.CMembers[indexPath.row];
+    UIImage *iconImage = self.rawCMembers[indexPath.row][@"icon"];
+
+    if (iconImage) {
+        CGFloat targetWidth = 40.0;
+        cell.imageView.image = [iconImage makeThumbnailOfWidth:targetWidth];
+    }
+
     cell.textLabel.text = category.title;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
