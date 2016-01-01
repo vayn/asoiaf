@@ -49,10 +49,13 @@ UIGestureRecognizerDelegate
 
 @implementation WikiViewController
 
-- (instancetype)init
+- (instancetype)initWithTitle:(NSString *)aTitle andLink:(NSString *)aLink
 {
     self = [super init];
     if (self) {
+        self.title = aTitle;
+        _link = aLink;
+        
         _wikiHelper = [[WikipediaHelper alloc] init];
         _wikiHelper.delegate = self;
         _cubeSpinner = [Spinner cubeSpinner];
@@ -75,6 +78,11 @@ UIGestureRecognizerDelegate
     return self;
 }
 
+- (instancetype)init
+{
+    return [self initWithTitle:nil andLink:nil];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -91,7 +99,7 @@ UIGestureRecognizerDelegate
     [self setupGestures];
 
     // Start fetch article with page title
-    [self.wikiHelper fetchArticle:self.title];
+    [self.wikiHelper fetchArticle:self.link];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -286,10 +294,8 @@ UIGestureRecognizerDelegate
 
         // All internal links except IMAGE could create new wiki view controller
         if ([url hasPrefix:prefix] && !match) {
-            WikiViewController *nextWikiVC = [[WikiViewController alloc] init];
-
-            NSString *title = [[url substringFromIndex:[prefix length]] stringByRemovingPercentEncoding];
-            nextWikiVC.title = title;
+            NSString *link = [[url substringFromIndex:[prefix length]] stringByRemovingPercentEncoding];
+            WikiViewController *nextWikiVC = [[WikiViewController alloc] initWithTitle:link andLink:link];
 
             [self.navigationController pushViewController:nextWikiVC animated:YES];
         }
