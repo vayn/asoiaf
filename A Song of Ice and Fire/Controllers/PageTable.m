@@ -7,8 +7,11 @@
 //
 
 #import "PageTable.h"
+
 #import "GradientView.h"
 #import "DataManager.h"
+
+#import "UIImage+Decorate.h"
 
 @interface PageTable () <CMBaseTableDelegate>
 
@@ -77,20 +80,9 @@
             NSData *imageData = (NSData *)responseObject;
 
             if (imageData) {
-                UIImage *thumbnail = [UIImage imageWithData:imageData];
-
                 CGSize thumbnailSize = CGSizeMake(35, 23);
-
-                UIGraphicsBeginImageContext(thumbnailSize);
-
-                CGRect imageRect = CGRectMake(0, 0, thumbnailSize.width, thumbnailSize.height);
-                [[UIBezierPath bezierPathWithRoundedRect:imageRect cornerRadius:1.5] addClip];
-
-                [thumbnail drawInRect:imageRect];
-                member.backgroundImage = UIGraphicsGetImageFromCurrentImageContext();
-
-                UIGraphicsEndImageContext();
-
+                UIImage *thumbnail = [[UIImage imageWithData:imageData] makeThumbnailOfSize:thumbnailSize];
+                member.backgroundImage = [thumbnail makeRoundCornerOfRadius:1.5];
                 cell.imageView.image = member.backgroundImage;
             }
         }];
