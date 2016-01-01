@@ -15,6 +15,5 @@ target 'A Song of Ice and Fire' do
     pod 'RegexKitLite-NoWarning', '~> 1.1.0'
     pod 'SDCycleScrollView', '~> 1.3'
     pod 'UIImageViewAligned', '~> 0.0.1'
-    pod 'YFStartView', '~> 0.0.1'
 end
 

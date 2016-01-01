@@ -95,6 +95,12 @@
     if (_logoPosition == LogoPositionCenter) {
         _logoImageView = [[UIImageView alloc] initWithImage:_logoImage];
         _logoImageView.contentMode = UIViewContentModeScaleAspectFit;
+
+        _logoImageView.layer.masksToBounds = NO;
+        _logoImageView.layer.shadowColor = [UIColor whiteColor].CGColor;
+        _logoImageView.layer.shadowOffset = CGSizeMake(-2, 2);
+        _logoImageView.layer.shadowOpacity = 0.8;
+
         [self addSubview:_logoImageView];
         
         //为了防止Masonry重复引用，使用了系统autolayout
@@ -112,7 +118,7 @@
                                                             toItem:self
                                                          attribute:NSLayoutAttributeTop
                                                         multiplier:1
-                                                          constant:kScreen_Height/7]];
+                                                          constant:kScreen_Height/12]];
         [self addConstraint:[NSLayoutConstraint constraintWithItem:_logoImageView
                                                          attribute:NSLayoutAttributeHeight
                                                          relatedBy:NSLayoutRelationEqual

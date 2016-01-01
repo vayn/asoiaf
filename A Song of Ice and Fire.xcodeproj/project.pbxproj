@@ -44,6 +44,7 @@
 		F34684F51BFF5A4500C7C56D /* OpenShare.m in Sources */ = {isa = PBXBuildFile; fileRef = F34684EE1BFF5A4500C7C56D /* OpenShare.m */; };
 		F34DCA391C0BD38E00979CA7 /* CAPSPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = F34DCA381C0BD38E00979CA7 /* CAPSPageMenu.m */; };
 		F34DCA3D1C0BD4C700979CA7 /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F34DCA3C1C0BD4C700979CA7 /* CategoryViewController.m */; };
+		F35472301C36275000BAA1FF /* YFStartView.m in Sources */ = {isa = PBXBuildFile; fileRef = F354722D1C36275000BAA1FF /* YFStartView.m */; };
 		F35E9EE81C2F1730004524DA /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F35E9EE61C2F1730004524DA /* SearchTableViewController.m */; };
 		F35E9EEB1C2F1754004524DA /* SearchTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F35E9EEA1C2F1754004524DA /* SearchTableViewController.xib */; };
 		F36A907A1C22D7C2003C2F93 /* PortalTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = F36A90791C22D7C2003C2F93 /* PortalTypes.m */; };
@@ -169,6 +170,8 @@
 		F34DCA381C0BD38E00979CA7 /* CAPSPageMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPSPageMenu.m; sourceTree = "<group>"; };
 		F34DCA3B1C0BD4C700979CA7 /* CategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryViewController.h; sourceTree = "<group>"; };
 		F34DCA3C1C0BD4C700979CA7 /* CategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryViewController.m; sourceTree = "<group>"; };
+		F354722C1C36275000BAA1FF /* YFStartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFStartView.h; sourceTree = "<group>"; };
+		F354722D1C36275000BAA1FF /* YFStartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFStartView.m; sourceTree = "<group>"; };
 		F35E9EE51C2F1730004524DA /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewController.h; sourceTree = "<group>"; };
 		F35E9EE61C2F1730004524DA /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewController.m; sourceTree = "<group>"; };
 		F35E9EEA1C2F1754004524DA /* SearchTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchTableViewController.xib; path = "A Song of Ice and Fire/Views/SearchTableViewController.xib"; sourceTree = SOURCE_ROOT; };
@@ -482,6 +485,7 @@
 		F334CFF91BEE73FC0074734D /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				F35472291C36275000BAA1FF /* YFStartView */,
 				F34DCA361C0BD38E00979CA7 /* CAPSPageMenu */,
 				F3BD1DF61BF8E71600B6DA69 /* GradientView */,
 				F3EF0BA61C10ED0F00B73DA7 /* MJRefresh */,
@@ -626,6 +630,15 @@
 				F3EF0BA31C10DBB200B73DA7 /* CMTable */,
 			);
 			name = CategoryController;
+			sourceTree = "<group>";
+		};
+		F35472291C36275000BAA1FF /* YFStartView */ = {
+			isa = PBXGroup;
+			children = (
+				F354722C1C36275000BAA1FF /* YFStartView.h */,
+				F354722D1C36275000BAA1FF /* YFStartView.m */,
+			);
+			path = YFStartView;
 			sourceTree = "<group>";
 		};
 		F35E9EEC1C2F177B004524DA /* SearchTableController */ = {
@@ -1058,6 +1071,7 @@
 				F3BE13901BF270CF00CC5159 /* KnowTipTableViewController.m in Sources */,
 				F39290D81C0E9DE600A7BD2C /* Models.m in Sources */,
 				F3205DF41C259D5B0020983E /* PortalWebViewController.m in Sources */,
+				F35472301C36275000BAA1FF /* YFStartView.m in Sources */,
 				F3EF0BE31C10ED0F00B73DA7 /* UIScrollView+MJExtension.m in Sources */,
 				F34684F11BFF5A4500C7C56D /* OpenShare+QQ.m in Sources */,
 				F3F545BE1C1CAD1900FF612E /* EmptyDataSetDelegate.m in Sources */,

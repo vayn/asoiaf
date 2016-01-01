@@ -36,7 +36,6 @@ PODS:
   - RegexKitLite-NoWarning (1.1.0)
   - SDCycleScrollView (1.3)
   - UIImageViewAligned (0.0.1)
-  - YFStartView (0.0.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0.4)
@@ -50,7 +49,6 @@ DEPENDENCIES:
   - RegexKitLite-NoWarning (~> 1.1.0)
   - SDCycleScrollView (~> 1.3)
   - UIImageViewAligned (~> 0.0.1)
-  - YFStartView (~> 0.0.1)
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
@@ -67,6 +65,5 @@ SPEC CHECKSUMS:
   RegexKitLite-NoWarning: 365d208f8187997e33d9de8baeddfc00728596d8
   SDCycleScrollView: 90e43636fcc8e6a7f74e8b64d87418a8e96549b4
   UIImageViewAligned: 73030dd085400e1ae7641203b5cc1546fa0495a8
-  YFStartView: 0f81260cc7da743133c738d9154e4e7d9cf20314
 
 COCOAPODS: 0.39.0
