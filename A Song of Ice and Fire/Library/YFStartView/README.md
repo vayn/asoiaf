@@ -1,11 +1,20 @@
 # YFStartView - simple iOS StartView
 
+<p>
+<a href="http://cocoadocs.org/docsets/YFStartView"><img src="https://img.shields.io/cocoapods/v/YFStartView.svg?style=flat"></a>
+<a href="https://github.com/yeziahehe/YFStartView/blob/master/LICENSE"><img src="https://img.shields.io/cocoapods/l/YFStartView.svg?style=flat"></a>
+<a href="http://cocoadocs.org/docsets/YFStartView"><img src="https://img.shields.io/cocoapods/p/YFStartView.svg?style=flat"></a>
+</p>
+
 ![GIFImage](http://7xkvt5.com1.z0.glb.clouddn.com/github/YFStartViewbuttom.gif) </br >
 ![GIFImage](http://7xkvt5.com1.z0.glb.clouddn.com/github/YFStartViewcenter.gif)
 
 ## Introduction
 
 在启动图都是一个PNG的年代下，有强迫症的我已经受不了，设计交互大法好。
+
+## Requirements
+
 - iOS 8 and later
 - ARC
 
@@ -89,7 +98,7 @@ startView.randomImages = [NSMutableArray arrayWithObjects:@"startImage4", @"star
 
 设置logo的类型，类似于Coding。
 
-此种方式推荐LaunchScreen.xib background 为 block，且将logo.png设置在对应的位置，不会造成先出现黑色页面的情况，而是出现带有logo的LaunchScreen.xib再到YFStartView。
+此种方式推荐LaunchScreen.xib background 为 black，且将logo.png设置在对应的位置，不会造成先出现黑色页面的情况，而是出现带有logo的LaunchScreen.xib再到YFStartView。
 
 ```objective-c
 YFStartView *startView = [YFStartView startView];

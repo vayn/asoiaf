@@ -41,7 +41,7 @@
     YFStartView *startView = [YFStartView startView];
     startView.randomImages = [NSMutableArray arrayWithObjects:@"launch_background", nil];
     startView.logoPosition = LogoPositionCenter;
-    startView.logoImage = [UIImage imageNamed:@"launch_logo"];
+    startView.logoImage = [UIImage imageNamed:@"launch_logo_2"];
 
     [startView configYFStartView];
 
