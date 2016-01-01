@@ -7,8 +7,13 @@
 //
 
 #import "PageTable.h"
+
 #import "GradientView.h"
 #import "DataManager.h"
+
+#import "UIImage+Decorate.h"
+
+static CGFloat const kThumbnailWidth = 40.0;
 
 @interface PageTable () <CMBaseTableDelegate>
 
@@ -77,20 +82,9 @@
             NSData *imageData = (NSData *)responseObject;
 
             if (imageData) {
-                UIImage *thumbnail = [UIImage imageWithData:imageData];
-
                 CGSize thumbnailSize = CGSizeMake(35, 23);
-
-                UIGraphicsBeginImageContext(thumbnailSize);
-
-                CGRect imageRect = CGRectMake(0, 0, thumbnailSize.width, thumbnailSize.height);
-                [[UIBezierPath bezierPathWithRoundedRect:imageRect cornerRadius:1.5] addClip];
-
-                [thumbnail drawInRect:imageRect];
-                member.backgroundImage = UIGraphicsGetImageFromCurrentImageContext();
-
-                UIGraphicsEndImageContext();
-
+                UIImage *thumbnail = [[UIImage imageWithData:imageData] makeThumbnailOfSize:thumbnailSize];
+                member.backgroundImage = [thumbnail makeRoundCornerOfRadius:1.5];
                 cell.imageView.image = member.backgroundImage;
             }
         }];
@@ -167,6 +161,7 @@
     headerView.clipsToBounds = YES;
 
     UIImage *backgroundImage = nil;
+    UIImage *iconImage = nil;
 
     switch (self.parentVC.portalType) {
         case PortalChapterType:
@@ -196,9 +191,10 @@
         }
         case PortalTVType: {
             backgroundImage = [UIImage imageNamed:@"portal_tv_bg"];
+            iconImage = [[UIImage imageNamed:@"slide_icon_tv_white"] makeThumbnailOfWidth:kThumbnailWidth];
             break;
         }
-        case PortalInferenceType: {
+        case PortalTheoryType: {
             break;
         }
     }
@@ -220,7 +216,23 @@
 
     CGRect titleFrame = CGRectMake(0, 0, headerFrame.size.width, 60);
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:titleFrame];
-    titleLabel.text = self.parentVC.title;
+
+    if (iconImage) {
+        NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
+        attachment.bounds = CGRectMake(0, -1, iconImage.size.width, iconImage.size.height);
+        attachment.image = iconImage;
+
+        NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:attachment];
+        NSAttributedString *titleString = [[NSAttributedString alloc] initWithString:self.parentVC.title];
+
+        NSMutableAttributedString *titleText = [[NSMutableAttributedString alloc] initWithAttributedString:attachmentString];
+        [titleText appendAttributedString:titleString];
+
+        titleLabel.attributedText = titleText;
+    } else {
+        titleLabel.text = self.parentVC.title;
+    }
+
     titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:21.0];
     titleLabel.textColor = [UIColor whiteColor];
     titleLabel.shadowColor = [UIColor blackColor];

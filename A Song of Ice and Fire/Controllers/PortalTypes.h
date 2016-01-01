@@ -17,7 +17,7 @@ typedef NS_ENUM(NSUInteger, PortalType) {
     PortalCultureType,
     PortalGeoType,
     PortalTVType,
-    PortalInferenceType
+    PortalTheoryType
 };
 
 @interface PortalTypes : NSObject

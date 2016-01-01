@@ -30,7 +30,7 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rce-RR-WxR">
                             <rect key="frame" x="4" y="10" width="157" height="58"/>
-                            <state key="normal" backgroundImage="huiji_white_logo"/>
+                            <state key="normal" backgroundImage="slide_huiji_logo"/>
                             <connections>
                                 <action selector="logoButtonPressed:" destination="-1" eventType="touchUpInside" id="Vdl-cm-XB0"/>
                             </connections>
@@ -68,10 +68,10 @@
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-            <point key="canvasLocation" x="418.5" y="-79.5"/>
+            <point key="canvasLocation" x="-52.5" y="-106.5"/>
         </view>
     </objects>
     <resources>
-        <image name="huiji_white_logo" width="393" height="124"/>
+        <image name="slide_huiji_logo" width="393" height="124"/>
     </resources>
 </document>
