@@ -115,9 +115,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CategoryMemberModel *member = self.members[indexPath.row];
-
     WikiViewController *wikiVC = [[WikiViewController alloc] init];
-    wikiVC.title = member.title;
+
+    if (self.parentVC.portalType == PortalTVType) {
+        wikiVC.title = [NSString stringWithFormat:@"TV:%@", member.title];
+    } else {
+        wikiVC.title = member.title;
+    }
 
     UINavigationController *navigationVC = [[UINavigationController alloc] initWithRootViewController:wikiVC];
     wikiVC.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"home_button"]
