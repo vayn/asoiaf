@@ -67,6 +67,7 @@
 		F3AE09C31C1B5BE900E8A214 /* CubeNavigationInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = F3AE09AF1C1B5BE900E8A214 /* CubeNavigationInteraction.m */; };
 		F3AE09C41C1B5BE900E8A214 /* UIParallelogramButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F3AE09B31C1B5BE900E8A214 /* UIParallelogramButton.m */; };
 		F3AE09C51C1B5BE900E8A214 /* Spinner.m in Sources */ = {isa = PBXBuildFile; fileRef = F3AE09B61C1B5BE900E8A214 /* Spinner.m */; };
+		F3AF62301C36B695007B8A4F /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = F3AF622F1C36B695007B8A4F /* UIImage+Resize.m */; };
 		F3BD1DF51BF8D8C300B6DA69 /* ParallaxHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F3BD1DF41BF8D8C300B6DA69 /* ParallaxHeaderView.m */; };
 		F3BD1DF91BF8E71600B6DA69 /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = F3BD1DF81BF8E71600B6DA69 /* GradientView.m */; };
 		F3BE138C1BF26F5E00CC5159 /* KnowTipModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F3BE138B1BF26F5E00CC5159 /* KnowTipModel.m */; };
@@ -215,6 +216,8 @@
 		F3AE09B31C1B5BE900E8A214 /* UIParallelogramButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIParallelogramButton.m; sourceTree = "<group>"; };
 		F3AE09B51C1B5BE900E8A214 /* Spinner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spinner.h; sourceTree = "<group>"; };
 		F3AE09B61C1B5BE900E8A214 /* Spinner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spinner.m; sourceTree = "<group>"; };
+		F3AF622E1C36B695007B8A4F /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		F3AF622F1C36B695007B8A4F /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		F3BD1DF31BF8D8C300B6DA69 /* ParallaxHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParallaxHeaderView.h; sourceTree = "<group>"; };
 		F3BD1DF41BF8D8C300B6DA69 /* ParallaxHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParallaxHeaderView.m; sourceTree = "<group>"; };
 		F3BD1DF71BF8E71600B6DA69 /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
@@ -688,16 +691,11 @@
 		F3AE099E1C1B5BE900E8A214 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				F3AE099F1C1B5BE900E8A214 /* NSArray+Random.h */,
-				F3AE09A01C1B5BE900E8A214 /* NSArray+Random.m */,
-				F3AE09A11C1B5BE900E8A214 /* UIColor+Hexadecimal.h */,
-				F3AE09A21C1B5BE900E8A214 /* UIColor+Hexadecimal.m */,
-				F3AE09A31C1B5BE900E8A214 /* UIImage+ImageEffects.h */,
-				F3AE09A41C1B5BE900E8A214 /* UIImage+ImageEffects.m */,
-				F3AE09A71C1B5BE900E8A214 /* UINavigationController+TransparentNavigationBar.h */,
-				F3AE09A81C1B5BE900E8A214 /* UINavigationController+TransparentNavigationBar.m */,
-				F32A11131C1B7CAF0061C266 /* WKWebView+SynchronousEvaluateJavaScript.h */,
-				F32A11141C1B7CAF0061C266 /* WKWebView+SynchronousEvaluateJavaScript.m */,
+				F3AF62291C36B5C4007B8A4F /* NSArray */,
+				F3AF622A1C36B5CC007B8A4F /* UIColor */,
+				F3AF622B1C36B5D4007B8A4F /* UIImage */,
+				F3AF622C1C36B5DB007B8A4F /* UINavigationController */,
+				F3AF622D1C36B5F3007B8A4F /* WKWebView */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -740,6 +738,53 @@
 				F3AE09B61C1B5BE900E8A214 /* Spinner.m */,
 			);
 			path = Spinner;
+			sourceTree = "<group>";
+		};
+		F3AF62291C36B5C4007B8A4F /* NSArray */ = {
+			isa = PBXGroup;
+			children = (
+				F3AE099F1C1B5BE900E8A214 /* NSArray+Random.h */,
+				F3AE09A01C1B5BE900E8A214 /* NSArray+Random.m */,
+			);
+			name = NSArray;
+			sourceTree = "<group>";
+		};
+		F3AF622A1C36B5CC007B8A4F /* UIColor */ = {
+			isa = PBXGroup;
+			children = (
+				F3AE09A11C1B5BE900E8A214 /* UIColor+Hexadecimal.h */,
+				F3AE09A21C1B5BE900E8A214 /* UIColor+Hexadecimal.m */,
+			);
+			name = UIColor;
+			sourceTree = "<group>";
+		};
+		F3AF622B1C36B5D4007B8A4F /* UIImage */ = {
+			isa = PBXGroup;
+			children = (
+				F3AE09A31C1B5BE900E8A214 /* UIImage+ImageEffects.h */,
+				F3AE09A41C1B5BE900E8A214 /* UIImage+ImageEffects.m */,
+				F3AF622E1C36B695007B8A4F /* UIImage+Resize.h */,
+				F3AF622F1C36B695007B8A4F /* UIImage+Resize.m */,
+			);
+			name = UIImage;
+			sourceTree = "<group>";
+		};
+		F3AF622C1C36B5DB007B8A4F /* UINavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				F3AE09A71C1B5BE900E8A214 /* UINavigationController+TransparentNavigationBar.h */,
+				F3AE09A81C1B5BE900E8A214 /* UINavigationController+TransparentNavigationBar.m */,
+			);
+			name = UINavigationController;
+			sourceTree = "<group>";
+		};
+		F3AF622D1C36B5F3007B8A4F /* WKWebView */ = {
+			isa = PBXGroup;
+			children = (
+				F32A11131C1B7CAF0061C266 /* WKWebView+SynchronousEvaluateJavaScript.h */,
+				F32A11141C1B7CAF0061C266 /* WKWebView+SynchronousEvaluateJavaScript.m */,
+			);
+			name = WKWebView;
 			sourceTree = "<group>";
 		};
 		F3BD1DF21BF8D8C300B6DA69 /* ParallaxHeaderView */ = {
@@ -1097,6 +1142,7 @@
 				F3EF0BD51C10ED0F00B73DA7 /* MJRefreshComponent.m in Sources */,
 				F3EF0BDD1C10ED0F00B73DA7 /* MJRefreshBackStateFooter.m in Sources */,
 				F3EF0BD61C10ED0F00B73DA7 /* MJRefreshFooter.m in Sources */,
+				F3AF62301C36B695007B8A4F /* UIImage+Resize.m in Sources */,
 				F334D0071BEE73FC0074734D /* FeaturedQuoteModel.m in Sources */,
 				F34684F41BFF5A4500C7C56D /* OpenShare+Weixin.m in Sources */,
 				F3EF0BDF1C10ED0F00B73DA7 /* MJRefreshNormalHeader.m in Sources */,
