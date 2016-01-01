@@ -80,7 +80,7 @@
                      @{@"pageid": @2780,
                        @"link": @"Category:理论推测",
                        @"title": @"理论推测",
-                       @"type": [NSNumber numberWithInteger:PortalInferenceType],
+                       @"type": [NSNumber numberWithInteger:PortalTheoryType],
                        },
                      @{@"pageid": @303,
                        @"link": @"Category:书籍",

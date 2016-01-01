@@ -200,7 +200,7 @@ static CGFloat const kThumbnailWidth = 40.0;
             iconImage = [[UIImage imageNamed:@"slide_icon_tv_white"] makeThumbnailOfWidth:kThumbnailWidth];
             break;
         }
-        case PortalInferenceType: {
+        case PortalTheoryType: {
             break;
         }
     }

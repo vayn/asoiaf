@@ -70,8 +70,8 @@ static NSString * const reuseHeader = @"PortalCollectionHeaderView";
                             [[PortalModel alloc] initWithTitle:@"理论推测"
                                                           link:@"理论推测"
                                                         pageId:@2780
-                                               backgroundImage:[UIImage imageNamed:@"portal_portrait_inference"]
-                                                    portalType:PortalInferenceType],
+                                               backgroundImage:[UIImage imageNamed:@"portal_portrait_theory"]
+                                                    portalType:PortalTheoryType],
                             [[PortalModel alloc] initWithTitle:@"分卷介绍"
                                                           link:@"Portal:书"
                                                         pageId:@46710
