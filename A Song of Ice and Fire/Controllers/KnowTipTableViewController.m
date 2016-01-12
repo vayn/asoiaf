@@ -29,9 +29,18 @@
     if (self) {
         _tips = [@[] mutableCopy];
 
-        [[MainManager sharedManager] getKnowTip:^(id responseObject) {
-            NSString *bigTipString = [(NSArray *) responseObject randomObject];
-            NSString *pattern = @"^\\*(.*?)……（\\[{2}(.*?)\\|";
+        [[MainManager sharedManager] getKnowTip:^(NSArray *options) {
+
+            NSString *tipString1 = [options randomObject];
+            NSString *tipString2 = [options randomObject];
+
+            while ([tipString1 isEqualToString:tipString2]) {
+                tipString2 = [options randomObject];
+            }
+
+            NSString *bigTipString = [tipString1 stringByAppendingString:tipString2];
+
+            NSString *pattern = @"^\\*(.*?)\\.*\\[{2}(.*?)\\|";
 
             NSArray<NSString *> *tipList = [[bigTipString componentsSeparatedByString:@"\n"] filteredArrayUsingPredicate:
                                             [NSPredicate predicateWithFormat:@"length > 0"]];

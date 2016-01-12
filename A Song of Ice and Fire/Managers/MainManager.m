@@ -109,7 +109,7 @@
 
 - (void)getKnowTip:(ManagerCompletionBlock)completionBlock
 {
-    NSString *Api = [BaseManager getAbsoluteUrl:@"api.php?action=expandtemplates&text={{Do You Know}}&prop=wikitext&format=json"];
+    NSString *Api = [BaseManager getAbsoluteUrl:@"api.php?action=expandtemplates&text={{Do You Know API}}&prop=wikitext&format=json"];
 
     [self.manager GET:Api parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         NSString *wikitext = responseObject[@"expandtemplates"][@"wikitext"];
