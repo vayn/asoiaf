@@ -10,12 +10,12 @@
 
 @implementation KnowTipModel
 
-- (instancetype)initWithTip:(NSString *)tip title:(NSString *)title
+- (instancetype)initWithTip:(NSString *)tip link:(NSString *)link
 {
     self = [super init];
     if (self) {
         _tip = tip;
-        _title = title;
+        _link = link;
     }
     return self;
 }

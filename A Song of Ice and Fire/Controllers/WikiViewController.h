@@ -21,4 +21,8 @@
 
 @interface WikiViewController : UIViewController
 
+@property (nonatomic, strong) NSString *link;
+
+- (instancetype)initWithTitle:(NSString *)aTitle andLink:(NSString *)aLink;
+
 @end

@@ -29,9 +29,18 @@
     if (self) {
         _tips = [@[] mutableCopy];
 
-        [[MainManager sharedManager] getKnowTip:^(id responseObject) {
-            NSString *bigTipString = [(NSArray *) responseObject randomObject];
-            NSString *pattern = @"^\\*(.*?)……（\\[{2}(.*?)\\|";
+        [[MainManager sharedManager] getKnowTip:^(NSArray *options) {
+
+            NSString *tipString1 = [options randomObject];
+            NSString *tipString2 = [options randomObject];
+
+            while ([tipString1 isEqualToString:tipString2]) {
+                tipString2 = [options randomObject];
+            }
+
+            NSString *bigTipString = [tipString1 stringByAppendingString:tipString2];
+
+            NSString *pattern = @"^\\*(.*?)\\.*\\[{2}(.*?)\\|";
 
             NSArray<NSString *> *tipList = [[bigTipString componentsSeparatedByString:@"\n"] filteredArrayUsingPredicate:
                                             [NSPredicate predicateWithFormat:@"length > 0"]];
@@ -43,7 +52,7 @@
                                     enumerationOptions:RKLRegexEnumerationNoOptions
                                             usingBlock:^(NSInteger captureCount, NSString *const __unsafe_unretained *capturedStrings, const NSRange *capturedRanges, volatile BOOL *const stop) {
                                                 [_tips addObject:[[KnowTipModel alloc] initWithTip:capturedStrings[1]
-                                                                                             title:capturedStrings[2]]];
+                                                                                              link:capturedStrings[2]]];
                                             }];
             }
 
@@ -135,9 +144,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     KnowTipModel *tipModel = self.tips[indexPath.row];
-
-    WikiViewController *wikiVC = [[WikiViewController alloc] init];
-    wikiVC.title = tipModel.title;
+    WikiViewController *wikiVC = [[WikiViewController alloc] initWithTitle:tipModel.link andLink:tipModel.link];
 
     [self.navigationController pushViewController:wikiVC animated:YES];
 }

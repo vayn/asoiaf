@@ -199,9 +199,8 @@ decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 
         // All internal links except IMAGE could create new wiki view controller
         if ([url hasPrefix:prefix] && !match) {
-            WikiViewController *wikiVC = [[WikiViewController alloc] init];
-            NSString *title = [[url substringFromIndex:[prefix length]] stringByRemovingPercentEncoding];
-            wikiVC.title = title;
+            NSString *link = [[url substringFromIndex:[prefix length]] stringByRemovingPercentEncoding];
+            WikiViewController *wikiVC = [[WikiViewController alloc] initWithTitle:link andLink:link];
             wikiVC.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"home_button"]
                                                                                         style:UIBarButtonItemStylePlain
                                                                                        target:self

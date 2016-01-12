@@ -222,13 +222,11 @@
 - (IBAction)logoButtonPressed:(id)sender
 {
     if (self.randomTitle) {
-        WikiViewController *wikiVC = [[WikiViewController alloc] init];
-        wikiVC.title = self.randomTitle;
+        WikiViewController *wikiVC = [[WikiViewController alloc] initWithTitle:self.randomTitle andLink:self.randomTitle];
         [self.navigationController pushViewController:wikiVC animated:YES];
     } else {
         [[MainManager sharedManager] getRandomTitle:^(NSString *title) {
-            WikiViewController *wikiVC = [[WikiViewController alloc] init];
-            wikiVC.title = title;
+            WikiViewController *wikiVC = [[WikiViewController alloc] initWithTitle:title andLink:title];
             [self.navigationController pushViewController:wikiVC animated:YES];
         }];
     }
