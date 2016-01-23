@@ -32,7 +32,7 @@
 static CGFloat const kSlideTiming = 0.25;
 static CGFloat const kSlideClosingAnimationSpringDamping = 1.0f;
 static CGFloat const kSlideClosingAnimationSpringInitialVelocity = 0.5f;
-               
+
 static CGFloat const kOverlayAlphaBegan = 0.0;
 static CGFloat const kOverlayAlphaEnd = 0.7;
                
