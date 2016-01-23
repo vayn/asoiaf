@@ -23,6 +23,8 @@
 
 @interface PortalWebViewController () <WKNavigationDelegate>
 
+@property (nonatomic, assign) CGFloat compensationHeight;
+
 @property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, strong) Spinner *cubeSpinner;
 @property (nonatomic, strong) UIView *statusBackgroundView;
@@ -55,6 +57,11 @@
     [self.view addSubview:self.cubeSpinner];
     [self.cubeSpinner startAnimating];
 
+
+    CGFloat navBarHeight = self.navigationController.navigationBar.frame.size.height;
+    CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+    self.compensationHeight = navBarHeight + statusBarHeight;
+
     [self setupWebView];
     [self setupStatusBar];
     [self setupGestures];
@@ -65,11 +72,6 @@
     [super viewWillAppear:animated];
 
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-
-    // 解决隐藏 navigation bar 后出现空白的问题
-    // 注：本地测试无问题，但上传商店后出现此问题
-    self.edgesForExtendedLayout = UIRectEdgeAll;
-    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -105,7 +107,14 @@
     CGRect frame = self.view.frame;
     frame.size.width = [UIScreen mainScreen].bounds.size.width;
     frame.size.height = [UIScreen mainScreen].bounds.size.height;
+    frame.origin.y = 0;
     self.webView.frame = frame;
+
+    // 解决隐藏 navigation bar 后出现空白的问题
+    // 注：本地测试无问题，但上传商店后出现此问题
+    [self.webView.scrollView setContentInset:UIEdgeInsetsMake(-self.compensationHeight, 0, 0, 0)];
+    [self.webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(-self.compensationHeight, 0, 0, 0)];
+
 
     self.webView.scrollView.bounces = NO;
     [self.webView.scrollView addObserver:self
@@ -170,16 +179,17 @@
 {
     if (![@"contentOffset" isEqualToString:keyPath])return;
 
+    CGFloat headerHeight = 270;
     CGPoint offset = self.webView.scrollView.contentOffset;
     UIStatusBarStyle barStyle = (UIStatusBarStyle)self.navigationController.navigationBar.barStyle;
 
-    if (offset.y >= 270 && barStyle == UIStatusBarStyleLightContent) {
+    if (offset.y >= headerHeight && barStyle == UIStatusBarStyleLightContent) {
         [self.view addSubview:self.statusBackgroundView];
         [UIView animateWithDuration:0.25 animations:^{
             self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
             self.statusBackgroundView.alpha = 1.0;
         }];
-    } else if (offset.y < 270 && barStyle == UIStatusBarStyleDefault) {
+    } else if (offset.y < headerHeight && barStyle == UIStatusBarStyleDefault) {
         self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
         self.statusBackgroundView.alpha = 0.0;
         [self.statusBackgroundView removeFromSuperview];
