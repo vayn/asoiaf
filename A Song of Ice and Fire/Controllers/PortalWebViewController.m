@@ -65,6 +65,10 @@
     [super viewWillAppear:animated];
 
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+
+    // 解决隐藏 navigation bar 后出现空白的问题
+    // 注：本地测试无问题，但上传商店后出现此问题
+    self.view.frame = [UIScreen mainScreen].bounds;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
