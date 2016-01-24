@@ -187,11 +187,11 @@
     // Check if its not the correct image (Sometimes there are articles where the first image is an icon..)
     for(NSString *img in imageBlackList) {
         if([imageURL containsString:img]) {
-            return true;
+            return YES;
         }
     }
     
-    return false;
+    return NO;
 }
 
 @end
