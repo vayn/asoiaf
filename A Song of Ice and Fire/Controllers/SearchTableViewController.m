@@ -157,10 +157,7 @@ static NSString * const kCellIdentifier = @"Cell";
 {
     if (searchController.searchBar.text.length == 0) {
         [self.searchResults removeAllObjects];
-
-        if ([self.tableView.subviews containsObject:self.noResultsLabel]) {
-            [self.noResultsLabel removeFromSuperview];
-        }
+        [self dismissNoResultLabel];
 
         [self.tableView reloadData];
     }
@@ -172,6 +169,7 @@ static NSString * const kCellIdentifier = @"Cell";
 {
     [self.loadingIndicator startAnimating];
     [self.searchResults removeAllObjects];
+    [self dismissNoResultLabel];
 
     NSString *searchTerm = searchBar.text;
 
@@ -180,13 +178,11 @@ static NSString * const kCellIdentifier = @"Cell";
         self.searchResults = [searchResults mutableCopy];
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (self.searchResults.count > 0) {
-                [self.tableView reloadData];
-            } else {
+            if (self.searchResults.count == 0) {
                 [self.tableView addSubview:self.noResultsLabel];
             }
-
             [self.loadingIndicator stopAnimating];
+            [self.tableView reloadData];
         });
 
     }];
@@ -223,6 +219,13 @@ static NSString * const kCellIdentifier = @"Cell";
     _noResultsLabel.textAlignment = NSTextAlignmentCenter;
     _noResultsLabel.textColor = [UIColor colorWithHex:@"#cccccc"];
     _noResultsLabel.text = @"没有结果";
+}
+
+- (void)dismissNoResultLabel
+{
+    if ([self.tableView.subviews containsObject:self.noResultsLabel]) {
+        [self.noResultsLabel removeFromSuperview];
+    }
 }
 
 @end
