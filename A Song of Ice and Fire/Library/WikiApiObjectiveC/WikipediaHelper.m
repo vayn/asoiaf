@@ -89,6 +89,12 @@
     // Add CSS style
     formatedHtmlSrc = [self.wikicss stringByAppendingString:formatedHtmlSrc];
 
+    // Add JavaScript
+    NSString *jsPath = [[NSBundle mainBundle] pathForResource:@"wikihelper" ofType:@"js"];
+    NSString *jScript = [NSString stringWithContentsOfFile:jsPath encoding:NSUTF8StringEncoding error:nil];
+    jScript = [NSString stringWithFormat:@"<script>%@</script>", jScript];
+    formatedHtmlSrc = [formatedHtmlSrc stringByAppendingString:jScript];
+
     return formatedHtmlSrc;
 }
 
